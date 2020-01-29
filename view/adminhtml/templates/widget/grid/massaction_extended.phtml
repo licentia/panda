@@ -1,0 +1,125 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+<div id="<?= $block->escapeHtmlAttr($block->getHtmlId()) ?>" class="admin__grid-massaction">
+
+    <?php if ($block->getHideFormElement() !== true) : ?>
+    <form action="" id="<?= $block->getHtmlId() ?>-form" method="post">
+        <?php endif ?>
+        <div class="admin__grid-massaction-form">
+            <?= $block->getBlockHtml('formkey') ?>
+            <select id="<?= $block->getHtmlId() ?>-select" class="local-validation admin__control-select">
+                <option class="admin__control-select-placeholder" value="" selected><?php /* @escapeNotVerified */
+                    echo __('Actions') ?></option>
+                <?php foreach ($block->getItems() as $_item) : ?>
+                    <option value="<?php /* @escapeNotVerified */
+                    echo $_item->getId() ?>"<?= ($_item->getSelected() ? ' selected="selected"' : '') ?>><?php /* @escapeNotVerified */
+                        echo $_item->getLabel() ?></option>
+                <?php endforeach; ?>
+            </select> <span class="outer-span" id="<?= $block->getHtmlId() ?>-form-hiddens"></span> <span
+                    class="outer-span" id="<?= $block->getHtmlId() ?>-form-additional"></span>
+            <?= $block->getApplyButtonHtml() ?>
+        </div>
+        <?php if ($block->getHideFormElement() !== true) : ?>
+    </form>
+<?php endif ?>
+    <div class="no-display">
+        <?php foreach ($block->getItems() as $_item) : ?>
+            <div id="<?= $block->getHtmlId() ?>-item-<?php /* @escapeNotVerified */
+            echo $_item->getId() ?>-block">
+                <?= $_item->getAdditionalActionBlockHtml() ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <div class="mass-select-wrap">
+        <select id="<?= $block->getHtmlId() ?>-mass-select" class="action-select-multiselect"
+                data-menu="grid-mass-select">
+            <optgroup label="<?php /* @escapeNotVerified */
+            echo __('Mass Actions') ?>">
+                <option disabled selected></option>
+                <?php if ($block->getUseSelectAll()) : ?>
+                    <option value="selectAll">
+                        <?php /* @escapeNotVerified */
+                        echo __('Select All') ?>
+                    </option>
+                    <option value="unselectAll">
+                        <?php /* @escapeNotVerified */
+                        echo __('Unselect All') ?>
+                    </option>
+                <?php endif; ?>
+                <option value="selectVisible">
+                    <?php /* @escapeNotVerified */
+
+                    echo __('Select Visible') ?>
+                </option>
+                <option value="unselectVisible">
+                    <?php /* @escapeNotVerified */
+
+                    echo __('Unselect Visible') ?>
+                </option>
+            </optgroup>
+        </select> <label for="<?= $block->getHtmlId() ?>-mass-select"></label>
+    </div>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            'use strict';
+            $('#<?= $block->getHtmlId() ?>-mass-select').change(function () {
+                var massAction = $('option:selected', this).val();
+                switch (massAction) {
+                <?php if ($block->getUseSelectAll()) : ?>
+                    case 'selectAll':
+                        return <?php /* @escapeNotVerified */  echo $block->getJsObjectName() ?>.
+                        selectAll();
+                        break;
+                    case 'unselectAll':
+                        return <?php /* @escapeNotVerified */   echo $block->getJsObjectName() ?>.
+                        unselectAll();
+                        break;
+                <?php endif; ?>
+                    case 'selectVisible':
+                        return <?php /* @escapeNotVerified */ echo $block->getJsObjectName() ?>.
+                        selectVisible();
+                        break;
+                    case 'unselectVisible':
+                        return <?php /* @escapeNotVerified */  echo $block->getJsObjectName() ?>.
+                        unselectVisible();
+                        break;
+                }
+                this.blur();
+            });
+        });
+
+        <?php if (!$block->getParentBlock()->canDisplayContainer()) : ?>
+        <?php /* @escapeNotVerified */  echo $block->getJsObjectName() ?>.setGridIds('<?php /* @escapeNotVerified */
+            echo $block->getGridIdsJson() ?>');
+        <?php endif; ?>
+
+
+    </script>
+</div>

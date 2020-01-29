@@ -1,0 +1,268 @@
+/*
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+.customer-information .box {
+    border: 1px solid #f1f1f1;
+    float: left;
+    margin: 5px;
+    width: 190px;
+    position: relative;
+    display: inline-block;
+}
+
+.customer-information .box h5 {
+    font-weight: normal;
+    background: #e7e7e7;
+    color: #41362f;
+    padding: 5px;
+    text-align: center;
+    font-size: 13px;
+    height: 35px;
+    margin: 0;
+    vertical-align: middle;
+    position: relative;
+    display: table-cell;
+    width: 190px;
+}
+
+.customer-information .box p {
+    color: #333;
+    text-align: center;
+    padding: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.column_80 {
+    width: 80px;
+}
+
+.column_150 {
+    width: 150px;
+}
+
+.column_50 {
+    width: 50px;
+}
+
+.column_120 {
+    width: 120px;
+}
+
+.column_100 {
+    width: 100px;
+}
+
+a.pandahelp:hover {
+    color: black;
+    text-decoration: none;
+}
+
+a.pandahelp {
+    color: black;
+    position: relative;
+    top: 5px;
+    margin: 0 5px;
+    display: block;
+}
+
+a.pandahelp:before {
+    content: '\e633' !important;
+    font-family: 'Admin Icons';
+    font-size: 1.9rem;
+    top: 3px;
+    position: relative;
+    margin: 0 5px;
+}
+
+body.pandaforms-index .admin__data-grid-wrap .data-row,
+body.pandacampaigns-index .admin__data-grid-wrap .data-row,
+body.pandaautoresponders-index .admin__data-grid-wrap .data-row,
+body.pandaformulas-index .admin__data-grid-wrap .data-row,
+body.pandapopups-index .admin__data-grid-wrap .data-row,
+body.pandasplits-index .admin__data-grid-wrap .data-row,
+body.pandasegments-index .admin__data-grid-wrap .data-row,
+body.pandafollowups-index .admin__data-grid-wrap .data-row,
+body.pandasubscriber-index .admin__data-grid-wrap .data-row,
+body.pandagoals-index .admin__data-grid-wrap .data-row {
+    cursor: pointer;
+}
+
+/*
+body[class^="panda"]  .ui-corner-all {
+    -moz-border-radius: 4px 4px 4px 4px;
+}
+
+body[class^="panda"]  .ui-widget-content {
+    border: 1px solid darkgray;
+    color: darkgray;
+}
+
+body[class^="panda"]  .ui-menu {
+    display: block;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 2px;
+}
+
+body[class^="panda"]  .ui-autocomplete {
+    cursor: default;
+    position: absolute;
+}
+
+body[class^="panda"]  .ui-menu .ui-menu-item {
+    clear: left;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body[class^="panda"]  .ui-menu .ui-menu-item a {
+    display: block;
+    padding: 3px 3px 3px 3px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+body[class^="panda"]  .ui-menu .ui-menu-item a:hover {
+    display: block;
+    padding: 3px 3px 3px 3px;
+    text-decoration: none;
+    color: White;
+    cursor: pointer;
+    background-color: ButtonText;
+}
+
+body[class^="panda"]  .ui-widget-content a {
+    color: black;
+}
+*/
+body[class^="panda"] div.grid table.data.data-grid.admin__control-table th {
+    padding: 10px;
+}
+
+body[class^="panda"] .admin__scope-old .form-inline .label.admin__field-label {
+    width: 220px;
+}
+
+body[class^="panda"] .admin__scope-old .form-inline .label ~ .control {
+    margin: 0;
+    width: calc(100% - 220px);
+    max-width: 750px;
+}
+
+body[class^="panda"] .admin__scope-old .form-inline .fieldset > .field > .label span {
+    word-break: normal;
+}
+
+body[class^="panda"] .admin__scope-old select[multiple],
+body[class^="panda"] .admin__scope-old select[size] {
+    height: 240px;
+    width: 275px;
+}
+
+body[class^="panda"] .admin__scope-old select:not([multiple]) {
+    width: 275px;
+}
+
+body[class^="panda"] .admin__scope-old div.admin__data-grid-toolbar select:not([multiple]),
+body[class^="panda"] .admin__scope-old div.admin__data-grid-wrap select:not([multiple]) {
+    width: inherit;
+}
+
+body[class^="panda"] .admin__scope-old input.small_input,
+body[class^="panda"] .admin__scope-old .control > input._has-datepicker {
+    width: 275px;
+}
+
+ul.list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+li.list-item {
+    margin: 0.5% 0.5% 0.5% 0;
+    border: 1px solid #dedede;
+    width: 24%;
+}
+
+li.list-item strong:before {
+    content: '\e605';
+    font-family: 'icons-blank-theme';
+    padding: 3px;
+}
+
+li.list-item strong {
+    background-color: #f4f4f4;
+    padding: 5px;
+    display: block;
+}
+
+li.list-item p {
+    padding: 15px;
+}
+
+li.list-item a {
+    color: #333;
+}
+
+div.new_autoresponder ul.tabs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 3px solid #dedede;
+}
+
+div.new_autoresponder ul.tabs li {
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+div.new_autoresponder ul.tabs li.current {
+    background: #dedede;
+    color: #222;
+}
+
+.tab-content {
+    display: none;
+    padding: 15px 15px 15px 0;
+}
+
+.tab-content.current {
+    display: inherit;
+}

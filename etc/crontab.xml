@@ -1,0 +1,88 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="panda_autoresponders_activity" instance="Licentia\Panda\Model\Autoresponders" method="detectActivity">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="panda_autoresponders_activity_daily" instance="Licentia\Panda\Model\Autoresponders" method="detectActivityDaily">
+            <schedule>15 1 * * *</schedule>
+        </job>
+        <job name="panda_autoresponders_birthdays" instance="Licentia\Panda\Model\Autoresponders" method="detectBirthdays">
+            <schedule>35 1 * * *</schedule>
+        </job>
+        <job name="panda_autoresponders_abandoned" instance="Licentia\Panda\Model\Autoresponders" method="detectAbandoned">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+        <job name="panda_import_customers" instance="Licentia\Panda\Cron\ImportCustomers" method="execute">
+            <schedule>45 5 * * *</schedule>
+        </job>
+        <job name="panda_clear_old_stats" instance="Licentia\Panda\Cron\ClearOldStats" method="execute">
+            <schedule>0 0 * * 0</schedule>
+        </job>
+        <job name="panda_reports" instance="Licentia\Panda\Model\Reports" method="cron">
+            <schedule>0 0 * * *</schedule>
+        </job>
+        <job name="panda_goals_build" instance="Licentia\Panda\Model\Goals" method="cron">
+            <schedule>5 0 * * *</schedule>
+        </job>
+        <job name="panda_process_bounces" instance="Licentia\Panda\Model\Bounces" method="processBounces">
+            <schedule>0 3 * * *</schedule>
+        </job>
+        <job name="panda_autoresponders_execute" instance="Licentia\Panda\Model\Autoresponders" method="cron">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_splits_send" instance="Licentia\Panda\Model\Splits" method="cron">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_followup_send" instance="Licentia\Panda\Model\Followup" method="cron">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_campaigns_queue" instance="Licentia\Panda\Model\Campaigns" method="queueCampaigns">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_campaigns_fix_issues" instance="Licentia\Panda\Model\Campaigns" method="fixIssues">
+            <schedule>0 */12 * * *</schedule>
+        </job>
+        <job name="panda_emails_send" instance="Licentia\Panda\Model\Campaigns" method="sendEmails">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_sms_send" instance="Licentia\Panda\Model\Service\Sms" method="sendSms">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="panda_failures_notifications" instance="Licentia\Panda\Cron\NotifyMessagesDeliveryFailures" method="execute">
+            <schedule>0 * * * *</schedule>
+        </job>
+        <job name="panda_sync_customer_subscriber_data" instance="Licentia\Panda\Model\Subscribers" method="syncCustomerSubscriberData">
+            <schedule>0 0 * * 0</schedule>
+        </job>
+        <job name="panda_send_error_reports" instance="Licentia\Panda\Cron\SendErrorReports" method="execute">
+            <schedule>20 1 * * *</schedule>
+        </job>
+        <job name="panda_rebuild_everything" instance="Licentia\Panda\Cron\RebuildEverything" method="execute">
+            <schedule>0 5 2 5 2</schedule>
+        </job>
+    </group>
+</config>

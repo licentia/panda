@@ -1,0 +1,95 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+?>
+
+<?= $block->getFormHtml() ?>
+<?= $block->getBlockHtml('formkey') ?>
+
+
+<script type="text/javascript">
+    require(['prototype'], function () {
+
+        recurringControl = {
+            load: function () {
+                recur = $('recurring').value;
+
+                all_fields = ['recurring_day', 'run_times', 'run_until', 'recurring_unique', 'recurring_daily', 'recurring_first_run', 'recurring_monthly', 'recurring_month', 'deploy_at', 'recurring_time', 'end_method'];
+
+                switch (recur) {
+                    case '0':
+                        fields = ['deploy_at'];
+                        break;
+                    case 'd':
+                        fields = ['recurring_daily', 'recurring_unique', 'recurring_time', 'run_times', 'run_until', 'recurring_first_run', 'end_method'];
+                        break;
+                    case 'w':
+                        fields = ['recurring_day', 'recurring_unique', 'recurring_time', 'run_times', 'run_until', 'recurring_first_run', 'end_method'];
+                        break;
+                    case 'm':
+                        fields = ['recurring_monthly', 'recurring_unique', 'recurring_time', 'run_times', 'run_until', 'recurring_first_run', 'end_method'];
+                        break;
+                    case 'y':
+                        fields = ['recurring_monthly', 'recurring_unique', 'recurring_month', 'recurring_time', 'run_times', 'run_until', 'recurring_first_run', 'end_method'];
+                        break;
+                    default:
+
+                }
+
+                for (i = 0; i < all_fields.length; i++) {
+                    $(all_fields[i]).up('div').up('div').hide();
+                }
+
+                for (i = 0; i < fields.length; i++) {
+                    $(fields[i]).up('div').up('div').show();
+                }
+
+                if (recur == '0') {
+                    $$('.saveandsendbutton').each(function (element) {
+                        $(element).show();
+                    });
+                    $('recurring_first_run').removeClassName('required-entry');
+                    $('deploy_at').addClassName('required-entry');
+                } else {
+
+                    $('recurring_first_run').addClassName('required-entry');
+                    $('deploy_at').removeClassName('required-entry');
+                    $$('.saveandsendbutton').each(function (element) {
+                        $(element).hide();
+                    });
+                }
+
+            }
+        };
+
+
+        recurringControl.load();
+
+    });
+
+
+</script>

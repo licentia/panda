@@ -1,0 +1,110 @@
+<?xml version="1.0" ?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route method="GET" url="/V1/panda/infowindows/:zone/:identifier">
+        <service class="Licentia\Panda\Api\PopupsRepositoryInterface" method="getDisplayWindows"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route method="POST" url="/V1/panda/subscribers">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/panda/subscribers/search">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/panda/subscribers/:subscribersId">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/panda/subscribers/me">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="me"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/panda/subscribers/me/status">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="meStatus"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="POST" url="/V1/panda/subscribers/subscribe/:email">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="subscribe"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="POST" url="/V1/panda/subscribers/unsubscribe/:email">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="unsubscribe"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/panda/subscribers/status">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="status"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="PUT" url="/V1/panda/subscribers/:subscribersId">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/panda/subscribers/:subscribersId">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/panda/subscribers/">
+        <service class="Licentia\Panda\Api\SubscribersRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="Licentia_Panda::subscribers"/>
+        </resources>
+    </route>
+</routes>

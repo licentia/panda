@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="panda_products" class="Licentia\Panda\Block\Recommendations" is_email_compatible="true">
+        <label>Panda Sales Automation - Product Recommendation</label>
+        <description>List products based on User's Activity</description>
+        <parameters>
+            <parameter name="widget_code" required="true" xsi:type="select" visible="true" source_model="Licentia\Panda\Model\Source\RecommendationsIdentifiers">
+                <label>Choose</label>
+            </parameter>
+            <parameter name="widget_block_template" xsi:type="text" required="true" visible="true">
+                <label>Template</label>
+                <description>Developer hint: $this->getProductCollection();</description>
+                <value>widgets/view.phtml</value>
+            </parameter>
+            <parameter name="widget_place_holder_height" xsi:type="text" visible="true">
+                <label>Product Placeholder Height</label>
+                <value>350</value>
+            </parameter>
+            <parameter name="widget_place_holder_width" xsi:type="text" visible="true">
+                <label>Product Placeholder Width</label>
+            </parameter>
+            <parameter name="widget_cache" xsi:type="text" visible="true">
+                <label>Cache Lifetime</label>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="panda_coupons" class="Licentia\Panda\Block\Coupons" is_email_compatible="true">
+        <description/>
+        <label>Panda Sales Automation - Coupons List</label>
+        <parameters>
+            <parameter name="rule" required="true" xsi:type="select" visible="true" source_model="Licentia\Panda\Model\Coupons">
+                <label>Promo Rule for coupon</label>
+                <description>Please select the Promo Rule you want your coupon code from</description>
+            </parameter>
+            <parameter name="hours" visible="true" xsi:type="text" required="true">
+                <label>Coupon Validity</label>
+                <description>During how many hours, after being generated, the coupon can be used. 0 to forever</description>
+            </parameter>
+            <parameter name="length" required="true" xsi:type="text" visible="true">
+                <label>Code Length</label>
+                <description>Excluding prefix, suffix and separators.</description>
+                <value>8</value>
+            </parameter>
+            <parameter name="format" required="true" xsi:type="select" visible="true" sort_order="20">
+                <label>Code Format</label>
+                <options>
+                    <option name="default" value="alphanum" selected="true">
+                        <label>Alphanumeric</label>
+                    </option>
+                    <option name="item" value="alpha">
+                        <label>Alphabetical</label>
+                    </option>
+                    <option name="item" value="num">
+                        <label>Numeric</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="prefix" required="0" xsi:type="text" visible="true" sort_order="40">
+                <label>Code Prefix</label>
+                <value>8</value>
+            </parameter>
+            <parameter name="suffix" required="0" xsi:type="text" visible="true" sort_order="50">
+                <label>Code Suffix</label>
+                <value>8</value>
+            </parameter>
+            <parameter name="dash" required="0" xsi:type="text" visible="true" sort_order="60">
+                <label>Dash Every X Characters</label>
+                <description>If empty no separation.</description>
+                <value>8</value>
+            </parameter>
+            <parameter name="force" required="true" xsi:type="select" visible="true" sort_order="20">
+                <label>Force Email Match</label>
+                <description>Selecting Yes will require a match between the coupon user received and their email for the coupon to work</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="item" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="hide_expired" required="true" xsi:type="select" visible="true" sort_order="20">
+                <label>Hide if expired</label>
+                <description>Hides the cupon if it already expired</description>
+                <options>
+                    <option name="default" value="1" selected="true">
+                        <label>Yes</label>
+                    </option>
+                    <option name="item" value="0">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="template" required="true" xsi:type="text" visible="true" sort_order="60">
+                <label>Template</label>
+                <description>Developer hint: $this->getRule();</description>
+                <value>widgets/coupon.phtml</value>
+            </parameter>
+             <parameter name="countdown" required="true" xsi:type="select" visible="true" sort_order="500">
+                <label>Display Countdown?</label>
+                <description>Will not work in email, only online store. </description>
+                <options>
+                    <option name="default" value="1">
+                        <label>Yes</label>
+                    </option>
+                    <option name="item" value="0" selected="true">
+                        <label>No</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="countdown_message" required="true" xsi:type="text" visible="true" sort_order="510">
+                <label>Countdown Message</label>
+                <description>{countdown} = Countdown in Message</description>
+                <depends>
+                    <parameter name="countdown" value="1"/>
+                </depends>
+                <value>This offer expires in {countdown}</value>
+            </parameter>
+            <parameter name="countdown_format" required="true" xsi:type="text" visible="true" sort_order="520">
+                <label>Countdown Format</label>
+                <description>{d} => Days, {h} => Hours, {m} => Minutes, {s} => Seconds</description>
+                <depends>
+                    <parameter name="countdown" value="1"/>
+                </depends>
+                <value>{h}h {m}m {s}s</value>
+            </parameter>
+        </parameters>
+    </widget>
+    <widget id="panda_window_info" class="Licentia\Panda\Block\Popup\Info" is_email_compatible="false">
+        <description/>
+        <label>Panda Sales Automation - Inline Info Block</label>
+        <parameters>
+             <parameter name="display_type" required="true" xsi:type="select" visible="true" sort_order="10">
+                <label>Option</label>
+                <options>
+                    <option name="default" value="specific" selected="true">
+                        <label>Specific Inline Info Block</label>
+                    </option>
+                    <option name="item" value="identifier">
+                        <label>Identifier</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="popup_id" required="true" xsi:type="select" visible="true" sort_order="20" source_model="Licentia\Panda\Model\Source\Popups">
+                <label>Inline Info Block</label>
+                <description>Please select the Info Block to display</description>
+                <depends>
+                    <parameter name="display_type" value="specific"/>
+                </depends>
+            </parameter>
+             <parameter name="identifier" required="true" xsi:type="select" visible="true" sort_order="30" source_model="Licentia\Panda\Model\Source\PopupsIdentifiers">
+                <label>Identifier</label>
+                <depends>
+                    <parameter name="display_type" value="identifier"/>
+                </depends>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

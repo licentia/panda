@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+<div class="block block-subscribe">
+    <div class="block-title">
+        <strong><span><?= /* @noEscape */
+                __('Newsletter') ?></span></strong>
+    </div>
+    <form action="<?= /* @noEscape */
+    $block->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+        <div class="block-content">
+            <div class="form-subscribe-header">
+                <label for="newsletter"><?= /* @noEscape */
+                    __('Sign Up for Our Newsletter:') ?></label>
+            </div>
+            <div class="input-box">
+                <input type="text" name="email" id="newsletter"
+                       title="<?= $block->escapeHtmlAttr(__('Sign up for our newsletter')) ?>"
+                       class="input-text required-entry validate-email"/>
+            </div>
+            <div>
+                <?= $block->getChildHtml('customer.form.newsletter.extra') ?>
+            </div>
+            <div class="actions">
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>" class="button">
+                    <span><span><?= /* @noEscape */
+                            __('Subscribe') ?></span></span></button>
+            </div>
+        </div>
+    </form>
+</div>

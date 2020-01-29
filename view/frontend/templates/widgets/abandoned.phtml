@@ -1,0 +1,106 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+/** @var \Licentia\Panda\Helper\Data $pandaHelper */
+
+$pandaHelper = $this->helper(\Licentia\Panda\Helper\Data::class);
+
+/** @var \Licentia\Panda\Model\Subscribers $subscriber */
+$subscriber = $pandaHelper->getRegistry()->registry('panda_subscriber');
+
+/** @var \Magento\Quote\Model\Quote $quote */
+$quote = $pandaHelper->getSubscriberQuote();
+
+if (!$quote) {
+    return; //No products
+}
+
+/** @var Magento\Catalog\Helper\Image $imgHelper */
+$imgHelper = $this->helper(\Magento\Catalog\Helper\Image::class);
+
+$items = $quote->getItemsCollection();
+?>
+<table width="620" border="0" cellspacing="0" cellpadding="5" class="message order-details">
+    <tr>
+        <th colspan="2"><?= /* @noEscape */
+            __('Product') ?></th>
+        <th align="right"><?= /* @noEscape */
+            __('Qty') ?></th>
+        <th align="right"><?= /* @noEscape */
+            __('Price') ?></th>
+    </tr>
+    <?php
+
+    /** @var \Magento\Quote\Model\Quote\Item $item */
+    foreach ($items as $item) {
+
+        /** @var \Magento\Catalog\Model\Product $_product */
+        $_product = $item->getProduct();
+        ?>
+        <tr>
+            <td><img src="<?= $block->escapeHtmlAttr($imgHelper->init($_product, 'mini_cart_product_thumbnail')
+                                                               ->resize(75, 75)
+                                                               ->getUrl()); ?>" width="75" height="75"
+                     alt="<?= $block->escapeHtmlAttr($_product->getName()) ?>"/>
+            </td>
+            <td><?= $block->escapeHtml($_product->getName()) ?></td>
+            <td align="right"><?= $block->escapeHtml($item->getQty()) ?></td>
+            <td align="right">
+                <?= /* @noEscape */
+                $this->helper(\Magento\Framework\Pricing\Helper\Data::class)
+                     ->currency(
+                         $item->getRowTotalInclTax(),
+                         true,
+                         false
+                     ); ?>
+            </td>
+        </tr>
+    <?php } ?>
+    <tr style="background-color:#f4f4f4;">
+        <td colspan="4" align="right"><?= /* @noEscape */
+            __('Subtotal') ?></td>
+        <td align="right"> <?= /* @noEscape */
+            $this->helper(\Magento\Framework\Pricing\Helper\Data::class)
+                 ->currency(
+                     $quote->getSubtotal(),
+                     true,
+                     false
+                 ); ?></td>
+    </tr>
+    <tr style="background-color:#e7e7e7;">
+        <td colspan="5" align="center" style="font-size: 18px;">
+            <a style="color: #0a6c9f" href="<?= /* @noEscape */
+            $block->getUrl(
+                'checkout/cart',
+                ['_nosid' => true,]
+            ) ?>">
+                <?= /* @noEscape */
+                __('Restore my Cart!') ?>
+            </a>
+        </td>
+    </tr>
+</table>

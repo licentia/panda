@@ -1,0 +1,491 @@
+<?php
+
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var \Licentia\Panda\Block\Popup $block */
+/** @var \Licentia\Panda\Model\Popups $popup */
+
+foreach ($block->getPopup() as $popup) :
+
+    $extraCss = '';
+    $extraCssBubble = '';
+    if ($popup->getWidth()) {
+        $extraCss .= " width: " . $popup->getWidth() . ' ;';
+    }
+    if ($popup->getHeight() && $popup->getHeight() != '0px') {
+        $extraCss .= " height: " . $popup->getHeight() . ' ;';
+    }
+    if ($popup->getBorderRadius()) {
+        $extraCss .= " border-radius: " . $popup->getBorderRadius() . ' ;';
+        $extraCssBubble .= " border-radius: " . $popup->getBorderRadius() . ' ;';
+    }
+    if ($popup->getBorderWidth()) {
+        $extraCss .= " border: " . $popup->getBorderWidth() . ' solid ' . $popup->getBorderColor() . ' ;';
+        $extraCssBubble .= " border: " . $popup->getBorderWidth() . ' solid ' . $popup->getBorderColor() . ' ;';
+    }
+    if ($popup->getBackgroundColor()) {
+        $extraCss .= " background-color: " . $popup->getBackgroundColor() . ' ;';
+        $extraCssBubble .= " background-color: " . $popup->getBackgroundColor() . ' ;';
+    }
+    if ($popup->getBackgroundImage()) {
+        $extraCss .= " background-image: url(" . $block->getMediaDir() . $popup->getBackgroundImage() . ');   background-size: cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center; ';
+    }
+
+    $position = explode('_', $popup->getPosition());
+
+    if (!isset($position[0])) {
+        $position[0] = 'bottom';
+    }
+    if (!isset($position[1])) {
+        $position[1] = 'right';
+    }
+
+    $scroll = (int) $popup->getAfterScroll() > 99 ? 1 : '0.' . (int) $popup->getAfterScroll();
+    ?>
+    <?php if ($popup->getType() == 'sitebar') { ?>
+    <script type="text/javascript">
+
+        require(['jquery', 'pandaPopup', 'domReady!'], function ($) {
+
+
+            <?php  if ($popup->getPosition() == 'bottom') : ?>
+
+            $('body').append("<div id='panda_popup<?= /* @noEscape */ $popup->getId(); ?>' style='display:none;<?= /* @noEscape */ $extraCss . $popup->getStyles() ?> width: 100%; bottom: 0; left: 0; right: 0;z-index: 1000; '><?= $block->escapeJs($popup->getContent()) ?></div>");
+
+            $('body').append("<div id='panda_popup_content<?= /* @noEscape */ $popup->getId(); ?>'  style='display:none; <?= /* @noEscape */ $extraCss . $popup->getStyles() ?> position: fixed; width: 100%; bottom: 0; left: 0; right: 0;z-index: 1000;'><?= $block->escapeJs($popup->getContent()) ?></div>");
+
+
+            $('#panda_popup<?= /* @noEscape */ $popup->getId(); ?>').show();
+            $('#panda_popup_content<?= /* @noEscape */ $popup->getId(); ?>').show();
+
+            <?php endif; ?>
+
+            <?php  if ($popup->getPosition() == 'top') : ?>
+
+            $('body').prepend("<div id='panda_popup<?= /* @noEscape */ $popup->getId(); ?>' style='display:none; <?= /* @noEscape */ $extraCss . $popup->getStyles() ?> width: 100%; top: 0; left: 0; right: 0;z-index: 1000; '><?= $block->escapeJs($popup->getContent()) ?></div>");
+
+            $('body').prepend("<div id='panda_popup_content<?= /* @noEscape */ $popup->getId(); ?>'  style='display:none; <?= /* @noEscape */ $extraCss . $popup->getStyles() ?> position: fixed; width: 100%; top: 0; left: 0; right: 0;z-index: 1000;'><?= $block->escapeJs($popup->getContent()) ?></div>");
+
+            $('#panda_popup<?= /* @noEscape */ $popup->getId(); ?>').show();
+            $('#panda_popup_content<?= /* @noEscape */ $popup->getId(); ?>').show();
+
+            <?php endif; ?>
+
+        });
+    </script>
+    <?php continue;
+} ?>
+
+    <script type="text/javascript">
+        require(['jquery', 'pandaPopup', 'domReady!'
+        ], function ($) {
+
+
+            var popup = {
+                scrolllock: <?= /* @noEscape */ $popup->getBackgroundActive() ? 'false' : 'true'?>,
+                autoopen: true,
+                transition: '0.3s all',
+                background: <?=  (bool) $popup->getBackgroundActive() ? 'false' : 'true'?>,
+                backgroundactive: <?=  (bool) $popup->getBackgroundActive() ? 'true' : 'false'?>,
+                color: '<?= /* @noEscape */ $popup->getLayerBackgroundColor() ?>',
+                opacity: '<?= /* @noEscape */ $popup->getOpacity() ?>',
+                horizontal: '<?= /* @noEscape */ $position[1] ?>',
+                vertical: '<?= /* @noEscape */ $position[0] ?>',
+                escape: <?=  (bool) $popup->getAllowClose() ? 'true' : 'false'?>,
+                blur: <?=  (bool) $popup->getAllowClose() ? 'true' : 'false'?>,
+                closebutton: <?=  (bool) $popup->getCloseButton() ? 'true' : 'false'?>
+            };
+            <?php if ($popup->getEmulated()){ ?>
+            $('#panda-popup-<?= /* @noEscape */ $popup->getId() ?>').pandapopup(popup);
+            <?php }else{ ?>
+            <?php if ($popup->getAfterTime()){ ?>
+            setTimeout(function () {
+                <?php } ?>
+                <?php if ($popup->getAfterScroll()){ ?>
+                if ($("body").height() >= $(window).height()) {
+                    $('#panda-popup-<?= /* @noEscape */ $popup->getId() ?>').pandapopup(popup);
+                } else {
+                    $(document).scroll(function () {
+                        var wintop = $(window).scrollTop(), docheight = $(document).height(),
+                            winheight = $(window).height();
+                        var scrolltrigger = <?= /* @noEscape */ $scroll; ?>;
+                        if ((wintop / (docheight - winheight)) > scrolltrigger) {
+                            $('#panda-popup-<?= /* @noEscape */ $popup->getId() ?>').pandapopup(popup);
+                        }
+                    });
+                }
+                <?php }else{ ?>
+                $('#panda-popup-<?= /* @noEscape */ $popup->getId() ?>').pandapopup(popup);
+                <?php } ?>
+                <?php if ($popup->getAfterTime()){ ?>
+            }, (<?=  (int) $popup->getAfterTime(); ?> * 1000)
+        )
+            <?php } ?>
+            <?php } ?>
+
+        });
+
+    </script>
+
+    <div id="panda-popup-<?= /* @noEscape */
+    $popup->getId() ?>" class="animated  <?= /* @noEscape */
+    $popup->getEffect(); ?>"
+         style="display: none;z-index:10001; <?= /* @noEscape */
+         $extraCss . ' ' . $popup->getStyles() ?>">
+        <div class="popup_content">
+            <?= /* @noEscape */
+            $popup->getContent() ?>
+        </div>
+    </div>
+
+
+    <style type="text/css">
+        #panda-popup-<?= /* @noEscape */ $popup->getId() ?>_background {
+            z-index: 1000;
+        }
+
+        #panda-popup-<?= /* @noEscape */ $popup->getId() ?>_wrapper {
+            z-index: 10000;
+        }
+
+        <?php  if ($popup->getPosition()=='center_center') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        <?php endif; ?>
+        <?php  if ($popup->getPosition()=='center_left') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 10px;
+            margin: auto;
+        }
+
+        <?php endif; ?>
+        <?php  if ($popup->getPosition()=='center_right') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 10px;
+            margin: auto;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='bottom_right') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='bottom_left') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='top_left') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='top_right') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='bottom_center') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            transform: translate(-50%);
+            margin: 0 auto;
+        }
+
+        <?php endif; ?>
+        <?php if ($popup->getPosition()=='top_center') : ?>
+        div#panda-popup-<?= /* @noEscape */ $popup->getId() ?> {
+            position: fixed;
+            left: 50%;
+            top: 10px;
+            transform: translate(-50%);
+            margin: 0 auto;
+        }
+
+        <?php endif; ?>
+        .animated {
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        <?php if ($popup->getEffect()=='fadeIn') : ?>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='fadeInDown') : ?>
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fadeInDown {
+            animation-name: fadeInDown;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='fadeInLeft') : ?>
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translate3d(-100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fadeInLeft {
+            animation-name: fadeInLeft;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='fadeInRight') : ?>
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translate3d(100%, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fadeInRight {
+            animation-name: fadeInRight;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='fadeInUp') : ?>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='slideInDown') : ?>
+        @keyframes slideInDown {
+            from {
+                transform: translate3d(0, -100%, 0);
+                visibility: visible;
+            }
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .slideInDown {
+            animation-name: slideInDown;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='slideInLeft') : ?>
+        @keyframes slideInLeft {
+            from {
+                transform: translate3d(-100%, 0, 0);
+                visibility: visible;
+            }
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .slideInLeft {
+            animation-name: slideInLeft;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='slideInRight') : ?>
+        @keyframes slideInRight {
+            from {
+                transform: translate3d(100%, 0, 0);
+                visibility: visible;
+            }
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .slideInRight {
+            animation-name: slideInRight;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='slideInUp'):?>
+        @keyframes slideInUp {
+            from {
+                transform: translate3d(0, 100%, 0);
+                visibility: visible;
+            }
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .slideInUp {
+            animation-name: slideInUp;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='flash') : ?>
+        @keyframes flash {
+            from, 50%, to {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+
+        .flash {
+            -webkit-animation-name: flash;
+            animation-name: flash;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='tada') : ?>
+        @keyframes tada {
+            from {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+            10%, 20% {
+                -webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+                transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+            }
+            30%, 50%, 70%, 90% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+            }
+            40%, 60%, 80% {
+                -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+                transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+            }
+            to {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        .tada {
+            -webkit-animation-name: tada;
+            animation-name: tada;
+        }
+
+        <?php endif;?>
+        <?php if ($popup->getEffect()=='lightSpeedIn') : ?>
+        @keyframes lightSpeedIn {
+            from {
+                -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);
+                transform: translate3d(100%, 0, 0) skewX(-30deg);
+                opacity: 0;
+            }
+            60% {
+                -webkit-transform: skewX(20deg);
+                transform: skewX(20deg);
+                opacity: 1;
+            }
+            80% {
+                -webkit-transform: skewX(-5deg);
+                transform: skewX(-5deg);
+                opacity: 1;
+            }
+            to {
+                -webkit-transform: none;
+                transform: none;
+                opacity: 1;
+            }
+        }
+
+        .lightSpeedIn {
+            -webkit-animation-name: lightSpeedIn;
+            animation-name: lightSpeedIn;
+            -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+        }
+
+        <?php endif;?>
+    </style>
+
+<?php endforeach; ?>

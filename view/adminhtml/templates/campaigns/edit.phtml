@@ -1,0 +1,106 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+
+<div class="entry-edit">
+    <fieldset class="fieldset admin__fieldset " id="params_fieldset">
+        <legend class="admin__legend legend">
+            <span><?= /* @noEscape */
+                __('Load template') ?></span>
+        </legend>
+        <br>
+
+        <table class="form-list" cellspacing="0">
+            <tbody>
+            <tr>
+                <td class="label">
+                    <label for="template_select">
+                        <?= __('Template') ?>
+                        <span class="required">*</span> </label>
+                </td>
+                <td class="value">
+                    <?php if (count($block->getTemplateOptions()) == 0) :
+                        ?><?= __(
+                        "You don't have any template"
+                    ) ?><?php
+                    else : ?>
+                        <select id="template_select" name="code" class="select required-entry">
+
+                            <?php foreach ($block->getTemplateOptions() as $_option) : ?>
+                                <option value="<?= $block->escapeHtmlAttr($_option['value']) ?>"><?= $block->escapeHtml($_option['label']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
+                    <?php endif; ?>
+                    <?php if (count($block->getTemplateOptions()) > 0) : ?>
+                        <button style="" onclick="templateControl.load();" class="scalable save" type="button">
+                            <span>Load Template</span></button>
+
+                    <?php endif; ?>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+<?= $block->getFormHtml() ?>
+
+<script type="text/javascript">
+    require(['prototype'], function () {
+
+        //<![CDATA[
+        templateControl = {
+            load: function () {
+                new Ajax.Request('<?= $block->getUrl('*/campaigns/template') ?>', {
+                    parameters: {code: $('template_select').value, field: '<?= $block->getTemplateField() ?>'},
+                    area: $('email_template_load_form'),
+                    onComplete: function (transport) {
+                        if (transport.responseText.isJSON()) {
+                            var fields = $H(transport.responseText.evalJSON());
+                            fields.each(function (pair) {
+                                if ($(pair.key)) {
+                                    $(pair.key).value = pair.value.strip();
+                                    if (tinyMCE.activeEditor) {
+                                        tinyMCE.activeEditor.setContent(pair.value.strip());
+                                    }
+                                }
+                            }.bind(this));
+                        }
+                    }.bind(this)
+                });
+            }
+
+        };
+//]]>
+
+    });
+
+
+</script>

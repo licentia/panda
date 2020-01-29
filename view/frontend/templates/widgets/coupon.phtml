@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var \Licentia\Panda\Block\Coupons $block */
+if ($block->getRule()) :
+    if (!$block->canShowCoupon($block->getRule()->getCode(), $block->getWidgetData('hide_if_expired'))) {
+        return false;
+    }
+
+    ?>
+    <?= /* @noEscape */
+    $block->getRule()->getCode();
+
+    if ($block->getWidgetData('countdown')) {
+        $couponId = $block->getRule()->getId();
+        $message = str_replace(
+            '{countdown}',
+            $block->getWidgetData('countdown_format'),
+            $block->getWidgetData('countdown_message')
+        );
+        ?>
+        <p class="panda countdown widget" id="coupon_countdown<?= /* @noEscape */
+        $couponId ?>">&nbsp;</p>
+        <script type="text/javascript">
+            var countDownDate = new Date("<?= /* @noEscape */ $block->expiresAt($block->getRule()->getCode()) ?>")
+                .getTime();
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var string = "<?= /* @noEscape */  __($message); ?>";
+                var mapObj = {
+                    '{d}': Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    '{h}': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    '{m}': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    '{s}': Math.floor((distance % (1000 * 60)) / 1000)
+                };
+                string = string.replace(/\{d\}|\{h\}|\{m\}|\{s\}/gi, function (matched) {
+                    return mapObj[matched];
+                });
+
+                document.getElementById("coupon_countdown<?= /* @noEscape */ $couponId ?>").innerHTML = string;
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("coupon_countdown<?= /* @noEscape */ $couponId ?>").innerHTML = "<?= /* @noEscape */  __('Expired!') ?>";
+                }
+            }, 1000);
+        </script>
+    <?php } ?>
+<?php endif; ?>

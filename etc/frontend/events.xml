@@ -1,0 +1,50 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer name="panda_autoresponder_login" instance="Licentia\Panda\Observer\NewLogin"/>
+    </event>
+    <event name="customer_register_success">
+        <observer name="panda_autoresponder_register" instance="Licentia\Panda\Observer\NewCustomer"/>
+    </event>
+    <event name="controller_action_predispatch_checkout_cart_couponPost">
+        <observer name="panda_validate_coupon_panda" instance="Licentia\Panda\Observer\ValidateCoupon"/>
+    </event>
+    <event name="controller_action_predispatch_catalogsearch_result_index">
+        <observer name="panda_new_search" instance="Licentia\Panda\Observer\NewSearch"/>
+    </event>
+    <event name="review_save_after">
+        <observer name="panda_review_save_after" instance="Licentia\Panda\Observer\NewReview"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="panda_update_autoresponders" instance="Licentia\Panda\Observer\NewOrder"/>
+    </event>
+    <event name="sales_quote_address_save_after">
+        <observer name="panda_auto_add_address" instance="Licentia\Panda\Observer\AddEmailFromAddress"/>
+    </event>
+    <event name="customer_save_before">
+        <observer name="panda_customer_change_group" instance="Licentia\Panda\Observer\CustomerChangeAttribute"/>
+    </event>
+</config>

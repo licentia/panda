@@ -1,0 +1,321 @@
+/*
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+body[class^="panda"] .admin__scope-old ul.tree select[multiple],
+body[class^="panda"] .admin__scope-old ul.tree select[size] {
+    height: 100px;
+    width: 94%;
+}
+
+#loading-mask {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    border: 1px solid orange;
+    background-color: lightgrey;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 100;
+}
+
+#formTriggers ul {
+
+}
+
+#formTriggers ul li {
+    display: inline-block;
+    width: 23%;
+}
+
+ul.tree li form label.error {
+    padding: 0 0 3px 7px;
+    display: block;
+    font-size: 12px;
+    color: red;
+}
+
+ul.tree li > div.main_parent {
+    background-color: #1d3141;
+}
+
+.activeClass {
+    border: 3px solid green !important;
+}
+
+.hoverClass {
+    background-color: #f4f4f4 !important;
+    color: black !important;
+}
+
+.draggable span {
+    display: block;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.draggable {
+    float: left;
+    margin: 2px;
+    background: #aae377;
+    color: #445b30;
+    padding: 4px;
+    width: 200px;
+    border: 2px solid #445b30;
+    text-align: center;
+    cursor: move;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.overflow {
+    overflow: auto;
+    position: relative;
+    padding: 10px;
+    min-height: 700px;
+}
+
+ul.tree {
+    display: block;
+    color: #000;
+    margin-bottom: 250px;
+}
+
+ul.tree li {
+    display: inline-block;
+    text-align: center;
+    margin: 20px !important;
+    vertical-align: top;
+}
+
+ul.tree li.tnone {
+    display: none;
+}
+
+ul.tree ul.tshow {
+    display: block !important;
+}
+
+ul.tree p {
+    display: block;
+    border: 1px solid #d0cbc1;
+    height: 20px;
+}
+
+ul.tree li > div {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    background: #27a9e3;
+    color: #fff;
+    padding: 10px;
+    width: 155px;
+    min-height: 40px;
+    border: 3px solid #1D3141;
+    font-size: 14px;
+}
+
+ul.tree li > div span {
+    display: inline-block;
+    margin: 0 2px;
+    word-break: break-all;
+}
+
+ul.tree li > div.zindex {
+    z-index: inherit;
+}
+
+ul.tree li form label {
+    padding: 3px 0 0 10px;
+    display: block;
+    font-weight: bold;
+}
+
+ul.tree .formTriggersWrapper {
+    position: fixed;
+    margin: 200px;
+    left: calc(50% - 450px);
+    width: 500px;
+    top: 0;
+}
+
+ul.tree li form {
+    text-align: left;
+    padding: 10px;
+    margin-top: auto;
+    z-index: 4;
+    background: #da9628;
+    color: #fff;
+    box-shadow: 0 0 0 2000px rgba(0, 0, 0, 0.75);
+    display: inline-block;
+    width: 100%;
+}
+
+ul.tree li form select {
+    margin: 5px;
+    display: block;
+    width: 435px;
+}
+
+ul.tree li form input[type=checkbox] {
+    width: inherit;
+}
+
+ul.tree li form img.close {
+    float: right;
+    cursor: pointer;
+    background-color: #e02222;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+ul.tree li textarea {
+    height: 75px;
+}
+
+ul.tree li input, ul.tree li textarea {
+    background: #ffc;
+    color: #000;
+    border: none;
+    margin: 5px;
+    display: block;
+    width: 94%;
+    padding: 5px;
+}
+
+ul.tree li textarea.error {
+    background: #d84a38;
+}
+
+ul.tree li textarea:focus {
+    background: #ffc;
+}
+
+ul.tree li .submit, ul.tree li .edit {
+    border: none;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-top: 3px;
+    background: #122B52;
+    float: right;
+    width: 100px;
+    margin-right: 9px;
+}
+
+ul.tree li .submit:hover, ul.tree li .edit:hover {
+    background: #1d3141;
+}
+
+ul.tree li div.current {
+}
+
+ul.tree li div.children {
+    background: #ffb848;
+}
+
+ul.tree li div.parent {
+    background: #852b99;
+}
+
+ul.tree li span.vertical, ul.tree li span.horizontal {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    background: #bbb;
+}
+
+ul.tree li span.vertical {
+    width: 1px;
+}
+
+ul.tree li span.horizontal {
+    height: 1px;
+}
+
+ul.tree li span.add_action, ul.tree li span.edit_action, ul.tree li span.highlight, ul.tree li span.delete_action {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: none;
+    padding: 2px;
+    background: #5d0f0f no-repeat center;
+}
+
+ul.tree li span.add_action {
+    top: -3px;
+    left: -5px;
+    background-image: url(../images/add.png);
+}
+
+ul.tree li span.edit_action {
+    top: -3px;
+    left: -5px;
+    background-image: url(../images/edit.png);
+}
+
+ul.tree li span.delete_action {
+    top: -3px;
+    right: -5px;
+    background-image: url(../images/close.png);
+}
+
+img.load {
+    position: absolute;
+}
+
+div.drag_error, div.delete_msg, div.edit_msg, div.add_msg, div.drop_msg {
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    padding: 4px 10px;
+    z-index: 999;
+}
+
+div.drag_error {
+    background: #b41616;
+}
+
+div.delete_msg {
+    background: #b41616;
+}
+
+div.edit_msg {
+    background: #17A769;
+}
+
+div.add_msg {
+    background: #27A9E3;
+}
+
+div.drop_msg {
+    background: #852b99;
+}

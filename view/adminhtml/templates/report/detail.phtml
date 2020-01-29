@@ -1,0 +1,254 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+$stats = $block->getRegistry()->registry('panda_stats');
+$report = $block->getRegistry()->registry('panda_report');
+
+/** @var \Licentia\Panda\Model\Campaigns $campaign */
+$campaign = $block->getRegistry()->registry('panda_report_campaign');
+
+$h = $stats->getStats($campaign->getId(), "DATE_FORMAT(event_at,'%Y-%m-%d')", 7);
+
+$titlesHours = array_shift($h);
+array_multisort($h);
+array_unshift($h, $titlesHours);
+
+$i = 0;
+foreach ($h as $key => $item) {
+
+    if ($i == 0) {
+        $i++;
+        continue;
+    }
+
+    $h[$key][0] = $block->formatDate($item[0], 2);
+}
+
+$last7Days = Zend_Json::encode($h);
+
+?><?php
+
+if ($campaign->getData('views') > 0):
+    ?>
+
+    <div class="grid">
+        <table cellspacing="0" class="data data-grid admin__control-table " style="width:49%; float:left">
+            <thead>
+            <tr>
+                <th colspan="2"><?= /* @noEscape */
+                    __('Metrics') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Messages sent') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('sent')) ?></td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Unopens') ?></td>
+                <td style="width:20%; text-align: center;"><?= round(
+                        $campaign->getData('sent') - $campaign->getData('unique_views')
+                    ) ?></td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Unique opens') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('unique_views')) ?></td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Opens') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('views')) ?></td>
+            </tr>
+            </tbody>
+        </table>
+        <table cellspacing="0" class="data data-grid admin__control-table"
+               style="margin-left:2%; width:49%; float:left">
+            <thead>
+            <tr>
+                <th colspan="2"><span class="nobr"><?= /* @noEscape */
+                        __('Metrics') ?></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Unique clickthroughs') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('unique_clicks')) ?></td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Clickthroughs') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('clicks')) ?></td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Clickthroughs Rate') ?></td>
+                <td style="width:20%; text-align: center;"><?= round(
+                        $campaign->getData('unique_clicks') * 100 / $campaign->getData('sent'),
+                        1
+                    ) ?> %
+                </td>
+            </tr>
+            <tr>
+                <td><?= /* @noEscape */
+                    __('Opt-outs') ?></td>
+                <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('unsubscribes')) ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="clear" style="height:10px; clear: both"></div>
+    <div class="grid">
+        <table cellspacing="0" class="data data-grid admin__control-table">
+            <thead>
+            <tr>
+                <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                        __('Engagement') ?></span></th>
+                <th><span class="nobr"><?= /* @noEscape */
+                        __('Outgoing') ?></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        google.charts.load("visualization", "1", {packages: ["corechart"]});
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Conv', 'Value'],
+                                ['Opens', <?= $campaign->getData('unique_views') ?>],
+                                ['Unopens', <?=  abs(
+                                    $campaign->getData('sent') - $campaign->getData('unique_views')
+                                ) ?>]
+                            ]);
+                            var options = {
+                                backgroundColor: {fill: 'transparent'},
+                                colors: ['#e0440e', '#f3b49f']
+                            };
+                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                            chart.draw(data, options);
+                        }
+
+                        //]]>
+                    </script>
+                    <div id="piechart" style="width: 300px; height: 250px;"></div>
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        google.charts.load("visualization", "1", {packages: ["corechart"]});
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Conv', 'Value'],
+                                ['No Conversions', <?=  (int) $campaign->getData('sent') - $campaign->getData(
+                                    'conversions_number'
+                                ) ?>],
+                                ['Conversions', <?=  (int) $campaign->getData('conversions_number') ?>]
+                            ]);
+                            var options = {
+                                backgroundColor: {fill: 'transparent'},
+                                colors: ['#e0440e', '#f3b49f']
+                            };
+                            var chart = new google.visualization.PieChart(document.getElementById('piechartc'));
+                            chart.draw(data, options);
+                        }
+
+                        //]]>
+                    </script>
+                    <div id="piechartc" style="width: 300px; height: 250px;"></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<?php else: ?>
+    <p><?= /* @noEscape */
+        __('No Data') ?></p>
+<?php endif; ?>
+
+<div class="grid">
+    <table cellspacing="0" class="data data-grid admin__control-table ">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                    __('Last 7 Days') ?></span></th>
+        </tr>
+        </thead>
+        <tbody id="">
+        <tr>
+            <td class="last" style="text-align:center">
+                <?php if (count($h) > 1): ?>
+                    <script type="text/javascript">
+                        //<![CDATA[
+
+                        require(['jquery'], function ($) {
+                            google.charts.load("visualization", "1", {packages: ["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            $(window).resize(function () {
+                                var container = document.getElementById("chart_last7days").firstChild.firstChild;
+                                container.style.width = "100%";
+                                drawChart();
+                            });
+
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable(<?= $last7Days ?>);
+
+                                var options = {
+                                    backgroundColor: {fill: 'transparent'},
+                                    width: (jQuery(window).width() - 550),
+                                    height: 400,
+                                    colors: ['#e0440e', '#f3b49f']
+                                };
+
+                                var chart = new google.visualization.ColumnChart(document.getElementById('chart_last7days'));
+                                chart.draw(data, options);
+                            }
+
+                        });
+                        //]]>
+                    </script>
+                    <div id="chart_last7days" style="width: 100%"></div><?php else: ?><p><?= __(
+                    'No Data'
+                ) ?></p>
+                <?php endif; ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+

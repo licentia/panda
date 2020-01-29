@@ -1,0 +1,87 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+$triggers = $block->getAutorespondersTriggersDetails();
+
+$tabs = [];
+foreach ($triggers as $k => $trigger) {
+    $name = explode('-', $trigger['name']);
+    $trigger['code'] = $k;
+    $tabs[trim($name[0])][] = $trigger;
+}
+
+?>
+<div class="new_autoresponder">
+    <script type="text/javascript">
+        require(["jquery", "jquery/ui", 'domReady!'], function ($) {
+
+            $('ul.tabs li').click(function () {
+                var tab_id = $(this).attr('data-tab');
+
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+
+                $(this).addClass('current');
+                $("#" + tab_id).addClass('current');
+            })
+
+        });
+    </script>
+    <ul class="tabs">
+        <?php $i = 0;
+        foreach ($tabs as $name => $trigger) : ?>
+            <li class="tab-link <?= $i == 0 ? 'current' : ''; ?>"
+                data-tab="tab-<?= str_replace(' ', '', $name) ?>"><?= /* @noEscape */
+                __($name) ?></li>
+            <?php $i++;
+
+        endforeach; ?>
+    </ul>
+
+    <?php $i = 0;
+    foreach ($tabs as $name => $trigger) : ?>
+        <div class="tab-content <?= $i == 0 ? 'current' : ''; ?>"
+             id="tab-<?= str_replace(' ', '', $name); ?>">
+            <ul class="list">
+                <?php foreach ($trigger as $key => $info) : ?>
+
+                    <li class="list-item">
+                        <strong><a href="<?= $block->getUrl(
+                                '*/*/edit',
+                                ['event' => $info['code']]
+                            ) ?>"><?= $block->escapeHtml(str_replace($name . ' - ', '', $info['name'])) ?></a></strong>
+                        <p> <?= $info['description'] ?></p>
+                    </li>
+
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php $i++;
+
+    endforeach; ?>
+</div>

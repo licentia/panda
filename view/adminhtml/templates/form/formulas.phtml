@@ -1,0 +1,314 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+
+<h3><?= /* @noEscape */
+    __('Tags below will be replaced with real values when building the formula') ?></h3>
+<h4><?= __(
+        'These tags refer to each individual customer'
+    ) ?></h4>
+<div class="grid ">
+    <table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link" style="width:200px;"><span
+                        class="nobr"><?= /* @noEscape */
+                    __('Variable') ?></span></th>
+            <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                    __('Value') ?></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="a-right">{last_order}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Days Since Last Completed Order') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{first_order}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Days Since First Completed Order') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{account}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Days Since Registration') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{number_reviews}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Number of Reviews') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{number_orders}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Number of Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{number_completed_orders}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Number of Completed Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{percentage_complete_orders}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Percentage of Completed Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Order Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_average}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Order Average') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{percentage_order_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Percentage Order Amount Compared with Global Average') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_average_1year}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Order Average in the Past 1 year') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_amount_1year}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Orders Total in the Past 1 year') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_average_older}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Order Average before the Past 1 year') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_amount_older}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Orders Total before the Past 1 year') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{order_average_days}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Average of Days Between Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{shipping}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Shipping Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{taxes}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Taxes Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{subtotal}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Subtotal Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{discount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Discount Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{profit}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Profit Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{refunded}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Refunded Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{cost}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Total Cost Amount') ?></td>
+        </tr>
+        </tbody>
+    </table>
+</div><h3><?= /* @noEscape */
+    __('Tags below will be replaced with real values when building formulas') ?></h3>
+<h4><?= /* @noEscape */
+    __('These tags refer to global values or period, and NOT to individual customers') ?></h4>
+<div class="grid ">
+    <table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link" style="width:200px;"><span
+                        class="nobr"><?= /* @noEscape */
+                    __('Variable') ?></span></th>
+            <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                    __('Value') ?></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="a-right">{retention_rate}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Customer Retention Rate') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{rate_of_discount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Rate of Discount (Check the Extension Configuration)') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{customer_lifespan}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Customer Lifespan (Check the Extension Configuration)') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_orders_number}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Number of Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_orders_average}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Orders Average') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_orders_number_average}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Average Global Number of Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_orders_completed}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Number of Completed Orders') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_orders_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Orders Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_cost_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Costs Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_refunded_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Refunded Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_shipping_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Shipping Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_taxes_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Taxes Amount') ?></td>
+        </tr>
+        <tr>
+            <td class="a-right">{global_profit_amount}</td>
+            <td class="a-left"><?= /* @noEscape */
+                __('Global Profit Amount') ?></td>
+        </tr>
+        </tbody>
+    </table>
+    <h4><?= /* @noEscape */
+        __('Getting current period, previous periods and date ranges from formulas') ?></h4>
+    <h4><?= __(
+            "<strong>n</strong> is not to be replaced with a value. Values to replace are the numbers"
+        ) ?></h4>
+    <div class="grid ">
+        <table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+            <thead>
+            <tr class="headings">
+                <th class=" no-link" style="width:200px;"><span
+                            class="nobr"><?= /* @noEscape */
+                        __('Formula') ?></span></th>
+                <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                        __('Returns') ?></span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="a-right">{global_orders_amount}</td>
+                <td class="a-left"><?= /* @noEscape */
+                    __('Combined Orders Amount from All Orders') ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[n]}</td>
+                <td class="a-left"><?= /* @noEscape */
+                    __('Combined Orders Amount from current period (year or month)') ?></td>
+            </tr>
+
+            <tr>
+                <td class="a-right">{global_orders_amount[n-1]}</td>
+                <td class="a-left"><?= /* @noEscape */
+                    __('Combined Orders Amount from previous period (year or month)') ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[n<1]}</td>
+                <td class="a-left"><?= __(
+                        'Combined Orders Amount from previous periods before current minus 1 (year or month)'
+                    ) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[n>1]}</td>
+                <td class="a-left"><?= __(
+                        'Combined Orders Amount from previous after the specified (year or month)'
+                    ) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[2017]}</td>
+                <td class="a-left"><?= /* @noEscape */
+                    __('Combined Orders Amount from the specified year (2017)') ?></td>
+            </tr>
+
+            <tr>
+                <td class="a-right">{global_orders_amount[>2017]}</td>
+                <td class="a-left"><?= __(
+                        'Combined Orders Amount from years greater than the specified year (2017)'
+                    ) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[<2017]}</td>
+                <td class="a-left"><?= __(
+                        'Combined Orders Amount from years less than the specified year (2017)'
+                    ) ?></td>
+            </tr>
+            <tr>
+                <td class="a-right">{global_orders_amount[-90]}</td>
+                <td class="a-left"><?= /* @noEscape */
+                    __('Combined Orders Amount from the last 90 days') ?></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>

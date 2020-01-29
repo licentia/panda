@@ -1,0 +1,356 @@
+<?php
+
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+namespace Licentia\Panda\Model;
+
+/**
+ * Class Bounces
+ *
+ * @package Licentia\Panda\Model
+ */
+class Bounces extends \Magento\Framework\Model\AbstractModel
+{
+
+    /**
+     * Prefix of model events names
+     *
+     * @var string
+     */
+    protected $_eventPrefix = 'panda_bounces';
+
+    /**
+     * Parameter name in event
+     *
+     * In observe method you can use $observer->getEvent()->getObject() in this case
+     *
+     * @var string
+     */
+    protected $_eventObject = 'bounces';
+
+    /**
+     * @var
+     */
+    protected $scopeConfig;
+
+    /**
+     * @var \Licentia\Panda\Helper\Data
+     */
+    protected $pandaHelper;
+
+    /**
+     * @var SubscribersFactory
+     */
+    protected $subscribersFactory;
+
+    /**
+     * @var CampaignsFactory
+     */
+    protected $campaignsFactory;
+
+    /**
+     * @var BouncesFactory
+     */
+    protected $bouncesFactory;
+
+    /**
+     * @var ResourceModel\Senders\CollectionFactory
+     */
+    protected $sendersCollection;
+
+    /**
+     * Bounces constructor.
+     *
+     * @param SubscribersFactory                                           $subscribersFactory
+     * @param BouncesFactory                                               $bouncesFactory
+     * @param CampaignsFactory                                             $campaignsFactory
+     * @param ResourceModel\Senders\CollectionFactory                      $sendersCollection
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface           $scope
+     * @param \Magento\Framework\Model\Context                             $context
+     * @param \Magento\Framework\Registry                                  $registry
+     * @param \Licentia\Panda\Helper\Data                                  $pandaHelper
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null           $resourceCollection
+     * @param array                                                        $data
+     */
+    public function __construct(
+        \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
+        \Licentia\Panda\Model\BouncesFactory $bouncesFactory,
+        CampaignsFactory $campaignsFactory,
+        ResourceModel\Senders\CollectionFactory $sendersCollection,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scope,
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Licentia\Panda\Helper\Data $pandaHelper,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        array $data = []
+    ) {
+
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+
+        $this->subscribersFactory = $subscribersFactory;
+        $this->scopeConfig = $scope;
+        $this->pandaHelper = $pandaHelper;
+        $this->sendersCollection = $sendersCollection;
+        $this->campaignsFactory = $campaignsFactory;
+        $this->bouncesFactory = $bouncesFactory;
+    }
+
+    /**
+     * Initialize resource model
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+
+        $this->_init(\Licentia\Panda\Model\ResourceModel\Bounces::class);
+    }
+
+    /**
+     * @return $this
+     */
+    public function processBounces()
+    {
+
+        $senders = $this->sendersCollection->create();
+
+        /** @var \Licentia\Panda\Model\Senders $sender */
+        foreach ($senders as $sender) {
+            $config = ['ssl' => strtoupper($sender->getBouncesSsl())];
+            $config['auth'] = $sender->getBouncesAuth();
+            $config['host'] = $sender->getBouncesServer();
+            $config['password'] = $this->pandaHelper->decrypt($sender->getBouncesPassword());
+            $config['user'] = $sender->getBouncesUsername();
+            $config['port'] = $sender->getBouncesPort();
+            if (!filter_var($sender->getBouncesEmail(), FILTER_VALIDATE_EMAIL)) {
+                return $this;
+            }
+
+            $maxBounces = $this->getMaxBounces();
+
+            try {
+                $mail = new \Zend_Mail_Storage_Imap($config);
+            } catch (\Exception $e) {
+                $this->_logger->warning($e->getMessage());
+
+                return $this;
+            }
+
+            $mailboxIds = $mail->getUniqueId();
+
+            foreach ($mailboxIds as $uid) {
+
+                try {
+
+                    $number = $mail->getNumberByUniqueId($uid);
+                    $message = $mail->getMessage($number);
+                    $content = $message->getContent();
+                    $s = null;
+                    $c = null;
+                    $code = null;
+                    preg_match('/X-Panda-Sid:\s?(\d+)/', $content, $s);
+                    preg_match('/X-Panda-Cid:\s?(\d+)/', $content, $c);
+                    preg_match('/Diagnostic-Code:\s?(.*)/', $content, $code);
+
+                    $subscriberId = (int) end($s);
+                    $campaignId = (int) end($c);
+                    $reason = end($code);
+
+                    /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                    $subscriber = $this->subscribersFactory->create()->load($subscriberId);
+                    /** @var \Licentia\Panda\Model\Campaigns $campaign */
+                    $campaign = $this->campaignsFactory->create()->load($campaignId);
+                    if (!$subscriber->getId() || !$campaign->getId()) {
+                        #$mail->removeMessage($number);
+                        continue;
+                    }
+
+                    $subscriber->setBounces($subscriber->getBounces() + 1)->save();
+                    $campaign->setBounces($subscriber->getBounces() + 1)->save();
+
+                    $data = [];
+                    $data['campaign_id'] = $campaignId;
+                    $data['subscriber_id'] = $subscriberId;
+                    $data['code'] = $reason;
+                    $data['content'] = $message->getContent();
+                    $data['created_at'] = $this->pandaHelper->gmtDate();
+
+                    $this->bouncesFactory->create()->setData($data)->save();
+                    $mail->removeMessage($number);
+
+                    if ($subscriber->getBounces() >= $maxBounces) {
+                        $this->subscribersFactory->create()
+                                                 ->loadByEmail($subscriber->getEmail())
+                                                 ->unsubscribe();
+                    }
+
+                } catch (\Exception $e) {
+
+                    $this->_logger->warning($e->getMessage());
+
+                }
+
+            }
+
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxBounces()
+    {
+
+        return $this->scopeConfig->getValue(
+            'panda/bounces/max_bounces',
+            \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE
+        );
+    }
+
+    /**
+     * @param $bounceId
+     *
+     * @return $this
+     */
+    public function setBounceId($bounceId)
+    {
+
+        return $this->setData('bounce_id', $bounceId);
+    }
+
+    /**
+     * @param $campaignId
+     *
+     * @return $this
+     */
+    public function setCampaignId($campaignId)
+    {
+
+        return $this->setData('campaign_id', $campaignId);
+    }
+
+    /**
+     * @param $subscriberId
+     *
+     * @return $this
+     */
+    public function setSubscriberId($subscriberId)
+    {
+
+        return $this->setData('subscriber_id', $subscriberId);
+    }
+
+    /**
+     * @param $code
+     *
+     * @return $this
+     */
+    public function setCode($code)
+    {
+
+        return $this->setData('code', $code);
+    }
+
+    /**
+     * @param $content
+     *
+     * @return $this
+     */
+    public function setContent($content)
+    {
+
+        return $this->setData('content', $content);
+    }
+
+    /**
+     * @param $createdAt
+     *
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+
+        return $this->setData('created_at', $createdAt);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBounceId()
+    {
+
+        return $this->getData('bounce_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignId()
+    {
+
+        return $this->getData('campaign_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSubscriberId()
+    {
+
+        return $this->getData('subscriber_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode()
+    {
+
+        return $this->getData('code');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContent()
+    {
+
+        return $this->getData('content');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+
+        return $this->getData('created_at');
+    }
+}

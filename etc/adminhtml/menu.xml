@@ -1,0 +1,58 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Licentia_Panda::email" parent="Magento_Backend::marketing" title="Marketing Automation" module="Licentia_Panda" sortOrder="6" resource="Licentia_Panda::email"/>
+        <add id="Licentia_Panda::autoresponders" title="Autoresponders" module="Licentia_Panda" sortOrder="10" parent="Licentia_Panda::email" action="panda/autoresponders" resource="Licentia_Panda::autoresponders"/>
+        <add id="Licentia_Panda::splits" title="A/B Campaigns" module="Licentia_Panda" sortOrder="20" parent="Licentia_Panda::email" action="panda/splits" resource="Licentia_Panda::splits"/>
+        <add id="Licentia_Panda::campaigns" title="Campaigns" module="Licentia_Panda" sortOrder="30" parent="Licentia_Panda::email" action="panda/campaigns" resource="Licentia_Panda::campaigns"/>
+        <add id="Licentia_Panda::followups" title="Follow Ups" module="Licentia_Panda" sortOrder="40" parent="Licentia_Panda::email" action="panda/followups" resource="Licentia_Panda::followups"/>
+        <add id="Licentia_Panda::goals" title="Goals" module="Licentia_Panda" sortOrder="50" parent="Licentia_Panda::email" action="panda/goals" resource="Licentia_Panda::goals"/>
+        <add id="Licentia_Panda::subscribers" title="Subscribers" module="Licentia_Panda" sortOrder="80" parent="Licentia_Panda::email" action="panda/subscriber" resource="Licentia_Panda::subscribers"/>
+        <add id="Licentia_Panda::tags" title="Tags" module="Licentia_Panda" sortOrder="90" parent="Licentia_Panda::email" action="panda/tags" resource="Licentia_Panda::tags"/>
+        <add id="Licentia_Panda::templates" title="Templates" module="Licentia_Panda" sortOrder="100" parent="Licentia_Panda::email" action="panda/templates" resource="Licentia_Panda::templates"/>
+
+
+        <add id="Licentia_Panda::account_details" parent="Magento_Backend::system" title="Green Flying Panda" module="Licentia_Panda" sortOrder="600" resource="Licentia_Panda::account_details"/>
+        <!--<add id="Licentia_Panda::account" title="Account" module="Licentia_Panda" sortOrder="10" parent="Licentia_Panda::account_details" action="panda/account" resource="Licentia_Panda::account"/>-->
+        <add id="Licentia_Panda::configuration" title="Configuration" module="Licentia_Panda" sortOrder="20" parent="Licentia_Panda::account_details" action="adminhtml/system_config/edit/section/panda_nuntius" resource="Licentia_Panda::config"/>
+        <add id="Licentia_Panda::senders" title="Senders" module="Licentia_Panda" sortOrder="30" parent="Licentia_Panda::account_details" action="panda/senders" resource="Licentia_Panda::senders"/>
+        <add id="Licentia_Panda::support" title="Support" module="Licentia_Panda" sortOrder="40" parent="Licentia_Panda::account_details" action="panda/support" resource="Licentia_Panda::support"/>
+        <add id="Licentia_Panda::debug" title="Debug Info" module="Licentia_Panda" sortOrder="50" parent="Licentia_Panda::account_details" action="panda/support/index/tab_id/report_section" resource="Licentia_Panda::support"/>
+
+
+        <add id="Licentia_Panda::popups" title="Info Windows" module="Licentia_Panda" sortOrder="95" parent="Magento_Backend::content_elements" action="panda/popups" resource="Licentia_Panda::popups"/>
+
+
+        <add id="Licentia_Panda::report_main" title="Panda Communications" module="Licentia_Panda" sortOrder="30" parent="Magento_Reports::report" resource="Licentia_Panda::reports"/>
+        <add id="Licentia_Panda::reports" title="Marketing Data Evolution" module="Licentia_Panda" sortOrder="1000" parent="Licentia_Panda::report_main" action="panda/reports" resource="Licentia_Panda::reports_reports"/>
+        <add id="Licentia_Panda::errors" title="Campaigns Errors" module="Licentia_Panda" sortOrder="1001" parent="Licentia_Panda::report_main" action="panda/errors" resource="Licentia_Panda::reports_errors"/>
+        <add id="Licentia_Panda::coupons" title="Campaigns Coupons" module="Licentia_Panda" sortOrder="1002" parent="Licentia_Panda::report_main" action="panda/coupons" resource="Licentia_Panda::reports_coupons"/>
+        <add id="Licentia_Panda::conversions" title="Campaigns Conversions" module="Licentia_Panda" sortOrder="1003" parent="Licentia_Panda::report_main" action="panda/conversions" resource="Licentia_Panda::reports_conversions"/>
+        <add id="Licentia_Panda::events" title="Autoresponders Campaigns" module="Licentia_Panda" sortOrder="1004" parent="Licentia_Panda::report_main" action="panda/events" resource="Licentia_Panda::reports_events"/>
+        <add id="Licentia_Panda::links" title="Campaigns Links" module="Licentia_Panda" sortOrder="1005" parent="Licentia_Panda::report_main" action="panda/links" resource="Licentia_Panda::reports_links"/>
+
+        </menu>
+</config>

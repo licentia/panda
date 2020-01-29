@@ -1,0 +1,160 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script type="text/javascript">
+
+    require(["jquery", "jquery/ui", 'domReady!'], function ($) {
+
+        $("#sku").autocomplete({
+            source: "<?= $block->getUrl('*/ajax/search') ?>",
+            minLength: 2
+        });
+
+    });
+</script>
+
+<style>
+    .page-wrapper {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    header, footer {
+        display: none;
+    }
+
+    body {
+        padding: 10px;
+        min-width: 800px;
+    }
+
+    .menu-wrapper {
+        display: none;
+    }
+
+    div.content {
+        max-width: 750px;
+        margin: 0 auto;
+        border: 1px solid #dedede;
+        padding: 10px;
+        display: grid;
+    }
+
+    div.kpis em {
+        font-style: normal;
+
+    }
+
+    div.kpis span {
+        display: block;
+        float: left;
+        margin: 2px;
+        border: 1px solid #dedede;
+        padding: 2px;
+        background-color: #fff;
+    }
+</style>
+<div class="content panda_autocomplete">
+    <h1><?= /* @noEscape */
+        __('Formulas Tester') ?></h1>
+    <form class="form" action="<?= $block->escapeHtmlAttr($block->getData('form/action')) ?>" method="post"
+          id="edit_form">
+        <?= $block->getBlockHtml('formkey') ?>
+
+        <?php if ($block->getData('form/error')) : ?>
+            <div class="message message-error"><?= $block->escapeHtml($block->getData('form/error')) ?></div>
+
+        <?php endif; ?>
+        <?php if ($block->getData('form/result')) : ?>
+            <div class="message message-success"><?= $block->escapeHtml($block->getData('form/result')) ?></div>
+
+        <?php endif; ?>
+        <div class="admin__field field ">
+            <label class="label admin__field-label"><span><?= /* @noEscape */
+                    __('Formula') ?></span></label>
+            <div class="admin__field-control control">
+                <input value="<?= $block->escapeHtmlAttr($block->getData('form/formula')) ?>" name="formula" type="text"
+                       class="required-entry required-entry _required input-text admin__control-text">
+            </div>
+        </div>
+        <div class="admin__field field ">
+            <label class="label admin__field-label"><span><?= /* @noEscape */
+                    __('Customer ID/Email') ?></span></label>
+            <div class="admin__field-control control">
+                <input name="customer" <?= $block->escapeHtmlAttr($block->getData('form/customer')) ?> type="text"
+                       class=" input-text admin__control-text">
+            </div>
+        </div>
+        <div class="admin__field field ">
+            <label class="label admin__field-label"><span><?= /* @noEscape */
+                    __('Product SKU') ?></span></label>
+            <div class="admin__field-control control">
+                <input name="sku" id="sku" <?= $block->escapeHtmlAttr($block->getData('form/sku')) ?> type="text"
+                       class="required-entry required-entry _required  input-text admin__control-text">
+            </div>
+        </div>
+        <div class="admin__field field ">
+            <label class="label admin__field-label"><span><?= /* @noEscape */
+                    __('Product Price') ?></span></label>
+            <div class="admin__field-control control">
+                <input name="price" <?= $block->escapeHtmlAttr($block->getData('form/price')) ?> type="text"
+                       class=" input-text admin__control-text">
+                <div class="note admin__field-note"><?= /* @noEscape */
+                    __('Override Product Price') ?></div>
+            </div>
+        </div>
+        <br>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Test')) ?>" class="action save primary">
+                    <span><?= /* @noEscape */
+                        __('Test') ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <?php if ($block->getData('form/kpis')) :
+        ?> <br> <br><p><?= /* @noEscape */
+        __('KPIs for Customer') ?></p>
+        <div class="kpis">
+            <?php foreach ($block->getData('form/kpis') as $key => $value) : ?>
+                <span><em><?= /* @noEscape */
+                        __($key) ?></em>: <strong><?= $block->escapeHtml($value) ?></strong></span>
+
+            <?php endforeach; ?>
+
+        </div>
+
+    <?php endif; ?>
+
+</div>

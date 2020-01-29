@@ -1,0 +1,275 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Licentia\Panda\Api\PopupsRepositoryInterface" type="Licentia\Panda\Model\PopupsRepository"/>
+
+    <preference for="Licentia\Panda\Api\SubscribersRepositoryInterface" type="Licentia\Panda\Model\SubscribersRepository"/>
+    <preference for="Licentia\Panda\Api\Data\SubscribersInterface" type="Licentia\Panda\Model\Subscribers"/>
+    <preference for="Licentia\Panda\Api\Data\SubscribersSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+     <type name="Magento\Framework\Mail\TransportInterface">
+       <plugin name="panda_mail_transport" type="Licentia\Panda\Plugin\TransportPlugin" sortOrder="1" disabled="false"/>
+    </type>
+
+    <type name="Magento\Newsletter\Model\Subscriber">
+      <plugin name="panda_newsletter_management" type="Licentia\Panda\Plugin\Subscriber" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Customer\Block\Newsletter">
+        <plugin name="panda_core_newsletter_save" type="Licentia\Panda\Plugin\NewsletterSave" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="panda_subscriber_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Subscribers\Grid\Collection</item>
+                <item name="panda_campaigns_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Campaigns\Grid\Collection</item>
+                <item name="panda_goals_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Goals\Grid\Collection</item>
+                <item name="panda_tags_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Tags\Grid\Collection</item>
+                <item name="panda_followup_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Followup\Grid\Collection</item>
+                <item name="panda_splits_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Splits\Grid\Collection</item>
+                <item name="panda_autoresponders_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Autoresponders\Grid\Collection</item>
+                <item name="panda_popups_listing_data_source" xsi:type="string">Licentia\Panda\Model\ResourceModel\Popups\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Licentia\Panda\Model\ResourceModel\Followup\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_campaigns_followup</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_followup_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_followup_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Followup</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaFollowupGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaFollowupGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Followup\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaFollowupGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Licentia\Panda\Model\ResourceModel\Goals\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_goals</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_goals_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_goals_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Goals</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaGoalsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaGoalsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Goals\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaGoalsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Licentia\Panda\Model\ResourceModel\Tags\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_tags</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_tags_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_tags_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Tags</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaTagsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaTagsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Tags\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaTagsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Licentia\Panda\Model\ResourceModel\Campaigns\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_campaigns</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_campaigns_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_campaigns_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Campaigns</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaCampaignsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaCampaignsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Campaigns\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaCampaignsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Licentia\Panda\Model\ResourceModel\Subscribers\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_subscribers</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_subscriber_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_subscriber_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Subscribers</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaSubscriberGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaSubscriberGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Subscribers\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaSubscriberGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Licentia\Panda\Model\ResourceModel\Autoresponders\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_autoresponders</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_autoresponders_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_autoresponders_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Autoresponders</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaAutorespondersGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaAutorespondersGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Autoresponders\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaAutorespondersGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Licentia\Panda\Model\ResourceModel\Splits\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_campaigns_splits</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_splits_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_splits_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Splits</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaSplitsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaSplitsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Splits\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaSplitsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <type name="Licentia\Panda\Model\ResourceModel\Popups\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">panda_popups</argument>
+            <argument name="eventPrefix" xsi:type="string">panda_popups_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">panda_popups_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Licentia\Panda\Model\ResourceModel\Popups</argument>
+        </arguments>
+    </type>
+    <virtualType name="pandaPopupsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="pandaPopupsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Licentia\Panda\Model\ResourceModel\Popups\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">pandaPopupsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <type name="Licentia\Panda\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Licentia\Panda\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">pandaLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Licentia\Panda\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <!--
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="panda_acquisition_campaign" xsi:type="string">sales_order.panda_acquisition_campaign</item>
+                <item name="panda_shipping_cost" xsi:type="string">sales_order.panda_shipping_cost</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    -->
+</config>

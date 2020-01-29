@@ -1,0 +1,73 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::system" title="System" translate="title" sortOrder="90">
+                    <resource id="Licentia_Panda::account_details" title="Green Flying Panda" translate="title" sortOrder="50">
+                        <resource id="Licentia_Panda::account" title="Account Details" translate="title" sortOrder="10"/>
+                        <resource id="Licentia_Panda::senders" title="Senders" translate="title" sortOrder="20"/>
+                        <resource id="Licentia_Panda::support" title="Support" translate="title" sortOrder="40"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Reports::report" title="Reports" sortOrder="70">
+                    <resource id="Licentia_Panda::reports" title="Marketing Automation" sortOrder="110">
+                        <resource id="Licentia_Panda::reports_errors" title="Errors" sortOrder="10"/>
+                        <resource id="Licentia_Panda::reports_reports" title="Basic Usage" sortOrder="20"/>
+                        <resource id="Licentia_Panda::reports_coupons" title="Coupons" sortOrder="30"/>
+                        <resource id="Licentia_Panda::reports_conversions" title="Conversions" sortOrder="40"/>
+                        <resource id="Licentia_Panda::reports_events" title="Events" sortOrder="50"/>
+                        <resource id="Licentia_Panda::reports_links" title="Links" sortOrder="60"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Licentia_Panda::config_nuntius" title="Panda - Sales Automation Section"/>
+                            <resource id="Licentia_Panda::config_maintenance" title="Panda - General Section"/>
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::marketing">
+                    <resource id="Licentia_Panda::email" title="Marketing Automation" sortOrder="110">
+                        <resource id="Licentia_Panda::campaigns" title="Campaigns" sortOrder="10"/>
+                        <resource id="Licentia_Panda::autoresponders" title="Autoresponders" sortOrder="20"/>
+                        <resource id="Licentia_Panda::followups" title="Follow Up" sortOrder="30"/>
+                        <resource id="Licentia_Panda::splits" title="A/B Campaigns" sortOrder="40"/>
+                        <resource id="Licentia_Panda::subscribers" title="Subscribers" sortOrder="50"/>
+                        <resource id="Licentia_Panda::goals" title="Goals" sortOrder="70">
+                            <resource id="Licentia_Panda::goals_delete" title="Delete Goals" sortOrder="50"/>
+                            <resource id="Licentia_Panda::goals_save" title="Save Goals" sortOrder="50"/>
+                        </resource>
+                        <resource id="Licentia_Panda::tags" title="Tags" sortOrder="75"/>
+                        <resource id="Licentia_Panda::templates" title="Templates" sortOrder="80"/>
+                        <resource id="Licentia_Panda::popups" title="Floating Windows" sortOrder="100"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

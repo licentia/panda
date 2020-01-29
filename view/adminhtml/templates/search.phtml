@@ -1,0 +1,180 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+$result = $block->getElastic();
+$result = array_slice($result, 0, 10);
+
+$json = [];
+$labels = [];
+$rows = [];
+$i = 0;
+$legend = [
+    '',
+    __('Today'),
+    'Yesterday',
+    date('d/m', strtotime('now -2day')),
+    date('d/m', strtotime('now -3day')),
+    date('d/m', strtotime('now -4day')),
+    date('d/m', strtotime('now -5day')),
+    date('d/m', strtotime('now -6day')),
+    __('Last 7 Days'),
+    __('Last 7-14 days'),
+    __('Last 14-21 days'),
+    __('Last 21-28 days'),
+    __('Last 30 Days'),
+    __('Last 30-60 Days'),
+    __('Last 365 Days'),
+    __('total'),
+];
+
+if (count($result) > 0) {
+    foreach ($result as $row) {
+        $i = 0;
+        foreach ($row as $key => $item) {
+            if (in_array($key, ['item_id', 'results', 'notified', 'search_results'])) {
+                continue;
+            }
+
+            if (!isset($rows[$key])) {
+                $rows[$key][] = $legend[$i];
+            }
+
+            if ($key != 'term') {
+                $item = (int) $item;
+            }
+
+            if ($key == 'term') {
+                $item = $item . ' (' . (int) $row['results'] . ')';
+            }
+
+            $rows[$key][] = $item;
+
+            $i++;
+        }
+    }
+
+    $final = [];
+    foreach (array_slice($rows, 1) as $line) {
+        $final[] = $line;
+    }
+    $encode = json_encode($final);
+}
+?>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <form method="get" action="<?= /* @noEscape */
+    $block->getUrl('*/*/search') ?>">
+        <div class="page-main-actions">
+
+            <div style="float: left">
+                <input type="text"
+                       value="<?= $block->escapeHtmlAttr($block->getRequest()->getParam('term')) ?>" name="term" style="
+                position: relative;
+                float: left;
+                padding: 7px;
+                width: 400px;
+                font-size: 19px;">
+                <?php if ($block->getRequest()->getParam('term')) { ?>
+                    <button style="padding:10px; margin:2px 10px" type="button"
+                            onclick="window.location='<?= $block->getUrl('*/*/*'); ?>'" class=" scalable save">
+                        <span><span><span><?= /* @noEscape */
+                                    __('Clear') ?></span></span></span></button>
+                <?php } ?>
+
+                <button style="padding:10px; margin:2px 10px" type="submit" class="primary scalable save">
+                    <span><span><span><?= /* @noEscape */
+                                __('Analise Term') ?></span></span></span></button>
+
+            </div>
+            <div class="page-actions-placeholder"></div>
+            <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+
+
+                <div class="page-actions-inner">
+
+                    <div class="page-actions-buttons">
+
+                        <button onclick="window.location='<?= $block->getUrl('*/*/index') ?>'"
+                                class=" scalable save" type="button">
+                            <span><span><span><?= /* @noEscape */
+                                        __('Grid View') ?></span></span></span></button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+    <div class="grid">
+        <div id="chart_div"></div>
+    </div>
+
+<?php if (count($result) > 0) { ?>
+    <script type="text/javascript">
+
+        require(['jquery', 'domReady!'], function ($) {
+
+
+            google.charts.load('current', {'packages': ['line']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                <?php
+                $i = 0;
+                foreach ($rows['term'] as $label) {
+                    $i++;
+                    if ($i == 1) {
+                        echo "data.addColumn('string','" . preg_replace(
+                                '/[^A-Za-z0-9\- \(\)]/',
+                                '',
+                                $label
+                            ) . "');";
+                        continue;
+                    }
+                    echo "data.addColumn('number','" . preg_replace('/[^A-Za-z0-9\- \(\)]/', '', $label) . "');";
+                }
+                ?>
+
+                data.addRows(<?= $encode ?>);
+                var options = {
+                    title: 'GDP of selected countries, in US $millions',
+                    width: '100%',
+                    height: 600,
+                    legend: 'none',
+                    vAxis: {gridlines: {count: 4}}
+                };
+                var chart = new google.charts.Line(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+
+        });
+    </script>
+<?php } ?>

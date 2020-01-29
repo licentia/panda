@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var \Magento\Backend\Block\Template $block */
+
+$actions = $block->getAutorespondersActions();
+
+?>
+
+<link href="<?= $block->getViewFileUrl('Licentia_Panda::styles/style.css') ?>"
+      rel="stylesheet"
+      type="text/css">
+<script type="text/javascript">
+    var panda_url_action = '<?= $block->getUrl(
+        'panda/autoresponders/tree',
+        [
+            'autoresponder_id' => $block->getAutoresponder()->getId(),
+        ]
+    )?>';
+
+    require(['jquery', 'Licentia_Panda/js/tree', 'domReady!'], function ($, n) {
+        n('.tree').tree({
+            'img_url': '<?= $block->getViewFileUrl('Licentia_Panda::images/load.gif')?>'
+        });
+    });
+</script>
+<body>
+<div id="loading-mask">
+    <div data-role="spinner" class="admin__data-grid-loading-mask">
+        <div class="spinner">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+</div>
+<div style="float:left; width:200px;">
+
+    <?php foreach ($actions as $action) : ?>
+        <div class="draggable" id="<?= /* @noEscape */
+        $action['id'] ?>">
+            <?= $action['name'] ?><span><?= /* @noEscape */
+                $action['description'] ?></span></div>
+
+    <?php endforeach; ?>
+
+</div>
+<div style="text-align: center; min-width: 900px">
+    <?= $block->getTree(); ?>
+</div>
+</body>

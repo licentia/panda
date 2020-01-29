@@ -1,0 +1,77 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var \Licentia\Panda\Block\Popup $block */
+
+if (!$block->hasActivePopups()) {
+    return '';
+}
+
+/** @var \Licentia\Panda\Helper\Data $helper */
+$helper = $this->helper('\Licentia\Panda\Helper\Data');
+
+$params = [
+    'c' => $block->getRequest()
+                 ->getControllerName(),
+    'e' => $block->getRequest()
+                 ->getParam('panda_emulated_popup', 0),
+    'a' => $block->getRequest()
+                 ->getActionName(),
+    'm' => $block->getRequest()
+                 ->getModuleName(),
+    'i' => $block->getRequest()
+                 ->getParam('id', 0),
+];
+$params = json_encode($params);
+?>
+<script type="text/javascript">
+    require(['jquery', 'pandaPopup', 'domReady!'], function ($) {
+        <?php if ($helper->delayAjaxLoads()) : ?>
+        var timePopup = setInterval(function () {
+            if (localStorage["mage-cache-storage"] !== '{}') {
+                clearInterval(timePopup);
+                <?php endif; ?>
+                $.ajax({
+                    url: '<?= /* @noEscape */ $block->getUrl('panda/block/window') ?>',
+                    type: "POST",
+                    context: document.body,
+                    dataType: 'html',
+                    success: function (responseText) {
+                        $("#panda_popup_placeholder").html(responseText);
+                    },
+                    data: {
+                        'params': '<?= /* @noEscape */ $params ?>',
+                        'identifier': window.location.pathname,
+                        'referer': document.referrer
+                    }
+                });
+                <?php if ($helper->delayAjaxLoads()) : ?>
+            }
+        }, 500);
+        <?php endif; ?>
+    });
+</script>
+<div id="panda_popup_placeholder"></div>

@@ -1,0 +1,135 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Licentia\Panda\Block\Recommendations $block */
+
+if ($block->getProductCollection() && $block->getProductCollection()->getSize()):
+
+    $uri = $block->getUrl() . ltrim($block->getRequest()->getParam('uri'), '/');
+    $uri = $block->encodeUrl($uri);
+
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    $extraParams = [];
+    $extraParams['form_key'] = $block->getFormKey();
+    $extraParams['uenc'] = $uri;
+
+    $image = 'new_products_content_widget_grid';
+    $items = $block->getProductCollection()->getItems();
+
+    $showCart = $block->showCart();
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+    ?>
+    <div class="block widget block-products-list <?= $mode ?>">
+        <?php if ($block->getTitle()): ?>
+            <div class="block-title">
+                <strong><?= /* @noEscape */
+                    __($block->getTitle()) ?></strong>
+            </div>
+        <?php endif ?>
+        <div class="block-content">
+            <div class="products-<?= $mode ?> <?= $mode ?>">
+                <ol class="product-items <?= $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items
+
+                    as $_item): ?>
+                    <?php if ($iterator++ != 1): ?></li><?php endif ?>
+                    <li class="product-item">
+                        <div class="product-item-info">
+                            <a href="<?= /* @noEscape */
+                            $block->getProductUrl($_item) ?>"
+                               class="product-item-photo">
+                                <?= /* @noEscape */
+                                $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtmlAttr($block->escapeHtml($_item->getName())) ?>"
+                                       href="<?= $block->escapeHtmlAttr($block->escapeUrl($block->getProductUrl($_item))) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?php
+
+                                echo /* @noEscape */
+                                $block->getProductPriceHtml($_item, $type);
+                                ?>
+                                <?php if ($showCart): ?><br>
+                                    <div class="product-item-actions">
+                                        <?php if ($showCart): ?>
+                                            <div class="actions-primary">
+                                                <?php if ($_item->isSaleable()): ?>
+                                                    <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                        <button class="action tocart primary"
+                                                                onclick="window.location='<?= $block->escapeUrl(
+                                                                    $block->getAddToCartUrl($_item, $extraParams)
+                                                                ) ?>'" type="button" title="<?= /* @noEscape */
+                                                        __('Add to Cart') ?>">
+                                                            <span><?= /* @noEscape */
+                                                                __('Add to Cart') ?></span>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <button class="action tocart primary"
+                                                                onclick="window.location='<?= $block->escapeUrl(
+                                                                    $block->getAddToCartUrl($_item, $extraParams)
+                                                                ) ?>'" type="button" title="<?= $block->escapeHtml(
+                                                            __('Add to Cart')
+                                                        ) ?>">
+                                                            <span><?= /* @noEscape */
+                                                                __('Add to Cart') ?></span>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <?php if ($_item->getIsSalable()): ?>
+                                                        <div class="stock available"><span><?= $block->escapeHtml(
+                                                                    __('In stock')
+                                                                ) ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span><?= $block->escapeHtml(
+                                                                    __('Out of stock')
+                                                                ) ?></span></div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items) + 1) ? '</li>' : '' ?>
+                        <?php endforeach ?>
+                </ol>
+            </div>
+        </div>
+    </div>
+<?php endif;

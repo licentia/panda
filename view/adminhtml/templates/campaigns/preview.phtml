@@ -1,0 +1,69 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+?>
+
+<?php
+
+$url = $block->getUrl(
+    'panda/campaigns/preview',
+    [
+        'c'  => 1,
+        'id' => $block->getCampaign()
+                      ->getId(),
+    ]
+);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?= $block->escapeHtmlAttr($block->getLang()) ?>">
+<head>
+    <?= $block->getChildHtml('head') ?>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body id="html-body" style="background:#fff;">
+<div id="preview" class="cms-revision-preview">
+    <div class="toolbar">
+        <p class="switcher">
+            <?= __('Subscriber Id/Email') ?>
+            <input type="text" id="subscriber_id" class="input-text">
+            <button onClick="document.getElementById('preview_iframe').src = '<?= $url ?>sid/'+document.getElementById('subscriber_id').value;">
+                <span>   <?= __('Preview') ?></span></button>
+        </p>
+    </div>
+    <iframe name="preview_iframe" src="<?= $block->escapeHtmlAttr($url) ?>" id="preview_iframe"
+            style="width:100%; height:100%; min-height: 550px;" frameborder="0"></iframe>
+</div>
+<div id="loading-mask" style="display:none">
+    <p class="loader" id="loading_mask_loader"><br/><?= /* @noEscape */
+        __('Please wait...') ?></p>
+</div>
+</body>
+</html>

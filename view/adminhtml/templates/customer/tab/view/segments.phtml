@@ -1,0 +1,146 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var \Licentia\Panda\Block\Adminhtml\Customer\Edit\Tab\View\Segments $block $kpis */
+$kpis = $block->getCustomerKpis();
+
+if ($kpis): ?>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        require(['jquery', 'domReady!'], function ($) {
+            var highestBox = 0;
+            $('.box').each(function () {
+                highestBox = $(this).height();
+            });
+            $('.box', this).height(highestBox);
+        });
+    </script>
+
+    <div class="fieldset-wrapper customer-information">
+        <div class="fieldset-wrapper-title">
+            <span class="title"><?= /* @noEscape */
+                __("Customer KPI's") ?></span>
+            <?php if ($kpis->getData('loyal')): ?>
+                <span style="color: green; border: 1px solid darkgreen; padding: 5px; background-color: whitesmoke; margin: 0 10px "><strong><?= __(
+                            'This Customer is Loyal'
+                        ) ?></strong></span>
+            <?php else: ?>
+                <span style="color: white;border: 1px solid #364d7e; padding: 5px; background-color:#6495ed; margin: 0 10px  "><em><?= __(
+                            "This Customer has yet to become Loyal"
+                        ) ?></em></span>
+            <?php endif; ?>
+        </div>
+        <table>
+            <tbody>
+            <?php if ($kpis->getData()): ?>
+                <tr>
+                    <td>
+                        <div class="">
+                            <?php foreach ($kpis->getData() as $key => $value):
+
+                                if (!$kpis->getKpiInfo($key)['title']) {
+                                    continue;
+                                }
+
+                                ?>
+                                <div class="box">
+                                    <h5><?= /* @noEscape */
+                                        $kpis->getKpiInfo($key)['title'] ?></h5>
+                                    <div>
+                                        <?php
+
+                                        if (is_null($value)) {
+                                            echo '<em>' . __('No Data') . '</em>';
+                                        } elseif ($kpis->getKpiInfo($key)['type'] == 'currency') {
+                                            echo $this->helper('Magento\Framework\Pricing\Helper\Data::class')
+                                                      ->currency(
+                                                          $value,
+                                                          true,
+                                                          false
+                                                      );
+                                        } elseif ($kpis->getKpiInfo($key)['type'] == 'date' && $value != '0000-00-00') {
+                                            echo $block->formatDate($value);
+                                        } elseif ($kpis->getKpiInfo($key)['type'] == 'number') {
+                                            echo number_format((int) $value, 0, '', ' ');
+                                        } else {
+                                            echo $value;
+                                        }
+
+                                        ?>
+                                        <?php $kpiComment = $block->getKpiComment($key); ?>
+                                        <div style=" <?php if ($kpiComment): ?> background-color: #ACA899; padding: 2px;<?php endif; ?>">
+                                            <em style="font-size: smaller;"><?= /* @noEscape */
+                                                $kpiComment ?></em>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </td>
+                </tr>
+            <?php else: ?>
+                <tr>
+                    <td><?= /* @noEscape */
+                        __('No Data') ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
+
+<?php if ($block->getCustomerSegments()): ?>
+
+    <div class="fieldset-wrapper customer-information">
+        <div class="fieldset-wrapper-title">
+            <span class="title"><?= /* @noEscape */
+                __('Customer Segments') ?></span>
+        </div>
+        <table class="admin__table-secondary">
+            <thead>
+            <tr class="headings">
+                <th><?= /* @noEscape */
+                    __('Name') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($block->getCustomerSegments() as $segment): ?>
+                <tr>
+                    <td><?= /* @noEscape */
+                        $block->getSegmentName($segment->getSegmentId()) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <?php if ($block->getCustomerSegments()->count() == 0): ?>
+                <tr>
+                    <td><?= /* @noEscape */
+                        __('No Data') ?></td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>

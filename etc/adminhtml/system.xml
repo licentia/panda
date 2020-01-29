@@ -1,0 +1,270 @@
+<?xml version="1.0"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="licentia" translate="label" sortOrder="1200">
+            <label>Green Flying Panda</label>
+        </tab>
+        <section id="panda_general" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>General</label>
+            <tab>licentia</tab>
+            <resource>Licentia_Panda::config_maintenance</resource>
+            <group id="geo" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Geo</label>
+                <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use ip-api.com service to load GEO Location information from customers IP address</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apikey" sortOrder="220" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>http://ip-api.com API Key</label>
+                    <validate>required-entry</validate>
+                    <comment>Green Flying Panda is not affiliated with the website above. New services can be added per request</comment>
+                   <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="load" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Delay Ajax Calls</label>
+                <field id="delay" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delay load Ajax Calls such as recommendations, popups,.., until Magento loads Customer Information/Shopping Cart Information </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="reports" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
+                <label>Send error reports back to Green Flying Panda</label>
+                <comment>No personal or identifiable information is sent. The information sent is the one inside the file /var/log/panda.log that logs errors
+                    within the extension
+                </comment>
+                <field id="send" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Send error reports</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="rebuild" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="80">
+                <label>Rebuild Metadata Command Line</label>
+
+                <field id="all_metadata" sortOrder="10" showInDefault="1" type="label" showInStore="0" showInWebsite="0">
+                    <comment><![CDATA[
+
+                    <code>bin/magento panda:equity:rebuild;</code><br> &uarr;Rebuilds all customers Metadata information. Add the customer ID to rebuild a specific customer<br><br>
+
+                    <code>bin/magento panda:reorders:rebuild;</code><br> &uarr;Rebuilds Expected reorders table<br><br>
+
+                    <code>bin/magento panda:performance:rebuild;</code><br> &uarr;Rebuilds Product performance data. This process can take a few hours if you have tens of thousands of products and orders<br><br>
+
+                    <code>bin/magento panda:relations:rebuild;</code><br> &uarr;Rebuilds Products relations. Information about users who bought this also bought this.<br><br>
+
+                    <code>bin/magento panda:venn:rebuild;</code><br> &uarr;Rebuilds Venn Relations for products. Data for this comes from the products relations. Don't build this before building the command above<br><br>
+
+                    <code>bin/magento panda:recommendations:rebuild;</code><br> &uarr;Rebuilds Product Recommendations. Data for this comes from the products relations. Don't build this before building the command above<br><br>
+
+                    <code>bin/magento panda:sales:rebuild;</code><br> &uarr;Rebuilds Sales Stats<br><br>
+
+                    <code>bin/magento panda:segments:rebuild;</code><br> &uarr;Rebuilds records for segments. You can specify an option customer ID<br><br>
+
+                    <code>bin/magento panda:searchperformance:rebuild;</code><br> &uarr;Rebuilds Search Performance Charts<br><br>
+
+                    <code>bin/magento panda:rebuild;</code><br> &uarr;Rebuilds All the above<br><br>]]></comment>
+                </field>
+            </group>
+            <!--
+            <group id="maintenance" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="80">
+                <label>Maintenance</label>
+                <field translate="comment" id="clear_prices" sortOrder="10" showInDefault="1" type="label" showInStore="0" showInWebsite="1">
+                    <frontend_model>Licentia\Equity\Block\Adminhtml\System\Config\Form\Field\Uninstall</frontend_model>
+                    <comment>Remove attributes created by this extension, so I can uninstall it</comment>
+                </field>
+            </group>
+            -->
+        </section>
+        <section id="panda_nuntius" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>Marketing Automation</label>
+            <tab>licentia</tab>
+            <resource>Licentia_Panda::config_nuntius</resource>
+            <group id="info" showInWebsite="1" showInStore="0" showInDefault="1" sortOrder="10">
+                <field id="enable" sortOrder="1" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Enable Subscriber Management</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If disabled, the extension will not manage newsletter subscriptions. Core functionality will continue to work. Web API will continue to work</comment>
+                </field>
+                <label>Email &amp; SMS Configuration</label>
+                <field id="queue" sortOrder="90" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Queue Number per cycle</label>
+                    <comment><![CDATA[Number of email messages to queue on every cron call. Must be greater than 300]]></comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-300-999999999</validate>
+                </field>
+                <field id="count" sortOrder="80" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Messages to send per cycle</label>
+                    <comment><![CDATA[The number of email messages to send on every cron call. Must be greater than 100. This number should be around 500, but it depends on the speed of your SMTP server]]></comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-100-999999999</validate>
+                </field>
+                <field id="stats" sortOrder="100" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Number of days to keep campaign reports</label>
+                    <comment><![CDATA[The number of days to keep campaign reports (clicks, views). Must be greater than 0]]></comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-500</validate>
+                </field>
+                <field id="customer_list" sortOrder="110" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Import Existing Customers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If the extension should import existing customers, no matter if they subscribe to the newsletter</comment>
+                </field>
+                <field id="track" sortOrder="120" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Track campaigns</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If the extension should track opens, clicks, conversions and other stats. Can be changed per campaign</comment>
+                </field>
+                <field id="attribute" sortOrder="130" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Expected Reorder Time Attribute</label>
+                    <source_model>Licentia\Panda\Model\Source\Attributes</source_model>
+                    <comment>The product attribute that defines the expected product end-of-life after order</comment>
+                </field>
+                <field id="cellphone" sortOrder="130" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Cellphone Attribute</label>
+                    <source_model>Licentia\Panda\Model\Source\Cellphone</source_model>
+                    <comment>The customer attribute that holds the cellphone</comment>
+                </field>
+                <field id="abandoned" sortOrder="150" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Abandoned Cart Timeout</label>
+                    <comment><![CDATA[After how many minutes a shopping cart should be considered abandoned]]></comment>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="auto" sortOrder="160" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Subscribe New Customers</label>
+                    <comment>Automatically add new customers as subscribers</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="subscriber_hours" sortOrder="165" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Hours Between Emails to the same Subscriber</label>
+                    <validate>required-entry validate-digits</validate>
+                    <comment>The number of hours were the system can't send more than one email to the same subscriber. 0 to ignore.</comment>
+                </field>
+                <field id="warning" sortOrder="170" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Predict number of recipients</label>
+                    <comment>A message with the predicted number of recipients will be shown when you save Campaigns, Followups and A/B Campaigns</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="errors" sortOrder="200" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
+                    <label>Send Campaigns Error Alerts</label>
+                    <comment>If the extension is unable to send the messages, we will notify you to this email(s).</comment>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="fallback" sortOrder="210" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Design Template Fallback</label>
+                    <source_model>Licentia\Panda\Model\TemplatesGlobal</source_model>
+                    <comment>The fallback template when the specified one in the campaign does not exist or is disabled</comment>
+                </field>
+                <field id="google_api" sortOrder="220" showInDefault="1" type="text" showInStore="0" showInWebsite="1" translate="label comment">
+                    <label>Google Maps API</label>
+                    <comment>We use google maps to render campaigns reports. You need an Google API for that. Please get one free from Google here: https://developers.google.com/maps/documentation/javascript/get-api-key</comment>
+                </field>
+                <field id="smtp_default_sender" sortOrder="230" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
+                    <label>Email Sender for internal emails</label>
+                    <comment>Such as bug reports, notifications, etc. These emails are sent to your customers.</comment>
+                    <source_model>Licentia\Panda\Model\Source\EmailSenders</source_model>
+                </field>
+            </group>
+            <group id="transactional" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="50">
+                <label>Transactional Emails</label>
+                <field id="enabled" sortOrder="1" showInDefault="1" type="select" showInStore="1" showInWebsite="1" translate="label comment">
+                    <label>Send Transactional Emails using this service</label>
+                    <comment>Emails like: new order, new comment, contact form, etc. No tracking is available to these emails</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="server" sortOrder="10" showInDefault="1" type="text" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Server Address</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="username" sortOrder="20" showInDefault="1" type="text" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Username</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="password" sortOrder="30" type="obscure" showInDefault="1" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="port" sortOrder="40" showInDefault="1" type="text" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Port</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="auth" sortOrder="50" showInDefault="1" type="select" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Authentication</label>
+                    <source_model>Licentia\Panda\Model\Service\Source\Auth</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="ssl" sortOrder="60" showInDefault="1" type="select" showInStore="1" showInWebsite="1" translate="label">
+                    <label>SSL</label>
+                    <source_model>Licentia\Panda\Model\Service\Source\Ssl</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="email" sortOrder="70" showInDefault="1" type="text" showInStore="1" showInWebsite="1" translate="label">
+                    <label>Send test Email to</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="test" sortOrder="80" showInDefault="1" type="label" showInStore="1" showInWebsite="1">
+                    <frontend_model>Licentia\Panda\Block\Adminhtml\System\Config\Form\Field\Test</frontend_model>
+                    <comment>Please remember to save any changes prior to testing</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="import" translate="comment label" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
+                <label>Import Current Magento Newsletter Subscribers</label>
+                <field id="import" sortOrder="10" showInDefault="1" type="label" showInStore="0" showInWebsite="0">
+                    <frontend_model>Licentia\Panda\Block\Adminhtml\System\Config\Form\Field\Import</frontend_model>
+                    <comment>You only have to do this once.</comment>
+                </field>
+            </group>
+            <group id="bounces" translate="comment label" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
+                <label>Bounces Configuration</label>
+                <field id="max_bounces" sortOrder="10" showInDefault="1" type="text" showInStore="0" showInWebsite="0">
+                    <label>Max Bounces</label>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">panda_popups_listing.panda_popups_listing_data_source</item>
+            <item name="deps" xsi:type="string">panda_popups_listing.panda_popups_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">panda_popups_columns</item>
+    </argument>
+    <dataSource name="panda_popups_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">pandaPopupsGridDataProvider</argument>
+            <argument name="name" xsi:type="string">panda_popups_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">popup_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">popup_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="panda_popups_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">panda_popups_listing.panda_popups_listing.panda_popups_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">edit</item>
+                            <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">0</item>
+                    <item name="indexField" xsi:type="string">popup_up</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="popup_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="modal" xsi:type="array">
+                        <item name="value" xsi:type="string">modal</item>
+                        <item name="label" xsi:type="string" translate="true">Modal</item>
+                    </item>
+                    <item name="floating" xsi:type="array">
+                        <item name="value" xsi:type="string">floating</item>
+                        <item name="label" xsi:type="string" translate="true">Floating</item>
+                    </item>
+                    <item name="sitebar" xsi:type="array">
+                        <item name="value" xsi:type="string">sitebar</item>
+                        <item name="label" xsi:type="string" translate="true">Sitebar</item>
+                    </item>
+                    <item name="block" xsi:type="array">
+                        <item name="value" xsi:type="string">block</item>
+                        <item name="label" xsi:type="string" translate="true">Inline Info Block</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Active</label>
+            </settings>
+        </column>
+        <column name="display_to">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="both" xsi:type="array">
+                        <item name="value" xsi:type="string">both</item>
+                        <item name="label" xsi:type="string" translate="true">Customers &amp; Guests</item>
+                    </item>
+                    <item name="customers" xsi:type="array">
+                        <item name="value" xsi:type="string">customers</item>
+                        <item name="label" xsi:type="string" translate="true">Customers</item>
+                    </item>
+                    <item name="guests" xsi:type="array">
+                        <item name="value" xsi:type="string">guests</item>
+                        <item name="label" xsi:type="string" translate="true">Guests</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="label" xsi:type="string" translate="true">Display To</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="from_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Start Date</label>
+                <sorting>desc</sorting>
+                <timezone>false</timezone>
+                <dateFormat>MMM dd, YYYY</dateFormat>
+                <fieldClass>
+                    <class name="column_120">true</class>
+                    <class name="right">true</class>
+                </fieldClass>
+            </settings>
+        </column>
+        <column name="to_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">End Date</label>
+                <sorting>desc</sorting>
+                <timezone>false</timezone>
+                <dateFormat>MMM dd, YYYY</dateFormat>
+                <fieldClass>
+                    <class name="column_120">true</class>
+                    <class name="right">true</class>
+                </fieldClass>
+            </settings>
+        </column>
+        <column name="impressions" class="Licentia\Panda\Ui\Component\Listing\Column\Number">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Displays</item>
+                    <item name="fieldClass" xsi:type="string">right</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Licentia\Panda\Ui\Component\Listing\Column\PopupsActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Actions</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

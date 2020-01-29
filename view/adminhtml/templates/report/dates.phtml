@@ -1,0 +1,176 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+$stats = $block->getRegistry()->registry('panda_stats');
+/** @var \Licentia\Panda\Model\Campaigns $campaign */
+$campaign = $block->getRegistry()->registry('panda_report_campaign');
+
+$h = $stats->getStats($campaign->getId(), "DATE_FORMAT(event_at,'%k')");
+$d = $stats->getStats($campaign->getId(), "DATE_FORMAT(event_at,'%W')");
+
+$titlesHours = array_shift($h);
+array_multisort($h);
+array_unshift($h, $titlesHours);
+
+$titlesDays = array_shift($d);
+$days = [];
+
+$order = [
+    0 => 'Sunday',
+    1 => 'Monday',
+    2 => 'Tuesday',
+    3 => 'Wednesday',
+    4 => 'Thursday',
+    5 => 'Friday',
+    6 => 'Saturday',
+];
+$i = 0;
+foreach ($order as $ord) {
+    foreach ($d as $day) {
+        if ($day[0] == $ord) {
+            $days[$i] = $day;
+            $i++;
+            break;
+        }
+    }
+}
+array_unshift($days, $titlesDays);
+unset($d);
+
+$jsonHours = Zend_Json::encode($h);
+$jsonDays = Zend_Json::encode($days);
+?>
+<div class="grid">
+    <table cellspacing="0" class="data data-grid admin__control-table ">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link last"><span class="nobr"><?= /* @noEscape */
+                    __('Days') ?></span></th>
+        </tr>
+        </thead>
+        <tbody id="">
+        <tr>
+            <td class="last" style="text-align:center">
+                <?php if (count($days) > 1) : ?>
+                    <script type="text/javascript">
+                        //<![CDATA[
+
+                        require(['jquery'], function ($) {
+
+                            google.charts.load("visualization", "1", {packages: ["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            $(window).resize(function () {
+                                var container = document.getElementById("chart_days").firstChild.firstChild;
+                                container.style.width = "100%";
+                                drawChart();
+                            });
+
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable(<?= $jsonDays ?>);
+
+                                var options = {
+                                    backgroundColor: {fill: 'transparent'},
+                                    width: (jQuery(window).width() - 550),
+                                    height: 400,
+                                    bar: {groupWidth: '80%'},
+                                    colors: ['#e0440e', '#f3b49f']
+                                };
+
+                                var chart = new google.visualization.ColumnChart(document.getElementById('chart_days'));
+                                chart.draw(data, options);
+                            }
+
+                        });
+                        //]]>
+
+
+                    </script>
+                <?php else :
+                    ?><p><?= /* @noEscape */
+                __('No Data') ?></p>
+                <?php endif; ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="grid">
+    <table cellspacing="0" class="data data-grid admin__control-table ">
+        <thead>
+        <tr class="headings">
+            <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                    __('Hours') ?></span></th>
+        </tr>
+        </thead>
+        <tbody id="">
+        <tr>
+            <td class="last" style="text-align:center">
+                <?php if (count($h) > 1) : ?>
+                    <script type="text/javascript">
+                        require(['jquery'], function ($) {
+
+                            google.charts.load("visualization", "1", {packages: ["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            $(window).resize(function () {
+                                var container = document.getElementById("chart_hours").firstChild.firstChild;
+                                container.style.width = "100%";
+                                drawChart();
+                            });
+
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable(<?= $jsonHours ?>);
+
+                                var options = {
+                                    backgroundColor: {fill: 'transparent'},
+                                    width: (jQuery(window).width() - 550),
+                                    height: 400,
+                                    bar: {groupWidth: '80%'},
+                                    colors: ['#e0440e', '#f3b49f']
+                                };
+
+                                var chart = new google.visualization.ColumnChart(document.getElementById('chart_hours'));
+                                chart.draw(data, options);
+                            }
+
+                        });
+                        //]]>
+
+
+                    </script>
+                <?php else :
+                    ?><p><?= /* @noEscape */
+                __('No Data') ?></p>
+                <?php endif; ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

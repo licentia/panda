@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  ~ Copyright (C) 2020 Licentia, Unipessoal LDA
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  ~
+  ~ @title      Licentia Panda - Magento® Sales Automation Extension
+  ~ @package    Licentia
+  ~ @author     Bento Vilas Boas <bento@licentia.pt>
+  ~ @copyright  Copyright (c) Licentia - https://licentia.pt
+  ~ @license    GNU General Public License V3
+  ~ @modified   29/01/20, 15:22 GMT
+  ~
+  -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">panda_splits_listing.panda_splits_listing_data_source</item>
+            <item name="deps" xsi:type="string">panda_splits_listing.panda_splits_listing_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">panda_splits_columns</item>
+    </argument>
+    <dataSource name="panda_splits_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">pandaSplitsGridDataProvider</argument>
+            <argument name="name" xsi:type="string">panda_splits_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">split_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">split_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="panda_splits_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">panda_splits_listing.panda_splits_listing.panda_splits_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">edit</item>
+                            <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">0</item>
+                    <item name="indexField" xsi:type="string">split_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="split_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="send_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">GeneralSend At</label>
+                <sorting>desc</sorting>
+                <timezone>false</timezone>
+                <dateFormat>MMM d, y HH:mm</dateFormat>
+                <fieldClass>
+                    <class name="column_150">true</class>
+                    <class name="right">true</class>
+                </fieldClass>
+            </settings>
+        </column>
+        <column name="deploy_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Test Send At</label>
+                <sorting>desc</sorting>
+                <timezone>false</timezone>
+                <dateFormat>MMM d, y HH:mm</dateFormat>
+                <fieldClass>
+                    <class name="column_150">true</class>
+                    <class name="right">true</class>
+                </fieldClass>
+            </settings>
+        </column>
+        <column name="views_a" class="Licentia\Panda\Ui\Component\Listing\Column\Concat">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fields" xsi:type="string">views_a,views_b</item>
+                    <item name="separator" xsi:type="string">|</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Views A | B</item>
+                    <item name="fieldClass" xsi:type="string">right</item>
+                </item>
+            </argument>
+        </column>
+        <column name="clicks_a" class="Licentia\Panda\Ui\Component\Listing\Column\Concat">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fields" xsi:type="string">clicks_a,clicks_b</item>
+                    <item name="separator" xsi:type="string">|</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Clicks A | B</item>
+                    <item name="fieldClass" xsi:type="string">right</item>
+                </item>
+            </argument>
+        </column>
+        <column name="conversions_a" class="Licentia\Panda\Ui\Component\Listing\Column\Concat">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fields" xsi:type="string">conversions_a,conversions_b</item>
+                    <item name="separator" xsi:type="string">|</item>
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Conversions A | B</item>
+                    <item name="fieldClass" xsi:type="string">right</item>
+                </item>
+            </argument>
+        </column>
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Active</label>
+            </settings>
+        </column>
+        <column name="closed" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Closed</label>
+            </settings>
+        </column>
+        <column name="winner">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Licentia\Panda\Ui\Component\Listing\Column\Splits\Winners</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Winner</item>
+                </item>
+            </argument>
+        </column>
+        <column name="tags">
+            <settings>
+                <options class="Licentia\Panda\Model\Source\Tags"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Tags</label>
+            </settings>
+        </column>
+        <actionsColumn name="action_campaigns" class="Licentia\Panda\Ui\Component\Listing\Column\Splits\Campaigns">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">View Campaign</item>
+                </item>
+            </argument>
+        </actionsColumn>
+        <actionsColumn name="actions" class="Licentia\Panda\Ui\Component\Listing\Column\SplitsActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

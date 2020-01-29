@@ -1,0 +1,194 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+?>
+
+<style>
+
+    body {
+
+        min-width: inherit !important;
+    }
+
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #aaa;
+        margin-top: 20px;
+    }
+
+    h2 {
+        font-size: 14px;
+        background-color: #d1ccc3;
+        padding: 10px;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #333;
+        color: white;
+    }
+</style><h2><?= /* @noEscape */
+    __('Tags below will be replaced with real values when build the campaign') ?></h2>
+<h1><?= /* @noEscape */
+    __('New Shipment (with Tracking Number)') ?></h1>
+<table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+    <thead>
+    <tr class="headings">
+        <th class=" no-link" style="width:200px;"><span class="nobr"><?= /* @noEscape */
+                __('Variable') ?></span>
+        </th>
+        <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                __('Value') ?></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="a-right">{{track_title}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Tracking Title') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{track_code}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Tracking Code') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{order_id}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Order ID/Increment Number') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.getCustomerName()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Customer Name') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.increment_id}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Order Id') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.getStatusLabel()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Order Status') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var shipment.increment_id}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Shipment Id') ?></td>
+    </tr>
+    </tbody>
+</table><h1><?= /* @noEscape */
+    __('New Order && Order Status Change && Specific Product') ?></h1>
+<table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+    <thead>
+    <tr class="headings">
+        <th class=" no-link" style="width:200px;"><span class="nobr"><?= /* @noEscape */
+                __('Variable') ?></span>
+        </th>
+        <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                __('Value') ?></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="a-right">{{var order.getEmailCustomerNote()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Email Order Note') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.increment_id}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Order Id') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var payment_html|raw}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Payment Details') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.getShippingDescription()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Shipping Description') ?></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<h1><?= /* @noEscape */
+    __('New Order && Order Status Change && Specific Product') ?></h1>
+<table cellspacing="0" id="storeGrid_table" class="admin__control-table">
+    <thead>
+    <tr class="headings">
+        <th class=" no-link" style="width:200px;"><span class="nobr"><?= /* @noEscape */
+                __('Variable') ?></span>
+        </th>
+        <th class=" no-link"><span class="nobr"><?= /* @noEscape */
+                __('Value') ?></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="a-right">{{var order.getEmailCustomerNote()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Email Order Note') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.increment_id}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Order Id') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var payment_html|raw}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Payment Details') ?></td>
+    </tr>
+    <tr>
+        <td class="a-right">{{var order.getShippingDescription()}}</td>
+        <td class="a-left"><?= /* @noEscape */
+            __('Shipping Description') ?></td>
+    </tr>
+    </tbody>
+</table>

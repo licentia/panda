@@ -1,0 +1,94 @@
+<?php
+/**
+ * Copyright (C) 2020 Licentia, Unipessoal LDA
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * @title      Licentia Panda - Magento® Sales Automation Extension
+ * @package    Licentia
+ * @author     Bento Vilas Boas <bento@licentia.pt>
+ * @copyright  Copyright (c) Licentia - https://licentia.pt
+ * @license    GNU General Public License V3
+ * @modified   29/01/20, 15:22 GMT
+ *
+ */
+
+/** @var $block \Magento\Backend\Block\Template */
+
+$stats = $block->getRegistry()->registry('panda_stats');
+$report = $block->getRegistry()->registry('panda_report');
+/** @var \Licentia\Panda\Model\Campaigns $campaign */
+$campaign = $block->getRegistry()->registry('panda_report_campaign');
+
+$c = $stats->getStats($campaign->getId(), 'country');
+
+$jsonCountries = Zend_Json::encode($c);
+?>
+
+<div class="grid">
+    <table cellspacing="0" class="data data-grid admin__control-table ">
+        <thead>
+        <tr class="headings">
+            <th><?= /* @noEscape */
+                __('Countries') ?></th>
+        </tr>
+        </thead>
+        <tbody id="">
+        <tr>
+            <td class="last" style="text-align:center">
+                <?php if (count($c) > 1) : ?>
+                    <div id="chart_countries"></div>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        require(['jquery'], function ($) {
+
+                            google.charts.load("visualization", "1", {packages: ["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            $(window).resize(function () {
+                                var container = document.getElementById("chart_countries").firstChild.firstChild;
+                                container.style.width = "100%";
+                                drawChart();
+                            });
+
+                            function drawChart() {
+                                var data = google.visualization.arrayToDataTable(<?= $jsonCountries ?>);
+                                var options = {
+                                    backgroundColor: {fill: 'transparent'},
+                                    width: (jQuery(window).width() - 550),
+                                    fontSize: 11,
+                                    colors: ['#e0440e', '#f3b49f'],
+                                    height: data.getNumberOfRows() * 30 + 80,
+                                    chartArea: {
+                                        height: data.getNumberOfRows() * 30,
+                                        width: '70%'
+                                    },
+                                    legend: {position: 'top', textStyle: {color: 'red', fontSize: 12}}
+                                };
+
+                                var chart = new google.visualization.BarChart(document.getElementById('chart_countries'));
+                                chart.draw(data, options);
+                            }
+                        });
+                        //]]>
+                    </script>
+                <?php else :
+                    ?><p><?= /* @noEscape */
+                __('No Data') ?></p>
+                <?php endif; ?>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

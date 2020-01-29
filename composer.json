@@ -1,0 +1,29 @@
+{
+  "name": "licentia/panda",
+  "description": "Sales Automation",
+  "require": {
+    "magento/framework": ">=100.0.0",
+    "php": "~5.5.0|~5.6.0|>=7.0.0",
+    "licentia/equity": ">=1.0.1",
+    "licentia/forms": ">=1.0.1",
+    "licentia/reports": ">=1.0.1",
+    "magento/module-newsletter": "100.3.*"
+  },
+  "authors": [
+    {
+      "name": "Bento Vilas Boas",
+      "email": "bento@licentia.pt"
+    }
+  ],
+  "type": "magento2-module",
+  "version": "1.0.1",
+  "license": "Commercial",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Licentia\\Panda\\": ""
+    }
+  }
+}
