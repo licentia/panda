@@ -1,3 +1,5 @@
+# Green Flying Panda
+## Magento© Sales Automation Tool
 
 When considering all of the online tools and digital marketing techniques that are currently at our service, it is clear that using a one-size-fits-all marketing strategy is far from the best practice. The online sales competition is too extended, and most big companies already have some sort of sales automation system. How to top them? Go back to focusing on the customer as an individual. Or, better yet, go forward, with Sales & Marketing Automation Suite.
 
@@ -256,3 +258,24 @@ Check all the extension features in our online demo:
 username: demo
 
 password: demo12323
+
+# Installation
+
+You can install this plugin through Composer:
+
+```php
+composer require licentia/panda
+bin/magento module:enable Licentia_Panda
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy
+bin/magento cache:clean
+```
+
+# Support 
+1. [Open a new issue on this repository](https://github.com/licentia/panda/issues "Open a new issue on this repository")
+1. [Download the Manual](https://www.greenflyingpanda.com/download/green-flying-panda-manual/ "Download the Manual")
+1. [Check the KB](https://support.greenflyingpanda.com/support/home "Check the KB")
+
+# License
+GNU General Public License V3. 
