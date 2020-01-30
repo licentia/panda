@@ -1,7 +1,7 @@
 # Green Flying Panda
 ## Magento© Sales Automation Tool
 
-##### Check the website Green FLying Panda for a more *marketing oriented* [https://www.greenflyingpanda.com/](https://www.greenflyingpanda.com/) presentation
+##### Check the website Green Flying Panda for a more *marketing oriented* [https://www.greenflyingpanda.com/](https://www.greenflyingpanda.com/) introduction
 
 When considering all of the online tools and digital marketing techniques that are currently at our service, it is clear that using a one-size-fits-all marketing strategy is far from the best practice. The online sales competition is too extended, and most big companies already have some sort of sales automation system. How to top them? Go back to focusing on the customer as an individual. Or, better yet, go forward, with Sales & Marketing Automation Suite.
 
