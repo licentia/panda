@@ -249,7 +249,7 @@ Create a custom templates
 View detailed information about your customer! 
 Sales & Marketing Automation Suite features a thorough customer database containing all statistics of your customers’ store activity and demographic attributes. With these Key Performance Indicators, you can forecast customers’ purchase dates, products, and value, and keep track of your profits and losses for each customer! You can decide which KPI’s in the list below are displayed in each customer’s profile and customize your own using formulas. Choose between many pre-built KPI's
 
-## Demo
+# Demo
 
 Check all the extension features in our online demo:
 
@@ -272,6 +272,13 @@ bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento setup:static-content:deploy
 bin/magento cache:clean
+```
+
+# Requirements
+
+
+```
+Magento 2.3.X
 ```
 
 # Support 
