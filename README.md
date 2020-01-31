@@ -267,7 +267,6 @@ You can install this plugin through Composer:
 
 ```php
 composer require licentia/panda
-bin/magento module:enable Licentia_Panda
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento setup:static-content:deploy
