@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   05/03/20, 20:40 GMT
  *
  */
 
@@ -64,11 +64,6 @@ class Notifysms extends AbstractModel
     protected $sendersFactory;
 
     /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $apiHelper;
-
-    /**
      * @var \Magento\Email\Model\TemplateFactory
      */
     protected $templateFactory = null;
@@ -92,7 +87,6 @@ class Notifysms extends AbstractModel
      * @param \Magento\Framework\App\Config\ScopeConfigInterface               $scope
      * @param \Licentia\Panda\Model\ChainseditFactory                          $chainseditFactory
      * @param \Licentia\Panda\Helper\Data                                      $pandaHelper
-     * @param \Licentia\Panda\Helper\Api                                       $apiHelper
      * @param \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory    $sendersCollection
      * @param \Licentia\Panda\Model\SendersFactory                             $sendersFactory
      * @param \Magento\Backend\Block\Template                                  $block
@@ -111,7 +105,6 @@ class Notifysms extends AbstractModel
         \Magento\Framework\App\Config\ScopeConfigInterface $scope,
         \Licentia\Panda\Model\ChainseditFactory $chainseditFactory,
         \Licentia\Panda\Helper\Data $pandaHelper,
-        \Licentia\Panda\Helper\Api $apiHelper,
         \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection,
         \Licentia\Panda\Model\SendersFactory $sendersFactory,
         \Magento\Backend\Block\Template $block,
@@ -131,7 +124,6 @@ class Notifysms extends AbstractModel
         $this->sendersCollection = $sendersCollection;
         $this->sendersFactory = $sendersFactory;
         $this->pandaHelper = $pandaHelper;
-        $this->apiHelper = $apiHelper;
         $this->scopeConfig = $scope;
 
         parent::__construct(

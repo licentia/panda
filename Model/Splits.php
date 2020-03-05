@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   05/03/20, 20:40 GMT
  *
  */
 
@@ -87,11 +87,6 @@ class Splits extends \Magento\Framework\Model\AbstractModel
     protected $helperPanda;
 
     /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $pandaApi;
-
-    /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
     protected $tagsFactory;
@@ -101,7 +96,6 @@ class Splits extends \Magento\Framework\Model\AbstractModel
      *
      * @param TagsFactory                                                  $tagsFactory
      * @param \Licentia\Panda\Helper\Data                                  $helperPanda
-     * @param \Licentia\Panda\Helper\Api                                   $pandaApi
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface         $timezone
      * @param \Magento\Framework\Model\Context                             $context
      * @param \Magento\Framework\Registry                                  $registry
@@ -117,7 +111,6 @@ class Splits extends \Magento\Framework\Model\AbstractModel
     public function __construct(
         \Licentia\Panda\Model\TagsFactory $tagsFactory,
         \Licentia\Panda\Helper\Data $helperPanda,
-        \Licentia\Panda\Helper\Api $pandaApi,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
@@ -134,7 +127,6 @@ class Splits extends \Magento\Framework\Model\AbstractModel
         parent::__construct($context, $registry, $resource, $resourceCollection, $data);
 
         $this->helperPanda = $helperPanda;
-        $this->pandaApi = $pandaApi;
         $this->timezone = $timezone;
         $this->subscriberCollection = $subscriberCollection;
         $this->splitsFactory = $splitsFactory;

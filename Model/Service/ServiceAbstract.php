@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   05/03/20, 20:41 GMT
  *
  */
 
@@ -216,11 +216,6 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     protected $formEntriesFactory;
 
     /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $apiHelper;
-
-    /**
      * @var \Licentia\Panda\Block\EmptyBlock
      */
     protected $emptyBlock;
@@ -291,7 +286,6 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
      * @param \Licentia\Forms\Model\FormEntriesFactory                          $formEntriesFactory
      * @param \Licentia\Panda\Model\SubscribersFactory                          $subscribersFactory
      * @param \Licentia\Panda\Helper\Data                                       $newsletterData
-     * @param \Licentia\Panda\Helper\Api                                        $apiHelper
      * @param \Magento\Framework\App\Config\ScopeConfigInterface                $scopeConfig
      * @param \Magento\Email\Model\Template\Config                              $emailConfig
      * @param \Magento\Email\Model\TemplateFactory                              $templateFactory
@@ -348,7 +342,6 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
         \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory,
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
         \Licentia\Panda\Helper\Data $newsletterData,
-        \Licentia\Panda\Helper\Api $apiHelper,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Email\Model\Template\Config $emailConfig,
         \Magento\Email\Model\TemplateFactory $templateFactory,
@@ -388,7 +381,6 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
 
         $this->emptyBlock = $emptyBlock;
         $this->viewFileSystem = $viewFileSystem;
-        $this->apiHelper = $apiHelper;
         $this->queueResource = $queueResource;
         $this->autorespondersFactory = $autorespondersFactory;
         $this->archiveCollection = $archiveCollection;

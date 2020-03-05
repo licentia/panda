@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   05/03/20, 20:41 GMT
  *
  */
 
@@ -65,11 +65,6 @@ class Account extends \Magento\Backend\App\Action
     protected $scopeConfig;
 
     /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $api;
-
-    /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
     protected $sendersFactory;
@@ -95,7 +90,6 @@ class Account extends \Magento\Backend\App\Action
      * @param \Magento\Framework\App\ReinitableConfig            $reinitableConfig
      * @param \Magento\Store\Model\StoreManagerInterface         $storeManager
      * @param \Magento\Config\Model\ResourceModel\Config         $config
-     * @param \Licentia\Panda\Helper\Api                         $api
      * @param \Licentia\Panda\Model\SendersFactory               $sendersFactory
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Backend\App\Action\Context                $context
@@ -108,7 +102,6 @@ class Account extends \Magento\Backend\App\Action
         \Magento\Framework\App\ReinitableConfig $reinitableConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Config\Model\ResourceModel\Config $config,
-        \Licentia\Panda\Helper\Api $api,
         \Licentia\Panda\Model\SendersFactory $sendersFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Backend\App\Action\Context $context,
@@ -124,7 +117,6 @@ class Account extends \Magento\Backend\App\Action
         $this->resultPageFactory = $resultPageFactory;
         $this->registry = $registry;
         $this->scopeConfig = $scopeConfig;
-        $this->api = $api;
         $this->storeManager = $storeManager;
         $this->reinitableConfig = $reinitableConfig;
         $this->config = $config;

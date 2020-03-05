@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   05/03/20, 20:40 GMT
  *
  */
 
@@ -68,11 +68,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      * @var \Licentia\Panda\Helper\Data
      */
     protected $pandaHelper;
-
-    /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $pandaApi;
 
     /**
      * @var LinksFactory
@@ -135,24 +130,18 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
     ];
 
     /**
-     * @var Segments\Condition\CombineFactory
+     * @var \Licentia\Equity\Model\Segments\Condition\CombineFactory
      */
     protected $conditionsCombine;
 
     /**
-     * @var Segments\Action\CollectionFactory
+     * @var \Licentia\Equity\Model\Segments\Action\CollectionFactory
      */
     protected $collectionCombine;
 
     /**
-     * @var \Licentia\Panda\Helper\Api
-     */
-    protected $apiHelper;
-
-    /**
      * Campaigns constructor.
      *
-     * @param \Licentia\Panda\Helper\Api                                   $apiHelper
      * @param TagsFactory                                                  $tagsFactory
      * @param \Licentia\Equity\Model\Segments\Condition\CombineFactory     $combineFactory
      * @param \Licentia\Equity\Model\Segments\Action\CollectionFactory     $collectionFactory
@@ -168,7 +157,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      * @param ResourceModel\Campaigns\CollectionFactory                    $campaignsCollection
      * @param ResourceModel\Links\CollectionFactory                        $linksCollection
      * @param \Licentia\Panda\Helper\Data                                  $pandaHelper
-     * @param \Licentia\Panda\Helper\Api                                   $pandaApi
      * @param \Magento\Framework\Data\FormFactory                          $formFactory
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface         $localeDate
      * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
@@ -176,7 +164,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      * @param array                                                        $data
      */
     public function __construct(
-        \Licentia\Panda\Helper\Api $apiHelper,
         \Licentia\Panda\Model\TagsFactory $tagsFactory,
         \Licentia\Equity\Model\Segments\Condition\CombineFactory $combineFactory,
         \Licentia\Equity\Model\Segments\Action\CollectionFactory $collectionFactory,
@@ -192,7 +179,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
         ResourceModel\Campaigns\CollectionFactory $campaignsCollection,
         ResourceModel\Links\CollectionFactory $linksCollection,
         \Licentia\Panda\Helper\Data $pandaHelper,
-        \Licentia\Panda\Helper\Api $pandaApi,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
@@ -205,7 +191,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
         $this->tagsFactory = $tagsFactory;
         $this->scopeConfig = $scope;
         $this->pandaHelper = $pandaHelper;
-        $this->pandaApi = $pandaApi;
         $this->linksFactory = $linksFactory;
         $this->linksCollection = $linksCollection;
         $this->followupFactory = $followupFactory;
@@ -216,7 +201,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
         $this->subscribersCollection = $subscribersCollection;
         $this->collectionCombine = $collectionFactory;
         $this->conditionsCombine = $combineFactory;
-        $this->apiHelper = $apiHelper;
 
         $this->_registry->register('panda_campaign_environment', true, true);
     }
@@ -412,10 +396,6 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      */
     public function queueCampaigns()
     {
-
-        if (!$this->apiHelper->isAccountActive()) {
-            return $this;
-        }
 
         $now = $this->pandaHelper->gmtDate();
 
