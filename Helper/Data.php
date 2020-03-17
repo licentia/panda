@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   17/03/20, 17:36 GMT
  *
  */
 
@@ -136,6 +136,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory
      */
     protected $indexCollection;
+
+    /**
+     * @var \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory
+     */
+    protected $indexerCollection;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
@@ -273,6 +278,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory $eavAttributeCollection,
         \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection,
         \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory $indexCollection,
+        \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory $indexerCollection,
         \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory $quoteCollection,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
         \Magento\Framework\ObjectManagerInterface $objectManager,
@@ -309,6 +315,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->quoteSession = $quoteSession;
         $this->listSegmentsCollection = $listSegmentsCollection;
         $this->indexCollection = $indexCollection;
+        $this->indexerCollection = $indexerCollection;
         $this->storeManager = $storeManagerInterface;
         $this->attributeCollection = $attrCollection;
         $this->eavAttributeCollection = $eavAttributeCollection;
