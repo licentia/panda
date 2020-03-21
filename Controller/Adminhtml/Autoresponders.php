@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:35 GMT
+ * @modified   19/03/20, 00:18 GMT
  *
  */
 
@@ -90,6 +90,34 @@ class Autoresponders extends \Magento\Backend\App\Action
 
         parent::__construct($context);
 
+        /*
+        $i = 0;
+
+        if ($i) {
+            ini_set('display_errors', 1);
+            error_reporting(-1);
+
+
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Splits')->cron();
+
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Products\Relations')->rebuildAvgDays();
+            #$order = \Magento\Framework\App\ObjectManager::getInstance()->create('Magento\Sales\Model\Order')->load(55);
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Autoresponders')->newOrder($order);
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Autoresponders')->cron();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Followup')->cron();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Campaigns')->queueCampaigns();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Sms')->sendSms();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->activityRelated();
+            \Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Bounces')->processBounces();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Stats')->randomStats();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Followup')->getSubscribersObject();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->rebuildCustomerMetadata();
+
+            die(__METHOD__);
+        }
+
+        */
         $this->resultForwardFactory = $resultForwardFactory;
         $this->resultPageFactory = $resultPageFactory;
         $this->registry = $registry;

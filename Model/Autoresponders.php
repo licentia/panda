@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   19/03/20, 00:23 GMT
  *
  */
 
@@ -2007,7 +2007,8 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                 return false;
             }
 
-            $subscriber = $this->subscribersFactory->create()->subscribe($email);
+            $this->subscribersFactory->create()->subscribe($email);
+            $subscriber = $this->subscribersFactory->create()->loadByEmail($email);
 
             if (!$subscriber || !$subscriber->getId() || !$subscriber->isSubscribed()) {
                 return false;

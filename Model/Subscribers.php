@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   19/03/20, 00:33 GMT
  *
  */
 
@@ -1086,6 +1086,9 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
 
         if (!$email) {
             $email = $this->getEmail();
+        }
+        if (!$email) {
+            return false;
         }
 
         return $this->subscriberCoreFactory->create()->subscribe($email);
