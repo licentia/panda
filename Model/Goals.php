@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   23/03/20, 02:08 GMT
  *
  */
 
@@ -220,7 +220,18 @@ class Goals extends \Magento\Framework\Model\AbstractModel
             return;
         }
 
+        $date = $this->timezone->date()->format('Y-m-d');
+
+        if ($goal->getToDate() < $date) {
+            if ($goal->getExpectedValue() < $goal->getCurrentValue()) {
+                $goal->setResult(1);
+            } else {
+                $goal->setResult(0);
+            }
+        }
+
         $goal->setCurrentValue($goal->getGoalCurrentValue($goal))
+             ->setSkipDateRange(true)
              ->save();
     }
 
@@ -351,7 +362,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
                 }
             }
 
-            $goal->save();
+            $goal->setSkipDateRange(true)->save();
         }
     }
 
@@ -361,6 +372,10 @@ class Goals extends \Magento\Framework\Model\AbstractModel
      */
     public function validateBeforeSave()
     {
+
+        if ($this->getSkipDateRange()) {
+            return parent::validateBeforeSave();
+        }
 
         $date = $this->pandaHelper->gmtDate('Y-m-d');
 
@@ -421,6 +436,10 @@ class Goals extends \Magento\Framework\Model\AbstractModel
 
         if ($this->getFromDate() <= $date && $this->getToDate() >= $date) {
             $this->setResult(2);
+        }
+
+        if ($this->getFromDate() <= $date && $this->getToDate() <= $date) {
+            $this->setResult(3);
         }
 
         if (!$this->getId()) {
@@ -526,6 +545,17 @@ class Goals extends \Magento\Framework\Model\AbstractModel
     {
 
         return $this->setData('name', $name);
+    }
+
+    /**
+     * @param $bool
+     *
+     * @return $this
+     */
+    public function setSkipDateRange($bool)
+    {
+
+        return $this->setData('skip_date_range', $bool);
     }
 
     /**
@@ -672,6 +702,15 @@ class Goals extends \Magento\Framework\Model\AbstractModel
     {
 
         return $this->getData('name');
+    }
+
+    /**
+     * @return bool
+     */
+    public function getSkipDateRange()
+    {
+
+        return $this->getData('skip_date_range');
     }
 
     /**

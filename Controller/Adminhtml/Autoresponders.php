@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   19/03/20, 00:18 GMT
+ * @modified   23/03/20, 02:28 GMT
  *
  */
 
@@ -98,6 +98,7 @@ class Autoresponders extends \Magento\Backend\App\Action
             error_reporting(-1);
 
 
+            \Magento\Framework\App\ObjectManager::getInstance()->create('\Licentia\Reports\Cron\RebuildSalesStatsForYesterday')->execute();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Splits')->cron();
 
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Products\Relations')->rebuildAvgDays();
@@ -109,7 +110,7 @@ class Autoresponders extends \Magento\Backend\App\Action
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Sms')->sendSms();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->activityRelated();
-            \Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Bounces')->processBounces();
+            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Bounces')->processBounces();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Stats')->randomStats();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Followup')->getSubscribersObject();
             #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->rebuildCustomerMetadata();
