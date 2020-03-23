@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   23/03/20, 19:43 GMT
  *
  */
 
@@ -56,28 +56,23 @@ abstract class Core extends \Magento\Framework\DataObject implements SmsInterfac
     }
 
     const PANDA_SMS_GATEWAYS = [
-        'Egoi'         => 'E-Goi (Transactional Service)',
-        'Egoicampaign' => 'E-Goi (Campaign Plan)',
+        'Clickatel'      => 'Clickatell',
+        'Egoi'           => 'E-Goi (Transactional)',
+        'Egoicampaign'   => 'E-Goi (Campaign)',
+        'Mosms'          => 'Mosms',
+        'Msg91'          => 'Msg91',
+        'Smsglobal'      => 'Smsglobal',
+        'Spryng'         => 'Spryng',
+        'Textmarketer'   => 'Textmarketer',
+        'Nexmo'          => 'Nexmo',
+        'Txtlocal'       => 'Txtlocal',
+        'SmsGateway'     => 'SmsGateway',
+        'Semysms'        => 'Semysms',
+        'Africastalking' => 'Africastalking',
+        'Textbelt'       => 'Textbelt',
+        'Chikka'         => 'Chikka',
+        'ClockworkSms'   => 'ClockworkSms',
     ];
-
-    /*    const PANDA_SMS_GATEWAYS = [
-            'Clickatel'      => 'Clickatell',
-            'Egoi'           => 'E-Goi (Transactional)',
-            'Egoicampaign'   => 'E-Goi (Campaign)',
-            'Mosms'          => 'Mosms',
-            'Msg91'          => 'Msg91',
-            'Smsglobal'      => 'Smsglobal',
-            'Spryng'         => 'Spryng',
-            'Textmarketer'   => 'Textmarketer',
-            'Nexmo'          => 'Nexmo',
-            'Txtlocal'       => 'Txtlocal',
-            'SmsGateway'     => 'SmsGateway',
-            'Semysms'        => 'Semysms',
-            'Africastalking' => 'Africastalking',
-            'Textbelt'       => 'Textbelt',
-            'Chikka'         => 'Chikka',
-            'ClockworkSms'   => 'ClockworkSms',
-        ];*/
 
     /**
      * @var array
