@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/01/20, 15:22 GMT
+  ~ @modified   27/03/20, 03:20 GMT
   ~
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -184,7 +184,7 @@
                 </field>
                 <field id="smtp_default_sender" sortOrder="230" showInDefault="1" type="select" showInStore="1" showInWebsite="0" translate="label comment">
                     <label>Email Sender for internal emails</label>
-                    <comment>Such as bug reports, notifications, etc. These emails are sent to your customers.</comment>
+                    <comment>Such as bug reports, notifications, etc. These emails are NOT sent to your customers.</comment>
                     <source_model>Licentia\Panda\Model\Source\EmailSenders</source_model>
                 </field>
             </group>

@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   27/03/20, 03:05 GMT
  *
  */
 
@@ -63,8 +63,9 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
 
         if ($this->getRequest()->isPost()) {
             $params = $this->getRequest()->getPostValue();
-            $email = 'support@greenflyingpanda.com';
+            $email = \Licentia\Panda\Helper\Debug::SUPPORT_EMAIL;
 
+            $this->_getSession()->setFormData($params);
             $msg = '';
             $msg .= "Reason : " . $params['reason'] . "<br>";
             $msg .= "Message : " . $params['message'] . "<br>";
@@ -92,9 +93,10 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
                 $t = $mail->send($transport);
 
                 if ($t === false) {
-                    throw new \Exception('Unable to send. Please send an email to support@greenflyingpanda.com');
+                    throw new \Magento\Framework\Exception\LocalizedException(__('Unable to send. Please send an email to support@greenflyingpanda.com'));
                 }
                 $this->messageManager->addSuccessMessage(__('Your request has been sent'));
+                $this->_getSession()->setFormData([]);
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             }

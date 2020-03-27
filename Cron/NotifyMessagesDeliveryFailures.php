@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   27/03/20, 02:39 GMT
  *
  */
 
@@ -80,7 +80,7 @@ class NotifyMessagesDeliveryFailures
     protected $dateFactory;
 
     /**
-     * ClearOld constructor.
+     * NotifyMessagesDeliveryFailures constructor.
      *
      * @param \Magento\Framework\Stdlib\DateTime\DateTimeFactory           $dateFactory
      * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface         $timezone
@@ -91,8 +91,6 @@ class NotifyMessagesDeliveryFailures
      * @param \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory $errorsCollection
      * @param \Magento\Framework\App\Config\ScopeConfigInterface           $scopeConfigInterface
      * @param \Licentia\Panda\Logger\Logger                                $pandaLogger
-     *
-     * @internal param \Magento\Framework\Mail\TransportInterface $transport
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory,

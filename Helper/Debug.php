@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   27/03/20, 03:04 GMT
  *
  */
 
@@ -40,7 +40,9 @@ use Magento\Framework\Filesystem;
 class Debug extends \Magento\Framework\App\Helper\AbstractHelper
 {
 
-    const REPORT_URL = 'https://api.greenglyingpanda.com/report.php';
+    const REPORT_URL = 'https://reports.greenflyingpanda.com/';
+
+    const SUPPORT_EMAIL = 'support@greenflyingpanda.com';
 
     /**
      * Filesystem instance

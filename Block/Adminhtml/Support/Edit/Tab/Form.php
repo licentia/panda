@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   27/03/20, 02:38 GMT
  *
  */
 
@@ -36,26 +36,28 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
 
     /**
-     * @var \Magento\Store\Model\System\Store
+     * @var \Magento\Backend\Model\Session
      */
-    protected $systemStore;
+    protected $session;
 
     /**
+     * Form constructor.
+     *
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry             $registry
      * @param \Magento\Framework\Data\FormFactory     $formFactory
-     * @param \Magento\Store\Model\System\Store       $systemStore
+     * @param \Magento\Backend\Model\Session          $session
      * @param array                                   $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
-        \Magento\Store\Model\System\Store $systemStore,
+        \Magento\Backend\Model\Session $session,
         array $data = []
     ) {
 
-        $this->systemStore = $systemStore;
+        $this->session = $session;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -167,6 +169,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 "note"     => __('Please be as descriptive as possible'),
             ]
         );
+
+        $form->addValues($this->session->getFormData());
 
         $this->setForm($form);
 
