@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   29/03/20, 02:49 GMT
  *
  */
 
@@ -79,7 +79,7 @@ class Subscriber
     public function afterSave(\Magento\Newsletter\Model\Subscriber $subject, $result)
     {
 
-        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             return $result;
         }
 

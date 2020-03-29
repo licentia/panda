@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   27/03/20, 03:20 GMT
+  ~ @modified   29/03/20, 02:49 GMT
   ~
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -35,8 +35,9 @@
             <group id="geo" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Geo</label>
                 <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Use ip-api.com service to load GEO Location information from customers IP address</label>
+                    <label>Use ip-api.com GEO service</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Load customers GEO information using the service ip-api.com</comment>
                 </field>
                 <field id="apikey" sortOrder="220" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
                     <label>http://ip-api.com API Key</label>
@@ -48,10 +49,11 @@
                 </field>
             </group>
             <group id="load" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Delay Ajax Calls</label>
+                <label>Ajax Calls</label>
                 <field id="delay" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Delay load Ajax Calls such as recommendations, popups,.., until Magento loads Customer Information/Shopping Cart Information </label>
+                    <label>Delay load Ajax Calls</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Delay load Ajax Calls such as recommendations, popups,.., until Magento loads Customer Information/Shopping Cart Information</comment>
                 </field>
             </group>
             <group id="reports" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
@@ -62,33 +64,6 @@
                 <field id="send" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Send error reports</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-            </group>
-            <group id="rebuild" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="80">
-                <label>Rebuild Metadata Command Line</label>
-
-                <field id="all_metadata" sortOrder="10" showInDefault="1" type="label" showInStore="0" showInWebsite="0">
-                    <comment><![CDATA[
-
-                    <code>bin/magento panda:equity:rebuild;</code><br> &uarr;Rebuilds all customers Metadata information. Add the customer ID to rebuild a specific customer<br><br>
-
-                    <code>bin/magento panda:reorders:rebuild;</code><br> &uarr;Rebuilds Expected reorders table<br><br>
-
-                    <code>bin/magento panda:performance:rebuild;</code><br> &uarr;Rebuilds Product performance data. This process can take a few hours if you have tens of thousands of products and orders<br><br>
-
-                    <code>bin/magento panda:relations:rebuild;</code><br> &uarr;Rebuilds Products relations. Information about users who bought this also bought this.<br><br>
-
-                    <code>bin/magento panda:venn:rebuild;</code><br> &uarr;Rebuilds Venn Relations for products. Data for this comes from the products relations. Don't build this before building the command above<br><br>
-
-                    <code>bin/magento panda:recommendations:rebuild;</code><br> &uarr;Rebuilds Product Recommendations. Data for this comes from the products relations. Don't build this before building the command above<br><br>
-
-                    <code>bin/magento panda:sales:rebuild;</code><br> &uarr;Rebuilds Sales Stats<br><br>
-
-                    <code>bin/magento panda:segments:rebuild;</code><br> &uarr;Rebuilds records for segments. You can specify an option customer ID<br><br>
-
-                    <code>bin/magento panda:searchperformance:rebuild;</code><br> &uarr;Rebuilds Search Performance Charts<br><br>
-
-                    <code>bin/magento panda:rebuild;</code><br> &uarr;Rebuilds All the above<br><br>]]></comment>
                 </field>
             </group>
             <!--
@@ -107,7 +82,7 @@
             <tab>licentia</tab>
             <resource>Licentia_Panda::config_nuntius</resource>
             <group id="info" showInWebsite="1" showInStore="0" showInDefault="1" sortOrder="10">
-                <field id="enable" sortOrder="1" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
+                <field id="enabled" sortOrder="1" showInDefault="1" type="select" showInStore="0" showInWebsite="1" translate="label comment">
                     <label>Enable Subscriber Management</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If disabled, the extension will not manage newsletter subscriptions. Core functionality will continue to work. Web API will continue to work</comment>
@@ -261,8 +236,9 @@
             <group id="bounces" translate="comment label" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
                 <label>Bounces Configuration</label>
                 <field id="max_bounces" sortOrder="10" showInDefault="1" type="text" showInStore="0" showInWebsite="0">
-                    <label>Max Bounces</label>
+                    <label>Maximum number of Bounces per subscriber</label>
                     <validate>required-entry validate-digits</validate>
+                    <comment>The subscriber will be automatically unsubscribed if the number above is surpassed</comment>
                 </field>
             </group>
         </section>

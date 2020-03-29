@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   17/03/20, 17:36 GMT
+ * @modified   29/03/20, 03:17 GMT
  *
  */
 
@@ -429,7 +429,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function updateIdentifierValue($code, $area, $value)
     {
 
-        if ($this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if ($this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             $resource = $this->subscribersFactory->create()->getResource();
             $connection = $resource->getConnection();
             $table = $resource->getTable('panda_identifiers');
@@ -1523,7 +1523,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             }
         }
 
-        if ($type && $id) {
+        if ($type && !empty($id)) {
             if ($type == 'product') {
                 $product = $this->productFactory->create()->load($id);
 

@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   29/03/20, 03:21 GMT
  *
  */
 
@@ -114,8 +114,8 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
             $this->addTab(
                 "archive_sms_section",
                 [
-                    "label" => __("SMS's Sent"),
-                    "title" => __("SMS's Sent"),
+                    "label" => __("SMS Sent"),
+                    "title" => __("SMS Sent"),
                     'class' => 'ajax',
                     'url'   => $this->getUrl('*/*/archivesmsgrid', ['_current' => true]),
                 ]

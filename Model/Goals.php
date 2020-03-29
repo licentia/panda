@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   23/03/20, 02:08 GMT
+ * @modified   29/03/20, 03:17 GMT
  *
  */
 
@@ -257,6 +257,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
     public function getGoalCurrentValue(Goals $goal)
     {
 
+        $type = '';
         $goalType = $goal->getGoalType();
 
         if (stripos($goalType, 'global') === false) {

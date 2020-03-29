@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   29/03/20, 03:17 GMT
  *
  */
 
@@ -131,7 +131,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'required' => true,
                 "name"     => 'filename',
                 'note'     => '<strong>Possible Columns (Email required):</strong><br><br> ' . implode("<br> ",
-                        \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIRLDS),
+                        \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS),
             ]
         );
 

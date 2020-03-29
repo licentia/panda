@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   19/03/20, 00:33 GMT
+ * @modified   29/03/20, 03:17 GMT
  *
  */
 
@@ -39,7 +39,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     implements \Licentia\Panda\Api\Data\SubscribersInterface
 {
 
-    const AVAILABLE_IMPORT_FIRLDS = [
+    const AVAILABLE_IMPORT_FIELDS = [
         'customer_id',
         'store_id',
         'code',
@@ -621,7 +621,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     public function loadSubscriber($value, $storeId = null, $field = 'email')
     {
 
-        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             if ($field == 'email') {
                 return $this->subscriberCoreFactory->create()->loadByEmail($value);
             }
@@ -652,7 +652,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     public function save()
     {
 
-        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             return $this;
         }
 
@@ -729,7 +729,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     public function beforeSave()
     {
 
-        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             return $this;
         }
 
@@ -864,7 +864,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                     }
 
                     $map = $data;
-                    #$map = array_intersect($data, \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIRLDS);
+                    #$map = array_intersect($data, \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS);
 
                     $row++;
                     continue;
@@ -897,7 +897,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                 }
 
                 $data = array_intersect_key($data,
-                    array_flip(\Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIRLDS));
+                    array_flip(\Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS));
 
                 $subscriber->addData($data)
                            ->save();
@@ -1102,7 +1102,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     public function loadByCustomerId($customerId)
     {
 
-        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enable')) {
+        if (!$this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
             return $this->subscriberCoreFactory->create()->loadByCustomerId($customerId);
         }
 
