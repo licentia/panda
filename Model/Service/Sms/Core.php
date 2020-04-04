@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   23/03/20, 19:43 GMT
+ * @modified   31/03/20, 07:13 GMT
  *
  */
 
@@ -70,7 +70,6 @@ abstract class Core extends \Magento\Framework\DataObject implements SmsInterfac
         'Semysms'        => 'Semysms',
         'Africastalking' => 'Africastalking',
         'Textbelt'       => 'Textbelt',
-        'Chikka'         => 'Chikka',
         'ClockworkSms'   => 'ClockworkSms',
     ];
 
