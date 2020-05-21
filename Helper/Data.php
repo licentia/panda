@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/03/20, 03:17 GMT
+ * @modified   07/05/20, 23:30 GMT
  *
  */
 
@@ -1555,6 +1555,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isCacheEnabled($cache = 'full_page')
     {
+
+        if ($cache == 'full_page' && in_array($this->_getRequest()->getModuleName(), ['cms', 'catalog'])) {
+            return false;
+        }
 
         return $this->cacheManager->getStatus()[$cache];
     }

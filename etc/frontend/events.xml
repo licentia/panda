@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/01/20, 15:22 GMT
+  ~ @modified   21/05/20, 21:00 GMT
   ~
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
@@ -28,9 +28,6 @@
     </event>
     <event name="customer_register_success">
         <observer name="panda_autoresponder_register" instance="Licentia\Panda\Observer\NewCustomer"/>
-    </event>
-    <event name="controller_action_predispatch_checkout_cart_couponPost">
-        <observer name="panda_validate_coupon_panda" instance="Licentia\Panda\Observer\ValidateCoupon"/>
     </event>
     <event name="controller_action_predispatch_catalogsearch_result_index">
         <observer name="panda_new_search" instance="Licentia\Panda\Observer\NewSearch"/>

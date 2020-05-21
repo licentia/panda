@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/01/20, 15:22 GMT
+  ~ @modified   21/05/20, 20:57 GMT
   ~
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
@@ -32,6 +32,10 @@
 
      <type name="Magento\Framework\Mail\TransportInterface">
        <plugin name="panda_mail_transport" type="Licentia\Panda\Plugin\TransportPlugin" sortOrder="1" disabled="false"/>
+    </type>
+
+    <type name="\Magento\SalesRule\Model\Utility">
+        <plugin name="gn_apply_coupon" type="Licentia\Panda\Plugin\ApplyCoupon" sortOrder="1" disabled="false"/>
     </type>
 
     <type name="Magento\Newsletter\Model\Subscriber">
