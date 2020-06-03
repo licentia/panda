@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   01/06/20, 16:38 GMT
+ * @modified   02/06/20, 21:54 GMT
  *
  */
 
@@ -46,9 +46,15 @@ class UpgradeData implements UpgradeDataInterface
     {
 
         if (version_compare($context->getVersion(), '3.5.0', '<')) {
+
             try {
+
                 $setup->run(
                     "ALTER TABLE `{$setup->getTable('panda_two_factor_auth')}` ADD COLUMN `remember_hash` varchar(255) DEFAULT NULL"
+                );
+
+                $setup->run(
+                    "ALTER TABLE `{$setup->getTable('admin_user')}` ADD COLUMN `panda_twofactor_number` varchar(50) DEFAULT NULL"
                 );
 
                 $setup->run(
@@ -57,6 +63,37 @@ class UpgradeData implements UpgradeDataInterface
 
                 $setup->run(
                     "ALTER TABLE `{$setup->getTable('panda_two_factor_auth')}` ADD UNIQUE `PANDA_TWO_FACTOR_HASH` (`remember_hash`) "
+                );
+
+                $setup->run(
+                    "CREATE TABLE `{$setup->getTable('panda_two_factor_auth_admin')}` (
+                      `auth_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `user_id` int(10) unsigned DEFAULT NULL,
+                      `user_name` varchar(255) DEFAULT NULL,
+                      `user_email` varchar(255) DEFAULT NULL,
+                      `phone` varchar(255) DEFAULT NULL,
+                      `message` varchar(255) DEFAULT NULL,
+                      `sent_at` datetime DEFAULT NULL,
+                      `used` smallint(6) DEFAULT NULL,
+                      `is_active` smallint(6) DEFAULT NULL,
+                      `store_id` smallint(5) unsigned DEFAULT NULL,
+                      `code` varchar(255) DEFAULT NULL,
+                      `used_at` datetime DEFAULT NULL,
+                      `remember_hash` varchar(255) DEFAULT NULL,
+                      `remember_until` date DEFAULT NULL,
+                      PRIMARY KEY (`auth_id`),
+                      UNIQUE KEY `PANDA_TWO_FACTOR_HASH` (`remember_hash`),
+                      KEY `PANDA_TWO_FACTOR_AUTH_CODE` (`code`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - '"
+                );
+
+                $setup->run(
+                    "CREATE TABLE `{$setup->getTable('panda_two_factor_attempts_admin')}` (
+                      `attempt_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `user_id` int(10) unsigned DEFAULT NULL,
+                      `attempt_date` datetime DEFAULT NULL,
+                      PRIMARY KEY (`attempt_id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - '"
                 );
             } catch (\Exception $e) {
 
