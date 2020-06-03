@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -105,7 +105,7 @@ class Stats extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Stats::class);
+        $this->_init(ResourceModel\Stats::class);
     }
 
     /**
@@ -196,7 +196,7 @@ class Stats extends \Magento\Framework\Model\AbstractModel
      * @return bool
      * @throws \Exception
      */
-    public function logClicks(\Licentia\Panda\Model\Campaigns $campaign, \Licentia\Panda\Model\Subscribers $subscriber)
+    public function logClicks(Campaigns $campaign, Subscribers $subscriber)
     {
 
         if (!$campaign->getId() || !$subscriber->getId()) {
@@ -237,16 +237,16 @@ class Stats extends \Magento\Framework\Model\AbstractModel
 
     /**
      * @param                                   $type
-     * @param \Licentia\Panda\Model\Campaigns   $campaign
-     * @param \Licentia\Panda\Model\Subscribers $subscriber
+     * @param Campaigns                         $campaign
+     * @param Subscribers                       $subscriber
      *
      * @return bool
      * @throws \Exception
      */
     protected function logData(
         $type,
-        \Licentia\Panda\Model\Campaigns $campaign,
-        \Licentia\Panda\Model\Subscribers $subscriber
+        Campaigns $campaign,
+        Subscribers $subscriber
     ) {
 
         $isUniqueCollection = $this->statsCollection->create()

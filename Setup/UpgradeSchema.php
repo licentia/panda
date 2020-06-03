@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   02/06/20, 21:54 GMT
+ * @modified   03/06/20, 16:33 GMT
  *
  */
 
@@ -94,6 +94,18 @@ class UpgradeData implements UpgradeDataInterface
                       `attempt_date` datetime DEFAULT NULL,
                       PRIMARY KEY (`attempt_id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - '"
+                );
+
+                $setup->run(
+                    " CREATE TABLE `{$setup->getTable('panda_exceptions_report')}` (
+                      `exception_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                      `message` varchar(255) DEFAULT NULL,
+                      `file` varchar(255) DEFAULT NULL,
+                      `line` varchar(255) DEFAULT NULL,
+                      `trace` text,
+                      PRIMARY KEY (`exception_id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 "
                 );
             } catch (\Exception $e) {
 

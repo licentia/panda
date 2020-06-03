@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -35,13 +35,13 @@ interface SubscribersSearchResultsInterface extends \Magento\Framework\Api\Searc
 {
 
     /**
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface[]
+     * @return SubscribersInterface[]
      */
 
     public function getItems();
 
     /**
-     * @param \Licentia\Panda\Api\Data\SubscribersInterface[] $items
+     * @param SubscribersInterface[] $items
      *
      * @return $this
      */

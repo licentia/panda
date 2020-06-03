@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/03/20, 03:17 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -263,7 +263,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
         TagsFactory $tagsFactory,
         TagsRelationsFactory $tagsRelationsFactory,
         ExtraFieldsFactory $extraFieldsFactory,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
+        CustomerRepositoryInterface $customerRepository,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\App\Config\ScopeConfigInterface $scope,
         \Magento\Framework\Registry $registry,
@@ -318,7 +318,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Subscribers::class);
+        $this->_init(ResourceModel\Subscribers::class);
     }
 
     /**
@@ -349,7 +349,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
             'code'   => $this->getCode(),
             '_nosid' => true,
         ];
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         $campaign = $this->_registry->registry('panda_campaign');
         if ($campaign) {
             $params['c'] = $campaign->getId();
@@ -373,7 +373,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     public function getOnlineViewCampaignLink()
     {
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         $campaign = $this->_registry->registry('panda_campaign');
 
         if (!$campaign) {
@@ -880,7 +880,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                     continue;
                 }
 
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->subscribersFactory->create()->loadByEmail($data['email']);
 
                 if (!$subscriber->getId()) {
@@ -897,7 +897,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                 }
 
                 $data = array_intersect_key($data,
-                    array_flip(\Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS));
+                    array_flip(Subscribers::AVAILABLE_IMPORT_FIELDS));
 
                 $subscriber->addData($data)
                            ->save();
@@ -920,7 +920,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                                                   ->addFieldToSelect('subscriber_id')
                                                   ->addFieldToSelect('email');
 
-        /** @var  \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var  Subscribers $subscriber */
         foreach ($subscribers as $subscriber) {
             $conv = $this->conversionsFactory->create()
                                              ->addFieldToSelect('created_at')
@@ -930,7 +930,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
                                              ->addFieldToFilter('subscriber_id', $subscriber->getId());
 
             $hour = false;
-            /** @var \Licentia\Panda\Model\Conversions $c */
+            /** @var Conversions $c */
             foreach ($conv as $c) {
                 if ($c->getCreatedAt() == 0) {
                     continue;
@@ -1223,7 +1223,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
      *
      * @return $this
      */
-    public function addTagToSubscriber(\Licentia\Panda\Model\Subscribers $subscriber, $tagId)
+    public function addTagToSubscriber(Subscribers $subscriber, $tagId)
     {
 
         $tags = $this->getSubscriberTags();
@@ -1241,7 +1241,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
      *
      * @return $this
      */
-    public function removeTagFromSubscriber(\Licentia\Panda\Model\Subscribers $subscriber, $tagId)
+    public function removeTagFromSubscriber(Subscribers $subscriber, $tagId)
     {
 
         $tags = $this->getSubscriberTags();
@@ -1264,7 +1264,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
         /** @var  \Magento\Sales\Model\Order $order */
         $order = $event->getEvent()->getOrder();
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->loadSubscriber($order->getCustomerEmail(), $order->getStoreId(), 'email');
 
         if (!$subscriber->getId() && !$this->scopeConfig->isSetFlag('panda_nuntius/info/auto')) {

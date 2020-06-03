@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/03/20, 02:49 GMT
+  ~ @modified   03/06/20, 15:39 GMT
   ~
   -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
@@ -54,16 +54,6 @@
                     <label>Delay load Ajax Calls</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Delay load Ajax Calls such as recommendations, popups,.., until Magento loads Customer Information/Shopping Cart Information</comment>
-                </field>
-            </group>
-            <group id="reports" showInWebsite="0" showInStore="0" showInDefault="1" sortOrder="170">
-                <label>Send error reports back to Green Flying Panda</label>
-                <comment>No personal or identifiable information is sent. The information sent is the one inside the file /var/log/panda.log that logs errors
-                    within the extension
-                </comment>
-                <field id="send" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Send error reports</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
             <!--

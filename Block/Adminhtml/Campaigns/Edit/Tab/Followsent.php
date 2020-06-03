@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -32,7 +32,7 @@ namespace Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab;
  *
  * @package Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab
  */
-class Followsent extends \Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab\Children
+class Followsent extends Children
 {
 
     /**

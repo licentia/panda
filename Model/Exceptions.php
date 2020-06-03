@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2020 Licentia, Unipessoal LDA
  *
@@ -20,18 +21,44 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 15:49 GMT
  *
  */
 
-namespace Licentia\Panda\Logger;
+namespace Licentia\Panda\Model;
 
 /**
- * Class Logger
+ * Class Exceptions
  *
- * @package Licentia\Panda\Logger
+ * @package Licentia\Panda\Model
  */
-class Logger extends \Monolog\Logger
+class Exceptions extends \Magento\Framework\Model\AbstractModel
 {
 
+    /**
+     * Prefix of model events names
+     *
+     * @var string
+     */
+    protected $_eventPrefix = 'panda_exceptions_report';
+
+    /**
+     * Parameter name in event
+     *
+     * In observe method you can use $observer->getEvent()->getObject() in this case
+     *
+     * @var string
+     */
+    protected $_eventObject = 'exceptions_report';
+
+    /**
+     * Initialize resource model
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+
+        $this->_init(ResourceModel\Exceptions::class);
+    }
 }

@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -32,7 +32,7 @@ use Magento\Framework\View\Element\Template;
 /**
  * New products widget
  */
-class Subscribe extends \Magento\Framework\View\Element\Template
+class Subscribe extends Template
 {
 
     /**

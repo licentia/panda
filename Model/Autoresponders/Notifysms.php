@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 02:30 GMT
+ * @modified   03/06/20, 14:14 GMT
  *
  */
 
@@ -194,6 +194,7 @@ class Notifysms extends AbstractModel
         $senders = $this->sendersCollection->create()->getSenders('sms');
         $selectSender = "<select name='sender_id'>";
 
+        /** @var \Licentia\Panda\Model\Senders $sender */
         foreach ($senders as $sender) {
             $selected = '';
             if ($this->getData('sender_id') == $sender->getId()) {
@@ -300,9 +301,11 @@ EOL;
             $send = $transport->sendSMS($sms, $message);
 
             if (!$send) {
-                $this->_logger->critical(__('Cannot send autoresponders SMS notifications'));
+                throw new \Magento\Framework\Exception\LocalizedException(__('Cannot send autoresponders SMS notifications. Sender Id:' . $data['sender_id']));
             }
         } catch (\Exception $e) {
+            $this->pandaHelper->logException($e);
+
             return false;
         }
     }

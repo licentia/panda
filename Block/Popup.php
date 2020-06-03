@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -33,7 +33,7 @@ use Magento\Framework\View\Element\Template;
  *
  * @package Licentia\Panda\Block
  */
-class Popup extends \Magento\Framework\View\Element\Template
+class Popup extends Template
 {
 
     /**
@@ -178,7 +178,7 @@ class Popup extends \Magento\Framework\View\Element\Template
                                               false
                                           );
         } catch (\Exception $e) {
-            $this->_logger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
 
         return $popups;

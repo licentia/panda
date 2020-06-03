@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -40,9 +40,9 @@ class ImportCustomers
     protected $scopeConfig;
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
@@ -54,17 +54,17 @@ class ImportCustomers
      *
      * @param \Licentia\Panda\Model\SubscribersFactory           $subscribersFactory
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface
-     * @param \Licentia\Panda\Logger\Logger                      $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                        $pandaHelper
      */
     public function __construct(
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface,
-        \Licentia\Panda\Logger\Logger $pandaLogger
+        \Licentia\Panda\Helper\Data $pandaHelper
     ) {
 
         $this->subscribersFactory = $subscribersFactory;
         $this->scopeConfig = $scopeConfigInterface;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
     }
 
     /**
@@ -115,7 +115,7 @@ class ImportCustomers
                 try {
                     $subscriber->setData($data)->save();
                 } catch (\Exception $e) {
-                    $this->pandaLogger->warning($e->getMessage());
+                    $this->pandaHelper->logWarning($e);
                 }
             }
         } while (count($orders) > 0);

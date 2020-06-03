@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -138,7 +138,7 @@ class Removefromsegment extends AbstractModel
         \Licentia\Panda\Model\ChainsFactory $chainsFactory,
         \Licentia\Panda\Model\ResourceModel\Chainsedit\CollectionFactory $chainseditCollection,
         \Licentia\Equity\Model\SegmentsFactory $segmentsFactory,
-        \Licentia\Equity\Model\Segments\ListSegmentsFactory $listSegmentsFactory,
+        ListSegmentsFactory $listSegmentsFactory,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,

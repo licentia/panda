@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:41 GMT
+ * @modified   03/06/20, 16:10 GMT
  *
  */
 
@@ -113,7 +113,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $newsletterData;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
@@ -400,7 +400,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
         $this->splitsFactory = $splitsFactory;
         $this->queueCollection = $queueCollection;
         $this->queueFactory = $queueFactory;
-        $this->newsletterData = $newsletterData;
+        $this->pandaHelper = $newsletterData;
         $this->templatesFactory = $templatesFactory;
         $this->historyFactory = $historyFactory;
         $this->archiveFactory = $archiveFactory;
@@ -443,7 +443,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
         $queueCount = $this->scopeConfig->getValue('panda_nuntius/info/queue');
 
         $maxQueueHour = (int) $campaign->getData('max_queue_hour');
-        $nextHourQueue = new \DateTime($this->newsletterData->gmtDate());
+        $nextHourQueue = new \DateTime($this->pandaHelper->gmtDate());
         $sendCount = $this->scopeConfig->getValue('panda_nuntius/info/count');
 
         if ($queueCount <= $sendCount) {
@@ -771,7 +771,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
         $variables['campaign'] = $campaign;
 
         if ($campaign->getUrl()) {
-            $message = $this->newsletterData->getContentFromUrl($campaign, $subscriber);
+            $message = $this->pandaHelper->getContentFromUrl($campaign, $subscriber);
         } else {
             if ($campaign->getAutoresponderEventId() > 0) {
                 $event = $this->eventsFactory->create()->load($campaign->getAutoresponderEventId());
@@ -992,7 +992,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                         try {
                             $_customer = $this->customerRepository->getById($customer);
                             if ($_customer) {
-                                $cryptdata = $this->newsletterData->encrypt($_customer, true);
+                                $cryptdata = $this->pandaHelper->encrypt($_customer, true);
                                 $urlParams = array_merge($urlParams, ['id' => $cryptdata]);
                             }
                         } catch (\Exception $e) {

@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -154,9 +154,9 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
         \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $ruleCollection,
         \Magento\SalesRule\Model\ResourceModel\Coupon\CollectionFactory $coreCouponsCollection,
         \Licentia\Panda\Model\ResourceModel\Coupons\CollectionFactory $couponsCollection,
-        \Licentia\Panda\Model\Session $sessionFactory,
+        Session $sessionFactory,
         \Licentia\Panda\Helper\Data $pandaHelper,
-        \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
+        SubscribersFactory $subscribersFactory,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
@@ -187,7 +187,7 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Coupons::class);
+        $this->_init(ResourceModel\Coupons::class);
     }
 
     /**
@@ -306,7 +306,7 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
         $session = $this->session;
         $subscriberId = $session->getPandaSubscriber();
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create()->loadById($subscriberId);
 
         $cart = $this->cartSingleton;
@@ -383,7 +383,7 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
     public function getCouponFromHash($hash)
     {
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->pandaHelper->getSubscriber();
 
         $coupon = $this->couponsCollection->create()
@@ -406,7 +406,7 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
         $resource = $this->getResource();
         $connection = $resource->getConnection();
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->pandaHelper->getSubscriber();
 
         $data = $connection->fetchOne(
@@ -438,10 +438,10 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
             return $this->couponRole[$hash];
         }
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->pandaHelper->getSubscriber();
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         $campaign = $this->_registry->registry('panda_campaign');
 
         if (!$subscriber || !$subscriber->getId()) {

@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -37,9 +37,9 @@ class AutoMatchCustomer implements ObserverInterface
 {
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
@@ -54,19 +54,19 @@ class AutoMatchCustomer implements ObserverInterface
     /**
      * AutoMatchCustomer constructor.
      *
-     * @param \Licentia\Panda\Logger\Logger            $pandaLogger
+     * @param \Licentia\Panda\Helper\Data              $pandaHelper
      * @param \Magento\Framework\Registry              $registry
      * @param \Licentia\Panda\Model\SubscribersFactory $subscribersFactory
      */
     public function __construct(
-        \Licentia\Panda\Logger\Logger $pandaLogger,
+        \Licentia\Panda\Helper\Data $pandaHelper,
         \Magento\Framework\Registry $registry,
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory
     ) {
 
         $this->subscribersFactory = $subscribersFactory;
         $this->registry = $registry;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
     }
 
     /**
@@ -108,7 +108,7 @@ class AutoMatchCustomer implements ObserverInterface
 
             $this->registry->register('panda_auto_match', true);
         } catch (\Exception $e) {
-            $this->pandaLogger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
 
         return $this;

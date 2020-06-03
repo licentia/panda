@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -37,9 +37,9 @@ class NewOrder implements ObserverInterface
 {
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ConversionstmpFactory
@@ -65,14 +65,14 @@ class NewOrder implements ObserverInterface
      * NewOrder constructor.
      *
      * @param \Licentia\Panda\Model\SubscribersFactory    $subscribersFactory
-     * @param \Licentia\Panda\Logger\Logger               $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                 $pandaHelper
      * @param \Licentia\Panda\Model\ConversionstmpFactory $conversionstmpFactory
      * @param \Licentia\Panda\Model\CouponsFactory        $couponsFactory
      * @param \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory
      */
     function __construct(
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
-        \Licentia\Panda\Logger\Logger $pandaLogger,
+        \Licentia\Panda\Helper\Data $pandaHelper,
         \Licentia\Panda\Model\ConversionstmpFactory $conversionstmpFactory,
         \Licentia\Panda\Model\CouponsFactory $couponsFactory,
         \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory
@@ -80,7 +80,7 @@ class NewOrder implements ObserverInterface
 
         $this->conversionstmpFactory = $conversionstmpFactory;
         $this->autorespondersFactory = $autorespondersFactory;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
         $this->couponsFactory = $couponsFactory;
         $this->subscribersFactory = $subscribersFactory;
     }
@@ -100,7 +100,7 @@ class NewOrder implements ObserverInterface
 
             $this->subscribersFactory->create()->afterOrderEvent($event);
         } catch (\Exception $e) {
-            $this->pandaLogger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
     }
 }

@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 15:35 GMT
  *
  */
 
@@ -45,33 +45,26 @@ class TransportPlugin
     protected $scopeConfig;
 
     /**
-     * @var Data
-     */
-    protected $pandaHelper;
-
-    /**
      * @var EncryptorInterface
      */
     protected $encryptor;
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * TransportPlugin constructor.
      *
-     * @param \Licentia\Panda\Logger\Logger $pandaLogger
-     * @param EncryptorInterface            $encryptor
-     * @param Data                          $pandaHelper
-     * @param ScopeConfigInterface          $scopeConfigInterface
-     * @param null                          $parameters
+     * @param Data                 $pandaHelper
+     * @param EncryptorInterface   $encryptor
+     * @param ScopeConfigInterface $scopeConfigInterface
+     * @param null                 $parameters
      */
     public function __construct(
-        \Licentia\Panda\Logger\Logger $pandaLogger,
-        EncryptorInterface $encryptor,
         Data $pandaHelper,
+        EncryptorInterface $encryptor,
         ScopeConfigInterface $scopeConfigInterface,
         $parameters = null
     ) {
@@ -79,7 +72,6 @@ class TransportPlugin
         $this->scopeConfig = $scopeConfigInterface;
         $this->encryptor = $encryptor;
         $this->pandaHelper = $pandaHelper;
-        $this->pandaLogger = $pandaLogger;
     }
 
     /**
@@ -133,7 +125,7 @@ class TransportPlugin
             try {
                 $transport->send($message);
             } catch (\Exception $e) {
-                $this->pandaLogger->crit($e);
+                $this->pandaHelper->logException($e);
             }
 
         }

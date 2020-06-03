@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/01/20, 15:22 GMT
+  ~ @modified   03/06/20, 16:04 GMT
   ~
   -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
@@ -137,15 +137,6 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
                     <item name="label" xsi:type="string" translate="true">Autoresponders</item>
-                    <item name="fieldClass" xsi:type="string">column_120 right</item>
-                </item>
-            </argument>
-        </column>
-        <column name="splits" class="Licentia\Panda\Ui\Component\Listing\Column\Number">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="label" xsi:type="string" translate="true">A/B Campaigns</item>
                     <item name="fieldClass" xsi:type="string">column_120 right</item>
                 </item>
             </argument>

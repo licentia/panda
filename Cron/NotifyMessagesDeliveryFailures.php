@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   27/03/20, 02:39 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -40,9 +40,9 @@ class NotifyMessagesDeliveryFailures
     protected $scopeConfig;
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory
@@ -90,7 +90,7 @@ class NotifyMessagesDeliveryFailures
      * @param \Licentia\Panda\Model\SendersFactory                         $sendersFactory
      * @param \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory $errorsCollection
      * @param \Magento\Framework\App\Config\ScopeConfigInterface           $scopeConfigInterface
-     * @param \Licentia\Panda\Logger\Logger                                $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                                  $pandaHelper
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory,
@@ -101,11 +101,11 @@ class NotifyMessagesDeliveryFailures
         \Licentia\Panda\Model\SendersFactory $sendersFactory,
         \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory $errorsCollection,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface,
-        \Licentia\Panda\Logger\Logger $pandaLogger
+        \Licentia\Panda\Helper\Data $pandaHelper
     ) {
 
         $this->scopeConfig = $scopeConfigInterface;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
         $this->errorsCollection = $errorsCollection;
         $this->campaignsFactory = $campaignsFactory;
         $this->sendersFactory = $sendersFactory;

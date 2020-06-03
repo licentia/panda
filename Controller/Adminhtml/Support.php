@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:19 GMT
  *
  */
 
@@ -32,7 +32,7 @@ use Magento\Backend\App\Action;
 /**
  * Newsletter subscribers controller
  */
-class Support extends \Magento\Backend\App\Action
+class Support extends Action
 {
 
     /**
@@ -101,7 +101,7 @@ class Support extends \Magento\Backend\App\Action
      */
     public function __construct(
         Action\Context $context,
-        \Licentia\Panda\Helper\Debug $debugHelper,
+        Debug $debugHelper,
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Licentia\Panda\Model\ServiceFactory $serviceFactory,

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (C) 2020 Licentia, Unipessoal LDA
  *
@@ -20,31 +21,38 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 15:49 GMT
  *
  */
 
-namespace Licentia\Panda\Logger;
+namespace Licentia\Panda\Model\ResourceModel\Exceptions;
 
 /**
- * Class Handler
+ * Class Collection
  *
- * @package Licentia\Panda\Logger
+ * @package Licentia\Panda\Model\ResourceModel\Exceptions
  */
-class Handler extends \Magento\Framework\Logger\Handler\Base
+class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
 
     /**
-     * Logging level
-     *
-     * @var int
-     */
-    protected $loggerType = \Monolog\Logger::INFO;
-
-    /**
-     * File name
-     *
      * @var string
      */
-    protected $fileName = '/var/log/panda.log';
+    protected $_idFieldName = 'exception_id';
+
+    /**
+     * Constructor
+     * Configures collection
+     *
+     * @return void
+     */
+    protected function _construct()
+    {
+
+        parent::_construct();
+        $this->_init(
+            \Licentia\Panda\Model\Exceptions::class,
+            \Licentia\Panda\Model\ResourceModel\Exceptions::class
+        );
+    }
 }

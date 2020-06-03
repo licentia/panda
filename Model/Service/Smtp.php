@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -32,7 +32,7 @@ namespace Licentia\Panda\Model\Service;
  *
  * @package Licentia\Panda\Model\Service
  */
-class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
+class Smtp extends ServiceAbstract
 {
 
     const EMAIL_MESSAGES_QUEUE = 5000;
@@ -60,7 +60,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
             return $this;
         }
 
-        $date = $this->newsletterData->gmtDate();
+        $date = $this->pandaHelper->gmtDate();
 
         $count = (int) $this->scopeConfig->getValue('panda_nuntius/info/count');
         if ($count == 0) {
@@ -87,7 +87,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
             $uniqueRandomString = sha1(microtime());
 
             $this->queueResource->create()
-                                ->addProcessId($count, $uniqueRandomString, $date, $this->newsletterData);
+                                ->addProcessId($count, $uniqueRandomString, $date, $this->pandaHelper);
 
             $queue = $this->queueCollection->create()
                                            ->setPageSize($count)
@@ -138,7 +138,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                 $sender = $this->senders[$campaign->getSenderId()];
             }
 
-            $transport = $this->newsletterData->getSmtpTransport($sender);
+            $transport = $this->pandaHelper->getSmtpTransport($sender);
 
             if (!$transport) {
                 continue;
@@ -181,7 +181,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
             $resource->beginTransaction();
             try {
                 $data = $message->getData();
-                $data['sent_date'] = $this->newsletterData->gmtDate();
+                $data['sent_date'] = $this->pandaHelper->gmtDate();
                 $data['type'] = 'email';
 
                 $archive->setData($data)->save();
@@ -201,7 +201,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                 $resource->rollBack();
                 $rollback = true;
 
-                $this->_logger->critical($e->getMessage());
+                $this->pandaHelper->logException($e);
             }
 
             if ($rollback && !$tryAgain) {
@@ -213,7 +213,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                     $data['email'] = $message->getEmail();
                     $data['error_code'] = $e->getCode();
                     $data['error_message'] = $e->getMessage();
-                    $data['created_at'] = $this->newsletterData->gmtDate();
+                    $data['created_at'] = $this->pandaHelper->gmtDate();
 
                     $dataInsert = array_merge($data, $message->getData());
                     $errors->setData($dataInsert)->save();
@@ -285,7 +285,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                     <br><br>If you received this email, everything seems to be working fine<br><br>Be happy... :)";
         }
 
-        $transport = $this->newsletterData->getSmtpTransport($sender);
+        $transport = $this->pandaHelper->getSmtpTransport($sender);
 
         $mail = new \Zend_Mail('UTF-8');
         $mail->setBodyHtml($message);
@@ -321,7 +321,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                 );
             }
         } catch (\Exception $e) {
-            $this->_logger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
             if (!$test) {
                 $this->messageManager->addErrorMessage(
                     __('Error with SMTP Configuration (Server error): ') . $e->getMessage()
@@ -345,7 +345,7 @@ class Smtp extends \Licentia\Panda\Model\Service\ServiceAbstract
                         __('Everything Seems To Be OK with your Bounces Configuration!!!')
                     );
                 } catch (\Exception $e) {
-                    $this->_logger->warning($e->getMessage());
+                    $this->pandaHelper->logWarning($e);
                     $this->messageManager->addErrorMessage(__('Error Bounces Configuration: ') . $e->getMessage());
                 }
             }

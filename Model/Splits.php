@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:40 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -87,7 +87,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
     protected $helperPanda;
 
     /**
-     * @var \Licentia\Panda\Model\TagsFactory
+     * @var TagsFactory
      */
     protected $tagsFactory;
 
@@ -109,7 +109,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
      * @param array                                                        $data
      */
     public function __construct(
-        \Licentia\Panda\Model\TagsFactory $tagsFactory,
+        TagsFactory $tagsFactory,
         \Licentia\Panda\Helper\Data $helperPanda,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
         \Magento\Framework\Model\Context $context,
@@ -144,7 +144,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Splits::class);
+        $this->_init(ResourceModel\Splits::class);
     }
 
     /**
@@ -196,7 +196,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
      *
      * @return ResourceModel\Subscribers\Collection
      */
-    public function getSubscribersCollection(\Licentia\Panda\Model\Splits $split)
+    public function getSubscribersCollection(Splits $split)
     {
 
         $collectionTemp = $this->subscriberCollection->create()
@@ -280,7 +280,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
                                                        ->addFieldToFilter('is_active', 1)
                                                        ->addFieldToFilter('deploy_at', ['lteq' => $date]);
 
-        /** @var \Licentia\Panda\Model\Splits $split */
+        /** @var Splits $split */
         foreach ($collectionPercentage as $split) {
             foreach (['a', 'b'] as $version) {
                 $this->sendCampaignData($split, $version);
@@ -488,7 +488,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
     public function calculateNumberRecipients($campaign = null)
     {
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         if (null === $campaign) {
             $campaign = $this;
         }

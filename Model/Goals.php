@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/03/20, 03:17 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -143,7 +143,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
-        \Licentia\Panda\Model\GoalsFactory $goalsFactory,
+        GoalsFactory $goalsFactory,
         \Licentia\Forms\Model\FormsFactory $formsFactory,
         \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory,
         \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter,
@@ -152,7 +152,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
         \Licentia\Panda\Model\ResourceModel\Goals\CollectionFactory $goalsCollection,
         \Licentia\Panda\Helper\Data $pandaHelper,
         \Licentia\Equity\Model\SegmentsFactory $segmentsFactory,
-        \Licentia\Panda\Model\CampaignsFactory $campaignsFactory,
+        CampaignsFactory $campaignsFactory,
         \Licentia\Equity\Model\Segments\ListSegmentsFactory $segmentListFactory,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
@@ -183,7 +183,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Goals::class);
+        $this->_init(ResourceModel\Goals::class);
     }
 
     /**
@@ -337,7 +337,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
 
         $collection = $this->goalsCollection->create()->addFieldToFilter('result', ['nin' => [0, 1]]);
 
-        /** @var \Licentia\Panda\Model\Goals $goal */
+        /** @var Goals $goal */
         foreach ($collection as $goal) {
             if (stripos($goal->getGoalType(), 'segment_') !== false) {
                 $segmentId = $goal->getGoalTypeOptionId();

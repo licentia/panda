@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:19 GMT
  *
  */
 
@@ -31,7 +31,7 @@ use Magento\Backend\App\Action;
 /**
  * Newsletter subscribers controller
  */
-class Conversions extends \Magento\Backend\App\Action
+class Conversions extends Action
 {
 
     /**

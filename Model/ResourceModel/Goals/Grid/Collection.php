@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -43,7 +43,7 @@ class Collection extends GoalsCollection implements SearchResultInterface
 
     /**
      * @param \Magento\Framework\Data\Collection\EntityFactoryInterface    $entityFactory
-     * @param \Licentia\Panda\Logger\Logger                                $logger
+     * @param \Licentia\Panda\Helper\Data                                  $logger
      * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
      * @param \Magento\Framework\Event\ManagerInterface                    $eventManager
      * @param mixed|null                                                   $mainTable
@@ -59,7 +59,7 @@ class Collection extends GoalsCollection implements SearchResultInterface
 
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
-        \Licentia\Panda\Logger\Logger $logger,
+        \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         $mainTable,
@@ -96,7 +96,7 @@ class Collection extends GoalsCollection implements SearchResultInterface
     }
 
     /**
-     * @param \Magento\Framework\Api\Search\AggregationInterface $aggregations
+     * @param AggregationInterface $aggregations
      *
      * @return $this|void
      */

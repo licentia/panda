@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -37,210 +37,210 @@ interface SubscribersInterface
     /**
      * @param int $subscriberId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setSubscriberId($subscriberId);
 
     /**
      * @param int $customerId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setCustomerId($customerId);
 
     /**
      * @param int $storeId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setStoreId($storeId);
 
     /**
      * @param string $code
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setCode($code);
 
     /**
      * @param string $firstname
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setFirstname($firstname);
 
     /**
      * @param string $lastname
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastname($lastname);
 
     /**
      * @param string $email
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setEmail($email);
 
     /**
      * @param string $cellphone
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setCellphone($cellphone);
 
     /**
      * @param string $createdAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setCreatedAt($createdAt);
 
     /**
      * @param string $dob
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setDob($dob);
 
     /**
      * @param int $status
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setStatus($status);
 
     /**
      * @param int $bounces
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setBounces($bounces);
 
     /**
      * @param int $sent
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setSent($sent);
 
     /**
      * @param int $views
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setViews($views);
 
     /**
      * @param int $clicks
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setClicks($clicks);
 
     /**
      * @param int $conversionsNumber
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setConversionsNumber($conversionsNumber);
 
     /**
      * @param double $conversionsAmount
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setConversionsAmount($conversionsAmount);
 
     /**
      * @param double $conversionsAverage
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setConversionsAverage($conversionsAverage);
 
     /**
      * @param string $sendTime
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setSendTime($sendTime);
 
     /**
      * @param int $previousCustomer
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setPreviousCustomer($previousCustomer);
 
     /**
      * @param string $gender
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setGender($gender);
 
     /**
      * @param string $lastMessageSentAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastMessageSentAt($lastMessageSentAt);
 
     /**
      * @param string $lastMessageOpenAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastMessageOpenAt($lastMessageOpenAt);
 
     /**
      * @param string $lastConversionAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastConversionAt($lastConversionAt);
 
     /**
      * @param string $lastMessageClickAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastMessageClickAt($lastMessageClickAt);
 
     /**
      * @param int $lastOpenCampaignId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastOpenCampaignId($lastOpenCampaignId);
 
     /**
      * @param int $lastClickCampaignId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastClickCampaignId($lastClickCampaignId);
 
     /**
      * @param int $lastConversionCampaignId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setLastConversionCampaignId($lastConversionCampaignId);
 
     /**
      * @param string $unsubscribedAt
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setUnsubscribedAt($unsubscribedAt);
 
     /**
      * @param int $formId
      *
-     * @return \Licentia\Panda\Api\Data\SubscribersInterface
+     * @return SubscribersInterface
      */
     public function setFormId($formId);
 

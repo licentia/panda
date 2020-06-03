@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   07/05/20, 23:30 GMT
+ * @modified   03/06/20, 16:14 GMT
  *
  */
 
@@ -228,6 +228,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $cacheTypeList;
 
     /**
+     * @var \Licentia\Panda\Model\ExceptionsFactory
+     */
+    protected $exceptionsFactory;
+
+    /**
      * Data constructor.
      *
      * @param \Magento\Framework\App\Cache\TypeListInterface                               $typeList
@@ -250,6 +255,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory   $eavAttributeCollection
      * @param \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection
      * @param \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory                 $indexCollection
+     * @param \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory              $indexerCollection
      * @param \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory                 $quoteCollection
      * @param \Magento\Framework\Encryption\EncryptorInterface                             $encryptorInterface
      * @param \Magento\Framework\ObjectManagerInterface                                    $objectManager
@@ -284,6 +290,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\ObjectManagerInterface $objectManager,
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
         \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection,
+        \Licentia\Panda\Model\ExceptionsFactory $exceptionsFactory,
         \Licentia\Panda\Model\SendersFactory $sendersFactory
     ) {
 
@@ -334,6 +341,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->encryptor = $encryptorInterface;
         $this->sendersCollection = $sendersCollection;
         $this->sendersFactory = $sendersFactory;
+        $this->exceptionsFactory = $exceptionsFactory;
         $this->productFactory = $productFactory;
         $this->pageFactory = $pageFactory;
         $this->blockFactory = $blockFactory;
@@ -1393,7 +1401,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                         $this->customerSession->setData('panda_ip', $remote);
                     }
                 } catch (\Exception $e) {
-                    $this->_logger->warning($e->getMessage());
+                    $this->logWarning($e);
 
                     return [];
                 }
@@ -1906,4 +1914,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return $resource->getConnection()->fetchOne("SELECT * FROM " . $resource->getTable($table) . " LIMIT 1");
     }
+
+    /**
+     * @param \Exception $exception
+     * @param string     $level
+     */
+    public function logException(\Exception $exception, $level = 'critical')
+    {
+
+        $data = [];
+        $data['message'] = $exception->getMessage();
+        $data['file'] = $exception->getFile();
+        $data['line'] = $exception->getLine();
+        $data['trace'] = $exception->getTraceAsString();
+
+        $this->exceptionsFactory->create()->setData($data)->save();
+        $this->_logger->$level($exception);
+    }
+
+    /**
+     * @param \Exception $e
+     */
+    public function logWarning(\Exception $e)
+    {
+
+        $this->logException($e, 'warning');
+    }
+
 }

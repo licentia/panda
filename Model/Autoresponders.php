@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   19/03/20, 00:23 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -256,7 +256,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     protected $timezone;
 
     /**
-     * @var \Licentia\Panda\Model\TagsFactory
+     * @var TagsFactory
      */
     protected $tagsFactory;
 
@@ -273,7 +273,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Autoresponders::class);
+        $this->_init(ResourceModel\Autoresponders::class);
     }
 
     /**
@@ -370,7 +370,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection,
         \Magento\Framework\App\Cache\StateInterface $cacheState,
         \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory,
-        \Licentia\Panda\Model\TagsFactory $tagsFactory,
+        TagsFactory $tagsFactory,
         \Magento\Framework\App\Cache\TypeListInterface $typeList,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
@@ -948,7 +948,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                    ->group('main_table.entity_id');
 
             foreach ($cQuote as $cart) {
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->loadSubscriber($autoresponder, $cart->getEmail());
 
                 if (!$subscriber) {
@@ -982,7 +982,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
         $autoresponders = $this->getActiveCollection()->addFieldToFilter('event', 'customer_birthday');
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             $collection = $this->customerCollection->create();
 
@@ -1078,7 +1078,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         /** @var self $autoresponder */
         foreach ($autoresponders as $autoresponder) {
 
-            /** @var \Licentia\Panda\Model\Chains $chain */
+            /** @var Chains $chain */
             $chain = $this->chainsCollection->create()
                                             ->addFieldToFilter('autoresponder_id', $autoresponder->getId())
                                             ->addFieldToFilter('parent_id', 0)
@@ -1096,7 +1096,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             $activityCollection = $read->fetchCol($select);
 
             foreach ($activityCollection as $customerId) {
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->loadSubscriber($autoresponder, $customerId);
 
                 if (!$subscriber) {
@@ -1127,7 +1127,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     public function cancelEvents($event, $customerId = null)
     {
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->loadSubscriberFromSession($customerId);
 
         if (!$subscriber) {
@@ -1161,7 +1161,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                                                    ['in' => $events->getAllIds('event_id')]
                                                );
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         foreach ($campaigns as $campaign) {
             $campaign->setStatus('finished')
                      ->save();
@@ -1214,7 +1214,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             if ($autoresponder->getShippingMethod()) {
                 $allow = explode(',', $autoresponder->getShippingMethod());
@@ -1268,7 +1268,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                     continue;
                 }
             }
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1309,7 +1309,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
             foreach ($autoresponders as $autoresponder) {
 
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->loadSubscriber($autoresponder, $customer->getEmail());
 
                 if (!$subscriber) {
@@ -1344,7 +1344,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             $newValue = $customer->getData($autoresponder->getCustomerAttribute(), null);
             $oldValue = $oldCustomer->getData($autoresponder->getCustomerAttribute(), null);
@@ -1359,7 +1359,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                 ($condition == 'new_empty_old_empty' && !$newValue && $oldValue)
             ) {
 
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->loadSubscriber($autoresponder, $customer->getEmail());
 
                 if (!$subscriber) {
@@ -1401,7 +1401,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         }
 
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1435,7 +1435,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
         /** @var self $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1486,9 +1486,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         if ($autoresponders->count() == 0) {
             return $this;
         }
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1533,9 +1533,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         if ($autoresponders->count() == 0) {
             return false;
         }
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1590,9 +1590,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         if ($autoresponders->count() == 0) {
             return false;
         }
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1630,9 +1630,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $review->getCustomerId());
 
             if (!$subscriber) {
@@ -1675,9 +1675,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                 return false;
             }
 
-            /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+            /** @var Autoresponders $autoresponder */
             foreach ($autoresponders as $autoresponder) {
-                /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                /** @var Subscribers $subscriber */
                 $subscriber = $this->loadSubscriber($autoresponder, $review->getCustomerId());
 
                 if (!$subscriber) {
@@ -1717,7 +1717,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             if ($autoresponder->getShippingMethod()) {
                 $allow = explode(',', $autoresponder->getShippingMethod());
@@ -1736,7 +1736,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                 }
             }
 
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1774,7 +1774,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             $items = $invoice->getAllItems();
 
@@ -1814,7 +1814,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                     continue;
                 }
             }
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1853,9 +1853,9 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1898,7 +1898,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
         /** @var self $autoresponder */
         foreach ($autoresponders as $autoresponder) {
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
 
             if (!$subscriber) {
@@ -1960,7 +1960,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             if ($autoresponder->getEvent() == 'campaign_link') {
                 $linkOpen = $this->_registry->registry('panda_open_url');
@@ -1989,7 +1989,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
      * @param Autoresponders $autoresponder
      * @param                $email
      *
-     * @return boolean|\Licentia\Panda\Model\Subscribers
+     * @return boolean|Subscribers
      */
     public function loadSubscriber(Autoresponders $autoresponder, $email)
     {
@@ -1999,7 +1999,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             $email = $customer->getEmail();
         }
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create()->loadByEmail($email);
 
         if (!$subscriber->getId()) {
@@ -2108,15 +2108,15 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                                          ->addFieldToFilter('executed', 0)
                                          ->addFieldToFilter('execute_at', ['lteq' => $date]);
 
-        /** @var \Licentia\Panda\Model\Events $event */
+        /** @var Events $event */
         foreach ($emails as $event) {
-            /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+            /** @var Autoresponders $autoresponder */
             $autoresponder = $this->autorespondersFactory->create()->load($event->getAutoresponderId());
 
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->subscribersFactory->create()->load($event->getSubscriberId());
 
-            /** @var \Licentia\Panda\Model\Chains $chain */
+            /** @var Chains $chain */
             $chain = $this->chainsFactory->create()->load($event->getChainId());
 
             $isAutoresponderEnable = $this->getActiveCollection()
@@ -2194,7 +2194,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
         if (!$chain) {
 
-            /** @var \Licentia\Panda\Model\Chains $chain */
+            /** @var Chains $chain */
             $chain = $this->chainsCollection->create()
                                             ->addFieldToFilter('autoresponder_id', $autoresponder->getId())
                                             ->addFieldToFilter('parent_id', 0)
@@ -2400,7 +2400,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
             return false;
         }
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             if ($autoresponder->getUtm()) {
                 $utm = json_decode($autoresponder->getUtm(), true);
@@ -2520,7 +2520,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
                 $old = $this->chainsCollection->create()->addFieldToFilter('autoresponder_id', $this->getId());
 
-                /** @var \Licentia\Panda\Model\Chains $item */
+                /** @var Chains $item */
                 foreach ($old as $item) {
                     $item->delete();
                 }
@@ -2685,7 +2685,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
         /** @var \Magento\Sales\Model\Order\Invoice $invoice */
         $invoice = $event->getInvoice();
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create()
                                                ->loadSubscriber(
                                                    $invoice->getOrder()
@@ -2739,7 +2739,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
 
         $autoresponders = $this->getActiveCollection()->addFieldToFilter('event', 'product_cycle');
 
-        /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+        /** @var Autoresponders $autoresponder */
         foreach ($autoresponders as $autoresponder) {
             $ok = true;
 
@@ -2760,7 +2760,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
                 }
             }
 
-            /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+            /** @var Subscribers $subscriber */
             $subscriber = $this->loadSubscriber($autoresponder, $email);
             if (!$subscriber) {
                 break;

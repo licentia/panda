@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   27/03/20, 03:05 GMT
+ * @modified   03/06/20, 16:31 GMT
  *
  */
 
@@ -98,6 +98,7 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
                 $this->messageManager->addSuccessMessage(__('Your request has been sent'));
                 $this->_getSession()->setFormData([]);
             } catch (\Exception $e) {
+                $this->pandaHelper->logException($e);
                 $this->messageManager->addErrorMessage($e->getMessage());
             }
 

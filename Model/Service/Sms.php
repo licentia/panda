@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 02:32 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -32,7 +32,7 @@ namespace Licentia\Panda\Model\Service;
  *
  * @package Licentia\Panda\Model\Service
  */
-class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
+class Sms extends ServiceAbstract
 {
 
     /**
@@ -58,7 +58,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
             return $this;
         }
 
-        $date = $this->newsletterData->gmtDate();
+        $date = $this->pandaHelper->gmtDate();
 
         $count = (int) $this->scopeConfig->getValue('panda_nuntius/info/count');
         if ($count == 0) {
@@ -117,7 +117,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
                 $sender = $this->senders[$campaign->getSenderId()];
             }
 
-            $transport = $this->newsletterData->getSmsTransport($sender);
+            $transport = $this->pandaHelper->getSmsTransport($sender);
 
             if (!$transport) {
                 return false;
@@ -130,7 +130,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
             $resource->beginTransaction();
             try {
                 $data = $message->getData();
-                $data['sent_date'] = $this->newsletterData->gmtDate();
+                $data['sent_date'] = $this->pandaHelper->gmtDate();
                 $data['type'] = 'sms';
                 $data['sender_name'] = $sender->getName();
                 $archive->setData($data)->save();
@@ -149,7 +149,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
                 $resource->rollBack();
                 $rollback = true;
 
-                $this->_logger->critical($e->getMessage());
+                $this->pandaHelper->logException($e);
             }
 
             if ($rollback && !$tryAgain) {
@@ -162,7 +162,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
                     $data['cellphone'] = $message->getCellphone();
                     $data['error_code'] = $e->getCode();
                     $data['error_message'] = $e->getMessage();
-                    $data['created_at'] = $this->newsletterData->gmtDate();
+                    $data['created_at'] = $this->pandaHelper->gmtDate();
 
                     $dataInsert = array_merge($data, $message->getData());
                     $errors->setData($dataInsert)->save();
@@ -210,7 +210,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
     public function validateSmsEnvironment($sender)
     {
 
-        $transport = $this->newsletterData->getSmsTransport($sender);
+        $transport = $this->pandaHelper->getSmsTransport($sender);
 
         if (!$transport) {
             return false;
@@ -228,7 +228,7 @@ class Sms extends \Licentia\Panda\Model\Service\ServiceAbstract
                 throw new \Magento\Framework\Exception\LocalizedException(__('An error occurred while trying to send your message. Check your sender authentication'));
             }
         } catch (\Exception $e) {
-            $this->_logger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
             $this->messageManager->addErrorMessage(
                 __('Error Sending SMS. Please verify your auth data: ') . $e->getMessage()
             );

@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -55,7 +55,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      * @param array                                 $data
      */
     public function __construct(
-        \Magento\Framework\Url $urlHelper,
+        Url $urlHelper,
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry,
         array $data = []

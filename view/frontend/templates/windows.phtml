@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -143,7 +143,7 @@ foreach ($block->getPopup() as $popup) :
                 $('#panda-popup-<?= /* @noEscape */ $popup->getId() ?>').pandapopup(popup);
                 <?php } ?>
                 <?php if ($popup->getAfterTime()){ ?>
-            }, (<?=  (int) $popup->getAfterTime(); ?> * 1000)
+            }, (<?=  (int) $popup->getAfterTime(); ?> * 1000);
         )
             <?php } ?>
             <?php } ?>

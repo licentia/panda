@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -230,7 +230,7 @@ class PopupsRepository implements PopupsRepositoryInterface
 
         if (is_array($collection)) {
 
-            /** @var \Licentia\Panda\Model\Popups $model */
+            /** @var Popups $model */
             foreach ($collection as $model) {
                 if ($model->isActive()) {
                     $vars = [];

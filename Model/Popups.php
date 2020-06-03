@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -160,7 +160,7 @@ class Popups extends \Magento\Rule\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Popups::class);
+        $this->_init(ResourceModel\Popups::class);
     }
 
     /**
@@ -285,7 +285,7 @@ class Popups extends \Magento\Rule\Model\AbstractModel
         $popups = [];
         $popupsSet = [];
 
-        /** @var \Licentia\Panda\Model\Popups $item */
+        /** @var Popups $item */
         foreach ($collection as $item) {
             if ($item->getSegmentsIds()) {
                 $segsIds = explode(',', $item->getSegmentsIds());

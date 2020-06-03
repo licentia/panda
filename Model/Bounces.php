@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -97,8 +97,8 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
      * @param array                                                        $data
      */
     public function __construct(
-        \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
-        \Licentia\Panda\Model\BouncesFactory $bouncesFactory,
+        SubscribersFactory $subscribersFactory,
+        BouncesFactory $bouncesFactory,
         CampaignsFactory $campaignsFactory,
         ResourceModel\Senders\CollectionFactory $sendersCollection,
         \Magento\Framework\App\Config\ScopeConfigInterface $scope,
@@ -128,7 +128,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Bounces::class);
+        $this->_init(ResourceModel\Bounces::class);
     }
 
     /**
@@ -139,7 +139,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
 
         $senders = $this->sendersCollection->create();
 
-        /** @var \Licentia\Panda\Model\Senders $sender */
+        /** @var Senders $sender */
         foreach ($senders as $sender) {
             $config = ['ssl' => strtoupper($sender->getBouncesSsl())];
             $config['auth'] = $sender->getBouncesAuth();
@@ -156,7 +156,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
             try {
                 $mail = new \Zend_Mail_Storage_Imap($config);
             } catch (\Exception $e) {
-                $this->_logger->warning($e->getMessage());
+                $this->pandaHelper->logWarning($e);
 
                 return $this;
             }
@@ -181,9 +181,9 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
                     $campaignId = (int) end($c);
                     $reason = end($code);
 
-                    /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+                    /** @var Subscribers $subscriber */
                     $subscriber = $this->subscribersFactory->create()->load($subscriberId);
-                    /** @var \Licentia\Panda\Model\Campaigns $campaign */
+                    /** @var Campaigns $campaign */
                     $campaign = $this->campaignsFactory->create()->load($campaignId);
                     if (!$subscriber->getId() || !$campaign->getId()) {
                         #$mail->removeMessage($number);
@@ -211,7 +211,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
 
                 } catch (\Exception $e) {
 
-                    $this->_logger->warning($e->getMessage());
+                    $this->pandaHelper->logWarning($e);
 
                 }
 

@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -37,9 +37,9 @@ class ConvertOrder implements ObserverInterface
 {
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ConversionsFactory
@@ -54,19 +54,19 @@ class ConvertOrder implements ObserverInterface
     /**
      * ConvertOrder constructor.
      *
-     * @param \Licentia\Panda\Logger\Logger               $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                 $pandaHelper
      * @param \Licentia\Panda\Model\ConversionsFactory    $conversionsFactory
      * @param \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory
      */
     public function __construct(
-        \Licentia\Panda\Logger\Logger $pandaLogger,
+        \Licentia\Panda\Helper\Data $pandaHelper,
         \Licentia\Panda\Model\ConversionsFactory $conversionsFactory,
         \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory
     ) {
 
         $this->autorespondersFactory = $autorespondersFactory;
         $this->conversionsFactory = $conversionsFactory;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
     }
 
     /**
@@ -82,7 +82,7 @@ class ConvertOrder implements ObserverInterface
 
             $this->autorespondersFactory->create()->buildCycles($event);
         } catch (\Exception $e) {
-            $this->pandaLogger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
     }
 }

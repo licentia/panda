@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -120,7 +120,7 @@ class Reports extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Reports::class);
+        $this->_init(ResourceModel\Reports::class);
     }
 
     /**
@@ -203,7 +203,7 @@ class Reports extends \Magento\Framework\Model\AbstractModel
         try {
             $this->setData($data)->save();
         } catch (\Exception $e) {
-            $this->_logger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
 
         return true;

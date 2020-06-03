@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -120,7 +120,7 @@ class Conversionstmp extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Conversionstmp::class);
+        $this->_init(ResourceModel\Conversionstmp::class);
     }
 
     /**
@@ -138,10 +138,10 @@ class Conversionstmp extends \Magento\Framework\Model\AbstractModel
         if (!$session->getPandaConversion()) {
             return false;
         }
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         $campaign = $this->campaignsFactory->create()->load($session->getPandaConversionCampaign());
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create()->load($session->getPandaConversionSubscriber());
 
         if (!$campaign->getId() || !$subscriber->getId()) {

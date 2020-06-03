@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -150,7 +150,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Conversions::class);
+        $this->_init(ResourceModel\Conversions::class);
     }
 
     /**
@@ -175,13 +175,13 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
         }
 
         $conversion = $convTemp->getFirstItem();
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         $campaign = $this->campaignsFactory->create()->load($conversion->getCampaignId());
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
+        /** @var Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create()->load($conversion->getSubscriberId());
 
-        /** @var \Licentia\Panda\Model\Links $link */
+        /** @var Links $link */
         $link = $this->linksFactory->create()->load($conversion->getLinkId());
 
         $conversion->delete();
@@ -225,7 +225,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
 
         if ($campaign->getAutoresponderId()) {
 
-            /** @var \Licentia\Panda\Model\Autoresponders $autoresponder */
+            /** @var Autoresponders $autoresponder */
             $autoresponder = $this->autorespondersFactory->create()->load($campaign->getAutoresponderId());
 
             if ($autoresponder->getId()) {
@@ -242,7 +242,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
 
         if ($campaign->getTags() && is_array($campaign->getTags())) {
 
-            /** @var \Licentia\Panda\Model\Tags $tag */
+            /** @var Tags $tag */
             foreach ($campaign->getTags() as $tag) {
                 $tagModel = $this->tagsFactory->create()->load($tag['value']);
 
@@ -259,7 +259,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
 
         if ($campaign->getSplitId()) {
 
-            /** @var \Licentia\Panda\Model\Splits $split */
+            /** @var Splits $split */
             $split = $this->splitsFactory->create()->load($campaign->getSplitId());
 
             if ($split->getId()) {

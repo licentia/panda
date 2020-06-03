@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -42,9 +42,9 @@ class AddEmailFromAddress implements ObserverInterface
     protected $scopeConfig;
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
@@ -56,17 +56,17 @@ class AddEmailFromAddress implements ObserverInterface
      *
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface
      * @param \Magento\Newsletter\Model\SubscriberFactory        $subscribersFactory
-     * @param \Licentia\Panda\Logger\Logger                      $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                        $pandaHelper
      */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface,
         \Magento\Newsletter\Model\SubscriberFactory $subscribersFactory,
-        \Licentia\Panda\Logger\Logger $pandaLogger
+        \Licentia\Panda\Helper\Data $pandaHelper
     ) {
 
         $this->subscribersFactory = $subscribersFactory;
         $this->scopeConfig = $scopeConfigInterface;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
     }
 
     /**
@@ -91,7 +91,7 @@ class AddEmailFromAddress implements ObserverInterface
 
             $this->subscribersFactory->create()->subscribe($address->getEmail());
         } catch (\Exception $e) {
-            $this->pandaLogger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
 
         return true;

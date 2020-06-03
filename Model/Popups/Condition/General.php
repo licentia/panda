@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -121,9 +121,9 @@ class General extends \Magento\Rule\Model\Condition\AbstractCondition
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Licentia\Panda\Model\PopupsFactory $popupsFactory,
         \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Framework\App\Response\RedirectInterface $redirect,
+        RedirectInterface $redirect,
         \Magento\Directory\Model\ResourceModel\Country\Collection $countryCollection,
-        \Magento\Customer\Model\Session $customerSession,
+        Session $customerSession,
         \Magento\Framework\UrlInterface $urlInterface,
         \Magento\Framework\Registry $registry,
         \Magento\Store\Model\System\Store $systemStore,

@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:40 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -110,7 +110,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
     protected $campaignsCollection;
 
     /**
-     * @var \Licentia\Panda\Model\TagsFactory
+     * @var TagsFactory
      */
     protected $tagsFactory;
 
@@ -164,7 +164,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      * @param array                                                        $data
      */
     public function __construct(
-        \Licentia\Panda\Model\TagsFactory $tagsFactory,
+        TagsFactory $tagsFactory,
         \Licentia\Equity\Model\Segments\Condition\CombineFactory $combineFactory,
         \Licentia\Equity\Model\Segments\Action\CollectionFactory $collectionFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scope,
@@ -213,7 +213,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Campaigns::class);
+        $this->_init(ResourceModel\Campaigns::class);
     }
 
     /**
@@ -406,7 +406,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
                                                 ->addFieldToFilter('recurring', '0')
                                                 ->addFieldToFilter('autoresponder_id', 0);
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         foreach ($collection as $campaign) {
             $this->_queueEmail($campaign);
         }
@@ -419,7 +419,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
                                                          ->addFieldToFilter('followup_id', ['null' => true])
                                                          ->addFieldToFilter('autoresponder_id', 0);
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         foreach ($collectionRecurring as $campaign) {
             $newCampaignData = $campaign->getData();
             unset($newCampaignData['campaign_id']);
@@ -903,7 +903,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
             $collection->addFieldToFilter('type', $type);
         }
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         foreach ($collection as $campaign) {
             $return[$campaign->getId()] =
                 $campaign->getInternalName() . '[' . $campaign->getType() . ']' . ' (ID: ' . $campaign->getId() . ')';
@@ -933,7 +933,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
             $collection->addFieldToFilter('campaign_id', $campaignId);
         }
 
-        /** @var \Licentia\Panda\Model\Campaigns $campaign */
+        /** @var Campaigns $campaign */
         foreach ($collection as $campaign) {
             $return[$campaign->getId()] =
                 $campaign->getInternalName() . ' (ID: ' . $campaign->getId() . ')';
@@ -965,7 +965,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
         $exists = [];
         $temp = [];
 
-        /** @var \Licentia\Panda\Model\LinksFactory $link */
+        /** @var LinksFactory $link */
         foreach ($links as $link) {
             $exists[$link->getId()] = $link->getLink();
             #$link->delete();

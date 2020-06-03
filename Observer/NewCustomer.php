@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -47,9 +47,9 @@ class NewCustomer implements ObserverInterface
     protected $scopeConfig;
 
     /**
-     * @var \Licentia\Panda\Logger\Logger
+     * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaLogger;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
@@ -61,20 +61,20 @@ class NewCustomer implements ObserverInterface
      *
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface
      * @param \Magento\Newsletter\Model\SubscriberFactory        $coreSubscribersFactory
-     * @param \Licentia\Panda\Logger\Logger                      $pandaLogger
+     * @param \Licentia\Panda\Helper\Data                        $pandaHelper
      * @param \Licentia\Panda\Model\AutorespondersFactory        $autorespondersFactory
      */
     function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfigInterface,
         \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory,
-        \Licentia\Panda\Logger\Logger $pandaLogger,
+        \Licentia\Panda\Helper\Data $pandaHelper,
         \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory
     ) {
 
         $this->autorespondersFactory = $autorespondersFactory;
         $this->coreSubscribersFactory = $coreSubscribersFactory;
         $this->scopeConfig = $scopeConfigInterface;
-        $this->pandaLogger = $pandaLogger;
+        $this->pandaHelper = $pandaHelper;
     }
 
     /**
@@ -95,7 +95,7 @@ class NewCustomer implements ObserverInterface
                 $this->coreSubscribersFactory->create()->subscribe($customer->getEmail());
             }
         } catch (\Exception $e) {
-            $this->pandaLogger->warning($e->getMessage());
+            $this->pandaHelper->logWarning($e);
         }
 
         return false;

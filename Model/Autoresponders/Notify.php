@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:40 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -62,7 +62,6 @@ class Notify extends AbstractModel
      * @var \Licentia\Panda\Model\PopupsFactory
      */
     protected $sendersFactory;
-
 
     /**
      * @var \Magento\Email\Model\TemplateFactory

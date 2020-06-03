@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 16:18 GMT
  *
  */
 
@@ -140,7 +140,7 @@ class Followup extends \Magento\Framework\Model\AbstractModel
     protected function _construct()
     {
 
-        $this->_init(\Licentia\Panda\Model\ResourceModel\Followup::class);
+        $this->_init(ResourceModel\Followup::class);
     }
 
     /**
@@ -282,10 +282,10 @@ class Followup extends \Magento\Framework\Model\AbstractModel
                                               ->addFieldToFilter('sent', 0)
                                               ->addFieldToFilter('is_active', 1);
 
-        /** @var \Licentia\Panda\Model\Followup $followup */
+        /** @var Followup $followup */
         foreach ($followups as $followup) {
 
-            /** @var \Licentia\Panda\Model\Campaigns $campaign */
+            /** @var Campaigns $campaign */
             $campaign = $this->campaignsFactory->create()->load($followup->getCampaignId());
 
             $data = [];

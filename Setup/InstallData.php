@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 17:55 GMT
  *
  */
 
@@ -37,6 +37,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Setup\SalesSetupFactory;
+use Magento\Customer\Api\CustomerMetadataInterface;
 
 /**
  * Class InstallData
@@ -135,7 +136,7 @@ class InstallData implements InstallDataInterface
                 'required'         => false,
                 'visible_on_front' => false,
                 'user_defined'     => false,
-                'sort_order'       => 700,
+                'sort_order'       => 100,
                 'global'           => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'apply_to'         => 'simple',
                 'group'            => 'Panda',
@@ -166,62 +167,6 @@ class InstallData implements InstallDataInterface
             );
         }
 
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'panda_prices_disabled',
-            [
-                'type'                    => 'int',
-                'backend'                 => '',
-                'frontend'                => '',
-                'label'                   => 'Disable Customer Prices',
-                'input'                   => 'boolean',
-                'class'                   => '',
-                'source'                  => '',
-                'global'                  => 1,
-                'visible'                 => true,
-                'required'                => false,
-                'user_defined'            => false,
-                'default'                 => null,
-                'searchable'              => true,
-                'filterable'              => false,
-                'comparable'              => false,
-                'visible_on_front'        => false,
-                'used_in_product_listing' => true,
-                'unique'                  => false,
-                'apply_to'                => '',
-                'system'                  => 1,
-                'group'                   => 'Panda',
-            ]
-        );
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'panda_price_expression',
-            [
-                'type'                    => 'varchar',
-                'backend'                 => '',
-                'frontend'                => '',
-                'label'                   => 'Price Expression',
-                'input'                   => 'text',
-                'class'                   => '',
-                'source'                  => '',
-                'global'                  => 1,
-                'visible'                 => true,
-                'required'                => false,
-                'user_defined'            => true,
-                'default'                 => null,
-                'searchable'              => false,
-                'filterable'              => false,
-                'comparable'              => false,
-                'visible_on_front'        => false,
-                'used_in_product_listing' => false,
-                'unique'                  => false,
-                'apply_to'                => '',
-                'system'                  => 1,
-                'group'                   => 'Panda',
-            ]
-        );
-
         /** @var \Magento\Sales\Setup\SalesSetup $salesSetup */
         $salesSetup = $this->salesSetupFactory->create(['setup' => $setup]);
 
@@ -241,208 +186,7 @@ class InstallData implements InstallDataInterface
             ]
         );
 
-        /*
-        $setup->getConnection()->addColumn(
-            $setup->getTable('sales_order_grid'),
-            'panda_acquisition_campaign',
-            [
-                'type'    => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                'length'  => 255,
-                'comment' => 'Source Campaign',
-            ]
-        );
-        $setup->getConnection()->addColumn(
-            $setup->getTable('sales_order_grid'),
-            'panda_shipping_cost',
-            [
-                'type'    => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
-                'comment' => 'Shipping Costs',
-            ]
-        );
-        */
-
         $setup->endSetup();
-
-        /** @var \Magento\Customer\Setup\CustomerSetup $customerSetup */
-        $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
-
-        $customerEntity = $customerSetup->getEavConfig()->getEntityType('customer');
-        $attributeSetId = $customerEntity->getDefaultAttributeSetId();
-
-        /** @var $attributeSet AttributeSet */
-        $attributeSet = $this->attributeSetFactory->create();
-        $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
-
-        $customerSetup->addAttribute(
-            Customer::ENTITY,
-            'panda_acquisition_campaign',
-            [
-                'type'     => 'varchar',
-                'label'    => 'Customer Acquisition Campaign',
-                'input'    => 'text',
-                'source'   => '',
-                'required' => false,
-                'visible'  => true,
-                'position' => 333,
-                'system'   => false,
-                'backend'  => '',
-            ]
-        );
-
-        $attribute = $customerSetup->getEavConfig()
-                                   ->getAttribute(Customer::ENTITY, 'panda_acquisition_campaign')
-                                   ->addData(
-                                       [
-                                           'used_in_forms' => [
-                                               'adminhtml_customer',
-                                           ],
-                                       ]
-                                   );
-
-        $this->attributeResource->save($attribute);
-
-        $customerSetup->addAttribute(
-            Customer::ENTITY,
-            'panda_prices_disabled',
-            [
-                'type'                  => 'int',
-                'label'                 => 'Panda - Disable Customer Prices',
-                'input'                 => 'boolean',
-                'source'                => '',
-                'required'              => false,
-                'visible'               => true,
-                'is_used_in_grid'       => 0,
-                'is_visible_in_grid'    => 0,
-                'is_filterable_in_grid' => 0,
-                'is_searchable_in_grid' => 0,
-                'position'              => 333,
-                'system'                => true,
-                'user_defined'          => false,
-                'backend'               => '',
-            ]
-        );
-
-        $attribute = $customerSetup->getEavConfig()
-                                   ->getAttribute(Customer::ENTITY, 'panda_prices_disabled')
-                                   ->addData(
-                                       [
-                                           'attribute_set_id'   => $attributeSetId,
-                                           'attribute_group_id' => $attributeGroupId,
-                                           'used_in_forms'      => ['adminhtml_customer'],
-                                       ]
-                                   );
-
-        $this->attributeResource->save($attribute);
-
-        $customerSetup->addAttribute(
-            'customer',
-            'panda_price_expression',
-            [
-                'type'                  => 'varchar',
-                'label'                 => 'Panda - Customer Price Expression',
-                'input'                 => 'text',
-                'source'                => '',
-                'required'              => false,
-                'visible'               => true,
-                'is_used_in_grid'       => 0,
-                'is_visible_in_grid'    => 0,
-                'is_filterable_in_grid' => 0,
-                'is_searchable_in_grid' => 0,
-                'position'              => 333,
-                'system'                => true,
-                'user_defined'          => false,
-                'backend'               => '',
-            ]
-        );
-
-        $attribute = $customerSetup->getEavConfig()
-                                   ->getAttribute(Customer::ENTITY, 'panda_prices_disabled')
-                                   ->addData(
-                                       [
-                                           'attribute_set_id'   => $attributeSetId,
-                                           'attribute_group_id' => $attributeGroupId,
-                                           'used_in_forms'      => ['adminhtml_customer'],
-                                       ]
-                                   );
-
-        $this->attributeResource->save($attribute);
-
-        /*
-         * TWo Factor Authentication
-         */
-
-        $customerSetup->addAttribute(
-            \Magento\Customer\Model\Customer::ENTITY,
-            'panda_twofactor_number',
-            [
-                'type'     => 'varchar',
-                'label'    => 'Two Factor Mobile Number',
-                'input'    => 'text',
-                'source'   => '',
-                'required' => false,
-                'visible'  => true,
-                'position' => 333,
-                'system'   => true,
-                'backend'  => '',
-            ]
-        );
-
-        $attribute = $customerSetup->getEavConfig()
-                                   ->getAttribute('customer', 'panda_twofactor_number')
-                                   ->addData(
-                                       [
-                                           'used_in_forms' => [
-                                               'adminhtml_customer',
-                                               'customer_account_edit',
-                                           ],
-                                       ]
-                                   );
-
-        $this->attributeResource->save($attribute);
-
-        /**
-         *
-         * Customer Prediction
-         *
-         *
-         */
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'panda_gender_prediction',
-            [
-                'type'         => 'varchar',
-                'label'        => 'Panda Gender Prediction',
-                'input'        => 'select',
-                'source'       => \Licentia\Equity\Model\Source\Product\Attribute\Gender::class,
-                'global'       => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-                'visible'      => true,
-                'required'     => false,
-                'default'      => null,
-                'system'       => true,
-                'user_defined' => false,
-                'group'        => 'General Information',
-            ]
-        );
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'panda_age_prediction',
-            [
-                'type'         => 'varchar',
-                'label'        => 'Panda Age Prediction',
-                'input'        => 'multiselect',
-                'backend'      => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
-                'source'       => \Licentia\Equity\Model\Source\Product\Attribute\Ages::class,
-                'global'       => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
-                'visible'      => true,
-                'required'     => false,
-                'default'      => null,
-                'system'       => true,
-                'user_defined' => false,
-                'group'        => 'General Information',
-            ]
-        );
 
         $now = $this->pandaHelper->gmtDate();
 
