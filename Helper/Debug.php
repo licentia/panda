@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 16:31 GMT
+ * @modified   03/06/20, 22:19 GMT
  *
  */
 
@@ -219,10 +219,6 @@ class Debug extends \Magento\Framework\App\Helper\AbstractHelper
             $final['Entries in Config Data ' . $data['config_id']] = implode(' --- ', $data);
         }
 
-        $exceptionsEntries = $this->exceptionsFactory->create()->getCollection()->setPageSize(500)->getData();
-
-        $final['exceptions_entries'] = $exceptionsEntries;
-
         return $final;
     }
 
@@ -232,6 +228,15 @@ class Debug extends \Magento\Framework\App\Helper\AbstractHelper
     public function getCreateDumpFile()
     {
 
-        return json_encode($this->getDebugInfo());
+        $data = $this->getDebugInfo();
+        $exceptionsEntries = $this->exceptionsFactory->create()
+                                                     ->getCollection()
+                                                     ->setPageSize(500)
+                                                     ->setOrder('exception_id', 'DESC')
+                                                     ->getData();
+
+        $data['exceptions_entries'] = $exceptionsEntries;
+
+        return json_encode($data);
     }
 }

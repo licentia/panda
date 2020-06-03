@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 16:31 GMT
+ * @modified   03/06/20, 22:24 GMT
  *
  */
 
@@ -71,11 +71,16 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
             $msg .= "Message : " . $params['message'] . "<br>";
 
             try {
+
+                $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
+
                 $mail = new \Zend_Mail('UTF-8');
                 $mail->addTo($email, 'Panda Support');
                 $mail->setBodyHtml($msg);
                 $mail->setSubject('Contact - Panda Support');
-                $mail->setFrom($params['email'], $params['first_name'] . ' ' . $params['last_name']);
+                $mail->setFrom($sender->getEmail(), $sender->getName());
+                $mail->addCc($params['email'], $params['name']);
+                $mail->setReplyTo($params['email'], $params['name']);
 
                 if ($params['attach'] == 1) {
                     $content = $this->debugHelper->getCreateDumpFile();
@@ -88,7 +93,7 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
                     $mail->addAttachment($attachment);
                 }
 
-                $transport = $this->pandaHelper->getEmailSenderForInternalNotifications();
+                $transport = $this->pandaHelper->getSmtpTransport($sender);
 
                 $t = $mail->send($transport);
 

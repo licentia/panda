@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 21:55 GMT
  *
  */
 
@@ -149,7 +149,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 "class"    => "validate-email",
                 "required" => true,
                 "name"     => "reply_to",
-                "note"     => __('The Reply To header for the email. Leave blank to use your Email Address'),
             ]
         );
 

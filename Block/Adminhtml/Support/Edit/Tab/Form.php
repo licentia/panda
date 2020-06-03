@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   27/03/20, 02:38 GMT
+ * @modified   03/06/20, 22:21 GMT
  *
  */
 
@@ -41,8 +41,14 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     protected $session;
 
     /**
+     * @var \Licentia\Panda\Helper\Data
+     */
+    protected $pandaHelper;
+
+    /**
      * Form constructor.
      *
+     * @param \Licentia\Panda\Helper\Data             $pandaHelper
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry             $registry
      * @param \Magento\Framework\Data\FormFactory     $formFactory
@@ -50,6 +56,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      * @param array                                   $data
      */
     public function __construct(
+        \Licentia\Panda\Helper\Data $pandaHelper,
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
@@ -58,6 +65,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     ) {
 
         $this->session = $session;
+        $this->pandaHelper = $pandaHelper;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -82,6 +90,8 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     protected function _prepareForm()
     {
 
+        $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
+
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
             [
@@ -101,22 +111,13 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         );
 
         $fieldset->addField(
-            'first_name',
+            'name',
             "text",
             [
-                "label"    => __('First Name'),
+                "label"    => __('Name'),
                 "required" => true,
-                "name"     => 'first_name',
-            ]
-        );
-
-        $fieldset->addField(
-            'last_name',
-            "text",
-            [
-                "label"    => __('Last Name'),
-                "required" => true,
-                "name"     => 'last_name',
+                "name"     => 'name',
+                "value"    => $sender->getName(),
             ]
         );
 
@@ -127,6 +128,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 "label"    => __('Email'),
                 "required" => true,
                 "name"     => 'email',
+                "value"    => $sender->getEmail(),
             ]
         );
 
@@ -155,7 +157,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 "value"    => '1',
                 'options'  => ['1' => __('Yes'), '0' => __('No')],
                 "name"     => 'attach',
-                "note"     => "Contents from the Debug Tab. It's recommended that you attach this file for a quicker issue resolution",
+                "note"     => "Contents from the Debug Tab and the Issues data. It's recommended that you attach this file for a quicker issue resolution",
             ]
         );
 

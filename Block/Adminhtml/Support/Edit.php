@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   29/01/20, 15:22 GMT
+ * @modified   03/06/20, 22:26 GMT
  *
  */
 
@@ -46,6 +46,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         $this->buttonList->update('save', 'label', __('Request Support'));
         $this->buttonList->remove('delete');
         $this->buttonList->remove('reset');
+        $this->buttonList->remove('back');
     }
 
     /**

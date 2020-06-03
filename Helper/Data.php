@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 16:14 GMT
+ * @modified   03/06/20, 22:22 GMT
  *
  */
 
@@ -1773,7 +1773,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * @return bool|\Zend_Mail_Transport_Smtp
+     * @return bool|\Licentia\Panda\Model\Senders
      */
     public function getEmailSenderForInternalNotifications()
     {
@@ -1789,10 +1789,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $senderCol->addFieldToFilter('sender_id', $senderId);
         }
 
-        //decrypt password
-        $sender = $this->sendersFactory->create()->load($senderCol->getFirstItem()->getId());
+        $id = $senderCol->getFirstItem()->getId();
 
-        return $this->getSmtpTransport($sender);
+        if (!$id) {
+            return false;
+        }
+
+        return $this->sendersFactory->create()->load($id);
+
     }
 
     /**

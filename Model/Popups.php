@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 16:18 GMT
+ * @modified   03/06/20, 22:09 GMT
  *
  */
 
@@ -229,7 +229,7 @@ class Popups extends \Magento\Rule\Model\AbstractModel
         $useragent = $data['useragent'];
 
         $data['params'] = json_decode($data['params'], true);
-        $this->_registry->register('panda_popup_data', $data);
+        $this->_registry->register('panda_popup_data', $data, true);
 
         $ignore = $this->getIgnoredCookiesForUser();
 
