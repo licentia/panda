@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   05/03/20, 20:40 GMT
+ * @modified   03/06/20, 02:30 GMT
  *
  */
 
@@ -297,7 +297,11 @@ EOL;
                 return false;
             }
 
-            $transport->sendSMS($sms, $message);
+            $send = $transport->sendSMS($sms, $message);
+
+            if (!$send) {
+                $this->_logger->critical(__('Cannot send autoresponders SMS notifications'));
+            }
         } catch (\Exception $e) {
             return false;
         }
