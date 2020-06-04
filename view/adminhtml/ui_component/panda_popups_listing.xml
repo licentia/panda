@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   29/01/20, 15:22 GMT
+  ~ @modified   04/06/20, 02:50 GMT
   ~
   -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
@@ -85,7 +85,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
-                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="sorting" xsi:type="string">desc</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
                 </item>
             </argument>
@@ -164,7 +164,6 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Start Date</label>
-                <sorting>desc</sorting>
                 <timezone>false</timezone>
                 <dateFormat>MMM dd, YYYY</dateFormat>
                 <fieldClass>
@@ -178,7 +177,6 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">End Date</label>
-                <sorting>desc</sorting>
                 <timezone>false</timezone>
                 <dateFormat>MMM dd, YYYY</dateFormat>
                 <fieldClass>

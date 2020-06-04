@@ -19,7 +19,7 @@
   ~ @author     Bento Vilas Boas <bento@licentia.pt>
   ~ @copyright  Copyright (c) Licentia - https://licentia.pt
   ~ @license    GNU General Public License V3
-  ~ @modified   03/06/20, 22:01 GMT
+  ~ @modified   04/06/20, 02:44 GMT
   ~
   -->
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
@@ -95,7 +95,6 @@
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Created At</label>
-                <sorting>desc</sorting>
                 <timezone>false</timezone>
                 <dateFormat>MMM d, y HH:mm</dateFormat>
                 <fieldClass>
