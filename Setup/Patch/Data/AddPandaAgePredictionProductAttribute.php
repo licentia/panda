@@ -21,7 +21,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 17:55 GMT
+ * @modified   04/06/20, 01:28 GMT
  *
  */
 declare(strict_types=1);
@@ -76,7 +76,7 @@ class AddPandaAgePredictionProductAttribute implements DataPatchInterface, Patch
             \Magento\Catalog\Model\Product::ENTITY,
             'panda_age_prediction',
             [
-                'type'                    => 'int',
+                'type'                    => 'varchar',
                 'label'                   => 'Panda Age Prediction',
                 'input'                   => 'select',
                 'source'                  => \Licentia\Equity\Model\Source\Product\Attribute\Ages::class,
