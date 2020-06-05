@@ -20,7 +20,7 @@
  * @author     Bento Vilas Boas <bento@licentia.pt>
  * @copyright  Copyright (c) Licentia - https://licentia.pt
  * @license    GNU General Public License V3
- * @modified   03/06/20, 16:01 GMT
+ * @modified   04/06/20, 21:23 GMT
  *
  */
 
@@ -46,9 +46,9 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Exceptions
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Licentia_Panda::exceptions');
         $resultPage->getConfig()
-                   ->getTitle()->prepend(__('Exceptions'));
+                   ->getTitle()->prepend(__('Issues'));
         $resultPage->addBreadcrumb(__('Sales Automation'), __('Sales Automation'));
-        $resultPage->addBreadcrumb(__('Exceptions'), __('Exceptions'));
+        $resultPage->addBreadcrumb(__('Exceptions'), __('Issues'));
 
         return $resultPage;
     }
