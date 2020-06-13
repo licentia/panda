@@ -84,9 +84,9 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
 
         $customerSetup->addAttribute(
             Customer::ENTITY,
-            'panda_twofactor_enable',
+            'panda_twofactor_enabled',
             [
-                'label'                 => 'Two-Factor Enable',
+                'label'                 => 'Panda - Two-Factor Auth Enable',
                 'input'                 => 'boolean',
                 'type'                  => 'int',
                 'source'                => '',
@@ -102,7 +102,7 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
             ]
         );
 
-        $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'panda_twofactor_enable');
+        $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'panda_twofactor_enabled');
         $attribute->addData([
             'used_in_forms' => [
                 'adminhtml_customer',
@@ -125,7 +125,7 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
         $this->moduleDataSetup->getConnection()->startSetup();
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->removeAttribute(\Magento\Customer\Model\Customer::ENTITY, 'panda_twofactor_enable');
+        $customerSetup->removeAttribute(Customer::ENTITY, 'panda_twofactor_enabled');
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
