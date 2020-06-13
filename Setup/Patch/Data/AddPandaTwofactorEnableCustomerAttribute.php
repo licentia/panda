@@ -84,7 +84,7 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
 
         $customerSetup->addAttribute(
             Customer::ENTITY,
-            'panda_twofactor_enabled',
+            \Licentia\Equity\Model\TwoFactor::ATTRIBUTE_PANDA_TWOFACTOR_ENABLED,
             [
                 'label'                 => 'Panda - Two-Factor Auth Enable',
                 'input'                 => 'boolean',
@@ -102,7 +102,9 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
             ]
         );
 
-        $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'panda_twofactor_enabled');
+        $attribute = $customerSetup->getEavConfig()
+                                   ->getAttribute(Customer::ENTITY,
+                                       \Licentia\Equity\Model\TwoFactor::ATTRIBUTE_PANDA_TWOFACTOR_ENABLED);
         $attribute->addData([
             'used_in_forms' => [
                 'adminhtml_customer',
@@ -125,7 +127,8 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
         $this->moduleDataSetup->getConnection()->startSetup();
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->removeAttribute(Customer::ENTITY, 'panda_twofactor_enabled');
+        $customerSetup->removeAttribute(Customer::ENTITY,
+            \Licentia\Equity\Model\TwoFactor::ATTRIBUTE_PANDA_TWOFACTOR_ENABLED);
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
