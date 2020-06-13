@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright (C) Licentia, Unipessoal LDA
  *
@@ -17,6 +16,7 @@
  *  @license    https://www.greenflyingpanda.com/panda-license.txt
  *
  */
+
 declare(strict_types=1);
 
 namespace Licentia\Panda\Setup\Patch\Data;
@@ -30,7 +30,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Framework\Setup\Patch\PatchRevertableInterface;
 
-class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, PatchRevertableInterface
+class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, PatchRevertableInterface
 {
 
     /**
@@ -84,11 +84,11 @@ class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, Pa
 
         $customerSetup->addAttribute(
             Customer::ENTITY,
-            'panda_twofactor_number',
+            'panda_twofactor_enable',
             [
-                'label'                 => 'Two-Factor Auth Mobile Number',
-                'input'                 => 'text',
-                'type'                  => 'varchar',
+                'label'                 => 'Two-Factor Enable',
+                'input'                 => 'boolean',
+                'type'                  => 'int',
                 'source'                => '',
                 'required'              => false,
                 'position'              => 333,
@@ -102,7 +102,7 @@ class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, Pa
             ]
         );
 
-        $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'panda_twofactor_number');
+        $attribute = $customerSetup->getEavConfig()->getAttribute(Customer::ENTITY, 'panda_twofactor_enable');
         $attribute->addData([
             'used_in_forms' => [
                 'adminhtml_customer',
@@ -125,7 +125,7 @@ class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, Pa
         $this->moduleDataSetup->getConnection()->startSetup();
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->removeAttribute(Customer::ENTITY, 'panda_twofactor_number');
+        $customerSetup->removeAttribute(\Magento\Customer\Model\Customer::ENTITY, 'panda_twofactor_enable');
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
