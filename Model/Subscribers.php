@@ -95,6 +95,11 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
         self::STATUS_UNSUBSCRIBED => 'Unsubscribed',
     ];
 
+    const GENDER_LIST = [
+        1 => 'Male',
+        2 => 'Female',
+    ];
+
     /**
      * Prefix of model events names
      *

@@ -36,6 +36,8 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
 
     const ERROR_INVALID_STATUS = 'invalidStatus';
 
+    const ERROR_INVALID_GENDER = 'invalidGender';
+
     const ERROR_INVALID_CELLPHONE = 'invalidCellphone';
 
     /**
@@ -119,6 +121,11 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
             $valid = false;
         }
 
+        if (isset($value['gender']) &&
+            !in_array($value['gender'], \Licentia\Panda\Model\Subscribers::GENDER_LIST)) {
+            $this->_addMessages([self::ERROR_INVALID_GENDER]);
+            $valid = false;
+        }
         if (isset($value['status']) &&
             !in_array($value['status'], \Licentia\Panda\Model\Subscribers::AVAILABLE_STATUS)) {
             $this->_addMessages([self::ERROR_INVALID_STATUS]);

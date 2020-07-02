@@ -22,6 +22,7 @@ namespace Licentia\Panda\Model\Import;
 use Magento\CatalogImportExport\Model\Import\Product as ImportProduct;
 use Magento\CatalogImportExport\Model\Import\Product\RowValidatorInterface as ValidatorInterface;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorInterface;
+use \Licentia\Panda\Model\Import\Validator\Customer;
 
 class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
 {
@@ -46,12 +47,11 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
      * @var array
      */
     protected $_messageTemplates = [
-        ValidatorInterface::ERROR_SKU_IS_EMPTY                                     => 'Email is empty',
-        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_CUSTOMER_ID => 'Invalid Customer ID',
-        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_EMAIL       => 'Invalid Email',
-        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_DATE        => 'Invalid Date',
-        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_CELLPHONE   => 'Invalid Cellphone',
-        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_STATUS      => 'Invalid Status',
+        ValidatorInterface::ERROR_SKU_IS_EMPTY => 'Email is empty',
+        Customer::ERROR_INVALID_CUSTOMER_ID    => 'Invalid Customer ID',
+        Customer::ERROR_INVALID_EMAIL          => 'Invalid Email',
+        Customer::ERROR_INVALID_DATE           => 'Invalid Date',
+        Customer::ERROR_INVALID_CELLPHONE      => 'Invalid Cellphone',
     ];
 
     /**
@@ -174,7 +174,7 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\CatalogImportExport\Model\Import\Product\StoreResolver $storeResolver,
         \Licentia\Panda\Model\SubscribersFactory $subscribersFactory,
-        \Licentia\Panda\Model\Import\Validator\Customer $customerValidator
+        Customer $customerValidator
     ) {
 
         $this->validColumnNames = \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS;
@@ -190,6 +190,11 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         $this->oldEmails = $this->retrieveOldEmails();
         $this->errorAggregator = $errorAggregator;
         $this->customerValidator = $customerValidator;
+
+        $this->_messageTemplates[Customer::ERROR_INVALID_STATUS] = 'Invalid Status. Available:' . implode(',',
+                \Licentia\Panda\Model\Subscribers::AVAILABLE_STATUS);
+        $this->_messageTemplates[Customer::ERROR_INVALID_GENDER] = 'Invalid Gender. Available:' . implode(',',
+                \Licentia\Panda\Model\Subscribers::GENDER_LIST);
 
         foreach (array_merge($this->errorMessageTemplates, $this->_messageTemplates) as $errorCode => $message) {
             $this->getErrorAggregator()->addErrorMessageTemplate($errorCode, $message);
@@ -237,7 +242,7 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         // BEHAVIOR_DELETE use specific validation logic
         if (\Magento\ImportExport\Model\Import::BEHAVIOR_DELETE == $this->getBehavior()) {
             if (!isset($rowData[self::COL_EMAIL])) {
-                $this->addRowError(ValidatorInterface::ERROR_SKU_IS_EMPTY, $rowNum);
+                $this->addRowError(Customer::ERROR_INVALID_EMAIL, $rowNum);
 
                 return false;
             }
