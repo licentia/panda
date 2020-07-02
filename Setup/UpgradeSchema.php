@@ -105,5 +105,17 @@ class UpgradeData implements UpgradeDataInterface
             }
         }
 
+        if (version_compare($context->getVersion(), '3.6.0', '<')) {
+
+            try {
+                $setup->run(
+                    "ALTER TABLE `{$setup->getTable('panda_subscribers')}`ADD COLUMN `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER `cellphone`"
+                );
+
+            } catch (\Exception $e) {
+
+            }
+        }
+
     }
 }
