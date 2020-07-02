@@ -55,6 +55,14 @@
         </arguments>
     </type>
 
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="panda_subscribers" xsi:type="string">Licentia_Panda</item>
+            </argument>
+        </arguments>
+    </type>
+
     <type name="Licentia\Panda\Model\ResourceModel\Followup\Grid\Collection">
         <arguments>
             <argument name="mainTable" xsi:type="string">panda_campaigns_followup</argument>

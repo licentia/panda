@@ -177,7 +177,7 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
             $this->customersIds = $this->connection->fetchCol(
                 $this->connection->select()
                                  ->from(
-                                     $this->resourceConnection->getTableName('customer_entity', 'entity_id')
+                                     $this->resourceConnection->getTableName('customer_entity'), 'entity_id'
                                  )
             );
         }

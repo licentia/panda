@@ -33,6 +33,8 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
 
     const COL_STORE_ID = 'store_id';
 
+    const COL_STORE = 'store';
+
     const COL_STATUS = 'status';
 
     const TABLE_SUBSCRIBERS = 'panda_subscribers';
@@ -60,15 +62,6 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
      * @var bool
      */
     protected $needColumnCheck = true;
-
-    /**
-     * Valid column names.
-     *
-     * @array
-     */
-    protected $validColumnNames = [
-        self::COL_EMAIL,
-    ];
 
     /**
      * Need to log in import history
@@ -199,17 +192,6 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         foreach (array_merge($this->errorMessageTemplates, $this->_messageTemplates) as $errorCode => $message) {
             $this->getErrorAggregator()->addErrorMessageTemplate($errorCode, $message);
         }
-    }
-
-    /**
-     * @param $type
-     *
-     * @return mixed
-     */
-    protected function _getValidator($type)
-    {
-
-        return $this->_validators[$type];
     }
 
     /**
@@ -379,12 +361,12 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
                 $rowEmail = $rowData[self::COL_EMAIL];
                 $listEmails[] = $rowEmail;
 
+                if (!empty($rowData[self::COL_STORE])) {
+                    $subscribers[$rowEmail]['store_id'] = $this->getStoreId($rowData[self::COL_STORE]);
+                }
+
                 $subscribers[$rowEmail] = array_intersect_key($rowData,
                     array_flip(\Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS));
-
-                if (!empty($rowData[self::COL_STORE_ID])) {
-                    $subscribers[$rowEmail]['store_id'] = $this->getStoreId($rowData[self::COL_STORE_ID]);
-                }
 
                 if (!empty($rowData[self::COL_STATUS])) {
                     $subscribers[$rowEmail]['status'] = array_search($subscribers[$rowEmail]['status'],

@@ -112,6 +112,12 @@ class UpgradeData implements UpgradeDataInterface
                     "ALTER TABLE `{$setup->getTable('panda_subscribers')}`ADD COLUMN `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER `cellphone`"
                 );
 
+                $setup->run("DROP TABLE `{$setup->getTable('panda_segments_prices_idx')}");
+
+                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments_prices')}` ADD UNIQUE `PANDA_SEGMENTS_PRICES_UNIQUE` (`product_id`, `segment_id`, `website_id`) ");
+
+                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `code` varchar(255) DEFAULT NULL COMMENT 'null' AFTER `name`;");
+
             } catch (\Exception $e) {
 
             }

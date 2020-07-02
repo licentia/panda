@@ -4,12 +4,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -128,7 +128,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory
      */
-    protected $indexCollection;
+    protected $pricesCollection;
 
     /**
      * @var \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory
@@ -247,7 +247,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory     $attrCollection
      * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory   $eavAttributeCollection
      * @param \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection
-     * @param \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory                 $indexCollection
+     * @param \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory                 $pricesCollection
      * @param \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory              $indexerCollection
      * @param \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory                 $quoteCollection
      * @param \Magento\Framework\Encryption\EncryptorInterface                             $encryptorInterface
@@ -276,7 +276,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attrCollection,
         \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory $eavAttributeCollection,
         \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection,
-        \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory $indexCollection,
+        \Licentia\Equity\Model\ResourceModel\Prices\CollectionFactory $pricesCollection,
         \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory $indexerCollection,
         \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory $quoteCollection,
         \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface,
@@ -314,7 +314,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->design = $designInterface;
         $this->quoteSession = $quoteSession;
         $this->listSegmentsCollection = $listSegmentsCollection;
-        $this->indexCollection = $indexCollection;
+        $this->pricesCollection = $pricesCollection;
         $this->indexerCollection = $indexerCollection;
         $this->storeManager = $storeManagerInterface;
         $this->attributeCollection = $attrCollection;
@@ -951,12 +951,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $websiteId = $this->storeManager->getWebsite()->getId();
 
-        $model = $this->indexCollection->create()
-                                       ->addFieldToFilter('product_id', $product->getId())
-                                       ->addFieldToFilter('segment_id', ['in' => $customerSegmentsIds])
-                                       ->addFieldToFilter('website_id', $websiteId)
-                                       ->setOrder('price', 'ASC')
-                                       ->setPageSize(1);
+        $model = $this->pricesCollection->create()
+                                        ->addFieldToFilter('product_id', $product->getId())
+                                        ->addFieldToFilter('segment_id', ['in' => $customerSegmentsIds])
+                                        ->setOrder('price', 'ASC')
+                                        ->setPageSize(1);
+
+        $model->getSelect()->where('website_id=0 OR website_id=?', $websiteId);
 
         if ($model->count() != 1) {
             return $previousPrice;
