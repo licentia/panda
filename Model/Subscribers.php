@@ -88,6 +88,13 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
      */
     const STATUS_UNCONFIRMED = 4;
 
+    const AVAILABLE_STATUS = [
+        self::STATUS_NOT_ACTIVE   => 'Not Active',
+        self::STATUS_SUBSCRIBED   => 'Subscribed',
+        self::STATUS_UNCONFIRMED  => 'Unconfirmed',
+        self::STATUS_UNSUBSCRIBED => 'Unsubscribed',
+    ];
+
     /**
      * Prefix of model events names
      *
@@ -830,77 +837,6 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     {
 
         return $this->subscriberCoreFactory->create()->loadByEmail($this->getEmail())->isSubscribed();
-    }
-
-    /**
-     * @param $file
-     * @param $form
-     *
-     * @return array
-     * @throws \Exception
-     */
-    public function import($file, $form)
-    {
-
-        ini_set('auto_detect_line_endings', true);
-
-        $row = 1;
-        $new = 0;
-        $updated = 0;
-        if (($handle = fopen($file, "r")) !== false) {
-            while (($data = fgetcsv($handle, 0, $form['separator'])) !== false) {
-                if ($row == 1) {
-                    foreach ($data as $key => $tData) {
-                        $tData = lcfirst($tData);
-                        $tData = strtolower(preg_replace('/\s/', "_", $tData));
-                        $data[$key] = preg_replace('/\W/si', "", $tData);
-                    }
-
-                    $map = $data;
-                    #$map = array_intersect($data, \Licentia\Panda\Model\Subscribers::AVAILABLE_IMPORT_FIELDS);
-
-                    $row++;
-                    continue;
-                }
-
-                $data = array_combine($map, array_map('trim', $data));
-
-                if (!isset($data['email'])) {
-                    throw new \Exception('Email column not found');
-                }
-
-                if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                    continue;
-                }
-
-                /** @var Subscribers $subscriber */
-                $subscriber = $this->subscribersFactory->create()->loadByEmail($data['email']);
-
-                if (!$subscriber->getId()) {
-                    $new++;
-                } else {
-                    $updated++;
-                }
-
-                if (!isset($data['store_id'])) {
-                    $data['store_id'] = $form['store_id'];
-                }
-                if (!isset($data['status'])) {
-                    $data['status'] = self::STATUS_SUBSCRIBED;
-                }
-
-                $data = array_intersect_key($data,
-                    array_flip(Subscribers::AVAILABLE_IMPORT_FIELDS));
-
-                $subscriber->addData($data)
-                           ->save();
-
-                $row++;
-            }
-            fclose($handle);
-        }
-
-        return ['added' => $new, 'updated' => $updated];
     }
 
     /**

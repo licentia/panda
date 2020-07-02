@@ -29,11 +29,6 @@
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item>
             </item>
-            <item name="import" xsi:type="array">
-                <item name="name" xsi:type="string">import</item>
-                <item name="label" xsi:type="string" translate="true">Import Subscribers</item>
-                <item name="url" xsi:type="string">*/*/import</item>
-            </item>
             <item name="extra" xsi:type="array">
                 <item name="name" xsi:type="string">extra</item>
                 <item name="label" xsi:type="string" translate="true">Extra Fields</item>

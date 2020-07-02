@@ -32,6 +32,8 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
 
     const COL_STORE_ID = 'store_id';
 
+    const COL_STATUS = 'status';
+
     const TABLE_SUBSCRIBERS = 'panda_subscribers';
 
     const VALIDATOR_MAIN = 'validator';
@@ -47,6 +49,9 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         ValidatorInterface::ERROR_SKU_IS_EMPTY                                     => 'Email is empty',
         \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_CUSTOMER_ID => 'Invalid Customer ID',
         \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_EMAIL       => 'Invalid Email',
+        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_DATE        => 'Invalid Date',
+        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_CELLPHONE   => 'Invalid Cellphone',
+        \Licentia\Panda\Model\Import\Validator\Customer::ERROR_INVALID_STATUS      => 'Invalid Status',
     ];
 
     /**
@@ -374,6 +379,11 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
 
                 if (!empty($rowData[self::COL_STORE_ID])) {
                     $subscribers[$rowEmail]['store_id'] = $this->getStoreId($rowData[self::COL_STORE_ID]);
+                }
+
+                if (!empty($rowData[self::COL_STATUS])) {
+                    $subscribers[$rowEmail]['status'] = array_search($subscribers[$rowEmail]['status'],
+                        \Licentia\Panda\Model\Subscribers::AVAILABLE_STATUS);
                 }
             }
 
