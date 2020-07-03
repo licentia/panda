@@ -116,7 +116,9 @@ class UpgradeData implements UpgradeDataInterface
 
                 $setup->run("ALTER TABLE `{$setup->getTable('panda_segments_prices')}` ADD UNIQUE `PANDA_SEGMENTS_PRICES_UNIQUE` (`product_id`, `segment_id`, `website_id`) ");
 
-                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `code` varchar(255) DEFAULT NULL COMMENT 'null' AFTER `name`;");
+                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `code` varchar(255) DEFAULT NULL  AFTER `name`");
+
+                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `number_products` smallint UNSIGNED DEFAULT '0' AFTER `websites_ids`");
 
             } catch (\Exception $e) {
 
