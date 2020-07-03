@@ -669,6 +669,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @return int
+     */
+    public function getCustomerGroupId()
+    {
+
+        return $this->customerSession->getCustomerGroupId();
+    }
+
+    /**
      * @return array
      */
     public function getCmsPages()

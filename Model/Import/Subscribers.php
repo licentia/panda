@@ -379,17 +379,17 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
                      ->processCountNewSubscribers($subscribers);
 
                 $this->saveSubscribersExecute($subscribers, self::TABLE_SUBSCRIBERS);
-                if ($listEmails) {
-                    $this->setUpdatedAt($listEmails);
+                if ($subscribers) {
+                    $this->setUpdatedAt($subscribers);
                 }
             }
         }
 
         if (\Magento\ImportExport\Model\Import::BEHAVIOR_REPLACE == $behavior) {
 
-            if ($listEmails) {
+            if ($subscribers) {
                 $this->processCountNewSubscribers($subscribers);
-                if ($this->deleteSubscribersFinal(array_unique($listEmails), self::TABLE_SUBSCRIBERS)) {
+                if ($this->deleteSubscribersFinal(array_unique($subscribers), self::TABLE_SUBSCRIBERS)) {
                     $this->saveSubscribersExecute($subscribers, self::TABLE_SUBSCRIBERS);
                     $this->setUpdatedAt($listEmails);
 
