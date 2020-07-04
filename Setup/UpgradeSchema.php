@@ -106,8 +106,42 @@ class UpgradeData implements UpgradeDataInterface
         }
 
         if (version_compare($context->getVersion(), '3.6.0', '<')) {
-
             try {
+
+                $setup->run(
+                    " CREATE TABLE `{$setup->getTable('panda_customer_prices')}` (
+                      `price_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `customer_id` int(10) unsigned NOT NULL,
+                      `product_id` int(10) unsigned NOT NULL,
+                      `website_id` smallint(5) unsigned NOT NULL,
+                      `price` decimal(12,4) NOT NULL,
+                      PRIMARY KEY (`price_id`),
+                      UNIQUE KEY `IDX_PANDA_CUSTOMER_PRICES_UNIQUE` (`customer_id`,`product_id`,`website_id`),
+                      KEY `IDX_PANDA_CUSTOMER_PRICES_CUSTID` (`customer_id`),
+                      KEY `IDX_PANDA_CUSTOMER_PRICES_PRODID` (`product_id`),
+                      KEY `IDX_PANDA_CUSTOMER_PRICES_WEBSITEID` (`website_id`),
+                      CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `{$setup->getTable('customer_entity')}` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                      CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_PRODID` FOREIGN KEY (`product_id`) REFERENCES `{$setup->getTable('catalog_product_entity')}` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                      CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `{$setup->getTable('store_website')}` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+                    "
+                );
+
+                $setup->run(
+                    " CREATE TABLE `{$setup->getTable('panda_segments_products')}` (
+                      `record_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                      `segment_id` int(10) unsigned NOT NULL,
+                      `product_id` int(10) unsigned NOT NULL,
+                      PRIMARY KEY (`record_id`),
+                      UNIQUE KEY `IDX_PANDA_SEGMENTS_PRODS_UNIQUE` (`product_id`,`segment_id`) USING BTREE,
+                      KEY `IDX_PANDA_SEGMENTS_PRODS_SEGID` (`segment_id`) USING BTREE,
+                      KEY `IDX_PANDA_SEGMENTS_PRODS_PRODID` (`product_id`) USING BTREE,
+                      CONSTRAINT `FK_PANDA_GROUPS_PRODS_PRODID` FOREIGN KEY (`product_id`) REFERENCES `{$setup->getTable('catalog_product_entity')}` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+                      CONSTRAINT `FK_PANDA_GROUPS_PRODS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `{$setup->getTable('panda_segments')}` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
+                      ) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+                    "
+                );
+
                 $setup->run(
                     "ALTER TABLE `{$setup->getTable('panda_subscribers')}`ADD COLUMN `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP AFTER `cellphone`"
                 );
