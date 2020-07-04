@@ -986,6 +986,34 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @param $customerId
+     * @param $product
+     * @param $previousPrice
+     *
+     * @return string
+     */
+    public function getCustomerPrice($customerId, $product, $previousPrice)
+    {
+
+        $resource = $this->categoryFactory->create()->getResource();
+        $connection = $resource->getConnection();
+
+        $productPrice = $connection->fetchOne(
+            $connection->select()
+                       ->from($resource->getTable('panda_customer_prices'), ['price'])
+                       ->where('customer_id=?', $customerId)
+                       ->where('product_id=?', $product->getId())
+        );
+
+        if (!$productPrice || $productPrice <= 0 || $productPrice > $previousPrice) {
+            return $previousPrice;
+        }
+
+        return $productPrice;
+
+    }
+
+    /**
      * @return array
      */
     public function getAttributes()
