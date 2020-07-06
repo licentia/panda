@@ -974,7 +974,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $price = $model->getFirstItem()->getPrice();
 
-        if ($this->scopeConfig->isSetFlag('panda_magna/prices/percentage')) {
+        if ($this->scopeConfig->isSetFlag('panda_prices/segments/percentage')) {
             $price = $previousPrice * $price / 100;
         }
 
