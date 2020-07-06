@@ -226,8 +226,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $exceptionsFactory;
 
     /**
+     * @var \Magento\Framework\DB\Adapter\AdapterInterface
+     */
+    protected $connection;
+
+    /**
+     * @var \Magento\Framework\Model\ResourceModel\AbstractResource|\Magento\Framework\Model\ResourceModel\Db\AbstractDb|null
+     */
+    protected $resource;
+
+    /**
      * Data constructor.
      *
+     * @param \Magento\Framework\DB\Adapter\AdapterInterface                               $connection
      * @param \Magento\Framework\App\Cache\TypeListInterface                               $typeList
      * @param \Magento\Framework\App\Cache\StateInterface                                  $cacheState
      * @param \Magento\Framework\HTTP\Client\Curl                                          $curl
@@ -247,13 +258,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory     $attrCollection
      * @param \Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\CollectionFactory   $eavAttributeCollection
      * @param \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection
-     * @param \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory                 $pricesCollection
+     * @param \Licentia\Equity\Model\ResourceModel\Prices\CollectionFactory                $pricesCollection
      * @param \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory              $indexerCollection
      * @param \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory                 $quoteCollection
      * @param \Magento\Framework\Encryption\EncryptorInterface                             $encryptorInterface
      * @param \Magento\Framework\ObjectManagerInterface                                    $objectManager
      * @param \Licentia\Panda\Model\SubscribersFactory                                     $subscribersFactory
      * @param \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory                $sendersCollection
+     * @param \Licentia\Panda\Model\ExceptionsFactory                                      $exceptionsFactory
      * @param \Licentia\Panda\Model\SendersFactory                                         $sendersFactory
      */
     public function __construct(
@@ -346,6 +358,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->cacheTypeList = $typeList;
         $this->_cacheState = $cacheState;
 
+        $this->resource = $productFactory->create()->getResource();
+        $this->connection = $this->resource->getConnection();
+
     }
 
     /**
@@ -371,13 +386,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return false;
         }
 
-        $resource = $this->subscribersFactory->create()->getResource();
-        $connection = $resource->getConnection();
-
-        $row = $connection->fetchRow(
-            $connection->select()
-                       ->from($resource->getTable('panda_identifiers'))
-                       ->where('code=?', $code)
+        $row = $this->connection->fetchRow(
+            $this->connection->select()
+                             ->from($this->resource->getTable('panda_identifiers'))
+                             ->where('code=?', $code)
         );
 
         return $area !== null ? $row[$area] : $row;
@@ -392,16 +404,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function addIdentifierValueFromArea($area, $value)
     {
 
-        $resource = $this->subscribersFactory->create()->getResource();
-        $connection = $resource->getConnection();
-        $table = $resource->getTable('panda_identifiers');
+        $table = $this->resource->getTable('panda_identifiers');
 
         $code = $this->cookieManager->getCookie(self::PANDA_COOKIE_NAME);
 
         if (!$code) {
             try {
                 $code = self::getToken();
-                $connection->insert($table, ['code' => $code, $area => $value]);
+                $this->connection->insert($table, ['code' => $code, $area => $value]);
 
                 $metadata = $this->cookieMetadataFactory->setDuration(3600 * 24 * 7)
                                                         ->setPath('/');
@@ -410,10 +420,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             } catch (\Exception $e) {
             }
         } else {
-            $result = $connection->update($table, [$area => $value], ['code=?' => $code]);
+            $result = $this->connection->update($table, [$area => $value], ['code=?' => $code]);
 
             if ($result == 0) {
-                $connection->insert($table, ['code' => $code, $area => $value]);
+                $this->connection->insert($table, ['code' => $code, $area => $value]);
             }
         }
 
@@ -431,11 +441,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
 
         if ($this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
-            $resource = $this->subscribersFactory->create()->getResource();
-            $connection = $resource->getConnection();
-            $table = $resource->getTable('panda_identifiers');
+            $table = $this->resource->getTable('panda_identifiers');
 
-            return $connection->update($table, [$area => $value], ['code=?' => $code]);
+            return $this->connection->update($table, [$area => $value], ['code=?' => $code]);
         }
 
         return false;
@@ -494,10 +502,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $collection->addFieldToFilter('main_table.items_count', ['neq' => '0'])
                    ->addFieldToFilter('main_table.is_active', '1');
 
-        $resource = $this->quoteCollection->create()->getResource();
         $collection->getSelect()
                    ->joinLeft(
-                       ['a' => $resource->getTable('quote_address')],
+                       ['a' => $this->resource->getTable('quote_address')],
                        'main_table.entity_id=a.quote_id AND a.address_type="billing"',
                        []
                    )
@@ -978,11 +985,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $price = $previousPrice * $price / 100;
         }
 
-        if ($previousPrice > $price) {
-            return $price;
-        }
-
-        return $previousPrice;
+        return min($previousPrice, $price);
     }
 
     /**
@@ -995,14 +998,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getCustomerPrice($customerId, $product, $previousPrice)
     {
 
-        $resource = $this->categoryFactory->create()->getResource();
-        $connection = $resource->getConnection();
-
-        $productPrice = $connection->fetchOne(
-            $connection->select()
-                       ->from($resource->getTable('panda_customer_prices'), ['price'])
-                       ->where('customer_id=?', $customerId)
-                       ->where('product_id=?', $product->getId())
+        $productPrice = $this->connection->fetchOne(
+            $this->connection->select()
+                             ->from($this->resource->getTable('panda_customer_prices'), ['price'])
+                             ->where('customer_id=?', $customerId)
+                             ->where('product_id=?', $product->getId())
         );
 
         if (!$productPrice || $productPrice <= 0 || $productPrice > $previousPrice) {
@@ -1528,33 +1528,30 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return;
         }
 
-        $resource = $this->categoryFactory->create()->getResource();
-
         $uri = ltrim($uri, '/');
         $type = false;
 
         if (stripos($uri, '.html') === false && stripos($uri, '/') === false && stripos($uri, ' ') === false) {
-            $select = $resource->getConnection()
-                               ->select()
-                               ->from($resource->getTable('catalog_product_entity'))
-                               ->where('sku=?', $uri)
-                               ->limit(1);
+            $select = $this->connection->select()
+                                       ->from($this->resource->getTable('catalog_product_entity'))
+                                       ->where('sku=?', $uri)
+                                       ->limit(1);
 
-            $row = $resource->getConnection()->fetchRow($select);
+            $row = $this->connection->fetchRow($select);
 
             if ($row) {
                 $type = 'product';
                 $id = $row['entity_id'];
             }
         } else {
-            $select = $resource->getConnection()
-                               ->select()
-                               ->from($resource->getTable('url_rewrite'))
-                               ->where('request_path=?', $uri)
-                               ->where('store_id=?', $this->storeManager->getStore()->getId())
-                               ->limit(1);
+            $select = $this->connection
+                ->select()
+                ->from($this->resource->getTable('url_rewrite'))
+                ->where('request_path=?', $uri)
+                ->where('store_id=?', $this->storeManager->getStore()->getId())
+                ->limit(1);
 
-            $row = $resource->getConnection()->fetchRow($select);
+            $row = $this->connection->fetchRow($select);
 
             if ($row) {
                 $type = $row['entity_type'];
@@ -1945,9 +1942,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function tableHasRecords($table)
     {
 
-        $resource = $this->sendersFactory->create()->getResource();
-
-        return $resource->getConnection()->fetchOne("SELECT * FROM " . $resource->getTable($table) . " LIMIT 1");
+        return $this->connection->fetchOne("SELECT * FROM " . $this->resource->getTable($table) . " LIMIT 1");
     }
 
     /**
