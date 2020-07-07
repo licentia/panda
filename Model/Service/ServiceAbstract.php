@@ -670,7 +670,8 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                 $errors = true;
             }
 
-            if ($campaign->getNumberRecipients() && $campaign->getNumberRecipients() >= $campaign->getTotalMessages()) {
+            if ($campaign->getNumberRecipients() &&
+                $campaign->getNumberRecipients() >= $campaign->getTotalMessages()) {
                 $i = 0;
                 break;
             }
@@ -872,7 +873,8 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
             if (!$subscriber->getId()) {
                 $message = $campaign->getMessage();
 
-            } elseif ($campaign->getTemplateFile() || ($messageTemplate && $messageTemplate->getTemplateFile())) {
+            } elseif ($campaign->getTemplateFile() ||
+                      ($messageTemplate && $messageTemplate->getTemplateFile())) {
                 if ($messageTemplate && $messageTemplate->getTemplateFile()) {
                     $fileName = $messageTemplate->getTemplateFile();
                 } else {
@@ -885,19 +887,6 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                 $block->setTemplate($fileName);
                 $message = $block->toHtml();
 
-                /*
-                ob_start();
-                try {
-                    extract(['campaign' => $campaign, 'subscriber' => $subscriber], EXTR_SKIP);
-
-                    include $fileName;
-                } catch (\Exception $exception) {
-                    ob_end_clean();
-                    throw $exception;
-                }
-
-                $message = ob_get_clean();
-                */
             }
 
             if ($subscriber->getStoreId() == 0) {
@@ -913,21 +902,21 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                                                         );
             }
 
-            if (stripos($message, '{{inlinecss') !== false) {
-                $message = $campaign->getMessageParsed();
+            $message = $campaign->getMessageParsed();
 
-                if (!$message) {
-                    $message = $this->getFilter()->applyInlineCss($campaign->getMessage());
-                    $this->campaignsFactory->create()
-                                           ->setData(
-                                               [
-                                                   'campaign_id'    => $campaign->getId(),
-                                                   'message_parsed' => $message,
-                                               ]
-                                           )
-                                           ->save();
+            if (!$message) {
+                try {
+                    $params = [
+                        'area'       => $this->getDesignConfig()->getArea(),
+                        'theme'      => $this->design->getDesignTheme()->getCode(),
+                        'themeModel' => $this->design->getDesignTheme(),
+                        'locale'     => $this->design->getLocale(),
+                    ];
+                    $message = $this->getFilter()->setDesignParams($params)->applyInlineCss($campaign->getMessage());
 
                     $campaign->setMessageParsed($message);
+                } catch (\Exception $e) {
+                    $this->pandaHelper->logException($e);
                 }
             }
 

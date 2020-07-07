@@ -3,12 +3,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -90,23 +90,23 @@ class Autoresponders extends \Magento\Backend\App\Action
             ini_set('display_errors', 1);
             error_reporting(-1);
 
+            $manager = \Magento\Framework\App\ObjectManager::getInstance();
+            #$manager->create('\Licentia\Reports\Cron\RebuildSalesStatsForYesterday')->execute();
+            #$manager->get('Licentia\Panda\Model\Splits')->cron();
 
-            \Magento\Framework\App\ObjectManager::getInstance()->create('\Licentia\Reports\Cron\RebuildSalesStatsForYesterday')->execute();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Splits')->cron();
-
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Products\Relations')->rebuildAvgDays();
-            #$order = \Magento\Framework\App\ObjectManager::getInstance()->create('Magento\Sales\Model\Order')->load(55);
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Autoresponders')->newOrder($order);
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Autoresponders')->cron();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Followup')->cron();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Campaigns')->queueCampaigns();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Service\Sms')->sendSms();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->activityRelated();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Bounces')->processBounces();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Stats')->randomStats();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Followup')->getSubscribersObject();
-            #\Magento\Framework\App\ObjectManager::getInstance()->get('Licentia\Panda\Model\Metadata')->rebuildCustomerMetadata();
+            #$manager->get('Licentia\Panda\Model\Products\Relations')->rebuildAvgDays();
+            #$order = $manager->create('Magento\Sales\Model\Order')->load(55);
+            #$manager->get('Licentia\Panda\Model\Autoresponders')->newOrder($order);
+            #$manager->get('Licentia\Panda\Model\Autoresponders')->cron();
+            #$manager->get('Licentia\Panda\Model\Followup')->cron();
+            $manager->get('Licentia\Panda\Model\Campaigns')->queueCampaigns();
+            $manager->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
+            #$manager->get('Licentia\Panda\Model\Service\Sms')->sendSms();
+            #$manager->get('Licentia\Panda\Model\Metadata')->activityRelated();
+            #$manager->get('Licentia\Panda\Model\Bounces')->processBounces();
+            #$manager->get('Licentia\Panda\Model\Stats')->randomStats();
+            #$manager->get('Licentia\Panda\Model\Followup')->getSubscribersObject();
+            #$manager->get('Licentia\Panda\Model\Metadata')->rebuildCustomerMetadata();
 
             die(__METHOD__);
         }

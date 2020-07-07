@@ -606,8 +606,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $this->customerId;
         }
 
-        if ($this->registry->registry('current_customer') &&
-            $this->registry->registry('current_customer')->getId()) {
+        if (is_numeric($this->registry->registry('current_customer'))) {
+            $this->customerId = $this->registry->registry('current_customer');
+        } elseif ($this->registry->registry('current_customer') &&
+                  $this->registry->registry('current_customer')->getId()) {
             $this->customerId = $this->registry->registry('current_customer')->getId();
         } elseif ($this->customerSession && $this->customerSession->getCustomer()) {
             $this->customerId = $this->customerSession->getCustomer()->getId();
