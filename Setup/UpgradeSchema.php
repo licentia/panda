@@ -154,6 +154,8 @@ class UpgradeData implements UpgradeDataInterface
 
                 $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `number_products` smallint UNSIGNED DEFAULT '0' AFTER `websites_ids`");
 
+                $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `build_after_event` varchar(255) DEFAULT NULL AFTER `build`");
+
                 $setup->run("ALTER TABLE `{$setup->getTable('panda_segments')}` ADD COLUMN `use_as_catalog` tinyint UNSIGNED DEFAULT 0 AFTER `websites_ids`");
 
             } catch (\Exception $e) {
