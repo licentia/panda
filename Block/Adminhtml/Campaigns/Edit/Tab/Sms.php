@@ -16,7 +16,9 @@
  *  @copyright  Copyright (c) Licentia - https://licentia.pt
  *  @license    https://www.greenflyingpanda.com/panda-license.txt
  *
- */mespace Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab;
+ */
+
+namespace Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab;
 
 /**
  * Class Email
