@@ -16,9 +16,7 @@
  *  @copyright  Copyright (c) Licentia - https://licentia.pt
  *  @license    https://www.greenflyingpanda.com/panda-license.txt
  *
- */
-
-namespace Licentia\Panda\Block\Adminhtml\Autoresponders\Edit\Tab;
+ */mespace Licentia\Panda\Block\Adminhtml\Autoresponders\Edit\Tab;
 
 /**
  * Class Data
@@ -177,46 +175,58 @@ class Data extends \Magento\Backend\Block\Widget\Form\Generic
         );
         $fieldset2 = $form->addFieldset('content_fieldset', ['legend' => __('Content')]);
 
-        $fieldset2->addField(
-            'tags',
-            'multiselect',
-            [
-                'label'  => __('Tags'),
-                'title'  => __('Tags'),
-                'name'   => 'tags',
-                'note'   => __('Tag this autoresponder with theses tags'),
-                'values' => $this->tagsFactory->create()
-                                              ->getAllTagsValues(),
-            ]
-        );
-        $options = $this->segmentsFactory->create()->getOptionArray('Any');
-        $fieldset2->addField(
-            'segments_ids',
-            'multiselect',
-            [
-                'name'     => 'segments_ids[]',
-                'label'    => __('Segment'),
-                'title'    => __('Segment'),
-                'required' => true,
-                'values'   => $options,
-            ]
-        );
-        $form->getElement('segments_ids')
-             ->setData('size', count($options) > 7 ? 7 : count($options));
+        $tags = $this->tagsFactory->create()->getAllTagsValues();
 
-        $options = $this->systemStore->getStoreValuesForForm();
-        array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
-        $fieldset2->addField(
-            'store_id',
-            'multiselect',
-            [
-                'name'     => 'store_id[]',
-                'label'    => __('Store View'),
-                'title'    => __('Store View'),
-                'required' => true,
-                'values'   => $options,
-            ]
-        );
+        if ($tags) {
+            $fieldset2->addField(
+                'tags',
+                'multiselect',
+                [
+                    'label'  => __('Tags'),
+                    'title'  => __('Tags'),
+                    'name'   => 'tags',
+                    'note'   => __('Tag this autoresponder with theses tags'),
+                    'values' => $tags,
+                ]
+            );
+        }
+
+        $options = $this->segmentsFactory->create()->getOptionArray('Any');
+
+        if (count($options) > 1) {
+            $fieldset2->addField(
+                'segments_ids',
+                'multiselect',
+                [
+                    'name'     => 'segments_ids[]',
+                    'label'    => __('Segment'),
+                    'title'    => __('Segment'),
+                    'required' => true,
+                    'values'   => $options,
+                    "class"    => 'small_input',
+                ]
+            );
+        }
+
+        $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
+
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $options = $this->systemStore->getStoreValuesForForm();
+            if (count($options) > 1) {
+                array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
+                $fieldset2->addField(
+                    'store_id',
+                    'multiselect',
+                    [
+                        'name'     => 'store_id[]',
+                        'label'    => __('Store View'),
+                        'title'    => __('Store View'),
+                        'required' => true,
+                        'values'   => $options,
+                    ]
+                );
+            }
+        }
 
         if ($this->_scopeConfig->getValue('panda_nuntius/info/customer_list')) {
             $fieldset2->addField(

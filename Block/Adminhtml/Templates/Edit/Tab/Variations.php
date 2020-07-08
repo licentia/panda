@@ -3,12 +3,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -132,19 +132,21 @@ class Variations extends \Magento\Backend\Block\Widget\Form\Generic
         $form->getElement('segments_ids')
              ->setData('size', count($options) > 7 ? 7 : count($options));
 
-        $options = $this->systemStore->getStoreValuesForForm();
-        array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
-        $fieldset->addField(
-            'store_id',
-            'multiselect',
-            [
-                'name'     => 'store_id[]',
-                'label'    => __('Store View'),
-                'title'    => __('Store View'),
-                'required' => true,
-                'values'   => $options,
-            ]
-        );
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $options = $this->systemStore->getStoreValuesForForm();
+            array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
+            $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name'     => 'store_id[]',
+                    'label'    => __('Store View'),
+                    'title'    => __('Store View'),
+                    'required' => true,
+                    'values'   => $options,
+                ]
+            );
+        }
 
         $fieldset->addField(
             'gender',

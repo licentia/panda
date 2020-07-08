@@ -16,9 +16,7 @@
  *  @copyright  Copyright (c) Licentia - https://licentia.pt
  *  @license    https://www.greenflyingpanda.com/panda-license.txt
  *
- */
-
-namespace Licentia\Panda\Block\Adminhtml\Subscriber\Edit\Tab;
+ */mespace Licentia\Panda\Block\Adminhtml\Subscriber\Edit\Tab;
 
 /**
  * Class Form
@@ -194,18 +192,20 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
-        $fieldset->addField(
-            'tags',
-            'multiselect',
-            [
-                'label'  => __('Tags'),
-                'title'  => __('Tags'),
-                'name'   => 'tags',
-                'note'   => __('Tag this subscriber with theses tags'),
-                'values' => $this->tagsFactory->create()
-                                              ->getAllTagsValues(),
-            ]
-        );
+        $tags = $this->tagsFactory->create()->getAllTagsValues();
+        if ($tags) {
+            $fieldset->addField(
+                'tags',
+                'multiselect',
+                [
+                    'label'  => __('Tags'),
+                    'title'  => __('Tags'),
+                    'name'   => 'tags',
+                    'note'   => __('Tag this subscriber with theses tags'),
+                    'values' => $tags,
+                ]
+            );
+        }
 
         /* Check is single store mode */
         if (!$this->_storeManager->isSingleStoreMode()) {

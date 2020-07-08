@@ -95,7 +95,8 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
 
         $current = $this->getAutoresponder();
 
-        $chains = $this->chainseditCollection->create()->addFieldToFilter('autoresponder_id', $current->getId());
+        $chains = $this->chainseditCollection->create()
+                                             ->addFieldToFilter('autoresponder_id', $current->getId());
 
         $store_all_id = [];
         $store_all_id[] = 0;

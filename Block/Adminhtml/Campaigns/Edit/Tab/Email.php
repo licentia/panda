@@ -4,21 +4,19 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
  *  @copyright  Copyright (c) Licentia - https://licentia.pt
  *  @license    https://www.greenflyingpanda.com/panda-license.txt
  *
- */
-
-namespace Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab;
+ */mespace Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab;
 
 /**
  * Class Email
@@ -234,54 +232,58 @@ class Email extends \Magento\Backend\Block\Widget\Form\Generic implements
             );
         }
 
-        $fieldset->addField(
-            'tags',
-            'multiselect',
-            [
-                'label'  => __('Tags'),
-                'title'  => __('Tags'),
-                'name'   => 'tags',
-                'note'   => __('Tag this campaign with these tags'),
-                'values' => $this->tagsFactory->create()
-                                              ->getAllTagsValues(),
-            ]
-        );
+        $tags = $this->tagsFactory->create()->getAllTagsValues();
+        if ($tags) {
+            $fieldset->addField(
+                'tags',
+                'multiselect',
+                [
+                    'label'  => __('Tags'),
+                    'title'  => __('Tags'),
+                    'name'   => 'tags',
+                    'note'   => __('Tag this campaign with theses tags'),
+                    'values' => $tags,
+                ]
+            );
+        }
 
         $options = $this->segmentsFactory->create()->getOptionArray('Ignore Field');
-        $fieldset->addField(
-            'segments_ids',
-            'multiselect',
-            [
-                'name'     => 'segments_ids[]',
-                'label'    => __('Segment'),
-                'title'    => __('Segment'),
-                'required' => true,
-                'values'   => $options,
-                "note"     => __(
-                    "Only send this campaign to subscribers that are in any of the selected segments above"
-                ),
-            ]
-        );
-        $form->getElement('segments_ids')
-             ->setData('size', count($options) > 7 ? 7 : count($options));
+        if (count($options) > 1) {
+            $fieldset->addField(
+                'segments_ids',
+                'multiselect',
+                [
+                    'name'     => 'segments_ids[]',
+                    'label'    => __('Segment'),
+                    'title'    => __('Segment'),
+                    'required' => true,
+                    'values'   => $options,
+                    "note"     => __(
+                        "Only send this campaign to subscribers that are in any of the selected segments above"
+                    ),
+                ]
+            );
+        }
+        $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
 
-        $options = $this->systemStore->getStoreValuesForForm();
-        array_unshift($options, ['label' => __('-- Ignore Field --'), 'value' => 0]);
-        $fieldset->addField(
-            'store_id',
-            'multiselect',
-            [
-                'name'     => 'store_id[]',
-                'label'    => __('Store View'),
-                'title'    => __('Store View'),
-                'required' => true,
-                'values'   => $options,
-                "note"     => __(
-                    "Only send this campaign to subscribers that are in any of the selected Store Views above"
-                ),
-            ]
-        );
-
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $options = $this->systemStore->getStoreValuesForForm();
+            array_unshift($options, ['label' => __('-- Ignore Field --'), 'value' => 0]);
+            $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name'     => 'store_id[]',
+                    'label'    => __('Store View'),
+                    'title'    => __('Store View'),
+                    'required' => true,
+                    'values'   => $options,
+                    "note"     => __(
+                        "Only send this campaign to subscribers that are in any of the selected Store Views above"
+                    ),
+                ]
+            );
+        }
         $fieldset->addField(
             'track',
             'select',

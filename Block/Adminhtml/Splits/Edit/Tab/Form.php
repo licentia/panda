@@ -4,12 +4,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -224,50 +224,55 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 
-        $fieldset->addField(
-            'tags',
-            'multiselect',
-            [
-                'label'  => __('Tags'),
-                'title'  => __('Tags'),
-                'name'   => 'tags',
-                'note'   => __('Tag this A/B campaign with these tags'),
-                'values' => $this->tagsFactory->create()
-                                              ->getAllTagsValues(),
-            ]
-        );
+        $tags = $this->tagsFactory->create()->getAllTagsValues();
+        if ($tags) {
+            $fieldset->addField(
+                'tags',
+                'multiselect',
+                [
+                    'label'  => __('Tags'),
+                    'title'  => __('Tags'),
+                    'name'   => 'tags',
+                    'note'   => __('Tag this A/B campaign with theses tags'),
+                    'values' => $tags,
+                ]
+            );
+        }
 
         $options = $this->segmentsFactory->create()->getOptionArray('Any');
-        $fieldset->addField(
-            'segments_ids',
-            'multiselect',
-            [
-                'name'     => 'segments_ids[]',
-                'label'    => __('Segment'),
-                'title'    => __('Segment'),
-                'required' => true,
-                'values'   => $options,
-            ]
-        );
-        $form->getElement('segments_ids')
-             ->setData(
-                 'size',
-                 count($options) > 7 ? 7 : count($options)
-             );
 
-        $options = $this->systemStore->getStoreValuesForForm();
-        array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
-        $fieldset->addField(
-            'store_id',
-            'multiselect',
-            [
-                'name'     => 'store_id[]',
-                'label'    => __('Store View'),
-                'title'    => __('Store View'),
-                'required' => true,
-                'values'   => $options,
-            ]
-        );
+        if (count($options) > 1) {
+            $fieldset->addField(
+                'segments_ids',
+                'multiselect',
+                [
+                    'name'     => 'segments_ids[]',
+                    'label'    => __('Segment'),
+                    'title'    => __('Segment'),
+                    'required' => true,
+                    'values'   => $options,
+                    "class"    => 'small_input',
+                ]
+            );
+        }
+
+        $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
+
+        if (!$this->_storeManager->isSingleStoreMode()) {
+            $options = $this->systemStore->getStoreValuesForForm();
+            array_unshift($options, ['label' => __('-- Any --'), 'value' => 0]);
+            $fieldset->addField(
+                'store_id',
+                'multiselect',
+                [
+                    'name'     => 'store_id[]',
+                    'label'    => __('Store View'),
+                    'title'    => __('Store View'),
+                    'required' => true,
+                    'values'   => $options,
+                ]
+            );
+        }
 
         $fieldset->addField(
             'track',
