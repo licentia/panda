@@ -364,6 +364,24 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @return \Magento\Framework\Model\ResourceModel\AbstractResource|\Magento\Framework\Model\ResourceModel\Db\AbstractDb|null
+     */
+    public function getResource()
+    {
+
+        return $this->resource;
+    }
+
+    /**
+     * @return false|\Magento\Framework\DB\Adapter\AdapterInterface
+     */
+    public function getConnection()
+    {
+
+        return $this->connection;
+    }
+
+    /**
      * @return \Magento\Newsletter\Model\Template\Filter
      */
     public function getTemplateProcessor()
