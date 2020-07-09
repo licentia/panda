@@ -930,18 +930,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         if (!$customerId) {
             return [];
         }
-
-        if ($this->customerSession && $this->customerSession->getSegmentsIds()) {
-            return (array) $this->customerSession->getSegmentsIds();
-        }
-
-        $segmentsIds = $this->listSegmentsCollection->create()
-                                                    ->addFieldToFilter('customer_id', $customerId)
-                                                    ->setOrder('priority', 'ASC')
-                                                    ->setOrder('segment_id', 'ASC')
-                                                    ->getAllIds('segment_id');
+        $segmentsIds = [];
 
         if ($this->customerSession) {
+
+            if ($this->customerSession->getSegmentsIds()) {
+                return (array) $this->customerSession->getSegmentsIds();
+            }
+
+            $segmentsIds = $this->connection->fetchCol(
+                $this->connection->select()
+                                 ->from($this->resource->getTable('panda_segments_records'), ['segment_id'])
+                                 ->where('email=? OR customer_id=' . (int) $customerId,
+                                     $this->customerSession->getCustomer()->getEmail())
+                                 ->order('segment_id ASC')
+            );
+
             $this->customerSession->setSegmentsIds($segmentsIds);
         }
 
