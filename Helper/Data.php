@@ -236,7 +236,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $resource;
 
     /**
-     * @var mixed|null
+     * @var \Magento\Framework\App\Http\Context
      */
     protected $httpContext;
 
@@ -633,7 +633,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $customerId = $this->httpContext->getValue(\Licentia\Equity\Model\Customer\Context::CONTEXT_CUSTOMER_ID);
         if ($customerId > 0) {
-            $this->customerId = $customerId;
+            $this->customerId = $customerId / 12;
         } elseif (is_numeric($this->registry->registry('current_customer'))) {
             $this->customerId = $this->registry->registry('current_customer');
         } elseif ($this->registry->registry('current_customer') &&
@@ -666,7 +666,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $this->subscriberCache;
         }
 
-        /** @var \Licentia\Panda\Model\Subscribers $subscriber */
         $subscriber = $this->subscribersFactory->create();
 
         if ($this->registry->registry('panda_subscriber') &&
