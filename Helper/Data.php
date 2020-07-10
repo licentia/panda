@@ -236,9 +236,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $resource;
 
     /**
+     * @var mixed|null
+     */
+    protected $httpContext;
+
+    /**
      * Data constructor.
      *
-     * @param \Magento\Framework\DB\Adapter\AdapterInterface                               $connection
      * @param \Magento\Framework\App\Cache\TypeListInterface                               $typeList
      * @param \Magento\Framework\App\Cache\StateInterface                                  $cacheState
      * @param \Magento\Framework\HTTP\Client\Curl                                          $curl
@@ -304,14 +308,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->objectManager = $objectManager;
 
         if (stripos(php_sapi_name(), "cli") === false) {
-            $customerSession = $this->objectManager->create('\Magento\Customer\Model\Session');
-            $persistentHelper = $this->objectManager->create('\Magento\Persistent\Helper\Session');
-            $quoteSession = $this->objectManager->create('\Magento\Backend\Model\Session\Quote');
-            $cookieManager = $this->objectManager->create('\Magento\Framework\Stdlib\CookieManagerInterface');
-            $cookieMetadata = $this->objectManager->create('\Magento\Framework\Stdlib\Cookie\PublicCookieMetadata');
-            $session = $this->objectManager->create('\Licentia\Panda\Model\Session');
+            $httpContext = $this->objectManager->get('\Magento\Framework\App\Http\Context');
+            $customerSession = $this->objectManager->get('\Magento\Customer\Model\Session');
+            $persistentHelper = $this->objectManager->get('\Magento\Persistent\Helper\Session');
+            $quoteSession = $this->objectManager->get('\Magento\Backend\Model\Session\Quote');
+            $cookieManager = $this->objectManager->get('\Magento\Framework\Stdlib\CookieManagerInterface');
+            $cookieMetadata = $this->objectManager->get('\Magento\Framework\Stdlib\Cookie\PublicCookieMetadata');
+            $session = $this->objectManager->get('\Licentia\Panda\Model\Session');
             $templateFilter = $this->objectManager->create('\Magento\Newsletter\Model\Template\Filter');
         } else {
+            $httpContext = null;
             $customerSession = null;
             $persistentHelper = null;
             $quoteSession = null;
@@ -321,6 +327,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $templateFilter = null;
         }
 
+        $this->httpContext = $httpContext;
         $this->cacheManager = $cacheManager;
         $this->timezone = $timezone;
         $this->design = $designInterface;
@@ -624,7 +631,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $this->customerId;
         }
 
-        if (is_numeric($this->registry->registry('current_customer'))) {
+        $customerId = $this->httpContext->getValue(\Licentia\Equity\Model\Customer\Context::CONTEXT_CUSTOMER_ID);
+        if ($customerId > 0) {
+            $this->customerId = $customerId;
+        } elseif (is_numeric($this->registry->registry('current_customer'))) {
             $this->customerId = $this->registry->registry('current_customer');
         } elseif ($this->registry->registry('current_customer') &&
                   $this->registry->registry('current_customer')->getId()) {
