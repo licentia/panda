@@ -559,7 +559,7 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                                      ->from($this->getResource()->getTable('panda_messages_history'), ['subscriber_id'])
                                      ->where('campaign_id=?', $campaign->getId());
 
-        $subscribers->getSelect()->where("subscriber_id NOT IN ($historySelect)");
+        $subscribers->getSelect()->where("main_table.subscriber_id NOT IN ($historySelect)");
 
         $subscribers->setOrder('store_id');
         $buildFrom = $campaign->getSenderId();
@@ -1208,7 +1208,8 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
                     }
                 }
 
-                if ($subscriberGender == 'ignore' and in_array($subscriber->getGender(), ['male', 'female'])) {
+                if ($subscriberGender == 'ignore' &&
+                    in_array($subscriber->getGender(), ['male', 'female'])) {
                     continue;
                 }
 
@@ -1220,7 +1221,8 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
             if ($template->getSegmentsIds()) {
                 $segmentsIds = explode(',', $template->getSegmentsIds());
 
-                $segs = $this->listSegmentsFactory->create()->addFieldToFilter('email', $subscriber->getEmail());
+                $segs = $this->listSegmentsFactory->create()
+                                                  ->addFieldToFilter('email', $subscriber->getEmail());
 
                 $res = [];
                 /** @var \Licentia\Equity\Model\Segments $seg */

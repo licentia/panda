@@ -4,12 +4,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -19,6 +19,11 @@
  */
 
 namespace Licentia\Panda\Model\Service;
+
+use Laminas\Mail\Message;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
 
 /**
  * Class Smtp
@@ -137,10 +142,13 @@ class Smtp extends ServiceAbstract
                 continue;
             }
 
-            $mail = new \Zend_Mail('UTF-8');
+            $mail = new Message();
+            $mail->setBody(self::getMessageBody($message->getMessage()));
+            $contentTypeHeader = $mail->getHeaders()->get('Content-Type');
+            $contentTypeHeader->setType('multipart/alternative');
+
             $mail->addTo($message->getEmail(), $message->getName());
             $mail->setSubject($message->getSubject());
-            $mail->setBodyHtml($message->getMessage());
             $mail->setFrom($message->getSenderEmail(), $message->getSenderName());
 
             if ($sender->getReplyTo() && !$mail->getReplyTo()) {
@@ -161,10 +169,10 @@ class Smtp extends ServiceAbstract
                         $mail->setReplyTo($value);
                     }
                     if ($name == 'return-path') {
-                        $mail->setReturnPath($value);
+                        $mail->getHeaders()->addHeaderLine('Return-Path', $value);
                     }
                 } else {
-                    $mail->addHeader($name, $value);
+                    $mail->getHeaders()->addHeaderLine($name, $value);
                 }
             }
 
@@ -179,7 +187,7 @@ class Smtp extends ServiceAbstract
 
                 $archive->setData($data)->save();
 
-                $mail->send($transport);
+                $transport->send($mail);
 
                 $campaignData[$campaign->getId()]['sent'] = $campaignData[$campaign->getId()]['sent'] + 1;
 
@@ -280,8 +288,11 @@ class Smtp extends ServiceAbstract
 
         $transport = $this->pandaHelper->getSmtpTransport($sender);
 
-        $mail = new \Zend_Mail('UTF-8');
-        $mail->setBodyHtml($message);
+        $mail = new Message();
+        $mail->setBody(self::getMessageBody($message));
+        $contentTypeHeader = $mail->getHeaders()->get('Content-Type');
+        $contentTypeHeader->setType('multipart/alternative');
+
         $mail->setFrom($email, $sender->getName());
 
         $hasRecipient = false;
@@ -301,10 +312,10 @@ class Smtp extends ServiceAbstract
             $mail->setReplyTo($sender->getReplyTo());
         }
 
-        $mail->setSubject('Test Message - Magento|Green Flying Panda');
+        $mail->setSubject('Test Message - Magento | Green Flying Panda');
 
         try {
-            $mail->send($transport);
+            $transport->send($mail);
             if (!$test) {
                 $this->messageManager->addSuccessMessage(
                     __('Message sent to %1', implode(' ', (array) $email))
@@ -333,7 +344,7 @@ class Smtp extends ServiceAbstract
 
             if (strlen($sender->getBouncesEmail()) > 0) {
                 try {
-                    new \Zend_Mail_Storage_Imap($config);
+                    new \Laminas\Mail\Storage\Imap($config);
                     $this->messageManager->addSuccessMessage(
                         __('Everything Seems To Be OK with your Bounces Configuration!!!')
                     );
@@ -343,5 +354,29 @@ class Smtp extends ServiceAbstract
                 }
             }
         }
+    }
+
+    /**
+     * @param $messageBody
+     *
+     * @return MimeMessage
+     */
+    public static function getMessageBody($messageBody)
+    {
+
+        $text = new MimePart(strip_tags($messageBody));
+        $text->type = Mime::TYPE_TEXT;
+        $text->charset = 'utf-8';
+        $text->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+        $html = new MimePart($messageBody);
+        $html->type = Mime::TYPE_HTML;
+        $html->charset = 'utf-8';
+        $html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+        $body = new MimeMessage();
+        $body->setParts([$text, $html]);
+
+        return $body;
     }
 }

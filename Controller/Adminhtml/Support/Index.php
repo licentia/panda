@@ -19,6 +19,11 @@
 
 namespace Licentia\Panda\Controller\Adminhtml\Support;
 
+use Laminas\Mail\Message;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
+
 /**
  * Class Index
  *
@@ -46,7 +51,7 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
     }
 
     /**
-     * @return $this|\Magento\Backend\Model\View\Result\Page
+     * @return \Magento\Backend\Model\View\Result\Page|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Redirect|\Magento\Framework\Controller\ResultInterface|void
      */
     public function execute()
     {
@@ -67,32 +72,40 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
 
                 $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
 
-                $mail = new \Zend_Mail('UTF-8');
-                $mail->addTo($email, 'Panda Support');
-                $mail->setBodyHtml($msg);
-                $mail->setSubject('Contact - Panda Support');
-                $mail->setFrom($sender->getEmail(), $sender->getName());
-                $mail->addCc($params['email'], $params['name']);
-                $mail->setReplyTo($params['email'], $params['name']);
+                $html = new MimePart($msg);
+                $html->type = Mime::TYPE_HTML;
+                $html->charset = 'utf-8';
+                $html->encoding = Mime::ENCODING_QUOTEDPRINTABLE;
+
+                $message = new Message();
 
                 if ($params['attach'] == 1) {
-                    $content = $this->debugHelper->getCreateDumpFile();
-                    $attachment = new \Zend_Mime_Part($content);
-                    $attachment->type = 'plain/text';
-                    $attachment->disposition = \Zend_Mime::DISPOSITION_ATTACHMENT;
-                    $attachment->encoding = \Zend_Mime::ENCODING_BASE64;
-                    $attachment->filename = 'report.log';
+                    $image = new MimePart($this->debugHelper->getCreateDumpFile());
+                    $image->type = 'plain/text';
+                    $image->filename = 'report.log';
+                    $image->disposition = Mime::DISPOSITION_ATTACHMENT;
+                    $image->encoding = Mime::ENCODING_BASE64;
 
-                    $mail->addAttachment($attachment);
+                    $body = new MimeMessage();
+                    $body->setParts([$html, $image]);
+                    $message->setBody($body);
+                    $contentTypeHeader = $message->getHeaders()->get('Content-Type');
+                    $contentTypeHeader->setType('multipart/related');
+
+                } else {
+                    $message->setBody(\Licentia\Panda\Model\Service\Smtp::getMessageBody($msg));
                 }
+
+                $message->addTo($email, 'Panda Support');
+                $message->setSubject('Contact - Panda Support');
+                $message->setFrom($sender->getEmail(), $sender->getName());
+                $message->addCc($params['email'], $params['name']);
+                $message->setReplyTo($params['email'], $params['name']);
 
                 $transport = $this->pandaHelper->getSmtpTransport($sender);
 
-                $t = $mail->send($transport);
+                $transport->send($message);
 
-                if ($t === false) {
-                    throw new \Magento\Framework\Exception\LocalizedException(__('Unable to send. Please send an email to support@greenflyingpanda.com'));
-                }
                 $this->messageManager->addSuccessMessage(__('Your request has been sent'));
                 $this->_getSession()->setFormData([]);
             } catch (\Exception $e) {

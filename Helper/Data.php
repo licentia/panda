@@ -1797,7 +1797,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @param $sender
      *
-     * @return bool|\Zend_Mail_Transport_Smtp
+     * @return bool|\Laminas\Mail\Transport\Smtp
      * @throws \Exception
      */
     public function getSmtpTransport($sender)
@@ -1811,26 +1811,35 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             throw new \Exception('No sender available');
         }
 
-        $config = ['auth' => $sender->getData('auth'), 'port' => $sender->getData('port')];
-
-        if ($sender->getData('ssl') != 'none') {
-            $config['ssl'] = $sender->getData('ssl');
-        }
-
         if (strlen(trim($sender->getData('server'))) == 0) {
             return false;
         }
 
-        if ($sender->getData('auth') != 'none') {
-            $config['username'] = $sender->getData('username');
-            $config['password'] = $sender->getData('password');
-        } else {
-            unset($config['auth']);
-        }
-
         $server = $sender->getData('server');
 
-        return new \Zend_Mail_Transport_Smtp($server, $config);
+        $optionsData = [
+            'name'             => 'localhost',
+            'host'             => $server,
+            'port'             => $sender->getData('port'),
+            'connection_class' => $sender->getData('auth'),
+        ];
+
+        if ($sender->getData('auth') != 'none') {
+            $optionsData['connection_config'] = [
+                'username' => $sender->getData('username'),
+                'password' => $sender->getData('password'),
+            ];
+        } else {
+            unset($optionsData['auth']);
+        }
+
+        if ($sender->getData('ssl') != 'none') {
+            $optionsData['connection_config']['ssl'] = $sender->getData('ssl');
+        }
+
+        $options = new \Laminas\Mail\Transport\SmtpOptions($optionsData);
+
+        return new \Laminas\Mail\Transport\Smtp($options);
     }
 
     /**

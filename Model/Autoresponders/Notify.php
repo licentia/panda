@@ -27,6 +27,10 @@ namespace Licentia\Panda\Model\Autoresponders;
  */
 
 use Magento\Framework\Model;
+use Laminas\Mail\Message;
+use Laminas\Mime\Message as MimeMessage;
+use Laminas\Mime\Mime;
+use Laminas\Mime\Part as MimePart;
 
 /**
  * Class Notify
@@ -287,18 +291,20 @@ EOL;
                 );
             }
 
-            $mail = new \Zend_Mail('UTF-8');
-            $mail->setBodyHtml($message);
-
             $sender = $this->sendersFactory->create()->load($data['sender_id']);
 
             $transport = $this->pandaHelper->getSmtpTransport($sender);
+
+            $mail = new Message();
+            $mail->setBody(\Licentia\Panda\Model\Service\Smtp::getMessageBody($message));
+            $contentTypeHeader = $mail->getHeaders()->get('Content-Type');
+            $contentTypeHeader->setType('multipart/alternative');
 
             $mail->setFrom($sender->getData('email'), $sender->getData('name'))
                  ->addTo($email)
                  ->setSubject($subject);
 
-            $mail->send($transport);
+            $transport->send($mail);
         } catch (\Exception $e) {
         }
     }

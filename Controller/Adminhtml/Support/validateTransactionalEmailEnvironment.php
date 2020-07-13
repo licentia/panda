@@ -3,12 +3,12 @@
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
- *  
+ *
  *  This source file is subject to the EULA
  *  that is bundled with this package in the file LICENSE.txt.
  *  It is also available through the world-wide-web at this URL:
  *  https://www.greenflyingpanda.com/panda-license.txt
- *  
+ *
  *  @title      Licentia Panda - Magento® Sales Automation Extension
  *  @package    Licentia
  *  @author     Bento Vilas Boas <bento@licentia.pt>
@@ -64,29 +64,40 @@ class validateTransactionalEmailEnvironment extends \Licentia\Panda\Controller\A
                 throw new \Exception('Please fill the Server Details in the frame above');
             }
 
-            $config = ['auth' => $smtp['auth'], 'port' => $smtp['port']];
+            $optionsData = [
+                'name'             => 'localhost',
+                'host'             => $smtp['server'],
+                'port'             => $smtp['port'],
+                'connection_class' => $smtp['auth'],
+            ];
+
+            if ($smtp['auth'] != 'none') {
+                $optionsData['connection_config'] = [
+                    'username' => $smtp['username'],
+                    'password' => $this->encryptor->decrypt($smtp['password']),
+                ];
+            } else {
+                unset($optionsData['auth']);
+            }
 
             if ($smtp['ssl'] != 'none') {
-                $config['ssl'] = $smtp['ssl'];
-            }
-            if ($smtp['auth'] != 'none') {
-                $config['username'] = $smtp['username'];
-                $config['password'] = $this->encryptor->decrypt($smtp['password']);
-            } else {
-                unset($config['auth']);
+                $optionsData['connection_config']['ssl'] = $smtp['ssl'];
             }
 
-            $transport = new \Zend_Mail_Transport_Smtp($smtp['server'], $config);
+            $options = new \Laminas\Mail\Transport\SmtpOptions($optionsData);
+            $transport = new \Laminas\Mail\Transport\Smtp($options);
 
-            $mail = new \Zend_Mail('UTF-8');
+            $mail = new \Laminas\Mail\Message();
             $mail->setFrom($fromEmail, $fromName);
             $mail->setSubject('Test Transactional Settings for: ' . $siteName);
 
-            $message = "Hi there,<br><br>This is a test message from $siteName to verify Transactional Mail Settings.<br><br>If you can read this its because everything is working as expected<br>Regards";
+            $message = "Hi there,<br><br>This is a test message from $siteName to verify " .
+                       "Transactional Mail Settings.<br><br>If you can read this its because " .
+                       "everything is working as expected<br>Regards";
 
-            $mail->setBodyHtml($message);
+            $mail->setBody(\Licentia\Panda\Model\Service\Smtp::getMessageBody($message));
             $mail->addTo($email);
-            $mail->send($transport);
+            $transport->send($mail);
 
             $this->messageManager->addSuccessMessage(
                 'Everything seems to be OK with your Transactional Email Settings'

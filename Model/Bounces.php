@@ -147,7 +147,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
             $maxBounces = $this->getMaxBounces();
 
             try {
-                $mail = new \Zend_Mail_Storage_Imap($config);
+                $mail = new \Laminas\Mail\Storage\Imap($config);
             } catch (\Exception $e) {
                 $this->pandaHelper->logWarning($e);
 
@@ -174,9 +174,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
                     $campaignId = (int) end($c);
                     $reason = end($code);
 
-                    /** @var Subscribers $subscriber */
                     $subscriber = $this->subscribersFactory->create()->load($subscriberId);
-                    /** @var Campaigns $campaign */
                     $campaign = $this->campaignsFactory->create()->load($campaignId);
                     if (!$subscriber->getId() || !$campaign->getId()) {
                         #$mail->removeMessage($number);
