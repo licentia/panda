@@ -943,11 +943,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * @param bool|false $customerId
+     * @param bool $customerId
+     * @param bool $forceReload
      *
      * @return array
      */
-    public function getCustomerSegmentsIds($customerId = false)
+    public function getCustomerSegmentsIds($customerId = false, $forceReload = false)
     {
 
         if ($customerId === false) {
@@ -959,7 +960,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         }
         $segmentsIds = [];
 
-        if ($this->customerSession) {
+        if ($this->customerSession || $forceReload) {
 
             if ($this->customerSession->getSegmentsIds()) {
                 return (array) $this->customerSession->getSegmentsIds();
