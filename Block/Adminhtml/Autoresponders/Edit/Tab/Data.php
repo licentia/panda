@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
@@ -208,9 +208,8 @@ class Data extends \Magento\Backend\Block\Widget\Form\Generic
                     "class"    => 'small_input',
                 ]
             );
+            $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
         }
-
-        $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
 
         if (!$this->_storeManager->isSingleStoreMode()) {
             $options = $this->systemStore->getStoreValuesForForm();

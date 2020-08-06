@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
@@ -124,7 +124,7 @@ class AddPandaAcquisitionCampaignCustomerAttribute implements DataPatchInterface
         $this->moduleDataSetup->getConnection()->startSetup();
         /** @var CustomerSetup $customerSetup */
         $customerSetup = $this->customerSetupFactory->create(['setup' => $this->moduleDataSetup]);
-        $customerSetup->removeAttribute(\Magento\Customer\Model\Customer::ENTITY, 'panda_acquisition_campaign');
+        $customerSetup->removeAttribute(Customer::ENTITY, 'panda_acquisition_campaign');
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }

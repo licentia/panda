@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
@@ -71,11 +71,11 @@ class AddPandaAgePredictionProductAttribute implements DataPatchInterface, Patch
             [
                 'type'                    => 'varchar',
                 'label'                   => 'Panda Age Prediction',
-                'input'                   => 'select',
+                'input'                   => 'multiselect',
                 'source'                  => \Licentia\Equity\Model\Source\Product\Attribute\Ages::class,
                 'frontend'                => '',
                 'required'                => false,
-                'backend'                 => '',
+                'backend'                 => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
                 'sort_order'              => '400',
                 'global'                  => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'default'                 => null,

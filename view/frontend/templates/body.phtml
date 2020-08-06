@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
@@ -42,7 +42,7 @@ $paramsEncode = json_encode($paramsEncode);
                     url: '<?= /* @noEscape */ $block->getUrl('panda/service/process') ?>',
                     type: "POST",
                     dataType: 'json',
-                    data:  <?= /* @noEscape */ $paramsEncode ?>
+                    data: <?= /* @noEscape */ $paramsEncode ?>
                 });
                 <?php if ($helper->delayAjaxLoads()) : ?>
             }

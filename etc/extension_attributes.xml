@@ -1,5 +1,4 @@
-<?xml version="1.0" ?>
-<!--
+<?xml version="1.0" ?><!--
   ~ Copyright (C) Licentia, Unipessoal LDA
   ~
   ~ NOTICE OF LICENSE
@@ -20,5 +19,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
 	<extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
 		<attribute code="panda_twofactor_number" type="string"/>
+		<attribute code="panda_age_prediction" type="string"/>
 	</extension_attributes>
 </config>

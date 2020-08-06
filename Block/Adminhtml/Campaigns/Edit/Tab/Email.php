@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Copyright (C) Licentia, Unipessoal LDA
  *
  * NOTICE OF LICENSE
@@ -265,8 +265,8 @@ class Email extends \Magento\Backend\Block\Widget\Form\Generic implements
                     ),
                 ]
             );
+            $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
         }
-        $form->getElement('segments_ids')->setData('size', count($options) > 7 ? 7 : count($options));
 
         if (!$this->_storeManager->isSingleStoreMode()) {
             $options = $this->systemStore->getStoreValuesForForm();

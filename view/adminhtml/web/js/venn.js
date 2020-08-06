@@ -432,7 +432,7 @@
                 }
             }
 
-            // if the reflected point is worse than the second worst, we need to
+                // if the reflected point is worse than the second worst, we need to
             // contract
             else if (reflected.fx >= simplex[N - 1].fx) {
                 var shouldReduce = false;
