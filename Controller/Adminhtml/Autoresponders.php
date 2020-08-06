@@ -83,6 +83,7 @@ class Autoresponders extends \Magento\Backend\App\Action
 
         parent::__construct($context);
 
+        /*
         $i = 0;
 
         if ($i) {
@@ -109,6 +110,8 @@ class Autoresponders extends \Magento\Backend\App\Action
 
             die(__METHOD__);
         }
+
+        */
 
         $this->resultForwardFactory = $resultForwardFactory;
         $this->resultPageFactory = $resultPageFactory;
