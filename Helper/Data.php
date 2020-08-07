@@ -863,6 +863,15 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @return \Magento\Framework\Encryption\EncryptorInterface
+     */
+    public function getEncryptor()
+    {
+
+        return $this->encryptor;
+    }
+
+    /**
      * @param $start
      * @param $end
      *
