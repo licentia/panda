@@ -74,6 +74,10 @@
     width: 100px;
 }
 
+.column_200 {
+    width: 200px;
+}
+
 a.pandahelp:hover {
     color: black;
     text-decoration: none;
