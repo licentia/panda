@@ -38,7 +38,7 @@ class UpgradeData implements UpgradeDataInterface
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
 
-        if (version_compare($context->getVersion(), '3.5.0', '<')) {
+        if (version_compare($context->getVersion(), '1.3.0', '<')) {
 
             try {
 
@@ -81,6 +81,43 @@ class UpgradeData implements UpgradeDataInterface
                 );
 
                 $setup->run(
+                    "CREATE TABLE `{$setup->getTable('panda_import')}` (
+                      `record_id` int unsigned NOT NULL AUTO_INCREMENT,
+                      `name` varchar(255) NOT NULL,
+                      `description` varchar(255) DEFAULT NULL,
+                      `entity_type` varchar(255) NOT NULL,
+                      `import_behavior` varchar(255) NOT NULL,
+                      `cron` varchar(255) DEFAULT NULL,
+                      `cron_expression` varchar(255) DEFAULT NULL,
+                      `on_error` varchar(255) NOT NULL,
+                      `is_active` tinyint NOT NULL,
+                      `field_separator` varchar(255) NOT NULL,
+                      `fields_enclosure` tinyint DEFAULT NULL,
+                      `_import_field_separator` varchar(255) DEFAULT NULL,
+                      `_import_empty_attribute_value_constant` varchar(255) DEFAULT NULL,
+                      `_import_multiple_value_separator` varchar(255) DEFAULT NULL,
+                      `server_type` varchar(255) NOT NULL,
+                      `file_directory` varchar(255) NOT NULL,
+                      `file_name` varchar(255) NOT NULL,
+                      `import_images_file_dir` varchar(255) DEFAULT NULL,
+                      `ftp_host` varchar(255) DEFAULT NULL,
+                      `ftp_port` varchar(255) DEFAULT NULL,
+                      `ftp_username` varchar(255) DEFAULT NULL,
+                      `ftp_password` varchar(255) DEFAULT NULL,
+                      `ftp_file_mode` varchar(255) DEFAULT NULL,
+                      `ftp_passive_mode` tinyint unsigned DEFAULT NULL,
+                      `failed_email_recipient` varchar(255) NOT NULL,
+                      `failed_email_sender` varchar(255) NOT NULL,
+                      `failed_email_copy_method` varchar(255) DEFAULT NULL,
+                      `last_executed` datetime DEFAULT NULL,
+                      `next_execution` datetime DEFAULT NULL,
+                      `after_import` varchar(255) DEFAULT NULL,
+                      `last_execution_status` varchar(255) DEFAULT NULL,
+                      PRIMARY KEY (`record_id`)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - Import Schedule'"
+                );
+
+                $setup->run(
                     "CREATE TABLE `{$setup->getTable('panda_two_factor_attempts_admin')}` (
                       `attempt_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                       `user_id` int(10) unsigned DEFAULT NULL,
@@ -100,13 +137,6 @@ class UpgradeData implements UpgradeDataInterface
                       PRIMARY KEY (`exception_id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 "
                 );
-            } catch (\Exception $e) {
-
-            }
-        }
-
-        if (version_compare($context->getVersion(), '3.6.0', '<')) {
-            try {
 
                 $setup->run(
                     " CREATE TABLE `{$setup->getTable('panda_customer_prices')}` (
