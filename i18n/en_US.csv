@@ -1,25 +1,922 @@
-"Save Autoresponder","Save Autoresponder"
-"Delete Autoresponder","Delete Autoresponder"
-"Save and Continue Edit","Save and Continue Edit"
+Access,Access
+"Select Entity to restrict access to","Select Entity to restrict access to"
+"Save Access","Save Access"
+"Delete Access","Delete Access"
 Save,Save
 "Save & Close","Save & Close"
-"Edit Autoresponder '%1'","Edit Autoresponder '%1'"
-"New Autoresponder","New Autoresponder"
-Content,Content
-Tags,Tags
-"Tag this autoresponder with theses tags","Tag this autoresponder with theses tags"
+"Variation of ","Variation of "
+.,.
+"Edit Message Access '%1'","Edit Message Access '%1'"
+"New Message Access","New Message Access"
+"Block Information","Block Information"
+"General Information","General Information"
+"Internal Name","Internal Name"
 Segment,Segment
-"-- Any --","-- Any --"
-"Store View","Store View"
-"Previous Customers","Previous Customers"
-No,No
+". ' SKU'",". ' SKU'"
+"Is Active","Is Active"
 Yes,Yes
-"If this autoresponder should be sent to previous customers instead of current subscribers.","If this autoresponder should be sent to previous customers instead of current subscribers."
-Status,Status
-Active,Active
-Inactive,Inactive
+No,No
 "Active From Date","Active From Date"
 "Active To Date","Active To Date"
+"Access Information","Access Information"
+ID,ID
+Name,Name
+Status,Status
+Inactive,Inactive
+Active,Active
+"Customer Coupons","Customer Coupons"
+"Customer Prices","Customer Prices"
+SKU,SKU
+Price,Price
+Delete,Delete
+"Are you sure?","Are you sure?"
+"Extra Costs","Extra Costs"
+"Add new Extra Cost","Add new Extra Cost"
+"Save Extra Cost","Save Extra Cost"
+"Delete Extra Cost","Delete Extra Cost"
+"Edit Extra Cost '%1'","Edit Extra Cost '%1'"
+"New Extra Cost","New Extra Cost"
+Settings,Settings
+"Shipping Method","Shipping Method"
+"Payment Methods","Payment Methods"
+Title,Title
+Description,Description
+"Amount Invested","Amount Invested"
+"Sales Goal","Sales Goal"
+Campaign,Campaign
+"Campaign name used in Ads. The value of the variable: utm_campaign.
+                    <br>If you leave this field empty, the investment amount will be split trough all orders.
+                    <br>Use ""*"" (without quotes) to apply only to orders originated in campaigns.
+                    <br>Separate multiple campaigns names with a comma ,
+                    <br>Eg. *facebook =>For orders with campaigns where the campaign name starts with facebook
+                    <br>Eg. facebook* =>For orders with campaigns where the campaign name ends in facebook
+                    <br>Eg. facebook,google =>For orders where the campaign name is facebook or google
+                    <br>Eg. facebook,google* =>For orders where the campaign name is facebook or ends in google
+                    <br>Eg. * =>For orders with any campaigns","Campaign name used in Ads. The value of the variable: utm_campaign.
+                    <br>If you leave this field empty, the investment amount will be split trough all orders.
+                    <br>Use ""*"" (without quotes) to apply only to orders originated in campaigns.
+                    <br>Separate multiple campaigns names with a comma ,
+                    <br>Eg. *facebook =>For orders with campaigns where the campaign name starts with facebook
+                    <br>Eg. facebook* =>For orders with campaigns where the campaign name ends in facebook
+                    <br>Eg. facebook,google =>For orders where the campaign name is facebook or google
+                    <br>Eg. facebook,google* =>For orders where the campaign name is facebook or ends in google
+                    <br>Eg. * =>For orders with any campaigns"
+"Flat Fee per Order","Flat Fee per Order"
+"Variable Fee per Order","Variable Fee per Order"
+"Start Date","Start Date"
+"End Date","End Date"
+"Order ID","Order ID"
+"Order Amount","Order Amount"
+"Customer First Name","Customer First Name"
+"Customer Last Name","Customer Last Name"
+"Customer Email","Customer Email"
+"Qty Ordered","Qty Ordered"
+"Order Date","Order Date"
+"Imputed Cost","Imputed Cost"
+Order,Order
+View,View
+"Extra Costs Information","Extra Costs Information"
+"Extra Cost Information","Extra Cost Information"
+"Order Results","Order Results"
+"Extra Cost Name","Extra Cost Name"
+"Date Start","Date Start"
+"Date End","Date End"
+Formulas,Formulas
+"Edit Formulas","Edit Formulas"
+"Auto Update Options","Auto Update Options"
+"No Update","No Update"
+"Update Daily","Update Daily"
+"Update Weekly","Update Weekly"
+"Update Monthly","Update Monthly"
+"Customers Loyalty","Customers Loyalty"
+"Customer Loyalty Formula","Customer Loyalty Formula"
+"If the result of this formula is true, the customer will be treated as ""loyal"". Check the ""Help with Formulas"" tab on the left for help","If the result of this formula is true, the customer will be treated as ""loyal"". Check the ""Help with Formulas"" tab on the left for help"
+"Formula %1 Name ","Formula %1 Name "
+"Formula %1 Code ","Formula %1 Code "
+"Please always use operation signs:<br><br>[Wrong]<br>3 ( {number_orders} * {order_amount} )<br><br>[OK]<br>3 * ( {number_orders} * {order_amount} )","Please always use operation signs:<br><br>[Wrong]<br>3 ( {number_orders} * {order_amount} )<br><br>[OK]<br>3 * ( {number_orders} * {order_amount} )"
+"Formulas Information","Formulas Information"
+"Help with Formulas","Help with Formulas"
+Segments,Segments
+"New Segment","New Segment"
+"Save and Continue Edit","Save and Continue Edit"
+"This will refresh your segment next time your cron runs. Continue?","This will refresh your segment next time your cron runs. Continue?"
+"Refresh Records","Refresh Records"
+"Edit Segment '%s'","Edit Segment '%s'"
+"Add Segment","Add Segment"
+Segmentation,Segmentation
+"Customer Segment Conditions","Customer Segment Conditions"
+Conditions,Conditions
+Evolution,Evolution
+"Segment Name","Segment Name"
+"Manually Managed","Manually Managed"
+"If set to yes, only customers manually assigned will be part of this segment. Cannot be changed after.","If set to yes, only customers manually assigned will be part of this segment. Cannot be changed after."
+"Use Product Catalog","Use Product Catalog"
+"If set to yes, You will be allowed to use this segment as a product catalog","If set to yes, You will be allowed to use this segment as a product catalog"
+Code,Code
+"Segment Type","Segment Type"
+"Registered Customers","Registered Customers"
+"Registered Customers and Guest Users","Registered Customers and Guest Users"
+"Please save this information in order to specify the conditions for segmentation. Cannot be changed after.","Please save this information in order to specify the conditions for segmentation. Cannot be changed after."
+"Website Scope","Website Scope"
+"Build Reports for This Segment?","Build Reports for This Segment?"
+"Real Time Update","Real Time Update"
+"Live Update Options","Live Update Options"
+"When any of the selected events above is triggered, the segment for the customer will be built during the request","When any of the selected events above is triggered, the segment for the customer will be built during the request"
+"Segment Pricing?","Segment Pricing?"
+"Enable Product Pricing for Segment?","Enable Product Pricing for Segment?"
+"Restrict Access?","Restrict Access?"
+"Will be used to Restrict Access to Pages/Products/Categories?","Will be used to Restrict Access to Pages/Products/Categories?"
+Records,Records
+"Segment Information","Segment Information"
+General,General
+"Records Evolution","Records Evolution"
+"Products Assigned","Products Assigned"
+"Segments Evolutions","Segments Evolutions"
+Back,Back
+"Edit Segment","Edit Segment"
+"Delete ALL Records","Delete ALL Records"
+"Created at","Created at"
+"Total Records","Total Records"
+Variation,Variation
+CSV,CSV
+"Excel XML","Excel XML"
+Type,Type
+Customers,Customers
+"Customers & Guests","Customers & Guests"
+Update,Update
+Daily,Daily
+Weekly,Weekly
+Monthly,Monthly
+"Last Update","Last Update"
+"Manually Added","Manually Added"
+"Refresh Segment","Refresh Segment"
+"Cust. ID","Cust. ID"
+Email,Email
+gender,gender
+Country,Country
+Region,Region
+Payment,Payment
+Shipping,Shipping
+"Mark as Auto Added","Mark as Auto Added"
+"Mark as Manually Added","Mark as Manually Added"
+Remove,Remove
+Customer,Customer
+N/A,N/A
+"Open Product Pricing Formula Tester","Open Product Pricing Formula Tester"
+"Clear Segment Prices","Clear Segment Prices"
+"Clear Customer Prices","Clear Customer Prices"
+"Open Pricing Helper","Open Pricing Helper"
+"Clear ALL Subscriber Metadata and Rebuild","Clear ALL Subscriber Metadata and Rebuild"
+"Remove Attributes","Remove Attributes"
+"Segment Access removed.","Segment Access removed."
+"Something went wrong while deleting the Segments Access.","Something went wrong while deleting the Segments Access."
+"We can't find an Segments Access to delete.","We can't find an Segments Access to delete."
+"Message Access","Message Access"
+"Manage Message Access","Manage Message Access"
+"Invalid Entity Type.","Invalid Entity Type."
+"This Segment Access no longer exists.","This Segment Access no longer exists."
+"Edit Message Access","Edit Message Access"
+"New Segment Access","New Segment Access"
+"Segment Access","Segment Access"
+"Segments Access","Segments Access"
+"Sales Automation","Sales Automation"
+"You saved the Segment Access.","You saved the Segment Access."
+"Something went wrong while saving the Segment Access. Check the error log for more information.","Something went wrong while saving the Segment Access. Check the error log for more information."
+"Please select one or more Records.","Please select one or more Records."
+"Total of %1 record(s) were deleted.","Total of %1 record(s) were deleted."
+"Something went wrong while deleting the events.","Something went wrong while deleting the events."
+"You deleted the Note.","You deleted the Note."
+"Something went wrong while deleting the note.","Something went wrong while deleting the note."
+"We can't find an Note to delete.","We can't find an Note to delete."
+"Manage Extra Costs","Manage Extra Costs"
+"This Extra Cost no longer exists.","This Extra Cost no longer exists."
+"Edit Extra Cost","Edit Extra Cost"
+"Extra Cost","Extra Cost"
+"Costs will be updated next time your cron runs","Costs will be updated next time your cron runs"
+"You saved the Extra Cost.","You saved the Extra Cost."
+"Something went wrong while saving the Extra Cost. Check the error log for more information.","Something went wrong while saving the Extra Cost. Check the error log for more information."
+"You deleted the Formula.","You deleted the Formula."
+"Something went wrong while deleting the Formula.","Something went wrong while deleting the Formula."
+"We can't find an Formula to delete.","We can't find an Formula to delete."
+Types,Types
+"Manage Formulas","Manage Formulas"
+"This Formula no longer exists.","This Formula no longer exists."
+"Edit Formula","Edit Formula"
+"New Formula","New Formula"
+"Customer Value","Customer Value"
+"Formulas Results Updated. Check the Customers Kpi's for the updated records","Formulas Results Updated. Check the Customers Kpi's for the updated records"
+"Something went wrong while updating Formulas Results","Something went wrong while updating Formulas Results"
+"You saved the Formulas.","You saved the Formulas."
+"Something went wrong while saving the Formulas. Check the error log for more information.","Something went wrong while saving the Formulas. Check the error log for more information."
+"Product Not Found","Product Not Found"
+"Customer Not Found","Customer Not Found"
+"There is an error in your formula. Please make sure you only use variables and mathematical symbols: + - * / ( )","There is an error in your formula. Please make sure you only use variables and mathematical symbols: + - * / ( )"
+"Your formula is returning a null. Perhaps using stats that are empty","Your formula is returning a null. Perhaps using stats that are empty"
+"Customer KPIs","Customer KPIs"
+"Customers KPIs","Customers KPIs"
+"You deleted the Segment.","You deleted the Segment."
+"Something went wrong while deleting the Segment.","Something went wrong while deleting the Segment."
+"We can't find an Segment to delete.","We can't find an Segment to delete."
+"Customer Segments","Customer Segments"
+"Manage Segment","Manage Segment"
+"This Segment no longer exists.","This Segment no longer exists."
+"Segment records updated","Segment records updated"
+"Total of %1 record(s) were removed.","Total of %1 record(s) were removed."
+"Something went wrong while performing the action.","Something went wrong while performing the action."
+"Total of %1 record(s) were changed.","Total of %1 record(s) were changed."
+"All Customer Prices Removed Successfully","All Customer Prices Removed Successfully"
+"All Segments Prices Removed Successfully","All Segments Prices Removed Successfully"
+"Rebuilt in progress","Rebuilt in progress"
+"This segment no longer exists.","This segment no longer exists."
+"Report will be built next time your cron runs","Report will be built next time your cron runs"
+"Wrong Segment specified.","Wrong Segment specified."
+"This segment will be updated next time your cron runs. After that updates will occur in real time","This segment will be updated next time your cron runs. After that updates will occur in real time"
+"The segment has been saved.","The segment has been saved."
+"Something went wrong while saving the Segment. Check the error log for more information","Something went wrong while saving the Segment. Check the error log for more information"
+"Two-Factor Authentication - Customers","Two-Factor Authentication - Customers"
+"Two-Factor Authentication","Two-Factor Authentication"
+"Code sent successfully","Code sent successfully"
+"Error sending the code","Error sending the code"
+"Two-Factor Authentication - Admin","Two-Factor Authentication - Admin"
+"Invalid Cellphone. Please use the following format: CountryCode-CellphoneNumber. Ex: 351-989647542","Invalid Cellphone. Please use the following format: CountryCode-CellphoneNumber. Ex: 351-989647542"
+"Cellphone Successfully Updated","Cellphone Successfully Updated"
+"Code Sent.","Code Sent."
+"Something went wrong while sending the code.","Something went wrong while sending the code."
+"Something went wrong while sending updating your cellphone.","Something went wrong while sending updating your cellphone."
+"Invalid SMS Code. Please try again","Invalid SMS Code. Please try again"
+"Something went wrong while validating the code.","Something went wrong while validating the code."
+Category,Category
+Product,Product
+"CMS Page","CMS Page"
+"CMS Block","CMS Block"
+"Input must be a valid json string convertible into array","Input must be a valid json string convertible into array"
+"'Required indexes: ' .","'Required indexes: ' ."
+"Could not save Formula %1. Please check the Variables format. Additional info logged to the panda.log file","Could not save Formula %1. Please check the Variables format. Additional info logged to the panda.log file"
+"Could not save the formulas: %1","Could not save the formulas: %1"
+"Formulas with id ""%1"" does not exist.","Formulas with id ""%1"" does not exist."
+"Could not delete the Formulas: %1","Could not delete the Formulas: %1"
+title,title
+"Price should be greater than 0","Price should be greater than 0"
+"Duplicated records found in your segments prices. Products can only have one price per segment","Duplicated records found in your segments prices. Products can only have one price per segment"
+"Could not save the records: %1","Could not save the records: %1"
+"Records with id ""%1"" does not exist.","Records with id ""%1"" does not exist."
+"Could not delete the Records: %1","Could not delete the Records: %1"
+"Customer Segment","Customer Segment"
+Marketing,Marketing
+Payments,Payments
+Other,Other
+"Duplicated value for the field: Code","Duplicated value for the field: Code"
+"Account - Account Registration Date","Account - Account Registration Date"
+"Account - Days since Registration","Account - Days since Registration"
+"Activity - Days Since Last Activity","Activity - Days Since Last Activity"
+"Activity - Last Activity Date","Activity - Last Activity Date"
+"Activity - Number of visits","Activity - Number of visits"
+"Gender - Customer Gender","Gender - Customer Gender"
+"Age - Customer Age","Age - Customer Age"
+"Age - Customer Date of Birth","Age - Customer Date of Birth"
+"Age - Days to anniversary","Age - Days to anniversary"
+"Current Shopping Cart - Days with an abandoned cart","Current Shopping Cart - Days with an abandoned cart"
+"Current Shopping Cart - Shopping Cart Total","Current Shopping Cart - Shopping Cart Total"
+"Current Shopping Cart - Number of Products In Shopping Cart","Current Shopping Cart - Number of Products In Shopping Cart"
+"Current Shopping Cart - Products Qty in Shopping Cart","Current Shopping Cart - Products Qty in Shopping Cart"
+"Equity - Customer is Loyal","Equity - Customer is Loyal"
+"Equity - ","Equity - "
+"Order - Average Days Between Orders","Order - Average Days Between Orders"
+"Order - Days since last complete order","Order - Days since last complete order"
+"Order - Days since first complete order","Order - Days since first complete order"
+"Order - Days with a pending payment for an order","Order - Days with a pending payment for an order"
+"Order - Last complete order date","Order - Last complete order date"
+"Order - First Complete Order Date","Order - First Complete Order Date"
+"Order - Number of Orders","Order - Number of Orders"
+"Order - Number of Completed Orders","Order - Number of Completed Orders"
+"Order - Number of Completed Orders W/ Discount","Order - Number of Completed Orders W/ Discount"
+"Order - Percentage Orders W/ Discount","Order - Percentage Orders W/ Discount"
+"Order - Percentage of Completed Orders","Order - Percentage of Completed Orders"
+"Order - Lifetime Sales Subtotal","Order - Lifetime Sales Subtotal"
+"Order - Lifetime Sales Shipping","Order - Lifetime Sales Shipping"
+"Order - Lifetime Sales Taxes","Order - Lifetime Sales Taxes"
+"Order - Lifetime Sales Refunded","Order - Lifetime Sales Refunded"
+"Order - Lifetime Sales Profit","Order - Lifetime Sales Profit"
+"Order - Lifetime Sales Cost","Order - Lifetime Sales Cost"
+"Order - Lifetime Sales Discount","Order - Lifetime Sales Discount"
+"Order - Lifetime Sales Amount","Order - Lifetime Sales Amount"
+"Order - Lifetime Sales Average","Order - Lifetime Sales Average"
+"Order - Order Average for the last 1 year","Order - Order Average for the last 1 year"
+"Order - Order Amount for the last 1 year","Order - Order Amount for the last 1 year"
+"Order - Order Average previous to the last 1 year","Order - Order Average previous to the last 1 year"
+"Order - Order Amount previous to the last 1 year","Order - Order Amount previous to the last 1 year"
+"Order - Percentage of Global Average Order Amount","Order - Percentage of Global Average Order Amount"
+"Products - Viewed Products in the category","Products - Viewed Products in the category"
+"Products - Viewed Products in the last 7 days in the category","Products - Viewed Products in the last 7 days in the category"
+"Products - Views Products frequently in the category","Products - Views Products frequently in the category"
+"Products - Viewed Products with the attribute","Products - Viewed Products with the attribute"
+"Products - Viewed Products in the last 7 days with the attribute","Products - Viewed Products in the last 7 days with the attribute"
+"Products - Views Products frequently with the attribute","Products - Views Products frequently with the attribute"
+"Products - Bought Products with the attribute","Products - Bought Products with the attribute"
+"Products - Bought Products in the last 7 days with the attribute","Products - Bought Products in the last 7 days with the attribute"
+"Products - Bought Products frequently with the attribute","Products - Bought Products frequently with the attribute"
+"Products - Viewed products with SKU","Products - Viewed products with SKU"
+"Products - Viewed products with SKU in the last 7 days","Products - Viewed products with SKU in the last 7 days"
+"Products - Viewed products with SKU frequently","Products - Viewed products with SKU frequently"
+"Products - Bought products with SKU","Products - Bought products with SKU"
+"Products - Bought products with SKU in the last 7 days","Products - Bought products with SKU in the last 7 days"
+"Products - Bought products with SKU frequently","Products - Bought products with SKU frequently"
+"Reviews - Days since last review","Reviews - Days since last review"
+"Reviews - Last Review Date","Reviews - Last Review Date"
+"Reviews - Number of Reviews","Reviews - Number of Reviews"
+"Segments - Presence in Segment","Segments - Presence in Segment"
+Male,Male
+Female,Female
+"Open Chooser","Open Chooser"
+"Previous Order - Subtotal","Previous Order - Subtotal"
+"Previous Order - Total Items Quantity","Previous Order - Total Items Quantity"
+"Previous Order - Total Weight","Previous Order - Total Weight"
+"Previous Order - Payment Method","Previous Order - Payment Method"
+"Previous Order - Shipping Method","Previous Order - Shipping Method"
+"Previous Order - Billing Postcode","Previous Order - Billing Postcode"
+"Previous Order - Billing Region","Previous Order - Billing Region"
+"Previous Order - Billing State/Province","Previous Order - Billing State/Province"
+"Previous Order - Billing Country","Previous Order - Billing Country"
+"Previous Order - Purchase Date","Previous Order - Purchase Date"
+"Conditions combination","Conditions combination"
+"Previous Order Product attribute combination","Previous Order Product attribute combination"
+"Previous Order Products subselection","Previous Order Products subselection"
+"Subscriber Account","Subscriber Account"
+"Customer Searches","Customer Searches"
+"Customer Attribute","Customer Attribute"
+"Customer Activity","Customer Activity"
+"Previous Order - Cart Attribute","Previous Order - Cart Attribute"
+"Previous Order - SKU","Previous Order - SKU"
+"Customer Default Billing Address","Customer Default Billing Address"
+"Default Billing Address - Postcode","Default Billing Address - Postcode"
+"Default Billing Address - Region","Default Billing Address - Region"
+"Default Billing Address - State/Province","Default Billing Address - State/Province"
+"Default Billing Address - Country","Default Billing Address - Country"
+"Quantity in cart","Quantity in cart"
+"Price in cart","Price in cart"
+"Row total in cart","Row total in cart"
+"Order Attribute","Order Attribute"
+"Cart Item Attribute","Cart Item Attribute"
+"Product Attribute","Product Attribute"
+FOUND,FOUND
+"NOT FOUND","NOT FOUND"
+"If an item is %1 in a previous order cart with %2 of these conditions true:","If an item is %1 in a previous order cart with %2 of these conditions true:"
+"total quantity","total quantity"
+"total amount","total amount"
+is,is
+"is not","is not"
+"equals or greater than","equals or greater than"
+"equals or less than","equals or less than"
+"greater than","greater than"
+"less than","less than"
+"is one of","is one of"
+"is not one of","is not one of"
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:"
+"Searched For...","Searched For..."
+"Searched For... Recently","Searched For... Recently"
+"Searched for... Frequently","Searched for... Frequently"
+"Product SKU","Product SKU"
+Cellphone,Cellphone
+"Store View","Store View"
+"Subscribed from Form","Subscribed from Form"
+"Submitted entry in Form","Submitted entry in Form"
+"Extra Field","Extra Field"
+"Could not save the segments: %1","Could not save the segments: %1"
+"Segments with id ""%1"" does not exist.","Segments with id ""%1"" does not exist."
+"Could not delete the Segments: %1","Could not delete the Segments: %1"
+"-- Ignore --","-- Ignore --"
+Account,Account
+Address,Address
+Year,Year
+Month,Month
+"Special Price","Special Price"
+"Final Price","Final Price"
+Ignore,Ignore
+18-24,18-24
+25-34,25-34
+35-44,35-44
+45-54,45-54
+55-64,55-64
+65+,65+
+"Too many requests","Too many requests"
+message,message
+"Error Sending SMS","Error Sending SMS"
+"Customer variables cannot be used in the ""Product Prices"" section. Use the ""Customer Prices"" section","Customer variables cannot be used in the ""Product Prices"" section. Use the ""Customer Prices"" section"
+"A variable is required in your pricing formula. Eg: {p.price}","A variable is required in your pricing formula. Eg: {p.price}"
+"Your background segment updates have finished.","Your background segment updates have finished."
+"User Mobile Phone Number","User Mobile Phone Number"
+Edit,Edit
+"Delete ""${ $.$data.name }""","Delete ""${ $.$data.name }"""
+"Are you sure you wan't to delete the ""${ $.$data.name }"" segment access?","Are you sure you wan't to delete the ""${ $.$data.name }"" segment access?"
+"Are you sure you wan't to delete the ""${ $.$data.name }"" note?","Are you sure you wan't to delete the ""${ $.$data.name }"" note?"
+Formula,Formula
+Result,Result
+"View Records","View Records"
+"All Websites","All Websites"
+"Segment Prices","Segment Prices"
+Website,Website
+"Customer Coupons List","Customer Coupons List"
+"Created At","Created At"
+"Valid Until","Valid Until"
+"Order Status","Order Status"
+Used,Used
+"No Data","No Data"
+"Current rule values","Current rule values"
+"Customer KPI's","Customer KPI's"
+"This Customer is Loyal","This Customer is Loyal"
+"This Customer has yet to become Loyal","This Customer has yet to become Loyal"
+"Tags below will be replaced with real values when building the formula","Tags below will be replaced with real values when building the formula"
+"These tags refer to each individual customer","These tags refer to each individual customer"
+Variable,Variable
+Value,Value
+"Days Since Last Completed Order","Days Since Last Completed Order"
+"Days Since First Completed Order","Days Since First Completed Order"
+"Days Since Registration","Days Since Registration"
+"Number of Reviews","Number of Reviews"
+"Number of Orders","Number of Orders"
+"Number of Completed Orders","Number of Completed Orders"
+"Percentage of Completed Orders","Percentage of Completed Orders"
+"Total Order Amount","Total Order Amount"
+"Order Average","Order Average"
+"Percentage Order Amount Compared with Global Average","Percentage Order Amount Compared with Global Average"
+"Order Average in the Past 1 year","Order Average in the Past 1 year"
+"Orders Total in the Past 1 year","Orders Total in the Past 1 year"
+"Order Average before the Past 1 year","Order Average before the Past 1 year"
+"Orders Total before the Past 1 year","Orders Total before the Past 1 year"
+"Average of Days Between Orders","Average of Days Between Orders"
+"Total Shipping Amount","Total Shipping Amount"
+"Total Taxes Amount","Total Taxes Amount"
+"Total Subtotal Amount","Total Subtotal Amount"
+"Total Discount Amount","Total Discount Amount"
+"Total Profit Amount","Total Profit Amount"
+"Total Refunded Amount","Total Refunded Amount"
+"Total Cost Amount","Total Cost Amount"
+"Tags below will be replaced with real values when building formulas","Tags below will be replaced with real values when building formulas"
+"These tags refer to global values or period, and NOT to individual customers","These tags refer to global values or period, and NOT to individual customers"
+"Customer Retention Rate","Customer Retention Rate"
+"Rate of Discount (Check the Extension Configuration)","Rate of Discount (Check the Extension Configuration)"
+"Customer Lifespan (Check the Extension Configuration)","Customer Lifespan (Check the Extension Configuration)"
+"Global Number of Orders","Global Number of Orders"
+"Global Orders Average","Global Orders Average"
+"Average Global Number of Orders","Average Global Number of Orders"
+"Global Number of Completed Orders","Global Number of Completed Orders"
+"Global Orders Amount","Global Orders Amount"
+"Global Costs Amount","Global Costs Amount"
+"Global Refunded Amount","Global Refunded Amount"
+"Global Shipping Amount","Global Shipping Amount"
+"Global Taxes Amount","Global Taxes Amount"
+"Global Profit Amount","Global Profit Amount"
+"Getting current period, previous periods and date ranges from formulas","Getting current period, previous periods and date ranges from formulas"
+"<strong>n</strong> is not to be replaced with a value. Values to replace are the numbers","<strong>n</strong> is not to be replaced with a value. Values to replace are the numbers"
+Returns,Returns
+"Combined Orders Amount from All Orders","Combined Orders Amount from All Orders"
+"Combined Orders Amount from current period (year or month)","Combined Orders Amount from current period (year or month)"
+"Combined Orders Amount from previous period (year or month)","Combined Orders Amount from previous period (year or month)"
+"Combined Orders Amount from previous periods before current minus 1 (year or month)","Combined Orders Amount from previous periods before current minus 1 (year or month)"
+"Combined Orders Amount from previous after the specified (year or month)","Combined Orders Amount from previous after the specified (year or month)"
+"Combined Orders Amount from the specified year (2017)","Combined Orders Amount from the specified year (2017)"
+"Combined Orders Amount from years greater than the specified year (2017)","Combined Orders Amount from years greater than the specified year (2017)"
+"Combined Orders Amount from years less than the specified year (2017)","Combined Orders Amount from years less than the specified year (2017)"
+"Combined Orders Amount from the last 90 days","Combined Orders Amount from the last 90 days"
+"Tags below will be replaced with real values when build the campaign","Tags below will be replaced with real values when build the campaign"
+"New Shipment (with Tracking Number)","New Shipment (with Tracking Number)"
+"Tracking Title","Tracking Title"
+"Tracking Code","Tracking Code"
+"Order ID/Increment Number","Order ID/Increment Number"
+"Customer Name","Customer Name"
+"Order Id","Order Id"
+"Shipment Id","Shipment Id"
+"New Order && Order Status Change && Specific Product","New Order && Order Status Change && Specific Product"
+"Email Order Note","Email Order Note"
+"Payment Details","Payment Details"
+"Shipping Description","Shipping Description"
+"Product Pricing Formula Tester","Product Pricing Formula Tester"
+"Please make sure you only use variables and mathematical these symbols: + - * / ( )","Please make sure you only use variables and mathematical these symbols: + - * / ( )"
+"Customer ID/Email","Customer ID/Email"
+"Product Price","Product Price"
+"Override Product Price","Override Product Price"
+Test,Test
+"KPIs for Customer","KPIs for Customer"
+"Panda! Help Me!","Panda! Help Me!"
+"Pricing Variables","Pricing Variables"
+Info,Info
+"Statistical sales","Statistical sales"
+"Conditional Pricing","Conditional Pricing"
+"Two-Factor Authentication Required","Two-Factor Authentication Required"
+"Please insert the SMS code you received","Please insert the SMS code you received"
+"Do not ask again for this browser for the next %1 days","Do not ask again for this browser for the next %1 days"
+Continue,Continue
+"Resend SMS","Resend SMS"
+Logout,Logout
+"Please insert your cellphone number. This number will only be used to send Auth Codes","Please insert your cellphone number. This number will only be used to send Auth Codes"
+"Please use the following format: CountryCode-CellPhoneNumber. <br>Ex: 351-989647542","Please use the following format: CountryCode-CellPhoneNumber. <br>Ex: 351-989647542"
+"Update Cellphone","Update Cellphone"
+Actions,Actions
+"Mass Actions","Mass Actions"
+"Select All","Select All"
+"Unselect All","Unselect All"
+"Select Visible","Select Visible"
+"Unselect Visible","Unselect Visible"
+"Enable Two-Factor Authentication?","Enable Two-Factor Authentication?"
+"Two-Factor Authentication Phone Number","Two-Factor Authentication Phone Number"
+Forms,Forms
+"New Entry","New Entry"
+"Back to Form","Back to Form"
+"New Form","New Form"
+"View Entries","View Entries"
+"Save Form","Save Form"
+"Delete Form","Delete Form"
+"New Form Element","New Form Element"
+"Save Element","Save Element"
+"Save Element & Close","Save Element & Close"
+"Are you sure? This will remove saved data for this field. You can mark this element as inactive and it will not be displayed.","Are you sure? This will remove saved data for this field. You can mark this element as inactive and it will not be displayed."
+"Edit Form '%1'","Edit Form '%1'"
+"Add Element of type %1 to Form: %2","Add Element of type %1 to Form: %2"
+"Edit Element of type %1 in Form: %2","Edit Element of type %1 in Form: %2"
+"This is the name the customers will see","This is the name the customers will see"
+"Sort Order","Sort Order"
+"The order in which the element should be displayed","The order in which the element should be displayed"
+"Show In Frontend?","Show In Frontend?"
+"Show In Admin Grid?","Show In Admin Grid?"
+"How many stars to display?","How many stars to display?"
+"Allowed File Extensions","Allowed File Extensions"
+"Separate multiple with commas. eg: csv,pdf,png","Separate multiple with commas. eg: csv,pdf,png"
+"Max File Size","Max File Size"
+"In MB","In MB"
+"Protect from direct Access","Protect from direct Access"
+"""This file will be moved to the save patch specified in 'System/Green Flying Panda/Configuration/Forms', so no direct access trough an URL is possible"" .","""This file will be moved to the save patch specified in 'System/Green Flying Panda/Configuration/Forms', so no direct access trough an URL is possible"" ."
+Encrypt,Encrypt
+"Encrypt file contents. If enabled, the only whay to view the file is from the Admin Interface.","Encrypt file contents. If enabled, the only whay to view the file is from the Admin Interface."
+Placeholder,Placeholder
+"Require Email Validation","Require Email Validation"
+"Link Expiration","Link Expiration"
+"In Hours. No entries will be validated if the form is inactive. Consider add a hint to the email field stating this to the customer","In Hours. No entries will be validated if the form is inactive. Consider add a hint to the email field stating this to the customer"
+"URL Params","URL Params"
+"Get the value form an URL param and insert it here. Separate multiple params with a comma","Get the value form an URL param and insert it here. Separate multiple params with a comma"
+"Min Length","Min Length"
+"Minimum length for the input content","Minimum length for the input content"
+"Max Length","Max Length"
+"Maximum length for the input content","Maximum length for the input content"
+"Min Number","Min Number"
+"Highest number the customer is allowed to insert","Highest number the customer is allowed to insert"
+"Max Number","Max Number"
+"Lowest number the customer is allowed to insert","Lowest number the customer is allowed to insert"
+"Min Date","Min Date"
+"Lowest Date the customer is allowed to insert","Lowest Date the customer is allowed to insert"
+"Max Date","Max Date"
+"Highest Date the customer is allowed to insert","Highest Date the customer is allowed to insert"
+"Max Image Width (px)","Max Image Width (px)"
+"Min Image Width (px)","Min Image Width (px)"
+"Max Image Height (px)","Max Image Height (px)"
+"Min Image Height (px)","Min Image Height (px)"
+"Resize Image","Resize Image"
+"Max. files allowed to upload","Max. files allowed to upload"
+"Don't save more files/images than this number","Don't save more files/images than this number"
+Hint,Hint
+"Unique Value","Unique Value"
+"No Mapping","No Mapping"
+"Subscriber Email","Subscriber Email"
+"Subscriber Cellphone","Subscriber Cellphone"
+"Subscriber First Name","Subscriber First Name"
+"Subscriber Last Name","Subscriber Last Name"
+"Subscriber Date of Birth","Subscriber Date of Birth"
+"No Subscriber Extra Fields Available to Map for this Type of Field","No Subscriber Extra Fields Available to Map for this Type of Field"
+"Map to Subscriber Field","Map to Subscriber Field"
+"Map to Customer Field","Map to Customer Field"
+"Field Options","Field Options"
+"One Per Line","One Per Line"
+Required,Required
+"Mark this field as required.","Mark this field as required."
+"Default Value","Default Value"
+"The default value for the field. This value can be changed by the user","The default value for the field. This value can be changed by the user"
+"CSS Class","CSS Class"
+"Specific CSS classes to add to the element wrapper","Specific CSS classes to add to the element wrapper"
+Disabled,Disabled
+"This field will still be displayed to customers, but they won't be able to change it","This field will still be displayed to customers, but they won't be able to change it"
+Checked,Checked
+"If by default this checkbox should be checked","If by default this checkbox should be checked"
+"Validation Pattern","Validation Pattern"
+"REGEX to validate form value. (advanced users only)","REGEX to validate form value. (advanced users only)"
+validate-code,validate-code
+"Element Identifier. Must be unique per form. Cannot be changed after","Element Identifier. Must be unique per form. Cannot be changed after"
+"Element Type","Element Type"
+Unique,Unique
+Content,Content
+"Display in manage subscription page?","Display in manage subscription page?"
+"-- Any --","-- Any --"
+"Form Title","Form Title"
+"Customers will see this text","Customers will see this text"
+"Submit Button Text","Submit Button Text"
+Send,Send
+"Success Page","Success Page"
+"Where to redirect the user after submitting the form. Full URL or relative path (http://www.mystore.com or /thanks-for-participating)","Where to redirect the user after submitting the form. Full URL or relative path (http://www.mystore.com or /thanks-for-participating)"
+"Success Message","Success Message"
+"Success Message to show after form submission","Success Message to show after form submission"
+"New Entry Email Notifications","New Entry Email Notifications"
+"Send notifications to the above emails when new entries are added. These emails override the ones in the configuration","Send notifications to the above emails when new entries are added. These emails override the ones in the configuration"
+"Max Number of Entries","Max Number of Entries"
+"After this number, form submission will be disabled. 0 or empty to ignore","After this number, form submission will be disabled. 0 or empty to ignore"
+"Logged In Customers Only?","Logged In Customers Only?"
+"Yes - And they can view the form if they are not logged in","Yes - And they can view the form if they are not logged in"
+"Yes - But they cannot view the form if they are not logged in","Yes - But they cannot view the form if they are not logged in"
+"No - Anyone can submit the form","No - Anyone can submit the form"
+"Can Customers Edit their Entry?","Can Customers Edit their Entry?"
+"Update Button Text","Update Button Text"
+"This class will be added to the form element","This class will be added to the form element"
+Template,Template
+"Enable Template","Enable Template"
+"If enabled, form will render using the code below.","If enabled, form will render using the code below."
+"Form Information","Form Information"
+Information,Information
+"Form Elements","Form Elements"
+"Form Element","Form Element"
+"Save Entry","Save Entry"
+"Delete Entry","Delete Entry"
+"Back to Entries","Back to Entries"
+"Edit Entry","Edit Entry"
+"Add entry to %1","Add entry to %1"
+Validated?,Validated?
+"Subscriber ID","Subscriber ID"
+Entry,Entry
+Void,Void
+Validate,Validate
+"-- Choose One --","-- Choose One --"
+"View Uploaded","View Uploaded"
+"Delete file","Delete file"
+"This Form no longer exists.","This Form no longer exists."
+"This Entry no longer exists.","This Entry no longer exists."
+"This Element no longer exists.","This Element no longer exists."
+"You deleted the %1","You deleted the %1"
+"'Something went wrong while deleting the ' .","'Something went wrong while deleting the ' ."
+"We can't find an %1 to delete.","We can't find an %1 to delete."
+"You deleted the Entry.","You deleted the Entry."
+"Something went wrong while deleting the Entry.","Something went wrong while deleting the Entry."
+"We can't find an Entry to delete.","We can't find an Entry to delete."
+"Manage Forms","Manage Forms"
+"Edit Form","Edit Form"
+"Form Entries in form: %1","Form Entries in form: %1"
+"Form Entries","Form Entries"
+"Manage Entries","Manage Entries"
+Entries,Entries
+"You saved the Form.","You saved the Form."
+"Something went wrong while saving the Form. ","Something went wrong while saving the Form. "
+"You saved the Element.","You saved the Element."
+"Something went wrong while saving the Form. Check the error log for more information.","Something went wrong while saving the Form. Check the error log for more information."
+"Something went wrong while saving the form. Check the error log for more information.","Something went wrong while saving the form. Check the error log for more information."
+"Entry validated","Entry validated"
+"Entry voided. Validation needed","Entry voided. Validation needed"
+"Something went wrong while validating the Entry.","Something went wrong while validating the Entry."
+"We can't find an Entry to validate.","We can't find an Entry to validate."
+"File not found","File not found"
+"Thanks for your submission","Thanks for your submission"
+"Please try again","Please try again"
+"You are required to validate your entry. Please check your email %1 and click in the approval link.","You are required to validate your entry. Please check your email %1 and click in the approval link."
+"Something went wrong while saving the form. Please try again %1","Something went wrong while saving the form. Please try again %1"
+"Missing Code","Missing Code"
+"Entry not found","Entry not found"
+"Already Validated","Already Validated"
+"Invalid Request","Invalid Request"
+"Invalid URL","Invalid URL"
+"Invalid phone format. Please use: countryCode-Number. Eg: 1-555 555 555, 351-979544443, 44-0848 9123 456","Invalid phone format. Please use: countryCode-Number. Eg: 1-555 555 555, 351-979544443, 44-0848 9123 456"
+"The value in this field has been used before","The value in this field has been used before"
+"Could not save the formElements: %1","Could not save the formElements: %1"
+"FormElements with id ""%1"" does not exist.","FormElements with id ""%1"" does not exist."
+"Could not delete the FormElements: %1","Could not delete the FormElements: %1"
+"Form not found","Form not found"
+"Nothing to Validate","Nothing to Validate"
+"Unable to Validate. Expired Link","Unable to Validate. Expired Link"
+"Wrong field supplied","Wrong field supplied"
+"Invalid Captcha","Invalid Captcha"
+"%1 Field is Required","%1 Field is Required"
+"Invalid number %1 in %2. Please use: CountryCode-PhoneNumber. Ex: 351-913241234","Invalid number %1 in %2. Please use: CountryCode-PhoneNumber. Ex: 351-913241234"
+"Invalid email in %1","Invalid email in %1"
+"Invalid URL %1 in %2","Invalid URL %1 in %2"
+"Please choose a date newer than %1 in %2","Please choose a date newer than %1 in %2"
+"Please choose a date greater than %1 in %2","Please choose a date greater than %1 in %2"
+"Invalid date %1 in %2","Invalid date %1 in %2"
+"File size greater than allowed %1/%2 in %3","File size greater than allowed %1/%2 in %3"
+"Error in field %1: %2 Invalid Dimensions","Error in field %1: %2 Invalid Dimensions"
+"Error in field %1: %2. Cannot save.","Error in field %1: %2. Cannot save."
+"Error in field %1: %2","Error in field %1: %2"
+"Duplicated value %1 in %2","Duplicated value %1 in %2"
+"Maximum field length exceeded in %1","Maximum field length exceeded in %1"
+"Minimum field length not met in %1","Minimum field length not met in %1"
+"Unexpected value %1 in %2","Unexpected value %1 in %2"
+"Form not Found","Form not Found"
+"Form not Enabled","Form not Enabled"
+Validated,Validated
+"Could not save the formEntries: %1","Could not save the formEntries: %1"
+"FormEntries with id ""%1"" does not exist.","FormEntries with id ""%1"" does not exist."
+"Could not delete the FormEntries: %1","Could not delete the FormEntries: %1"
+"Invalid date format","Invalid date format"
+"Invalid date in From Date","Invalid date in From Date"
+"Invalid date in To Date","Invalid date in To Date"
+"The end date cannot be earlier than start date","The end date cannot be earlier than start date"
+"The end date cannot be earlier than today","The end date cannot be earlier than today"
+"Could not save the forms: %1","Could not save the forms: %1"
+"Forms with id ""%1"" does not exist.","Forms with id ""%1"" does not exist."
+"Could not delete the Forms: %1","Could not delete the Forms: %1"
+"View Elements","View Elements"
+"Are you sure you wan't to delete the ""${ $.$data.name }"" form?","Are you sure you wan't to delete the ""${ $.$data.name }"" form?"
+"Template Variables","Template Variables"
+"Value for","Value for"
+"Form Description","Form Description"
+"Form Submit Button","Form Submit Button"
+"Note: You can use {{element_X hide=""label,hint""}} to hide the form label and hint","Note: You can use {{element_X hide=""label,hint""}} to hide the form label and hint"
+"Form Not Available Anymore","Form Not Available Anymore"
+"Please <a href=""%1"">Login</a> to Submit Your Data","Please <a href=""%1"">Login</a> to Submit Your Data"
+"<a href=""%1"">Login</a> to view the form","<a href=""%1"">Login</a> to view the form"
+"* Required Fields","* Required Fields"
+Import,Import
+"New Scheduled Import","New Scheduled Import"
+"Run Now","Run Now"
+"Edit Scheduled Import '%1'","Edit Scheduled Import '%1'"
+"Entity Type","Entity Type"
+"Import Behavior","Import Behavior"
+Add/Update,Add/Update
+Replace,Replace
+"On Errors","On Errors"
+"Stop Processing","Stop Processing"
+"Continue Processing","Continue Processing"
+"Cron Expression","Cron Expression"
+"Once Per Five Minutes (*/5 * * * *)","Once Per Five Minutes (*/5 * * * *)"
+"Twice Per Hour (0,30 * * * *)","Twice Per Hour (0,30 * * * *)"
+"Once Per Hour (0 * * * *)","Once Per Hour (0 * * * *)"
+"Twice Per Day (0 0,12 * * *)","Twice Per Day (0 0,12 * * *)"
+"Once Per Day( 0 0 * * *)","Once Per Day( 0 0 * * *)"
+"Once Per Week (0 0 * * 0)","Once Per Week (0 0 * * 0)"
+"On the 1st and 15th of the Month (0 0 1,15 * *)","On the 1st and 15th of the Month (0 0 1,15 * *)"
+"Once Per Month (0 0 1 * *)","Once Per Month (0 0 1 * *)"
+"Custom Expression","Custom Expression"
+"CRON Expression","CRON Expression"
+"After Import Action","After Import Action"
+"Archive Files","Archive Files"
+"Delete Files","Delete Files"
+"Field separator","Field separator"
+"Multiple value separator","Multiple value separator"
+"Empty attribute value constant","Empty attribute value constant"
+"Fields enclosure","Fields enclosure"
+Files,Files
+"Server Type","Server Type"
+Local,Local
+"Remote FTP","Remote FTP"
+"Remote SFTP","Remote SFTP"
+"File Directory","File Directory"
+"For Type ""Local"" use relative path to Magento installation, e.g. var/export, var/import, var/export/some/dir<br><br>For ""Remote"" use the full path, e.g. /home/user/uploads/","For Type ""Local"" use relative path to Magento installation, e.g. var/export, var/import, var/export/some/dir<br><br>For ""Remote"" use the full path, e.g. /home/user/uploads/"
+"File Name","File Name"
+"Images File Directory","Images File Directory"
+". ', e.g. <i>product_images</i>, <i>import_images/batch1</i>.<br><br>For example, in case <i>product_images</i>, files should be placed into <i>&lt;Magento root directory&gt;/' . . '/product_images</i> folder.' 'i' 'br'",". ', e.g. <i>product_images</i>, <i>import_images/batch1</i>.<br><br>For example, in case <i>product_images</i>, files should be placed into <i>&lt;Magento root directory&gt;/' . . '/product_images</i> folder.' 'i' 'br'"
+Host,Host
+"FTP Username","FTP Username"
+"FTP Password","FTP Password"
+"Remote Port","Remote Port"
+"Remote Password","Remote Password"
+"File Mode","File Mode"
+Binary,Binary
+ASCII,ASCII
+"Passive Mode","Passive Mode"
+"Email Notifications","Email Notifications"
+"Failed Email Sender","Failed Email Sender"
+"Failed Email Recipient","Failed Email Recipient"
+"Separate multiple using commas","Separate multiple using commas"
+"Send Copy Email Method","Send Copy Email Method"
+Copy,Copy
+BCC,BCC
+"If multiple Recipients defined","If multiple Recipients defined"
+"You deleted the Scheduled Import","You deleted the Scheduled Import"
+"Something went wrong while deleting the Scheduled Import","Something went wrong while deleting the Scheduled Import"
+"We can't find an Scheduled Import to delete.","We can't find an Scheduled Import to delete."
+"Manage Scheduled Import","Manage Scheduled Import"
+"This Scheduled Import no longer exists.","This Scheduled Import no longer exists."
+"Edit Scheduled Import","Edit Scheduled Import"
+"Scheduled Import","Scheduled Import"
+"Job Successfully Run","Job Successfully Run"
+"You saved the Scheduled Import.","You saved the Scheduled Import."
+"Something went wrong while saving the Scheduled Import. ","Something went wrong while saving the Scheduled Import. "
+"at the hour","at the hour"
+"every minute","every minute"
+"every @1 minutes","every @1 minutes"
+"every consecutive minute","every consecutive minute"
+"every consecutive @1 minutes","every consecutive @1 minutes"
+"from the @1 to the @2","from the @1 to the @2"
+"At @1:@2","At @1:@2"
+"past @1:00","past @1:00"
+"between @1:00 and @2:59","between @1:00 and @2:59"
+"in the 60 minutes past every consecutive hour","in the 60 minutes past every consecutive hour"
+"in the 60 minutes past every consecutive @1 hours","in the 60 minutes past every consecutive @1 hours"
+"past every consecutive hour","past every consecutive hour"
+"past every consecutive @1 hours","past every consecutive @1 hours"
+"past every hour","past every hour"
+"the @1","the @1"
+"every consecutive day","every consecutive day"
+"every consecutive @1 days","every consecutive @1 days"
+"on every day","on every day"
+"between the @1 and the @2","between the @1 and the @2"
+"on the @1","on the @1"
+"on @1","on @1"
+"every @1","every @1"
+"every consecutive month","every consecutive month"
+"every consecutive @1 months","every consecutive @1 months"
+"from @1 to @2","from @1 to @2"
+"of every month","of every month"
+"during every @1","during every @1"
+"during @1","during @1"
+"in @1","in @1"
+"every consecutive year","every consecutive year"
+"every consecutive @1 years","every consecutive @1 years"
+"from @1 through @2","from @1 through @2"
+"but only if the event takes place on @1","but only if the event takes place on @1"
+and,and
+or,or
+Sundays,Sundays
+Mondays,Mondays
+Tuesdays,Tuesdays
+Wednesdays,Wednesdays
+Thursdays,Thursdays
+Fridays,Fridays
+Saturdays,Saturdays
+January,January
+February,February
+March,March
+April,April
+May,May
+June,June
+July,July
+Augustus,Augustus
+September,September
+October,October
+November,November
+December,December
+1st,1st
+2nd,2nd
+3rd,3rd
+4th,4th
+5th,5th
+6th,6th
+7th,7th
+8th,8th
+9th,9th
+10th,10th
+11th,11th
+12th,12th
+13th,13th
+14th,14th
+15th,15th
+16th,16th
+17th,17th
+18th,18th
+19th,19th
+20th,20th
+21st,21st
+22nd,22nd
+23rd,23rd
+24th,24th
+25th,25th
+26th,26th
+27th,27th
+28th,28th
+29th,29th
+30th,30th
+31st,31st
+32nd,32nd
+33rd,33rd
+34th,34th
+35th,35th
+36th,36th
+37th,37th
+38th,38th
+39th,39th
+40th,40th
+41st,41st
+42nd,42nd
+43rd,43rd
+44th,44th
+45th,45th
+46th,46th
+47th,47th
+48th,48th
+49th,49th
+50th,50th
+51st,51st
+52nd,52nd
+53rd,53rd
+54th,54th
+55th,55th
+56th,56th
+57th,57th
+58th,58th
+59th,59th
+"Invalid Cron expression","Invalid Cron expression"
+"-- Please Select --","-- Please Select --"
+label,label
+"Save Autoresponder","Save Autoresponder"
+"Delete Autoresponder","Delete Autoresponder"
+"Edit Autoresponder '%1'","Edit Autoresponder '%1'"
+"New Autoresponder","New Autoresponder"
+Tags,Tags
+"Tag this autoresponder with theses tags","Tag this autoresponder with theses tags"
+"Previous Customers","Previous Customers"
+"If this autoresponder should be sent to previous customers instead of current subscribers.","If this autoresponder should be sent to previous customers instead of current subscribers."
 "Use Config","Use Config"
 "Track Stats?","Track Stats?"
 "If you want to track stats/conversions in this campaign","If you want to track stats/conversions in this campaign"
@@ -28,10 +925,7 @@ Auto-Login?,Auto-Login?
 Cancellation,Cancellation
 "Cancellation Triggers","Cancellation Triggers"
 "When selected events occur, pending emails won't be sent.","When selected events occur, pending emails won't be sent."
-Settings,Settings
 "Please Select","Please Select"
-Name,Name
-Campaign,Campaign
 "No links detected in selected campaign","No links detected in selected campaign"
 Link,Link
 "Number of Days","Number of Days"
@@ -43,11 +937,9 @@ Products,Products
 "Product Categories","Product Categories"
 "Send only if the product is in one of the selected categories. [2] One/both of these fields is required","Send only if the product is in one of the selected categories. [2] One/both of these fields is required"
 "Magento Observers","Magento Observers"
-"Product SKU","Product SKU"
 "Go to Product Listing","Go to Product Listing"
 "Previous Customer Group","Previous Customer Group"
 "New Customer Group","New Customer Group"
-"Customer Attribute","Customer Attribute"
 "Fire When","Fire When"
 "New value is not empty","New value is not empty"
 "New value is not empty and old value was not empty","New value is not empty and old value was not empty"
@@ -74,7 +966,6 @@ Wildcard,Wildcard
 "Match Payment Method","Match Payment Method"
 "Match Shipping Method","Match Shipping Method"
 "New Status","New Status"
-"-- Ignore --","-- Ignore --"
 "From Status","From Status"
 "Max. Time","Max. Time"
 "Do not send if more than X minutes have passed since the previous status was set. (use 0 or leave blank to ignore)","Do not send if more than X minutes have passed since the previous status was set. (use 0 or leave blank to ignore)"
@@ -84,21 +975,15 @@ Wildcard,Wildcard
 Equal,Equal
 "Autoresponder Information","Autoresponder Information"
 Triggers,Triggers
-Information,Information
-Actions,Actions
-Segmentation,Segmentation
-ID,ID
 Event,Event
 "N. Sends","N. Sends"
 Conversions,Conversions
 "Conv. Amount","Conv. Amount"
 "From Date","From Date"
 "To Date","To Date"
-View,View
 Queue,Queue
 Campaigns,Campaigns
 "New Campaign","New Campaign"
-Delete,Delete
 "Follow Up","Follow Up"
 "Cancel this campaign? This action cannot be undone","Cancel this campaign? This action cannot be undone"
 Cancel,Cancel
@@ -126,20 +1011,13 @@ Detail,Detail
 "Stand By","Stand By"
 Running,Running
 Finished,Finished
-Conditions,Conditions
-"Customer Segment Conditions","Customer Segment Conditions"
 "External Content","External Content"
 "URL Content","URL Content"
 "Parse Template File","Parse Template File"
-Email,Email
 "Sub. First Name","Sub. First Name"
 "Sub. Last Name","Sub. Last Name"
-"Order Amount","Order Amount"
-Order,Order
-Customer,Customer
 Subscriber,Subscriber
 "Campaign Information","Campaign Information"
-"Internal Name","Internal Name"
 "This name will be used for better identifying the campaign. Is only used internally and won't be displayed to subscribers","This name will be used for better identifying the campaign. Is only used internally and won't be displayed to subscribers"
 Sender,Sender
 "The campaign sender. When subscribers receive a campaign, this is the 'From' value","The campaign sender. When subscribers receive a campaign, this is the 'From' value"
@@ -148,7 +1026,7 @@ Sender,Sender
 "Yes - Do not schedule or run this campaign","Yes - Do not schedule or run this campaign"
 "No - Go ahead, proceed as expected","No - Go ahead, proceed as expected"
 "The option to mark a campaign as draft will be removed once the campaign is queued","The option to mark a campaign as draft will be removed once the campaign is queued"
-"Tag this campaign with these tags","Tag this campaign with these tags"
+"Tag this campaign with theses tags","Tag this campaign with theses tags"
 "Only send this campaign to subscribers that are in any of the selected segments above","Only send this campaign to subscribers that are in any of the selected segments above"
 "-- Ignore Field --","-- Ignore Field --"
 "Only send this campaign to subscribers that are in any of the selected Store Views above","Only send this campaign to subscribers that are in any of the selected Store Views above"
@@ -167,7 +1045,6 @@ Sender,Sender
 Url,Url
 Clicks,Clicks
 "Messages Queue","Messages Queue"
-"Are you sure?","Are you sure?"
 "Sending Options","Sending Options"
 "This campaign has already run for %1 time(s)","This campaign has already run for %1 time(s)"
 "Recurring Profile","Recurring Profile"
@@ -186,7 +1063,6 @@ Clicks,Clicks
 "Please choose the start hour for this profile","Please choose the start hour for this profile"
 "First Run","First Run"
 "First time this campaign should run","First time this campaign should run"
-"End Date","End Date"
 "How long should this campaign run.","How long should this campaign run."
 "Running times","Running times"
 """How many times should this campaign run. "" .","""How many times should this campaign run. "" ."
@@ -213,11 +1089,7 @@ Queuing,Queuing
 Coupons,Coupons
 "Promotion Rule","Promotion Rule"
 "Coupon Code","Coupon Code"
-Used,Used
-"Subscriber Email","Subscriber Email"
-"Created at","Created at"
 "Used at","Used at"
-N/A,N/A
 Errors,Errors
 "Campaign Errors","Campaign Errors"
 "Error Code","Error Code"
@@ -229,7 +1101,6 @@ Events,Events
 "Autoresponder Campaigns","Autoresponder Campaigns"
 "View Queue","View Queue"
 "Event Type","Event Type"
-Template,Template
 Recipient,Recipient
 Views,Views
 Error,Error
@@ -241,15 +1112,9 @@ Autoresponder,Autoresponder
 "Save Extra Field","Save Extra Field"
 "Delete Extra Field","Delete Extra Field"
 "Edit Extra Field '%1'","Edit Extra Field '%1'"
-"Block Information","Block Information"
-"General Information","General Information"
-Type,Type
 Text,Text
 "Multiple Options","Multiple Options"
 Number,Number
-"Field Options","Field Options"
-"One Per Line","One Per Line"
-"Default Value","Default Value"
 "Extra Fields Information","Extra Fields Information"
 "Follow Ups","Follow Ups"
 "Delete Followup","Delete Followup"
@@ -270,9 +1135,6 @@ Goals,Goals
 "Edit Goal '%1'","Edit Goal '%1'"
 "New Goal","New Goal"
 "Goal Type","Goal Type"
-Variation,Variation
-Description,Description
-"Start Date","Start Date"
 "Goals Information","Goals Information"
 "Type Name","Type Name"
 "Goal Name","Goal Name"
@@ -280,9 +1142,6 @@ Goal,Goal
 "Original Value","Original Value"
 "Current Value","Current Value"
 "Expected Value","Expected Value"
-"Date Start","Date Start"
-"Date End","Date End"
-Result,Result
 Accomplished,Accomplished
 Failed,Failed
 "Floating Windows","Floating Windows"
@@ -291,15 +1150,12 @@ Failed,Failed
 "'Delete ' .","'Delete ' ."
 "Edit %1 '%1'","Edit %1 '%1'"
 "New %1","New %1"
-General,General
 ". ' Content'",". ' Content'"
 " Identifier"," Identifier"
 "You can use this field to insert multiple Inline Info Blocks in the same place. Just give them the same identifier","You can use this field to insert multiple Inline Info Blocks in the same place. Just give them the same identifier"
 ". "" Width""",". "" Width"""
 ". "" Height""",". "" Height"""
 "Display To","Display To"
-"Customers & Guests","Customers & Guests"
-Customers,Customers
 Guests,Guests
 "Try to avoid Subscribers","Try to avoid Subscribers"
 "Try to avoid displaying to a customer who is already a newsletter subscriber.","Try to avoid displaying to a customer who is already a newsletter subscriber."
@@ -372,7 +1228,6 @@ lightSpeedIn,lightSpeedIn
 "After how many seconds the Visitor enters the page, should the %1 be displayed?","After how many seconds the Visitor enters the page, should the %1 be displayed?"
 "Additional CSS Styles","Additional CSS Styles"
 "To be applied to the %1 wrapper","To be applied to the %1 wrapper"
-"Form Information","Form Information"
 "Go to Campaign","Go to Campaign"
 "Go to Campaigns Listing","Go to Campaigns Listing"
 "Report Information","Report Information"
@@ -424,7 +1279,7 @@ Gateway,Gateway
 "Send General Campaign after X days","Send General Campaign after X days"
 "Percentage Emails Send Test","Percentage Emails Send Test"
 "How to determine winner","How to determine winner"
-"Tag this A/B campaign with these tags","Tag this A/B campaign with these tags"
+"Tag this A/B campaign with theses tags","Tag this A/B campaign with theses tags"
 "If this A/B campaign should be sent to previous customers instead of current subscribers","If this A/B campaign should be sent to previous customers instead of current subscribers"
 "The maximum number of emails to send for this general campaign (test campaign not included)","The maximum number of emails to send for this general campaign (test campaign not included)"
 "A/B Campaign Information","A/B Campaign Information"
@@ -444,8 +1299,6 @@ Winner,Winner
 "Edit Subscriber '%1'","Edit Subscriber '%1'"
 "Sender name","Sender name"
 "Sender Email","Sender Email"
-Code,Code
-Cellphone,Cellphone
 "Please use the format: countryCode-number. Eg: 1-555555555","Please use the format: countryCode-number. Eg: 1-555555555"
 Subscribed,Subscribed
 Unsubscribed,Unsubscribed
@@ -458,11 +1311,9 @@ Unsubscribed,Unsubscribed
 "Previous Customer","Previous Customer"
 "If this subscriber should receive communications intended for previous customers","If this subscriber should receive communications intended for previous customers"
 "Form Name","Form Name"
-Entries,Entries
 "Subscriber Information","Subscriber Information"
 "Emails Sent","Emails Sent"
 "SMS Sent","SMS Sent"
-Forms,Forms
 Bounces,Bounces
 Unsubscribe,Unsubscribe
 Subscribe,Subscribe
@@ -476,13 +1327,11 @@ Request,Request
 "Please be as descriptive as possible","Please be as descriptive as possible"
 "Contact Support","Contact Support"
 "Debug Information","Debug Information"
-Import,Import
 "Test Now","Test Now"
 "Save Tag","Save Tag"
 "Delete Tag","Delete Tag"
 "Edit Tag '%1'","Edit Tag '%1'"
 "New Tag","New Tag"
-"Is Active","Is Active"
 "Tags Information","Tags Information"
 "Tag Name","Tag Name"
 Templates,Templates
@@ -492,15 +1341,12 @@ Templates,Templates
 "Delete Template","Delete Template"
 "Add Variation","Add Variation"
 "Save and Send Test Emails","Save and Send Test Emails"
-"Variation of ","Variation of "
 "Edit Message Template '%1'","Edit Message Template '%1'"
 "Send test Emails to","Send test Emails to"
 "Only used when testing this template. Separate multiple emails with a comma","Only used when testing this template. Separate multiple emails with a comma"
 "Only used when testing this template","Only used when testing this template"
 "Can be changed when adding campaigns","Can be changed when adding campaigns"
 Gender,Gender
-Male,Male
-Female,Female
 "Not Specified","Not Specified"
 Age,Age
 "Template Information","Template Information"
@@ -522,7 +1368,6 @@ URLs,URLs
 "You deleted the Autoresponder.","You deleted the Autoresponder."
 "Something went wrong while deleting the Autoresponder.","Something went wrong while deleting the Autoresponder."
 "We can't find an Autoresponder to delete.","We can't find an Autoresponder to delete."
-"Sales Automation","Sales Automation"
 "Manage Autoresponders","Manage Autoresponders"
 "This Autoresponder no longer exists.","This Autoresponder no longer exists."
 "Edit Autoresponder","Edit Autoresponder"
@@ -554,12 +1399,10 @@ Autoresponders,Autoresponders
 "Unable to find a campaign to %1.","Unable to find a campaign to %1."
 "Can't preview templates with widgets","Can't preview templates with widgets"
 "Please select one or more messages.","Please select one or more messages."
-"Total of %1 record(s) were deleted.","Total of %1 record(s) were deleted."
 "Something went wrong while deleting the queue.","Something went wrong while deleting the queue."
 "This campaign no longer exists.","This campaign no longer exists."
 "Invalid date in Deploy At","Invalid date in Deploy At"
 "Invalid date in Recurring","Invalid date in Recurring"
-"Invalid URL","Invalid URL"
 "Cannot fetch URL content","Cannot fetch URL content"
 "Predicted Campaign Recipients: %1.","Predicted Campaign Recipients: %1."
 "Please be advise: There are no recipients expected to receive this campaign.","Please be advise: There are no recipients expected to receive this campaign."
@@ -571,7 +1414,6 @@ Autoresponders,Autoresponders
 "Unable to find a campaign to send.","Unable to find a campaign to send."
 "Something went wrong while deleting the items.","Something went wrong while deleting the items."
 "Please select one or more events.","Please select one or more events."
-"Something went wrong while deleting the events.","Something went wrong while deleting the events."
 Issues,Issues
 Exceptions,Exceptions
 "You deleted the Extra Field.","You deleted the Extra Field."
@@ -609,7 +1451,6 @@ Exceptions,Exceptions
 "We can't find an %1 to reset the code.","We can't find an %1 to reset the code."
 ". ' removed.'",". ' removed.'"
 "Something went wrong while deleting the %1.","Something went wrong while deleting the %1."
-"We can't find an %1 to delete.","We can't find an %1 to delete."
 "Manage Floating Windows","Manage Floating Windows"
 "This %1 no longer exists.","This %1 no longer exists."
 "Edit %1","Edit %1"
@@ -661,7 +1502,6 @@ Exceptions,Exceptions
 "A total of %1 record(s) have been unsubscribed.","A total of %1 record(s) have been unsubscribed."
 "You saved the subscriber.","You saved the subscriber."
 "Something went wrong while saving the Subscriber. Check the error log for more information","Something went wrong while saving the Subscriber. Check the error log for more information"
-"Unable to send. Please send an email to support@greenflyingpanda.com","Unable to send. Please send an email to support@greenflyingpanda.com"
 "Your request has been sent","Your request has been sent"
 "Please insert a valid Email Address","Please insert a valid Email Address"
 "Error Testing Your Settings: ","Error Testing Your Settings: "
@@ -754,19 +1594,10 @@ Date:,Date:
 "When one of Magento internal events is dispatched","When one of Magento internal events is dispatched"
 "Order - Status Changes To ","Order - Status Changes To "
 "'When the order status changes to ' .","'When the order status changes to ' ."
-"Invalid date format","Invalid date format"
-"Invalid date in From Date","Invalid date in From Date"
-"Invalid date in To Date","Invalid date in To Date"
-"The end date cannot be earlier than start date","The end date cannot be earlier than start date"
-"The end date cannot be earlier than today","The end date cannot be earlier than today"
 "Add to Segment","Add to Segment"
-Edit,Edit
 Add,Add
 Notify,Notify
 "Cannot send autoresponders SMS notifications. Sender Id:sender_id","Cannot send autoresponders SMS notifications. Sender Id:sender_id"
-Daily,Daily
-Weekly,Weekly
-Monthly,Monthly
 Yearly,Yearly
 Sunday,Sunday
 Monday,Monday
@@ -775,18 +1606,7 @@ Wednesday,Wednesday
 Thursday,Thursday
 Friday,Friday
 Saturday,Saturday
-January,January
-February,February
-March,March
-April,April
-May,May
-June,June
-July,July
 August,August
-September,September
-October,October
-November,November
-December,December
 "Specific Day","Specific Day"
 "On the %1 %2 of the month","On the %1 %2 of the month"
 "On the last %1 of the month","On the last %1 of the month"
@@ -813,12 +1633,10 @@ December,December
 "Forms - New Subscribers from Form","Forms - New Subscribers from Form"
 "Forms - Total Entries in Form","Forms - Total Entries in Form"
 "The original value is already greater than the expected value. Expected value: %1, current value: %2","The original value is already greater than the expected value. Expected value: %1, current value: %2"
-"Conditions combination","Conditions combination"
 "Cart Attribute","Cart Attribute"
 "Store Information","Store Information"
 "Current Customer Attribute","Current Customer Attribute"
 "Current Product Attribute","Current Product Attribute"
-"Customer Activity","Customer Activity"
 "Current Relative URL (no /)","Current Relative URL (no /)"
 "Current Pages Views","Current Pages Views"
 "Current Store Section","Current Store Section"
@@ -847,7 +1665,6 @@ Categories,Categories
 "Account Order History","Account Order History"
 "Current Product Type","Current Product Type"
 "Current Product","Current Product"
-"-- Please Select --","-- Please Select --"
 "You cannot remove this sender since there are campaigns sent from this sender %1. Please delete those campaigns before removing the subscriber  ","You cannot remove this sender since there are campaigns sent from this sender %1. Please delete those campaigns before removing the subscriber  "
 "Everything Seems To Be OK with your SMS Configuration!!!","Everything Seems To Be OK with your SMS Configuration!!!"
 "An error occurred while trying to send your message. Check your sender authentication","An error occurred while trying to send your message. Check your sender authentication"
@@ -867,10 +1684,6 @@ Plain,Plain
 CRAM-MD5,CRAM-MD5
 "No SSL","No SSL"
 "SSL TLS","SSL TLS"
-Account,Account
-Address,Address
-Year,Year
-Month,Month
 "Sender + Subject + Message","Sender + Subject + Message"
 "Sender + Subject","Sender + Subject"
 "Sender + Message","Sender + Message"
@@ -891,10 +1704,8 @@ Manually,Manually
 "You have %1 followups using this Global Template. ","You have %1 followups using this Global Template. "
 "You have %1 A/B campaigns using this Global Template. ","You have %1 A/B campaigns using this Global Template. "
 "You cannot remove this Global Template","You cannot remove this Global Template"
-"Delete ""${ $.$data.name }""","Delete ""${ $.$data.name }"""
 "Are you sure you wan't to delete the ""${ $.$data.name }"" autoresponder?","Are you sure you wan't to delete the ""${ $.$data.name }"" autoresponder?"
 Duplicate,Duplicate
-Send,Send
 "Send ""${ $.$data.internal_name }""","Send ""${ $.$data.internal_name }"""
 "Are you sure you wan't to send the ""${ $.$data.internal_name }"" campaign?","Are you sure you wan't to send the ""${ $.$data.internal_name }"" campaign?"
 "Delete ""${ $.$data.internal_name }""","Delete ""${ $.$data.internal_name }"""
@@ -902,7 +1713,6 @@ Send,Send
 "Are you sure you wan't to delete the ""${ $.$data.internal_name }"" followup?","Are you sure you wan't to delete the ""${ $.$data.internal_name }"" followup?"
 "Are you sure you wan't to delete the ""${ $.$data.name }"" goal?","Are you sure you wan't to delete the ""${ $.$data.name }"" goal?"
 "Are you sure you wan't to delete the ""${ $.$data.name }"" Display Window?","Are you sure you wan't to delete the ""${ $.$data.name }"" Display Window?"
-Test,Test
 "Are you sure you wan't to delete the ""${ $.$data.internal_name }"" A/B campaign?","Are you sure you wan't to delete the ""${ $.$data.internal_name }"" A/B campaign?"
 "Delete ""${ $.$data.email }""","Delete ""${ $.$data.email }"""
 "Are you sure you wan't to delete the subscriber ""${ $.$data.email }""?","Are you sure you wan't to delete the subscriber ""${ $.$data.email }""?"
@@ -911,96 +1721,7 @@ Test,Test
 "You don't have any template","You don't have any template"
 "Subscriber Id/Email","Subscriber Id/Email"
 "Please wait...","Please wait..."
-"Customer Coupons List","Customer Coupons List"
-"Order ID","Order ID"
-"Order Date","Order Date"
-"Created At","Created At"
-"Valid Until","Valid Until"
-"Order Status","Order Status"
-"No Data","No Data"
-"Current rule values","Current rule values"
-"Customer KPI's","Customer KPI's"
-"This Customer is Loyal","This Customer is Loyal"
-"This Customer has yet to become Loyal","This Customer has yet to become Loyal"
-"Customer Segments","Customer Segments"
-"Tags below will be replaced with real values when building the formula","Tags below will be replaced with real values when building the formula"
-"These tags refer to each individual customer","These tags refer to each individual customer"
-Variable,Variable
-Value,Value
-"Days Since Last Completed Order","Days Since Last Completed Order"
-"Days Since First Completed Order","Days Since First Completed Order"
-"Days Since Registration","Days Since Registration"
-"Number of Reviews","Number of Reviews"
-"Number of Orders","Number of Orders"
-"Number of Completed Orders","Number of Completed Orders"
-"Percentage of Completed Orders","Percentage of Completed Orders"
-"Total Order Amount","Total Order Amount"
-"Order Average","Order Average"
-"Percentage Order Amount Compared with Global Average","Percentage Order Amount Compared with Global Average"
-"Order Average in the Past 1 year","Order Average in the Past 1 year"
-"Orders Total in the Past 1 year","Orders Total in the Past 1 year"
-"Order Average before the Past 1 year","Order Average before the Past 1 year"
-"Orders Total before the Past 1 year","Orders Total before the Past 1 year"
-"Average of Days Between Orders","Average of Days Between Orders"
-"Total Shipping Amount","Total Shipping Amount"
-"Total Taxes Amount","Total Taxes Amount"
-"Total Subtotal Amount","Total Subtotal Amount"
-"Total Discount Amount","Total Discount Amount"
-"Total Profit Amount","Total Profit Amount"
-"Total Refunded Amount","Total Refunded Amount"
-"Total Cost Amount","Total Cost Amount"
-"Tags below will be replaced with real values when building formulas","Tags below will be replaced with real values when building formulas"
-"These tags refer to global values or period, and NOT to individual customers","These tags refer to global values or period, and NOT to individual customers"
-"Customer Retention Rate","Customer Retention Rate"
-"Rate of Discount (Check the Extension Configuration)","Rate of Discount (Check the Extension Configuration)"
-"Customer Lifespan (Check the Extension Configuration)","Customer Lifespan (Check the Extension Configuration)"
-"Global Number of Orders","Global Number of Orders"
-"Global Orders Average","Global Orders Average"
-"Average Global Number of Orders","Average Global Number of Orders"
-"Global Number of Completed Orders","Global Number of Completed Orders"
-"Global Orders Amount","Global Orders Amount"
-"Global Costs Amount","Global Costs Amount"
-"Global Refunded Amount","Global Refunded Amount"
-"Global Shipping Amount","Global Shipping Amount"
-"Global Taxes Amount","Global Taxes Amount"
-"Global Profit Amount","Global Profit Amount"
-"Getting current period, previous periods and date ranges from formulas","Getting current period, previous periods and date ranges from formulas"
-"<strong>n</strong> is not to be replaced with a value. Values to replace are the numbers","<strong>n</strong> is not to be replaced with a value. Values to replace are the numbers"
-Formula,Formula
-Returns,Returns
-"Combined Orders Amount from All Orders","Combined Orders Amount from All Orders"
-"Combined Orders Amount from current period (year or month)","Combined Orders Amount from current period (year or month)"
-"Combined Orders Amount from previous period (year or month)","Combined Orders Amount from previous period (year or month)"
-"Combined Orders Amount from previous periods before current minus 1 (year or month)","Combined Orders Amount from previous periods before current minus 1 (year or month)"
-"Combined Orders Amount from previous after the specified (year or month)","Combined Orders Amount from previous after the specified (year or month)"
-"Combined Orders Amount from the specified year (2017)","Combined Orders Amount from the specified year (2017)"
-"Combined Orders Amount from years greater than the specified year (2017)","Combined Orders Amount from years greater than the specified year (2017)"
-"Combined Orders Amount from years less than the specified year (2017)","Combined Orders Amount from years less than the specified year (2017)"
-"Combined Orders Amount from the last 90 days","Combined Orders Amount from the last 90 days"
-"Tags below will be replaced with real values when build the campaign","Tags below will be replaced with real values when build the campaign"
-"New Shipment (with Tracking Number)","New Shipment (with Tracking Number)"
-"Tracking Title","Tracking Title"
-"Tracking Code","Tracking Code"
-"Order ID/Increment Number","Order ID/Increment Number"
-"Customer Name","Customer Name"
-"Order Id","Order Id"
-"Shipment Id","Shipment Id"
-"New Order && Order Status Change && Specific Product","New Order && Order Status Change && Specific Product"
-"Email Order Note","Email Order Note"
-"Payment Details","Payment Details"
-"Shipping Description","Shipping Description"
-"Template Variables","Template Variables"
-"Value for","Value for"
-"Form Title","Form Title"
-"Form Description","Form Description"
-"Form Submit Button","Form Submit Button"
-"Note: You can use {{element_X hide=""label,hint""}} to hide the form label and hint","Note: You can use {{element_X hide=""label,hint""}} to hide the form label and hint"
 "Formulas Tester","Formulas Tester"
-"Customer ID/Email","Customer ID/Email"
-"Product Price","Product Price"
-"Override Product Price","Override Product Price"
-"KPIs for Customer","KPIs for Customer"
-"Panda! Help Me!","Panda! Help Me!"
 "Email Client","Email Client"
 Browsers,Browsers
 cities,cities
@@ -1030,27 +1751,406 @@ total,total
 Clear,Clear
 "Analise Term","Analise Term"
 "Grid View","Grid View"
-"Mass Actions","Mass Actions"
-"Select All","Select All"
-"Unselect All","Unselect All"
-"Select Visible","Select Visible"
-"Unselect Visible","Unselect Visible"
 Newsletter,Newsletter
 "Sign Up for Our Newsletter:","Sign Up for Our Newsletter:"
 "Sign up for our newsletter","Sign up for our newsletter"
 "Subscription option","Subscription option"
 "General Subscription","General Subscription"
-Product,Product
 Qty,Qty
-Price,Price
 Subtotal,Subtotal
 "Restore my Cart!","Restore my Cart!"
 Expired!,Expired!
 "Add to Cart","Add to Cart"
 "In stock","In stock"
 "Out of stock","Out of stock"
-System,System
+Indexers,Indexers
+"Rebuild All Values","Rebuild All Values"
+"Indexer ID","Indexer ID"
+"Updated At","Updated At"
+"Command line rebuild code (in your doc root)","Command line rebuild code (in your doc root)"
+Reindex,Reindex
+"Real-time update / manually update","Real-time update / manually update"
+"Daily update @3:40am","Daily update @3:40am"
+"Daily update @2:20am","Daily update @2:20am"
+"Daily update @4:20am","Daily update @4:20am"
+"Daily udate for previous day @1:30am<br>FULL rebuild every monday @1:30am","Daily udate for previous day @1:30am<br>FULL rebuild every monday @1:30am"
+"Daily udate for previous day @1:30am<br>FULL rebuild every monday @6:00am","Daily udate for previous day @1:30am<br>FULL rebuild every monday @6:00am"
+"FULL rebuild every monday @2:20am","FULL rebuild every monday @2:20am"
+"FULL rebuild every monday @3:20am","FULL rebuild every monday @3:20am"
+"Per-Segment option / manually update","Per-Segment option / manually update"
+"Customer equity values (number of orders, amounts, etc.)","Customer equity values (number of orders, amounts, etc.)"
+"Sales analytics","Sales analytics"
+"Expected Reorders","Expected Reorders"
+"Search History Data","Search History Data"
+"Product metadata for Recommendations","Product metadata for Recommendations"
+"Product Sales Performance","Product Sales Performance"
+"Product Recommendation Metadata","Product Recommendation Metadata"
+"Search metadata","Search metadata"
+"Venn Analytics","Venn Analytics"
+"Full Rebuild using CRON","Full Rebuild using CRON"
+"Prices Variations Groups","Prices Variations Groups"
+"Back to Prices Variations","Back to Prices Variations"
+"Save Group Map","Save Group Map"
+"Delete Group Map","Delete Group Map"
+"Edit Group '%1'","Edit Group '%1'"
+"New Group","New Group"
+Groups,Groups
+"Group Information","Group Information"
+"Customer groups","Customer groups"
+Recommendations,Recommendations
+"Product Recommendation Source","Product Recommendation Source"
+"Save Recommendation","Save Recommendation"
+"Delete Recommendation","Delete Recommendation"
+"Edit Recommendation '%1'","Edit Recommendation '%1'"
+"New Recommendation","New Recommendation"
+"Recommendation Source","Recommendation Source"
+"Purchase History","Purchase History"
+"Specific product","Specific product"
+Skus,Skus
+"Separate multiples with a comma , ","Separate multiples with a comma , "
+"How wide should we search","How wide should we search"
+"Directly Related","Directly Related"
+"After Order Only","After Order Only"
+"2 levels","2 levels"
+"Recommend Based On Customer","Recommend Based On Customer"
+None/Ignore,None/Ignore
+"Use Segments","Use Segments"
+"If the selection above returns no results","If the selection above returns no results"
+"Use: ","Use: "
+"Most Viewed Products","Most Viewed Products"
+"Products in a specific Category","Products in a specific Category"
+"Recent Products","Recent Products"
+"Leave Empty","Leave Empty"
+"Category if not Results","Category if not Results"
+"Meta Info","Meta Info"
+"Number of Products","Number of Products"
+"Sort Results","Sort Results"
+Randomly,Randomly
+"Recently Added","Recently Added"
+"Price ASC","Price ASC"
+"Prices DESC","Prices DESC"
+"Is Recommendation Active","Is Recommendation Active"
+"Recommendations Information","Recommendations Information"
+Search,Search
+Total,Total
+Day,Day
+"Week Day","Week Day"
+Query,Query
+"Orders N","Orders N"
+"Sales Items","Sales Items"
+"Items Invoiced","Items Invoiced"
+"Orders Amount","Orders Amount"
+Revenue,Revenue
+Profit,Profit
+Invoiced,Invoiced
+Paid,Paid
+Refunded,Refunded
+Tax,Tax
+Discount,Discount
+Canceled,Canceled
+"Single Record","Single Record"
+Global,Global
+"No Records","No Records"
+"The record was put on hold.","The record was put on hold."
+"Something went wrong while putting the record on hold.","Something went wrong while putting the record on hold."
+"We can't find an record to put on hold.","We can't find an record to put on hold."
+"Expected Sales","Expected Sales"
+"Record not on hold","Record not on hold"
+"Something went wrong while unholding the record","Something went wrong while unholding the record"
+"We can't find an record to put unholding.","We can't find an record to put unholding."
+"Indexes scheduled to rebuild","Indexes scheduled to rebuild"
+"Index scheduled to rebuild","Index scheduled to rebuild"
+"Something went wrong while rebuilding the Index.","Something went wrong while rebuilding the Index."
+"We can't find a index to rebuilding.","We can't find a index to rebuilding."
+"Prices Variation","Prices Variation"
+"You deleted the Group Mapping.","You deleted the Group Mapping."
+"Something went wrong while deleting the Group Mapping.","Something went wrong while deleting the Group Mapping."
+"We can't find a Group Mapping to delete.","We can't find a Group Mapping to delete."
+"Manage Prices Variations Groups","Manage Prices Variations Groups"
+"This group mapping no longer exists.","This group mapping no longer exists."
+"Edit Group Mapping","Edit Group Mapping"
+"New Group Mapping","New Group Mapping"
+"This Group Mapping no longer exists.","This Group Mapping no longer exists."
+"You saved the Group Mapping.","You saved the Group Mapping."
+"Something went wrong while saving the Group Mapping. Check the error log for more information.","Something went wrong while saving the Group Mapping. Check the error log for more information."
+"You deleted the Recommendation.","You deleted the Recommendation."
+"Something went wrong while deleting the Recommendation.","Something went wrong while deleting the Recommendation."
+"We can't find an Recommendation to delete.","We can't find an Recommendation to delete."
+"Manage Recommendations","Manage Recommendations"
+"This Recommendation no longer exists.","This Recommendation no longer exists."
+"Edit Recommendation","Edit Recommendation"
+"You saved the Recommendations.","You saved the Recommendations."
+"Something went wrong while saving the Recommendations. Check the error log for more information.","Something went wrong while saving the Recommendations. Check the error log for more information."
+"Product Relations","Product Relations"
+"Attributes Relations","Attributes Relations"
+"No Reports Build. Please check the manual on how to build reports. If you just installed the extension you must run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. If you just installed the extension you must run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"Sales Stats","Sales Stats"
+"Data will start building next time your cron runs. This might take a few hours","Data will start building next time your cron runs. This might take a few hours"
+"No Reports Build. Please check the manual on how to build reports. If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"Product Recommendation","Product Recommendation"
+"Product Recommendations","Product Recommendations"
+"No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced order If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced order If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"Venn Relations","Venn Relations"
+"Search Marketing","Search Marketing"
+"Search terms","Search terms"
+"Product Searches","Product Searches"
+"Search Stats","Search Stats"
+"Searches Performance","Searches Performance"
+"Venn Searches","Venn Searches"
+"Product Performance","Product Performance"
+"Sales Orders","Sales Orders"
+Never,Never
+"Product with common Attributes","Product with common Attributes"
+"Related Products From Last Completed Order","Related Products From Last Completed Order"
+"Related Products From All Previous Completed Orders","Related Products From All Previous Completed Orders"
+"Products in the Shopping Cart","Products in the Shopping Cart"
+"Products in a Category","Products in a Category"
+"Products in the Customer Wish List","Products in the Customer Wish List"
+"New Products","New Products"
+"Recommendation Engine","Recommendation Engine"
+"Day of Month","Day of Month"
+Performance,Performance
+Unhold,Unhold
+Hold,Hold
+"<strong>Actions:</strong><br><b>Reset Table</b>: <a href=""%1"">Click here</a> to clear all data and rebuild in background. Should also be executed when new Customer Group Mapping is added<br><b>Update</b>: <a href=""%2"">Click here</a> to update to the most recent data in background","<strong>Actions:</strong><br><b>Reset Table</b>: <a href=""%1"">Click here</a> to clear all data and rebuild in background. Should also be executed when new Customer Group Mapping is added<br><b>Update</b>: <a href=""%2"">Click here</a> to update to the most recent data in background"
+"<strong>Notes:</strong><br><b>Qty Sold</b>: Refers to the qty sold at the line price<br><b>Deviation</b>: Refers to the deviation from all previous sales up to that point<br><b>First Sale At</b>: Refers to the date the first sale was made at line price<br><b>Last Sale At</b>: Refers to the date the last sale was made at line price","<strong>Notes:</strong><br><b>Qty Sold</b>: Refers to the qty sold at the line price<br><b>Deviation</b>: Refers to the deviation from all previous sales up to that point<br><b>First Sale At</b>: Refers to the date the first sale was made at line price<br><b>Last Sale At</b>: Refers to the date the last sale was made at line price"
+"Check the <a target=""_blank"" href=""%1"">Indexer</a> status for more info about stats updates","Check the <a target=""_blank"" href=""%1"">Indexer</a> status for more info about stats updates"
+"Start typing to search for product...","Start typing to search for product..."
+"Show All","Show All"
+"Show After Order","Show After Order"
+"Choose Attribute","Choose Attribute"
+Attributes,Attributes
+"Filter by Segment","Filter by Segment"
+"Filter by Country","Filter by Country"
+"Filter by Region","Filter by Region"
+"Select Attribute","Select Attribute"
+"Data Type","Data Type"
+Group,Group
+"Apply Date Filter","Apply Date Filter"
+"Clear Date Filter","Clear Date Filter"
+"Return to Cloud","Return to Cloud"
+"records found ","records found "
+Apply,Apply
+Chart,Chart
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"New entry in form %formName","New entry in form %formName"
+"A new entry was added to the form %formName","A new entry was added to the form %formName"
+"Validate your entry on %formName","Validate your entry on %formName"
+"Thank you for your submission on %formName","Thank you for your submission on %formName"
+"You must validate it by clicking <a href=""%link_url"">here</a>","You must validate it by clicking <a href=""%link_url"">here</a>"
+"Issues with your Schedule Import %name","Issues with your Schedule Import %name"
+"He there,","He there,"
+"There was a problem while processing your schedule import","There was a problem while processing your schedule import"
+"Here is the message","Here is the message"
 "Green Flying Panda","Green Flying Panda"
+"Enable two-factor authentication for customers","Enable two-factor authentication for customers"
+"SMS Sender","SMS Sender"
+"Select the SMS sender for the SMS","Select the SMS sender for the SMS"
+"Customer Groups - Required","Customer Groups - Required"
+"Two-Factor Authentication is required for customers in the selected customer groups","Two-Factor Authentication is required for customers in the selected customer groups"
+"Customer Groups - Optional","Customer Groups - Optional"
+"Two-Factor Authentication is optional for customers in the selected customer groups","Two-Factor Authentication is optional for customers in the selected customer groups"
+"Customer Segments - Required","Customer Segments - Required"
+"Two-Factor Authentication is required for customers in the selected customer segments","Two-Factor Authentication is required for customers in the selected customer segments"
+"Customer Segments - Optional","Customer Segments - Optional"
+"Two-Factor Authentication is optional for customers in the selected customer segments","Two-Factor Authentication is optional for customers in the selected customer segments"
+"Code Length","Code Length"
+"Between 4 and 20","Between 4 and 20"
+"New SMS code (30 mins)","New SMS code (30 mins)"
+"Max Times the Customer can ask for a new Message for 30mins","Max Times the Customer can ask for a new Message for 30mins"
+"New SMS code (day)","New SMS code (day)"
+"Max Times the Customer can ask for a new Message in a day","Max Times the Customer can ask for a new Message in a day"
+"SMS Message","SMS Message"
+"Variable {code} will be replaced with the actual code","Variable {code} will be replaced with the actual code"
+"Allow Remember Device","Allow Remember Device"
+"Give customers the option to skip authentication for the active browser","Give customers the option to skip authentication for the active browser"
+"Remember Days","Remember Days"
+"How many days should the customer be allowed to login in the same device without asking for another SMS","How many days should the customer be allowed to login in the same device without asking for another SMS"
+"Access Control","Access Control"
+"Enable ACL on Products, Categories, CMS Pages and CMS Blocks","Enable ACL on Products, Categories, CMS Pages and CMS Blocks"
+"Attributes Frequency percentage","Attributes Frequency percentage"
+"Recent Attributes","Recent Attributes"
+"Process Number","Process Number"
+"How many customers should the system process per cron (min: 100 / max: 100000)? Only applies when you rebuild the customers metadata","How many customers should the system process per cron (min: 100 / max: 100000)? Only applies when you rebuild the customers metadata"
+"Log Attributes","Log Attributes"
+"Log customer activity information related with these attributes","Log customer activity information related with these attributes"
+"Segments Catalogs","Segments Catalogs"
+"Show Customer Segments","Show Customer Segments"
+"Show customer segment information when editing the customer in the admin?","Show customer segment information when editing the customer in the admin?"
+"Show Customer KPI's","Show Customer KPI's"
+"Show customer KPI's when editing the customer in the admin?","Show customer KPI's when editing the customer in the admin?"
+"KPI's to Show","KPI's to Show"
+"Number of days with an abandoned cart","Number of days with an abandoned cart"
+"Abandoned Cart Date","Abandoned Cart Date"
+"Abandoned Cart Total","Abandoned Cart Total"
+"Abandoned Cart Qty Products","Abandoned Cart Qty Products"
+"Abandoned Cart N. Products","Abandoned Cart N. Products"
+"Days until Anniversary","Days until Anniversary"
+"Date of Birth","Date of Birth"
+"Days With Pending Payment for Order","Days With Pending Payment for Order"
+"Order Date with Pending Payment","Order Date with Pending Payment"
+"Days since Last Order","Days since Last Order"
+"Last Order Date","Last Order Date"
+"Days Since First Order","Days Since First Order"
+"First Order Date","First Order Date"
+"Days Since Last Review","Days Since Last Review"
+"Last Review Date","Last Review Date"
+"Days since Registration","Days since Registration"
+"Account Registration Date","Account Registration Date"
+"Total Orders Amount","Total Orders Amount"
+"Orders Average","Orders Average"
+"Percentage Orders Amount","Percentage Orders Amount"
+"Orders Average Last year","Orders Average Last year"
+"Orders Amount Last Year","Orders Amount Last Year"
+"Orders Average before Last Year","Orders Average before Last Year"
+"Orders Amount before Last Year","Orders Amount before Last Year"
+"Average Days between Orders","Average Days between Orders"
+"Number of Orders with Discount","Number of Orders with Discount"
+"Total Amount Shipping","Total Amount Shipping"
+"Total Amount Taxes","Total Amount Taxes"
+"Total Amount Subtotal","Total Amount Subtotal"
+"Total Amount Discount","Total Amount Discount"
+"Total Amount Cost","Total Amount Cost"
+"Total Amount Profit","Total Amount Profit"
+"Total Amount Refunded","Total Amount Refunded"
+"Last Activity Date","Last Activity Date"
+"Days Since Last Activity","Days Since Last Activity"
+"Formula 1 Result","Formula 1 Result"
+"Formula 2 Result","Formula 2 Result"
+"Formula 3 Result","Formula 3 Result"
+"Formula  Result","Formula  Result"
+"Formula 5 Result","Formula 5 Result"
+"Formula 6 Result","Formula 6 Result"
+"Formula 7 Result","Formula 7 Result"
+"Formula 8 Result","Formula 8 Result"
+"Formula 9 Result","Formula 9 Result"
+"Formula 10 Result","Formula 10 Result"
+"Customer Equity Variables","Customer Equity Variables"
+"Rate of Discount","Rate of Discount"
+"Usually between 8 and 15","Usually between 8 and 15"
+"Average Customer Lifespan","Average Customer Lifespan"
+"For how long someone remains a customer","For how long someone remains a customer"
+"Period Evaluation","Period Evaluation"
+"Product Cost (%)","Product Cost (%)"
+"Show shortcut to product performance in product listing","Show shortcut to product performance in product listing"
+"Build Report Attributes","Build Report Attributes"
+"Types of Reports to Build","Types of Reports to Build"
+"Ignored if Country type not selected above","Ignored if Country type not selected above"
+"Build Country Reports only for the selected countries","Build Country Reports only for the selected countries"
+"Build Region Reports only for the selected regions","Build Region Reports only for the selected regions"
+"Ignored if Region type not selected above","Ignored if Region type not selected above"
+"Minimum number of search results for Search Performance","Minimum number of search results for Search Performance"
+"Do not build reports for terms searched less than X times. Having a lower number will increase the indexing time for search performance reports","Do not build reports for terms searched less than X times. Having a lower number will increase the indexing time for search performance reports"
+"Test Product Pricing Formulas","Test Product Pricing Formulas"
+"Display New Product Prices","Display New Product Prices"
+"Display Prices Section","Display Prices Section"
+"Should Extension calculated prices be displayed as special price or regular price","Should Extension calculated prices be displayed as special price or regular price"
+Enabled,Enabled
+"Enable Product Prices per Customer","Enable Product Prices per Customer"
+"Global Min Price","Global Min Price"
+"Independently of the Product Price Formula result, the product price can never be lower than the result of this formula","Independently of the Product Price Formula result, the product price can never be lower than the result of this formula"
+"Global Max Price","Global Max Price"
+"Independently of the Product Price Formula result, the product price can never be higher than the result of this formula","Independently of the Product Price Formula result, the product price can never be higher than the result of this formula"
+"Product Price Formula","Product Price Formula"
+"How should we calculate the product price. Please make sure you only use variables and mathematical symbols: + - * / ( ). If you want to use customer variables, please use the section below","How should we calculate the product price. Please make sure you only use variables and mathematical symbols: + - * / ( ). If you want to use customer variables, please use the section below"
+"Round Values to xx.99","Round Values to xx.99"
+"If we should round product prices to .99 if the decimal values are above the value defined in the field ""Round Upper Values to xx.99""","If we should round product prices to .99 if the decimal values are above the value defined in the field ""Round Upper Values to xx.99"""
+"Round Upper Values to xx.99","Round Upper Values to xx.99"
+"The value that will make the price to round to xx.99. Eg: if inserted 50 and the product that costs 1.55 will see it's price rounded to 1.99","The value that will make the price to round to xx.99. Eg: if inserted 50 and the product that costs 1.55 will see it's price rounded to 1.99"
+"Min Price to Round Up","Min Price to Round Up"
+"Do not round up product prices to xx.99 if the product price is lower than this amount","Do not round up product prices to xx.99 if the product price is lower than this amount"
+"Round down to .99 on non-decimal prices","Round down to .99 on non-decimal prices"
+"If the resulting product price from the formula is something like 80.00, lower it to 79.99","If the resulting product price from the formula is something like 80.00, lower it to 79.99"
+"Round Values to xx.49","Round Values to xx.49"
+"If we should round product prices to .49 if the decimal values are above the value defined in the field ""Round Upper Values to xx.49""","If we should round product prices to .49 if the decimal values are above the value defined in the field ""Round Upper Values to xx.49"""
+"Round Upper Values to xx.49","Round Upper Values to xx.49"
+"The value that will make the price to round to xx.49. Eg: if inserted 50 and the product that costs 1.35 will see it's price rounded to 1.49","The value that will make the price to round to xx.49. Eg: if inserted 50 and the product that costs 1.35 will see it's price rounded to 1.49"
+"Do not round up product prices to xx.49 if the product price is lower than this amount","Do not round up product prices to xx.49 if the product price is lower than this amount"
+"Customer Groups","Customer Groups"
+"Only apply prices if the customer is in the selected customer groups","Only apply prices if the customer is in the selected customer groups"
+"Independently of the Product Price Formula result is, the product price can never be lower than the result of this formula","Independently of the Product Price Formula result is, the product price can never be lower than the result of this formula"
+"Independently of the Product Price Formula result is, the product price can never be higher than the result of this formula","Independently of the Product Price Formula result is, the product price can never be higher than the result of this formula"
+"How should we calculate the product price. Please make sure you only use variables and mathematical symbols: + - * / ( )","How should we calculate the product price. Please make sure you only use variables and mathematical symbols: + - * / ( )"
+"The value that will make the price to round to xx.99. Ie: if inserted 50 and the product that costs 1.55 will see it's price rounded to 1.99","The value that will make the price to round to xx.99. Ie: if inserted 50 and the product that costs 1.55 will see it's price rounded to 1.99"
+"Enable Product Prices per Customer (File Import)","Enable Product Prices per Customer (File Import)"
+"Enable Product Prices","Enable Product Prices"
+"Prices in percentage?","Prices in percentage?"
+"When inserting segments prices in products, if the value inserted is the segment final price, or a percentage of the product's price","When inserting segments prices in products, if the value inserted is the segment final price, or a percentage of the product's price"
+"Assign a Customer Segment","Assign a Customer Segment"
+"Update Costs","Update Costs"
+Investment,Investment
+"Flat Fee","Flat Fee"
+"Var. Fee","Var. Fee"
+Cost/Order,Cost/Order
+"Global Cost","Global Cost"
+"N. Orders","N. Orders"
+"Costs Updated At","Costs Updated At"
+"Run Formulas Now","Run Formulas Now"
+"Auto Update","Auto Update"
+"Customer ID","Customer ID"
+"Days Abandoned Cart","Days Abandoned Cart"
+"Abandoned Cart Totals","Abandoned Cart Totals"
+"Abandoned Cart Number Days","Abandoned Cart Number Days"
+"Days Order with Pending Payment","Days Order with Pending Payment"
+"Pending Payment Date","Pending Payment Date"
+"Days since First Order","Days since First Order"
+"Days since Last Review","Days since Last Review"
+"First Review Date","First Review Date"
+"Last Activity","Last Activity"
+"N. Completed Orders","N. Completed Orders"
+"% Compl. Orders","% Compl. Orders"
+"Base Subtotal Orders","Base Subtotal Orders"
+"Base Total Shipping","Base Total Shipping"
+"Base Total Discount","Base Total Discount"
+"N. Orders W/ Discount","N. Orders W/ Discount"
+"Base Profit","Base Profit"
+"Base Cost","Base Cost"
+"Base Total Taxes","Base Total Taxes"
+"% Orders Amount","% Orders Amount"
+"Orders Average (Last Y)","Orders Average (Last Y)"
+"% Orders Amount (Last Y)","% Orders Amount (Last Y)"
+"Orders Average (previous Y)","Orders Average (previous Y)"
+"% Orders Amount (previous Y)","% Orders Amount (previous Y)"
+"Avg. Days Between Orders","Avg. Days Between Orders"
+"% Orders W/ Discount","% Orders W/ Discount"
+"Number Visits","Number Visits"
+"Loyal Costumer","Loyal Costumer"
+"Products Catal.","Products Catal."
+"Customer & Guests","Customer & Guests"
+"New Order","New Order"
+"Order Complete","Order Complete"
+"New Invoice","New Invoice"
+"New Account","New Account"
+"Live Update","Live Update"
+"User ID","User ID"
+"User Name","User Name"
+"User Email","User Email"
+Phone,Phone
+"Sent At","Sent At"
+Used?,Used?
+"Used At","Used At"
+"Email Entry Validation Template","Email Entry Validation Template"
+"Email template chosen based on theme fallback when ""Default"" option is selected.","Email template chosen based on theme fallback when ""Default"" option is selected."
+"New Entries Notification","New Entries Notification"
+"Notify the following addresses of new form entries","Notify the following addresses of new form entries"
+"Email Notification Template","Email Notification Template"
+"Uploaded files custom Path","Uploaded files custom Path"
+"This path will be used to store files and images uploaded to your store and that you wish to protect from direct URL access. You should specify a full path, that is not in your DOCUMENT_ROOT. If you change this value, remember to also move the files from the current directory to the new one","This path will be used to store files and images uploaded to your store and that you wish to protect from direct URL access. You should specify a full path, that is not in your DOCUMENT_ROOT. If you change this value, remember to also move the files from the current directory to the new one"
+"New Frontend Form","New Frontend Form"
+"New Admin Form","New Admin Form"
+"Admin Entries","Admin Entries"
+"Frontend Entries","Frontend Entries"
+"Entries Type","Entries Type"
+"Import - Schedule","Import - Schedule"
+Success,Success
+Fail,Fail
+"Success (No File)","Success (No File)"
+"Last Outcome","Last Outcome"
+Runs,Runs
+"Last Executed","Last Executed"
+"Next Execution","Next Execution"
+System,System
 "Account Details","Account Details"
 Geo,Geo
 "Use ip-api.com GEO service","Use ip-api.com GEO service"
@@ -1100,7 +2200,6 @@ Geo,Geo
 SMS,SMS
 Draft,Draft
 Paused,Paused
-Canceled,Canceled
 "T. Msgs","T. Msgs"
 "Conv. Number","Conv. Number"
 "Conv. Average","Conv. Average"
@@ -1125,6 +2224,41 @@ Displays,Displays
 "Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
 "Add Date","Add Date"
 "Unsubscription Date","Unsubscription Date"
-"Date of Birth","Date of Birth"
 Unconfirmed,Unconfirmed
 "Acquisition Form","Acquisition Form"
+"Cust. Name","Cust. Name"
+"N. Sales","N. Sales"
+"First Order","First Order"
+"Last Order","Last Order"
+"Next Order?","Next Order?"
+"Total Spent Product","Total Spent Product"
+"On Hold?","On Hold?"
+"Map Customer Groups","Map Customer Groups"
+"Variation Group","Variation Group"
+"Base Price","Base Price"
+"Qty sold at price","Qty sold at price"
+Deviation,Deviation
+"First Sale At","First Sale At"
+"Last Sale At","Last Sale At"
+"Specific Product","Specific Product"
+"Based On","Based On"
+"Directly Related only after Order","Directly Related only after Order"
+"Second Level Recommendation","Second Level Recommendation"
+Level,Level
+Ignore/Global,Ignore/Global
+"Recommend Based On","Recommend Based On"
+"Number Products","Number Products"
+"Most Recent","Most Recent"
+"Price Desc","Price Desc"
+"Sort By","Sort By"
+"Most Viewed","Most Viewed"
+New,New
+"If No Results","If No Results"
+"Chart View","Chart View"
+Term,Term
+Yesterday,Yesterday
+"2D Ago","2D Ago"
+"3D Ago","3D Ago"
+"4D Ago","4D Ago"
+"5D Ago","5D Ago"
+"6D Ago","6D Ago"
