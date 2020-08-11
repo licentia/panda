@@ -480,7 +480,7 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
         $this->_connection->update(
             $this->subscribersTable,
             [self::COL_UPDATED_AT => $updatedAt],
-            $this->_connection->quoteInto('email IN (?)', array_unique($listEmails))
+            $this->_connection->quoteInto('email IN (?)', array_unique(array_keys($listEmails)))
         );
 
         return $this;

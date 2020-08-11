@@ -81,7 +81,7 @@ class UpgradeData implements UpgradeDataInterface
                 );
 
                 $setup->run(
-                    "CREATE TABLE `{$setup->getTable('panda_import')}` (
+                    "CREATE TABLE `{$setup->getTable('panda_import')}` (  
                       `record_id` int unsigned NOT NULL AUTO_INCREMENT,
                       `name` varchar(255) NOT NULL,
                       `description` varchar(255) DEFAULT NULL,
@@ -113,6 +113,14 @@ class UpgradeData implements UpgradeDataInterface
                       `next_execution` datetime DEFAULT NULL,
                       `after_import` varchar(255) DEFAULT NULL,
                       `last_execution_status` varchar(255) DEFAULT NULL,
+                      `remote_url` varchar(255) DEFAULT NULL,
+                      `remote_ursername` varchar(255) DEFAULT NULL,
+                      `remote_password` varchar(255) DEFAULT NULL,
+                      `remote_bearer` varchar(255) DEFAULT NULL,
+                      `success_email_recipient` varchar(255) NOT NULL,
+                      `success_email_sender` varchar(255) NOT NULL,
+                      `success_email_copy_method` varchar(255) DEFAULT NULL,
+                      `fail_message` text,
                       PRIMARY KEY (`record_id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - Import Schedule'"
                 );
