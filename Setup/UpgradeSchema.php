@@ -114,13 +114,14 @@ class UpgradeData implements UpgradeDataInterface
                       `after_import` varchar(255) DEFAULT NULL,
                       `last_execution_status` varchar(255) DEFAULT NULL,
                       `remote_url` varchar(255) DEFAULT NULL,
-                      `remote_ursername` varchar(255) DEFAULT NULL,
+                      `remote_username` varchar(255) DEFAULT NULL,
                       `remote_password` varchar(255) DEFAULT NULL,
                       `remote_bearer` varchar(255) DEFAULT NULL,
                       `success_email_recipient` varchar(255) NOT NULL,
                       `success_email_sender` varchar(255) NOT NULL,
                       `success_email_copy_method` varchar(255) DEFAULT NULL,
                       `fail_message` text,
+                      `mappings` text,
                       PRIMARY KEY (`record_id`)
                     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Panda - Import Schedule'"
                 );
