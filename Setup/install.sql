@@ -16,115 +16,6 @@
  *
  */
 
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
-/*
- * Copyright (C) 2020 Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *  @modified   18/11/19, 19:48 GMT
- *
- */
-
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
 (
@@ -176,10 +67,16 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
     `customer_attribute_fire` varchar(255)                  DEFAULT NULL,
     `customer_attribute`      varchar(255)                  DEFAULT NULL,
     PRIMARY KEY (`autoresponder_id`),
-    KEY `PANDA_AUTORESPONDERS_EVENT` (`event`)
+    KEY `event` (`event`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `form_id` (`form_id`),
+    KEY `sender_id` (`sender_id`),
+    CONSTRAINT `FK_PANDA_AUTOR_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_AUTOR_SENDERID` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`),
+    CONSTRAINT `FK_PANDA_AUTR_CAMPAIGNS` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders lists';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_cancellation_events`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_cancellation_events`
@@ -187,10 +84,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_cancellation_events`
     `record_id`        int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `event`            varchar(255)     DEFAULT NULL,
     `autoresponder_id` int(10) UNSIGNED DEFAULT NULL,
-    PRIMARY KEY (`record_id`)
+    PRIMARY KEY (`record_id`),
+    KEY `autoresponder_id` (`autoresponder_id`),
+    CONSTRAINT `FK_PANDA_AUTORESPONDERS_CANCELLATION_AUTID` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders Cancellation Events';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_chains`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains`
@@ -206,10 +105,15 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains`
     `yes_condition`    smallint(6)      NOT NULL DEFAULT '0',
     `main_condition`   smallint(6)      NOT NULL DEFAULT '0',
     `editable`         smallint(6)      NOT NULL DEFAULT '1',
-    PRIMARY KEY (`chain_id`)
+    PRIMARY KEY (`chain_id`),
+    KEY `template_id` (`template_id`),
+    KEY `autoresponder_id` (`autoresponder_id`),
+    CONSTRAINT `FK_PANDA_AUTORESPONDERS_CHAINS_AUTID` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_AUTORESPONDERS_CHAINS_TEMPID` FOREIGN KEY (`template_id`) REFERENCES `panda_templates` (`template_id`) ON UPDATE CASCADE
+
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders chains';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_chains_edit`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains_edit`
@@ -226,10 +130,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains_edit`
     `main_condition`   smallint(6)      NOT NULL DEFAULT '0',
     `editable`         smallint(6)      NOT NULL DEFAULT '1',
     PRIMARY KEY (`chain_id`),
-    KEY `PANDA_AUTORESPONDERS_CHAINS_EDIT_TEMPLATE_ID` (`template_id`)
+    KEY `template_id` (`template_id`),
+    KEY `autoresponder_id` (`autoresponder_id`),
+    CONSTRAINT `FK_PANDA_AUTORESPONDERS_CHAINSED_AUTID` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders chains edit';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_events`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_events`
@@ -250,11 +156,15 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_events`
     `data_object_id`       int(10) UNSIGNED          DEFAULT NULL,
     `chain_id`             int(10) UNSIGNED          DEFAULT NULL,
     PRIMARY KEY (`event_id`),
-    KEY `PANDA_AUTORESPONDERS_EVENTS_EXECUTED` (`executed`),
-    KEY `PANDA_AUTORESPONDERS_EVENTS_CHAIN_ID` (`chain_id`)
+    KEY `autoresponder_id` (`autoresponder_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    KEY `chain_id` (`chain_id`),
+    KEY `executed` (`executed`),
+    CONSTRAINT `FK_PANDA_EVENT_AUTR` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_EVENT_SUBSCRIBER` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders Events';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_birthdays_logs`;
 CREATE TABLE `TABLE_PREFIX`.`panda_birthdays_logs`
@@ -277,10 +187,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_bounces`
     `code`          varchar(255)     DEFAULT NULL,
     `content`       varchar(255)     DEFAULT NULL,
     `created_at`    datetime         DEFAULT NULL,
-    PRIMARY KEY (`bounce_id`)
+    PRIMARY KEY (`bounce_id`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    CONSTRAINT `FK_PANDA_BOUN_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_BOUN_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Bounces List';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns`;
 CREATE TABLE `TABLE_PREFIX`.`panda_campaigns`
@@ -349,13 +263,19 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns`
     `template_file`           varchar(255)                  DEFAULT NULL,
     `number_recipients`       int(10) UNSIGNED              DEFAULT NULL,
     PRIMARY KEY (`campaign_id`),
-    KEY `PANDA_CAMPAIGNS_STATUS` (`status`),
-    KEY `PANDA_CAMPAIGNS_RECURRING_NEXT_RUN` (`recurring_next_run`),
-    KEY `PANDA_CAMPAIGNS_RECURRING` (`recurring`),
-    FULLTEXT KEY `PANDA_CAMPAIGNS_INTERNAL_NAME_SUBJECT_MESSAGE` (`internal_name`, `subject`)
+    KEY `parent_id` (`parent_id`),
+    KEY `status` (`status`),
+    KEY `recurring` (`recurring`),
+    KEY `recurring_next_run` (`recurring_next_run`),
+    KEY `split_id` (`split_id`),
+    KEY `sender_id` (`sender_id`),
+    FULLTEXT KEY `FTI_PANDA_CAMPAIGNS` (`internal_name`, `subject`, `message`),
+    CONSTRAINT `FK_PANDA_CAMP_CID` FOREIGN KEY (`parent_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SENDER_ID` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`),
+    CONSTRAINT `FK_PANDA_SPLITS_ID` FOREIGN KEY (`split_id`) REFERENCES `panda_campaigns_splits` (`split_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_followup`;
 CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_followup`
@@ -374,10 +294,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_followup`
     `hours`              smallint(6)               DEFAULT NULL,
     `sent`               smallint(6)      NOT NULL DEFAULT '0',
     `global_template_id` int(10) UNSIGNED          DEFAULT NULL,
-    PRIMARY KEY (`followup_id`)
+    PRIMARY KEY (`followup_id`),
+    KEY `campaign_id` (`campaign_id`),
+    CONSTRAINT `FK_PANDA_FOLLOW_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Follow up';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_links`;
 CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_links`
@@ -389,10 +311,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_links`
     `conversions_number`  int(10) UNSIGNED        NOT NULL DEFAULT '0',
     `conversions_amount`  decimal(12, 4) UNSIGNED NOT NULL DEFAULT '0.0000',
     `conversions_average` decimal(12, 4) UNSIGNED NOT NULL DEFAULT '0.0000',
-    PRIMARY KEY (`link_id`)
+    PRIMARY KEY (`link_id`),
+    KEY `campaign_id` (`campaign_id`),
+    CONSTRAINT `FK_PANDA_LINKS_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns Links';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_splits`;
 CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_splits`
@@ -435,8 +359,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_splits`
     `number_recipients`  int(10) UNSIGNED              DEFAULT NULL,
     PRIMARY KEY (`split_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - AB Testing';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_conversions`;
 CREATE TABLE `TABLE_PREFIX`.`panda_conversions`
@@ -454,10 +378,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_conversions`
     `subscriber_lastname`  varchar(255)              DEFAULT NULL,
     `campaign_name`        varchar(255)              DEFAULT NULL,
     `created_at`           datetime         NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`conversion_id`)
+    PRIMARY KEY (`conversion_id`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    CONSTRAINT `FK_PANDA_CONV_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_CONV_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Conversions';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_conversions_tmp`;
 CREATE TABLE `TABLE_PREFIX`.`panda_conversions_tmp`
@@ -467,10 +395,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_conversions_tmp`
     `campaign_id`   int(10) UNSIGNED DEFAULT NULL,
     `subscriber_id` int(10) UNSIGNED DEFAULT NULL,
     `link_id`       int(10) UNSIGNED DEFAULT NULL,
-    PRIMARY KEY (`record_id`)
+    PRIMARY KEY (`record_id`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    CONSTRAINT `FK_PANDA_CONVTMP_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_CONVTMP_SUB` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Conversions before Invoice';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_coupons`;
 CREATE TABLE `TABLE_PREFIX`.`panda_coupons`
@@ -489,13 +421,13 @@ CREATE TABLE `TABLE_PREFIX`.`panda_coupons`
     `expires_at`       datetime                  DEFAULT NULL,
     `hash`             varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`coupon_id`),
-    UNIQUE KEY `PANDA_COUPONS_COUPON_CODE` (`coupon_code`),
-    KEY `PANDA_COUPONS_SUBSCRIBER_EMAIL` (`subscriber_email`),
-    KEY `PANDA_COUPONS_RULE_ID` (`rule_id`),
-    CONSTRAINT `PANDA_COUPONS_COUPON_CODE_SALESRULE_COUPON_CODE` FOREIGN KEY (`coupon_code`) REFERENCES `TABLE_PREFIX`.`salesrule_coupon` (`code`) ON DELETE CASCADE
+    UNIQUE KEY `UNQ_COUPON` (`coupon_code`),
+    KEY `rule_id` (`rule_id`),
+    KEY `subscriber_email` (`subscriber_email`),
+    KEY `campaign_id` (`campaign_id`),
+    CONSTRAINT `FK_PANDA_CAMP_COUPONS` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Coupons Usage';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_coupons_hash_list`;
 CREATE TABLE `TABLE_PREFIX`.`panda_coupons_hash_list`
@@ -585,10 +517,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_customers_kpis`
     KEY `PANDA_CUSTOMERS_KPIS_AGE` (`age`),
     KEY `PANDA_CUSTOMERS_KPIS_EMAIL` (`email_meta`),
     KEY `PANDA_CUSTOMERS_KPIS_CUSTOMER_ID` (`customer_id`),
-    CONSTRAINT `PANDA_CUSTOMERS_KPIS_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID` FOREIGN KEY (`website_id`) REFERENCES `TABLE_PREFIX`.`store_website` (`website_id`) ON DELETE CASCADE
+    KEY `store_id_meta` (`store_id_meta`),
+    CONSTRAINT `FK_PANDA_CUSTOMER_KPIS_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_STOREID` FOREIGN KEY (`store_id_meta`) REFERENCES `store` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Activity';
+
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_email_log`;
 CREATE TABLE `TABLE_PREFIX`.`panda_email_log`
@@ -601,8 +537,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_email_log`
     `message`   text,
     PRIMARY KEY (`log_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Transactional Email Log';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms`
@@ -632,10 +567,11 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms`
     `enable_template`     smallint(6)      NOT NULL DEFAULT '0',
     `notifications`       varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`form_id`),
-    UNIQUE KEY `PANDA_FORMS_CODE` (`code`)
+    KEY `store_id` (`store_id`),
+    UNIQUE KEY `PANDA_FORMS_CODE` (`code`),
+    CONSTRAINT `FK_PANDA_FORMS_STID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Forms';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms_elements`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms_elements`
@@ -684,12 +620,10 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms_elements`
     `max_length`       smallint(6)               DEFAULT NULL,
     `allow_multiple`   smallint(6)      NOT NULL DEFAULT '1',
     PRIMARY KEY (`element_id`),
-    UNIQUE KEY `PANDA_FORMS_ELEMENTS_FORM_ID_FORM_ID_ENTRY_CODE` (`form_id`, `entry_code`),
-    UNIQUE KEY `PANDA_FORMS_ELEMENTS_FORM_ID_FORM_ID_CODE` (`form_id`, `code`),
-    CONSTRAINT `PANDA_FORMS_ELEMENTS_FORM_ID_PANDA_FORMS_FORM_ID` FOREIGN KEY (`form_id`) REFERENCES `TABLE_PREFIX`.`panda_forms` (`form_id`) ON DELETE CASCADE
+    UNIQUE KEY `IDX_UNIQUE_ENTROCODE_FORMID` (`form_id`, `entry_code`),
+    CONSTRAINT `FK_PANDA_FORM_ELS_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Form Elements';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms_entries`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms_entries`
@@ -734,13 +668,11 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms_entries`
     KEY `form_id` (`form_id`),
     KEY `subscriber_id` (`subscriber_id`),
     KEY `customer_id` (`customer_id`),
-    KEY `customer_id_2` (`customer_id`),
     CONSTRAINT `FK_PANDA_FORMS_ENTRIES_CUSTOMERID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE SET NULL ON UPDATE SET NULL,
     CONSTRAINT `FK_PANDA_FORMS_ENTRIES_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_FORMS_ENTRIES_SUBSCRIBERID` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - Forms Entries';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Form Entries';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_formulas`;
 CREATE TABLE `TABLE_PREFIX`.`panda_formulas`
@@ -781,10 +713,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_formulas`
     `formula_10_result` decimal(12, 4)            DEFAULT NULL,
     `cron`              varchar(255)     NOT NULL DEFAULT '0',
     `cron_last_run`     datetime                  DEFAULT NULL,
-    PRIMARY KEY (`formula_id`)
+    PRIMARY KEY (`formula_id`),
+    KEY `website_id` (`website_id`),
+    CONSTRAINT `FK_PANDA_FORMULAS_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Equity Formulas';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_goals`;
 CREATE TABLE `TABLE_PREFIX`.`panda_goals`
@@ -805,8 +739,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_goals`
     `param_value`         varchar(255)                  DEFAULT NULL,
     PRIMARY KEY (`goal_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Goals';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_history`;
 CREATE TABLE `TABLE_PREFIX`.`panda_messages_history`
@@ -821,8 +755,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_history`
     CONSTRAINT `panda_messages_history_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE,
     CONSTRAINT `panda_messages_history_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - History';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_identifiers`;
 CREATE TABLE `TABLE_PREFIX`.`panda_identifiers`
@@ -881,8 +814,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_archive`
     CONSTRAINT `PANDA_MESSAGES_ARCHIVE_CAMPAIGN_ID_PANDA_CAMPAIGNS_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE,
     CONSTRAINT `PANDA_MESSAGES_ARCHIVE_CAMPAIGN_ID_PANDA_CAMPAIGNS_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Archives';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_error`;
 CREATE TABLE `TABLE_PREFIX`.`panda_messages_error`
@@ -906,10 +839,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_error`
     `error_code`    varchar(255)              DEFAULT NULL,
     `error_message` varchar(255)              DEFAULT NULL,
     `created_at`    datetime                  DEFAULT NULL,
-    PRIMARY KEY (`error_id`)
+    PRIMARY KEY (`error_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    KEY `campaign_id` (`campaign_id`),
+    CONSTRAINT `FK_PANDA_ERROR_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_ERROR_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Error';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_queue`;
 CREATE TABLE `TABLE_PREFIX`.`panda_messages_queue`
@@ -938,8 +875,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_queue`
     CONSTRAINT `PANDA_MESSAGES_QUEUE_CAMPAIGN_ID_PANDA_CAMPAIGNS_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE,
     CONSTRAINT `PANDA_MESSAGES_QUEUE_CAMPAIGN_ID_PANDA_CAMPAIGNS_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Queue';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_popups`;
 CREATE TABLE `TABLE_PREFIX`.`panda_popups`
@@ -988,8 +925,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_popups`
     `useragent_filter`       varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`popup_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Display Windows';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_popups_history`;
 CREATE TABLE `TABLE_PREFIX`.`panda_popups_history`
@@ -1914,7 +1850,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_recommendations_global`
     KEY `PANDA_PRODUCTS_RECOMMENDATIONS_GLOBAL_UPDATED_AT` (`updated_at`),
     KEY `sku` (`sku`) USING BTREE,
     KEY `after_order_1` (`after_order_1`(50)) USING BTREE,
-    CONSTRAINT `FK_6FF1D9FE1B79EEFF5F840896CEBB439E` FOREIGN KEY (`segment_id`) REFERENCES `TABLE_PREFIX`.`panda_segments` (`segment_id`) ON DELETE CASCADE
+    CONSTRAINT `FK_PANDA_RELATED_PRODUCTS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -2069,7 +2005,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_recommendations_male`
     KEY `PANDA_PRODUCTS_RECOMMENDATIONS_MALE_UPDATED_AT` (`updated_at`),
     KEY `sku` (`sku`) USING BTREE,
     KEY `after_order_1` (`after_order_1`(50)) USING BTREE,
-    CONSTRAINT `FK_75075875D9DCA03113DE3989E99303C6` FOREIGN KEY (`segment_id`) REFERENCES `TABLE_PREFIX`.`panda_segments` (`segment_id`) ON DELETE CASCADE
+    CONSTRAINT `FK_PANDA_RELATED_PRODUCTS_MALE_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -3833,7 +3769,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_age`
     KEY `PANDA_PRODUCTS_VENN_AGE_SKU_48` (`sku_48` (50)),
     KEY `PANDA_PRODUCTS_VENN_AGE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_AGE_SKU_50` (`sku_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_age_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -3950,7 +3887,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_age`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_AGE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_ATTRS_AGE_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`) USING BTREE,
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_attrs_age_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4067,7 +4005,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_country`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_COUNTRIES_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`) USING BTREE,
     KEY `segment_id` (`segment_id`) USING BTREE,
-    KEY `country` (`country`)
+    KEY `country` (`country`),
+    CONSTRAINT `panda_products_venn_attrs_countries_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4182,7 +4121,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_female`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_FEMALE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_ATTRS_FEMALE_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`) USING BTREE,
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_attrs_female_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4297,7 +4237,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_global`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_GLOBAL_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_ATTRS_GLOBAL_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`),
-    KEY `segment_id` (`segment_id`)
+    KEY `segment_id` (`segment_id`),
+    CONSTRAINT `panda_products_venn_attrs_global_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4428,7 +4369,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_male`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_MALE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_ATTRS_MALE_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`) USING BTREE,
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_attrs_male_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4545,7 +4487,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_attrs_region`
     KEY `PANDA_PRODUCTS_VENN_ATTRS_REGIONS_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_ATTRS_REGIONS_SKU_50` (`sku_50` (50)),
     KEY `attribute_code` (`attribute_code`) USING BTREE,
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_attrs_regions_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4660,7 +4603,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_country`
     KEY `PANDA_PRODUCTS_VENN_COUNTRIES_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_COUNTRIES_SKU_50` (`sku_50` (50)),
     KEY `country` (`country`) USING BTREE,
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_countries_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4773,7 +4717,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_female`
     KEY `PANDA_PRODUCTS_VENN_FEMALE_SKU_48` (`sku_48` (50)),
     KEY `PANDA_PRODUCTS_VENN_FEMALE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_FEMALE_SKU_50` (`sku_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `FK_PANDA_RELATIONS_VENN_FEMALE_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -4886,7 +4831,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_global`
     KEY `PANDA_PRODUCTS_VENN_GLOBAL_SKU_48` (`sku_48` (50)),
     KEY `PANDA_PRODUCTS_VENN_GLOBAL_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_GLOBAL_SKU_50` (`sku_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `FK_PANDA_RELATIONS_VENN_GLOBAL_SEGI` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -5015,7 +4961,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_male`
     KEY `PANDA_PRODUCTS_VENN_MALE_SKU_48` (`sku_48` (50)),
     KEY `PANDA_PRODUCTS_VENN_MALE_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_MALE_SKU_50` (`sku_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `FK_PANDA_RELATIONS_VENN_MALE_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -5130,7 +5077,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_products_venn_region`
     KEY `PANDA_PRODUCTS_VENN_REGIONS_SKU_48` (`sku_48` (50)),
     KEY `PANDA_PRODUCTS_VENN_REGIONS_SKU_49` (`sku_49` (50)),
     KEY `PANDA_PRODUCTS_VENN_REGIONS_SKU_50` (`sku_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_products_venn_regions_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6391,7 +6339,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_age`
     KEY `PANDA_SEARCH_VENN_AGE_QUERY_48` (`query_48` (50)),
     KEY `PANDA_SEARCH_VENN_AGE_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_AGE_QUERY_50` (`query_50` (50)),
-    KEY `segment_id` (`segment_id`)
+    KEY `segment_id` (`segment_id`),
+    CONSTRAINT `FK_PANDA_SEARCH_VENN_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6506,7 +6455,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_country`
     KEY `PANDA_SEARCH_VENN_COUNTRY_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_COUNTRY_QUERY_50` (`query_50` (50)),
     KEY `segment_id` (`segment_id`) USING BTREE,
-    KEY `country` (`country`)
+    KEY `country` (`country`),
+    CONSTRAINT `panda_search_venn_country_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6619,7 +6569,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_female`
     KEY `PANDA_SEARCH_VENN_FEMALE_QUERY_48` (`query_48` (50)),
     KEY `PANDA_SEARCH_VENN_FEMALE_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_FEMALE_QUERY_50` (`query_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_search_venn_female_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6732,7 +6683,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_global`
     KEY `PANDA_SEARCH_VENN_GLOBAL_QUERY_48` (`query_48` (50)),
     KEY `PANDA_SEARCH_VENN_GLOBAL_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_GLOBAL_QUERY_50` (`query_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_search_venn_global_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6845,7 +6797,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_male`
     KEY `PANDA_SEARCH_VENN_MALE_QUERY_48` (`query_48` (50)),
     KEY `PANDA_SEARCH_VENN_MALE_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_MALE_QUERY_50` (`query_50` (50)),
-    KEY `segment_id` (`segment_id`) USING BTREE
+    KEY `segment_id` (`segment_id`) USING BTREE,
+    CONSTRAINT `panda_search_venn_male_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6961,7 +6914,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_search_venn_region`
     KEY `PANDA_SEARCH_VENN_REGION_QUERY_49` (`query_49` (50)),
     KEY `PANDA_SEARCH_VENN_REGION_QUERY_50` (`query_50` (50)),
     KEY `segment_id` (`segment_id`) USING BTREE,
-    KEY `region` (`region`)
+    KEY `region` (`region`),
+    CONSTRAINT `panda_search_venn_region_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
@@ -6971,6 +6925,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments`
 (
     `segment_id`                  int(10) UNSIGNED     NOT NULL AUTO_INCREMENT,
     `name`                        varchar(255)                  DEFAULT NULL,
+    `code`                        varchar(255)                  DEFAULT NULL COMMENT 'null',
     `conditions_serialized`       text COMMENT 'Conditions Serialized',
     `is_active`                   smallint(6)          NOT NULL DEFAULT '1',
     `records`                     smallint(6)          NOT NULL DEFAULT '0',
@@ -6979,11 +6934,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments`
     `cron`                        varchar(255)                  DEFAULT '0',
     `cron_last_run`               date                          DEFAULT NULL,
     `build`                       smallint(6)                   DEFAULT NULL,
+    `build_after_event`           varchar(255)                  DEFAULT NULL,
     `last_update`                 datetime                      DEFAULT NULL,
     `notify_user`                 int(10) UNSIGNED              DEFAULT NULL,
     `extra_data`                  text,
     `type`                        varchar(255)         NOT NULL DEFAULT 'customers',
     `websites_ids`                varchar(255)                  DEFAULT NULL,
+    `use_as_catalog`              tinyint(3) unsigned           DEFAULT '0',
+    `number_products`             smallint(5) unsigned          DEFAULT NULL,
     `manual`                      smallint(6)          NOT NULL DEFAULT '0',
     `manually_added`              smallint(6)          NOT NULL DEFAULT '0',
     `products_relations`          smallint(6)          NOT NULL DEFAULT '0',
@@ -7043,8 +7001,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments`
     `use_in_pricing`              tinyint(4) UNSIGNED  NOT NULL DEFAULT '0',
     PRIMARY KEY (`segment_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments List';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_access`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_access`
@@ -7073,10 +7031,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_evolutions`
     `records`      int(10) UNSIGNED DEFAULT NULL,
     `created_at`   date             DEFAULT NULL,
     `variation`    smallint(6)      DEFAULT NULL,
-    PRIMARY KEY (`evolution_id`)
+    PRIMARY KEY (`evolution_id`),
+    KEY `segment_id` (`segment_id`),
+    CONSTRAINT `panda_segments_evolutions_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Evolutions';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_attrs`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_attrs`
@@ -7089,13 +7049,16 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_attrs`
     `bought`       smallint(6)          DEFAULT NULL,
     `views_date`   date                 DEFAULT NULL,
     `bought_date`  date                 DEFAULT NULL,
-    KEY `PANDA_SEGMENTS_METADATA_ATTRS_EMAIL` (`email`),
     KEY `attribute_id` (`attribute_id`),
+    KEY `customer_id` (`customer_id`),
     KEY `option_id` (`option_id`),
-    KEY `customer_id` (`customer_id`)
+    KEY `email` (`email`),
+    CONSTRAINT `FK_PANDA_META_ATTRS_ATTRID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_ATTRS_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_ATTRS_OPTIONID` FOREIGN KEY (`option_id`) REFERENCES `eav_attribute_option` (`option_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Product Attributes';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_categories`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_categories`
@@ -7103,10 +7066,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_categories`
     `customer_id` int(10) UNSIGNED NOT NULL,
     `category_id` int(10) UNSIGNED NOT NULL,
     `views`       smallint(6) DEFAULT NULL,
-    `visited_at`  date        DEFAULT NULL
+    `visited_at`  date        DEFAULT NULL,
+    KEY `category_id` (`category_id`),
+    KEY `customer_id` (`customer_id`),
+    CONSTRAINT `FK_PANDA_META_CATS_CATID` FOREIGN KEY (`category_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_CATS_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Categories';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_products`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_products`
@@ -7118,12 +7085,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_products`
     `visited_at`  date        DEFAULT NULL,
     `bought`      smallint(6) DEFAULT NULL,
     `bought_at`   datetime    DEFAULT NULL,
-    KEY `PANDA_SEGMENTS_METADATA_PRODUCTS_SKU` (`sku`),
-    KEY `PANDA_SEGMENTS_METADATA_PRODUCTS_CUSTOMER_ID` (`customer_id`),
-    KEY `PANDA_SEGMENTS_METADATA_PRODUCTS_PRODUCT_ID` (`product_id`)
+    KEY `customer_id` (`customer_id`),
+    KEY `sku` (`sku`),
+    KEY `product_id` (`product_id`),
+    CONSTRAINT `FK_PANDA_META_PRODS_CUTSID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_META_PRODS_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Products';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_searches`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_searches`
@@ -7152,23 +7121,14 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_prices`
     `website_id` smallint(5) UNSIGNED DEFAULT NULL,
     `price`      decimal(12, 4)       DEFAULT NULL,
     PRIMARY KEY (`price_id`),
-    KEY `PANDA_SEGMENTS_PRICES_WEBSITE_ID` (`website_id`)
+    UNIQUE KEY `PANDA_SEGMENTS_PRICES_UNIQUE` (`product_id`, `segment_id`, `website_id`) USING BTREE,
+    KEY `product_id` (`product_id`),
+    KEY `segment_id` (`segment_id`),
+    KEY `website_id` (`website_id`),
+    CONSTRAINT `FK_PANDA_SEG_PRICES_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SEG_PRICES_SEG` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
-
-DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_prices_idx`;
-CREATE TABLE `TABLE_PREFIX`.`panda_segments_prices_idx`
-(
-    `index_id`   int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `product_id` int(10) UNSIGNED     DEFAULT NULL,
-    `segment_id` int(10) UNSIGNED     DEFAULT NULL,
-    `website_id` smallint(5) UNSIGNED DEFAULT NULL,
-    `price`      decimal(12, 4)       DEFAULT NULL,
-    PRIMARY KEY (`index_id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Prices';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_records`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_records`
@@ -7192,10 +7152,15 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_records`
     `manual`        smallint(6)      NOT NULL DEFAULT '0',
     `revert`        smallint(5) UNSIGNED      DEFAULT '0',
     PRIMARY KEY (`record_id`),
-    KEY `PANDA_SEGMENTS_RECORDS_EMAIL` (`email`)
+    KEY `email` (`email`),
+    KEY `segment_id` (`segment_id`),
+    KEY `customer_id` (`customer_id`),
+    KEY `subscriber_id` (`subscriber_id`),
+    CONSTRAINT `FK_PANDA_SGE_RECORDS_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SGE_RECORDS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SGE_RECORDS_SUBSID` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Customers List';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_update_queue`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_update_queue`
@@ -7260,13 +7225,18 @@ CREATE TABLE `TABLE_PREFIX`.`panda_stats`
     `latitude`      decimal(10, 8)            DEFAULT NULL,
     `longitude`     decimal(11, 8)            DEFAULT NULL,
     PRIMARY KEY (`stat_id`),
-    KEY `PANDA_STATS_EVENT_AT` (`event_at`),
-    KEY `PANDA_STATS_COUNTRY` (`country`),
-    KEY `PANDA_STATS_CITY` (`city`),
-    KEY `PANDA_STATS_REGION` (`region`)
+    KEY `region` (`region`),
+    KEY `country` (`country`),
+    KEY `city` (`city`),
+    KEY `event_at` (`event_at`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `customer_id` (`customer_id`),
+    KEY `susbcriber_id` (`subscriber_id`),
+    CONSTRAINT `FK_PANDA_STATS_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_STATS_CUSTOMER` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_STATS_SUSBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns Stats';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_subscribers`;
 CREATE TABLE `TABLE_PREFIX`.`panda_subscribers`
@@ -7279,6 +7249,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_subscribers`
     `lastname`                    varchar(255)              DEFAULT NULL,
     `email`                       varchar(255)              DEFAULT NULL,
     `cellphone`                   varchar(255)              DEFAULT NULL,
+    `updated_at`                  datetime                  DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `created_at`                  datetime                  DEFAULT CURRENT_TIMESTAMP,
     `dob`                         date                      DEFAULT NULL,
     `status`                      smallint(6)      NOT NULL DEFAULT '2',
@@ -7317,15 +7288,15 @@ CREATE TABLE `TABLE_PREFIX`.`panda_subscribers`
     `field_14`                    varchar(255)              DEFAULT NULL,
     `field_15`                    varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`subscriber_id`),
-    UNIQUE KEY `PANDA_SUBSCRIBERS_CODE` (`code`),
-    UNIQUE KEY `PANDA_SUBSCRIBERS_EMAIL` (`email`),
-    KEY `PANDA_SUBSCRIBERS_CUSTID` (`customer_id`) USING BTREE,
-    KEY `PANDA_SUBSCRIBERS_STOREID` (`store_id`) USING BTREE,
-    CONSTRAINT `PANDA_SUBSCRIBER_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `TABLE_PREFIX`.`customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT `PANDA_SUBSCRIBER_STOREID` FOREIGN KEY (`store_id`) REFERENCES `TABLE_PREFIX`.`store` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE
+    UNIQUE KEY `email` (`email`) USING BTREE,
+    KEY `customer_id` (`customer_id`),
+    KEY `store_id` (`store_id`),
+    KEY `form_id` (`form_id`),
+    CONSTRAINT `FK_PANDA_SUBS_CUST` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SUBS_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_SUBS_STID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Subscribers List';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_subscribers_extra_fields`;
 CREATE TABLE `TABLE_PREFIX`.`panda_subscribers_extra_fields`
@@ -7339,8 +7310,8 @@ CREATE TABLE `TABLE_PREFIX`.`panda_subscribers_extra_fields`
     `entry_code`    smallint(6)               DEFAULT NULL,
     PRIMARY KEY (`extra_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Subscribers Extra Fields';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_tags`;
 CREATE TABLE `TABLE_PREFIX`.`panda_tags`
@@ -7395,10 +7366,17 @@ CREATE TABLE `TABLE_PREFIX`.`panda_templates`
     `recipients`         varchar(255)              DEFAULT NULL,
     `template_file`      varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`template_id`),
-    KEY `PANDA_TEMPLATES_IS_ACTIVE` (`is_active`)
+    KEY `active` (`is_active`),
+    KEY `campaign_id` (`campaign_id`),
+    KEY `parent_id` (`parent_id`),
+    KEY `sender_id` (`sender_id`),
+    KEY `global_template_id` (`global_template_id`),
+    CONSTRAINT `FK_PANDA_TEMP_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_TEMP_GLOBALTEMPID` FOREIGN KEY (`global_template_id`) REFERENCES `panda_templates_global` (`template_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_TEMP_PARENT` FOREIGN KEY (`parent_id`) REFERENCES `panda_templates` (`template_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_TEMP_SENDER` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Templates';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_templates_global`;
 CREATE TABLE `TABLE_PREFIX`.`panda_templates_global`
@@ -7412,10 +7390,11 @@ CREATE TABLE `TABLE_PREFIX`.`panda_templates_global`
     `sender_id`       int(10) UNSIGNED          DEFAULT NULL,
     `recipients`      varchar(255)              DEFAULT NULL,
     `is_active`       smallint(6)      NOT NULL DEFAULT '0',
-    PRIMARY KEY (`template_id`)
+    PRIMARY KEY (`template_id`),
+    KEY `parent_id` (`parent_id`),
+    CONSTRAINT `FK_PANDA_TEMPLATESGLOBAL_PARENTID` FOREIGN KEY (`parent_id`) REFERENCES `panda_templates_global` (`template_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Global Templates';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_attempts`;
 CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts`
@@ -7431,23 +7410,154 @@ CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts`
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_auth`;
 CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_auth`
 (
-    `auth_id`        int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `customer_id`    int(10) UNSIGNED     DEFAULT NULL,
-    `customer_name`  varchar(255)         DEFAULT NULL,
-    `customer_email` varchar(255)         DEFAULT NULL,
-    `phone`          varchar(255)         DEFAULT NULL,
-    `message`        varchar(255)         DEFAULT NULL,
-    `sent_at`        datetime             DEFAULT NULL,
-    `used`           smallint(6)          DEFAULT NULL,
-    `is_active`      smallint(6)          DEFAULT NULL,
-    `store_id`       smallint(5) UNSIGNED DEFAULT NULL,
-    `code`           varchar(255)         DEFAULT NULL,
-    `used_at`        datetime             DEFAULT NULL,
+    `auth_id`        int unsigned NOT NULL AUTO_INCREMENT,
+    `customer_id`    int unsigned      DEFAULT NULL,
+    `customer_name`  varchar(255)      DEFAULT NULL,
+    `customer_email` varchar(255)      DEFAULT NULL,
+    `phone`          varchar(255)      DEFAULT NULL,
+    `message`        varchar(255)      DEFAULT NULL,
+    `sent_at`        datetime          DEFAULT NULL,
+    `used`           smallint          DEFAULT NULL,
+    `is_active`      smallint          DEFAULT NULL,
+    `store_id`       smallint unsigned DEFAULT NULL,
+    `code`           varchar(255)      DEFAULT NULL,
+    `used_at`        datetime          DEFAULT NULL,
+    `remember_hash`  varchar(255)      DEFAULT NULL,
+    `remember_until` date              DEFAULT NULL,
     PRIMARY KEY (`auth_id`),
+    UNIQUE KEY `PANDA_TWO_FACTOR_HASH` (`remember_hash`),
     KEY `PANDA_TWO_FACTOR_AUTH_CODE` (`code`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_auth_admin`;
+CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_auth_admin`
+(
+    `auth_id`        int unsigned NOT NULL AUTO_INCREMENT,
+    `user_id`        int unsigned      DEFAULT NULL,
+    `user_name`      varchar(255)      DEFAULT NULL,
+    `user_email`     varchar(255)      DEFAULT NULL,
+    `phone`          varchar(255)      DEFAULT NULL,
+    `message`        varchar(255)      DEFAULT NULL,
+    `sent_at`        datetime          DEFAULT NULL,
+    `used`           smallint          DEFAULT NULL,
+    `is_active`      smallint          DEFAULT NULL,
+    `store_id`       smallint unsigned DEFAULT NULL,
+    `code`           varchar(255)      DEFAULT NULL,
+    `used_at`        datetime          DEFAULT NULL,
+    `remember_hash`  varchar(255)      DEFAULT NULL,
+    `remember_until` date              DEFAULT NULL,
+    PRIMARY KEY (`auth_id`),
+    UNIQUE KEY `PANDA_TWO_FACTOR_HASH` (`remember_hash`),
+    KEY `PANDA_TWO_FACTOR_AUTH_CODE` (`code`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - ';
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_attempts_admin`;
+CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts_admin`
+(
+    `attempt_id`   int unsigned NOT NULL AUTO_INCREMENT,
+    `user_id`      int unsigned DEFAULT NULL,
+    `attempt_date` datetime     DEFAULT NULL,
+    PRIMARY KEY (`attempt_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - ';
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_exceptions_report`;
+CREATE TABLE `TABLE_PREFIX`.`panda_exceptions_report`
+(
+    `exception_id` int unsigned NOT NULL AUTO_INCREMENT,
+    `created_at`   datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `message`      varchar(255)          DEFAULT NULL,
+    `file`         varchar(255)          DEFAULT NULL,
+    `line`         varchar(255)          DEFAULT NULL,
+    `trace`        text,
+    PRIMARY KEY (`exception_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_customer_prices`;
+CREATE TABLE `TABLE_PREFIX`.`panda_customer_prices`
+(
+    `price_id`    int unsigned      NOT NULL AUTO_INCREMENT,
+    `customer_id` int unsigned      NOT NULL,
+    `product_id`  int unsigned      NOT NULL,
+    `website_id`  smallint unsigned NOT NULL,
+    `price`       decimal(12, 4)    NOT NULL,
+    PRIMARY KEY (`price_id`),
+    UNIQUE KEY `IDX_PANDA_CUSTOMER_PRICES_UNIQUE` (`customer_id`, `product_id`, `website_id`),
+    KEY `IDX_PANDA_CUSTOMER_PRICES_CUSTID` (`customer_id`),
+    KEY `IDX_PANDA_CUSTOMER_PRICES_PRODID` (`product_id`),
+    KEY `IDX_PANDA_CUSTOMER_PRICES_WEBSITEID` (`website_id`),
+    CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_products`;
+CREATE TABLE `TABLE_PREFIX`.`panda_segments_products`
+(
+    `record_id`  int unsigned NOT NULL AUTO_INCREMENT,
+    `segment_id` int unsigned NOT NULL,
+    `product_id` int unsigned NOT NULL,
+    PRIMARY KEY (`record_id`),
+    UNIQUE KEY `IDX_PANDA_SEGMENTS_PRODS_UNIQUE` (`product_id`, `segment_id`) USING BTREE,
+    KEY `IDX_PANDA_SEGMENTS_PRODS_SEGID` (`segment_id`) USING BTREE,
+    KEY `IDX_PANDA_SEGMENTS_PRODS_PRODID` (`product_id`) USING BTREE,
+    CONSTRAINT `FK_PANDA_GROUPS_PRODS_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `FK_PANDA_GROUPS_PRODS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_import`;
+CREATE TABLE `TABLE_PREFIX`.`panda_import`
+(
+    `record_id`                              int unsigned NOT NULL AUTO_INCREMENT,
+    `name`                                   varchar(255) NOT NULL,
+    `description`                            varchar(255)     DEFAULT NULL,
+    `entity_type`                            varchar(255) NOT NULL,
+    `import_behavior`                        varchar(255) NOT NULL,
+    `cron`                                   varchar(255)     DEFAULT NULL,
+    `cron_expression`                        varchar(255)     DEFAULT NULL,
+    `on_error`                               varchar(255) NOT NULL,
+    `is_active`                              tinyint      NOT NULL,
+    `field_separator`                        varchar(255) NOT NULL,
+    `fields_enclosure`                       tinyint          DEFAULT NULL,
+    `_import_field_separator`                varchar(255)     DEFAULT NULL,
+    `_import_empty_attribute_value_constant` varchar(255)     DEFAULT NULL,
+    `_import_multiple_value_separator`       varchar(255)     DEFAULT NULL,
+    `server_type`                            varchar(255) NOT NULL,
+    `file_directory`                         varchar(255) NOT NULL,
+    `file_name`                              varchar(255) NOT NULL,
+    `import_images_file_dir`                 varchar(255)     DEFAULT NULL,
+    `ftp_host`                               varchar(255)     DEFAULT NULL,
+    `ftp_port`                               varchar(255)     DEFAULT NULL,
+    `ftp_username`                           varchar(255)     DEFAULT NULL,
+    `ftp_password`                           varchar(255)     DEFAULT NULL,
+    `ftp_file_mode`                          varchar(255)     DEFAULT NULL,
+    `ftp_passive_mode`                       tinyint unsigned DEFAULT NULL,
+    `failed_email_recipient`                 varchar(255) NOT NULL,
+    `failed_email_sender`                    varchar(255) NOT NULL,
+    `failed_email_copy_method`               varchar(255)     DEFAULT NULL,
+    `last_executed`                          datetime         DEFAULT NULL,
+    `next_execution`                         datetime         DEFAULT NULL,
+    `after_import`                           varchar(255)     DEFAULT NULL,
+    `last_execution_status`                  varchar(255)     DEFAULT NULL,
+    `remote_url`                             varchar(255)     DEFAULT NULL,
+    `remote_username`                        varchar(255)     DEFAULT NULL,
+    `remote_password`                        varchar(255)     DEFAULT NULL,
+    `remote_bearer`                          varchar(255)     DEFAULT NULL,
+    `success_email_recipient`                varchar(255) NOT NULL,
+    `success_email_sender`                   varchar(255) NOT NULL,
+    `success_email_copy_method`              varchar(255)     DEFAULT NULL,
+    `fail_message`                           text,
+    `mappings`                               text,
+    PRIMARY KEY (`record_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - Import Schedule';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_unsubscribes`;
 CREATE TABLE `TABLE_PREFIX`.`panda_unsubscribes`
@@ -7457,10 +7567,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_unsubscribes`
     `email`           varchar(255)     DEFAULT NULL,
     `unsubscribed_at` datetime         DEFAULT NULL,
     `cellphone`       varchar(255)     DEFAULT NULL,
-    PRIMARY KEY (`unsubscribe_id`)
+    PRIMARY KEY (`unsubscribe_id`),
+    KEY `campaign_id` (`campaign_id`),
+    CONSTRAINT `FK_PANDA_UNS_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Unsubscribes';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_urls`;
 CREATE TABLE `TABLE_PREFIX`.`panda_urls`
@@ -7476,10 +7588,12 @@ CREATE TABLE `TABLE_PREFIX`.`panda_urls`
     `subscriber_lastname`  varchar(255)     DEFAULT NULL,
     `subscriber_email`     varchar(255)     DEFAULT NULL,
     `subscriber_cellphone` varchar(255)     DEFAULT NULL,
-    PRIMARY KEY (`url_id`)
+    PRIMARY KEY (`url_id`),
+    KEY `link_id` (`link_id`),
+    CONSTRAINT `FK_PANDA_URL_LINK` FOREIGN KEY (`link_id`) REFERENCES `panda_campaigns_links` (`link_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - URLs';
+
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_prices_variation`;
 CREATE TABLE `TABLE_PREFIX`.`panda_prices_variation`

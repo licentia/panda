@@ -158,6 +158,17 @@ class InstallSchema implements InstallSchemaInterface
             );
         }
 
+        $column = $setup->getConnection()
+                        ->fetchOne(
+                            "SHOW COLUMNS FROM `{$setup->getTable('admin_user')}` LIKE 'panda_twofactor_number' "
+                        );
+
+        if (!$column) {
+            $setup->run(
+                "ALTER TABLE `{$setup->getTable('admin_user')}` ADD COLUMN `panda_twofactor_number` varchar(50) DEFAULT NULL"
+            );
+        }
+
         $setup->endSetup();
     }
 }
