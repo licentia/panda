@@ -16,6 +16,24 @@
  *
  */
 
+/*
+ * Copyright (C) Licentia, Unipessoal LDA
+ *
+ * NOTICE OF LICENSE
+ *
+ *  This source file is subject to the EULA
+ *  that is bundled with this package in the file LICENSE.txt.
+ *  It is also available through the world-wide-web at this URL:
+ *  https://www.greenflyingpanda.com/panda-license.txt
+ *
+ *  @title      Licentia Panda - Magento® Sales Automation Extension
+ *  @package    Licentia
+ *  @author     Bento Vilas Boas <bento@licentia.pt>
+ *  @copyright  Copyright (c) Licentia - https://licentia.pt
+ *  @license    https://www.greenflyingpanda.com/panda-license.txt
+ *
+ */
+
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
 (
@@ -568,8 +586,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms`
     `notifications`       varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`form_id`),
     KEY `store_id` (`store_id`),
-    UNIQUE KEY `PANDA_FORMS_CODE` (`code`),
-    CONSTRAINT `FK_PANDA_FORMS_STID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL ON UPDATE CASCADE
+    UNIQUE KEY `PANDA_FORMS_CODE` (`code`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Forms';
 
