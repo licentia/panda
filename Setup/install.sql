@@ -16,24 +16,6 @@
  *
  */
 
-/*
- * Copyright (C) Licentia, Unipessoal LDA
- *
- * NOTICE OF LICENSE
- *
- *  This source file is subject to the EULA
- *  that is bundled with this package in the file LICENSE.txt.
- *  It is also available through the world-wide-web at this URL:
- *  https://www.greenflyingpanda.com/panda-license.txt
- *
- *  @title      Licentia Panda - Magento® Sales Automation Extension
- *  @package    Licentia
- *  @author     Bento Vilas Boas <bento@licentia.pt>
- *  @copyright  Copyright (c) Licentia - https://licentia.pt
- *  @license    https://www.greenflyingpanda.com/panda-license.txt
- *
- */
-
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
 (
@@ -93,7 +75,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
     CONSTRAINT `FK_PANDA_AUTOR_SENDERID` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`),
     CONSTRAINT `FK_PANDA_AUTR_CAMPAIGNS` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders lists';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Autoresponders lists';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_cancellation_events`;
@@ -106,7 +88,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_cancellation_events`
     KEY `autoresponder_id` (`autoresponder_id`),
     CONSTRAINT `FK_PANDA_AUTORESPONDERS_CANCELLATION_AUTID` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders Cancellation Events';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Autoresponders Cancellation Events';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_chains`;
@@ -130,7 +112,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains`
     CONSTRAINT `FK_PANDA_AUTORESPONDERS_CHAINS_TEMPID` FOREIGN KEY (`template_id`) REFERENCES `panda_templates` (`template_id`) ON UPDATE CASCADE
 
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders chains';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Autoresponders chains';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_chains_edit`;
@@ -152,7 +134,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_chains_edit`
     KEY `autoresponder_id` (`autoresponder_id`),
     CONSTRAINT `FK_PANDA_AUTORESPONDERS_CHAINSED_AUTID` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders chains edit';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Autoresponders chains edit';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders_events`;
@@ -181,7 +163,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders_events`
     CONSTRAINT `FK_PANDA_EVENT_AUTR` FOREIGN KEY (`autoresponder_id`) REFERENCES `panda_autoresponders` (`autoresponder_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_EVENT_SUBSCRIBER` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Autoresponders Events';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Autoresponders Events';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_birthdays_logs`;
@@ -211,7 +193,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_bounces`
     CONSTRAINT `FK_PANDA_BOUN_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_BOUN_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Bounces List';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Bounces List';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns`;
@@ -292,7 +274,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns`
     CONSTRAINT `FK_PANDA_SENDER_ID` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`),
     CONSTRAINT `FK_PANDA_SPLITS_ID` FOREIGN KEY (`split_id`) REFERENCES `panda_campaigns_splits` (`split_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Campaigns';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_followup`;
@@ -316,7 +298,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_followup`
     KEY `campaign_id` (`campaign_id`),
     CONSTRAINT `FK_PANDA_FOLLOW_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Follow up';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Follow up';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_links`;
@@ -333,7 +315,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_links`
     KEY `campaign_id` (`campaign_id`),
     CONSTRAINT `FK_PANDA_LINKS_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns Links';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Campaigns Links';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_campaigns_splits`;
@@ -377,7 +359,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_campaigns_splits`
     `number_recipients`  int(10) UNSIGNED              DEFAULT NULL,
     PRIMARY KEY (`split_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - AB Testing';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - AB Testing';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_conversions`;
@@ -402,7 +384,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_conversions`
     CONSTRAINT `FK_PANDA_CONV_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_CONV_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Conversions';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Conversions';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_conversions_tmp`;
@@ -419,7 +401,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_conversions_tmp`
     CONSTRAINT `FK_PANDA_CONVTMP_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_CONVTMP_SUB` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Conversions before Invoice';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Conversions before Invoice';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_coupons`;
@@ -445,7 +427,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_coupons`
     KEY `campaign_id` (`campaign_id`),
     CONSTRAINT `FK_PANDA_CAMP_COUPONS` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Coupons Usage';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Coupons Usage';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_coupons_hash_list`;
 CREATE TABLE `TABLE_PREFIX`.`panda_coupons_hash_list`
@@ -540,7 +522,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_customers_kpis`
     CONSTRAINT `FK_PANDA_META_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_META_STOREID` FOREIGN KEY (`store_id_meta`) REFERENCES `store` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Activity';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Customer Metadata Activity';
 
 
 
@@ -555,7 +537,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_email_log`
     `message`   text,
     PRIMARY KEY (`log_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Transactional Email Log';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Transactional Email Log';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms`
@@ -588,7 +570,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms`
     KEY `store_id` (`store_id`),
     UNIQUE KEY `PANDA_FORMS_CODE` (`code`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Forms';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Forms';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms_elements`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms_elements`
@@ -640,7 +622,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms_elements`
     UNIQUE KEY `IDX_UNIQUE_ENTROCODE_FORMID` (`form_id`, `entry_code`),
     CONSTRAINT `FK_PANDA_FORM_ELS_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Form Elements';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Form Elements';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_forms_entries`;
 CREATE TABLE `TABLE_PREFIX`.`panda_forms_entries`
@@ -689,7 +671,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_forms_entries`
     CONSTRAINT `FK_PANDA_FORMS_ENTRIES_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_FORMS_ENTRIES_SUBSCRIBERID` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Form Entries';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Form Entries';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_formulas`;
 CREATE TABLE `TABLE_PREFIX`.`panda_formulas`
@@ -734,7 +716,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_formulas`
     KEY `website_id` (`website_id`),
     CONSTRAINT `FK_PANDA_FORMULAS_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Equity Formulas';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Equity Formulas';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_goals`;
@@ -756,7 +738,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_goals`
     `param_value`         varchar(255)                  DEFAULT NULL,
     PRIMARY KEY (`goal_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Goals';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Goals';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_history`;
@@ -772,7 +754,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_history`
     CONSTRAINT `panda_messages_history_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE,
     CONSTRAINT `panda_messages_history_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - History';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - History';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_identifiers`;
 CREATE TABLE `TABLE_PREFIX`.`panda_identifiers`
@@ -831,7 +813,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_archive`
     CONSTRAINT `PANDA_MESSAGES_ARCHIVE_CAMPAIGN_ID_PANDA_CAMPAIGNS_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE,
     CONSTRAINT `PANDA_MESSAGES_ARCHIVE_CAMPAIGN_ID_PANDA_CAMPAIGNS_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Archives';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Messages Archives';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_error`;
@@ -862,7 +844,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_error`
     CONSTRAINT `FK_PANDA_ERROR_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_ERROR_SUBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Error';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Messages Error';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_messages_queue`;
@@ -892,7 +874,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_messages_queue`
     CONSTRAINT `PANDA_MESSAGES_QUEUE_CAMPAIGN_ID_PANDA_CAMPAIGNS_SUBSCRIBER_ID` FOREIGN KEY (`subscriber_id`) REFERENCES `TABLE_PREFIX`.`panda_subscribers` (`subscriber_id`) ON DELETE CASCADE,
     CONSTRAINT `PANDA_MESSAGES_QUEUE_CAMPAIGN_ID_PANDA_CAMPAIGNS_CAMPAIGN_ID` FOREIGN KEY (`campaign_id`) REFERENCES `TABLE_PREFIX`.`panda_campaigns` (`campaign_id`) ON DELETE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Messages Queue';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Messages Queue';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_popups`;
@@ -942,7 +924,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_popups`
     `useragent_filter`       varchar(255)              DEFAULT NULL,
     PRIMARY KEY (`popup_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Display Windows';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Display Windows';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_popups_history`;
 CREATE TABLE `TABLE_PREFIX`.`panda_popups_history`
@@ -7018,7 +7000,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments`
     `use_in_pricing`              tinyint(4) UNSIGNED  NOT NULL DEFAULT '0',
     PRIMARY KEY (`segment_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments List';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Segments List';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_access`;
@@ -7052,7 +7034,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_evolutions`
     KEY `segment_id` (`segment_id`),
     CONSTRAINT `panda_segments_evolutions_ibfk_1` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Evolutions';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Segments Evolutions';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_attrs`;
@@ -7074,7 +7056,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_attrs`
     CONSTRAINT `FK_PANDA_META_ATTRS_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_META_ATTRS_OPTIONID` FOREIGN KEY (`option_id`) REFERENCES `eav_attribute_option` (`option_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Product Attributes';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Customer Metadata Product Attributes';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_categories`;
@@ -7089,7 +7071,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_categories`
     CONSTRAINT `FK_PANDA_META_CATS_CATID` FOREIGN KEY (`category_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_META_CATS_CUSTID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Categories';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Customer Metadata Categories';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_products`;
@@ -7108,7 +7090,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_metadata_products`
     CONSTRAINT `FK_PANDA_META_PRODS_CUTSID` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_META_PRODS_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Customer Metadata Products';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Customer Metadata Products';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_metadata_searches`;
@@ -7145,7 +7127,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_prices`
     CONSTRAINT `FK_PANDA_SEG_PRICES_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_SEG_PRICES_SEG` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Prices';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Segments Prices';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_records`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_records`
@@ -7177,7 +7159,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_records`
     CONSTRAINT `FK_PANDA_SGE_RECORDS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_SGE_RECORDS_SUBSID` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Segments Customers List';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Segments Customers List';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_update_queue`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_update_queue`
@@ -7253,7 +7235,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_stats`
     CONSTRAINT `FK_PANDA_STATS_CUSTOMER` FOREIGN KEY (`customer_id`) REFERENCES `customer_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_STATS_SUSBS` FOREIGN KEY (`subscriber_id`) REFERENCES `panda_subscribers` (`subscriber_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Campaigns Stats';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Campaigns Stats';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_subscribers`;
 CREATE TABLE `TABLE_PREFIX`.`panda_subscribers`
@@ -7313,7 +7295,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_subscribers`
     CONSTRAINT `FK_PANDA_SUBS_FORMID` FOREIGN KEY (`form_id`) REFERENCES `panda_forms` (`form_id`) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_SUBS_STID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Subscribers List';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Subscribers List';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_subscribers_extra_fields`;
 CREATE TABLE `TABLE_PREFIX`.`panda_subscribers_extra_fields`
@@ -7327,7 +7309,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_subscribers_extra_fields`
     `entry_code`    smallint(6)               DEFAULT NULL,
     PRIMARY KEY (`extra_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Subscribers Extra Fields';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Subscribers Extra Fields';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_tags`;
@@ -7393,7 +7375,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_templates`
     CONSTRAINT `FK_PANDA_TEMP_PARENT` FOREIGN KEY (`parent_id`) REFERENCES `panda_templates` (`template_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_TEMP_SENDER` FOREIGN KEY (`sender_id`) REFERENCES `panda_senders` (`sender_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Templates';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Templates';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_templates_global`;
 CREATE TABLE `TABLE_PREFIX`.`panda_templates_global`
@@ -7411,7 +7393,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_templates_global`
     KEY `parent_id` (`parent_id`),
     CONSTRAINT `FK_PANDA_TEMPLATESGLOBAL_PARENTID` FOREIGN KEY (`parent_id`) REFERENCES `panda_templates_global` (`template_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Global Templates';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Global Templates';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_attempts`;
 CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts`
@@ -7469,7 +7451,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_auth_admin`
     UNIQUE KEY `PANDA_TWO_FACTOR_HASH` (`remember_hash`),
     KEY `PANDA_TWO_FACTOR_AUTH_CODE` (`code`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda - ';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_two_factor_attempts_admin`;
 CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts_admin`
@@ -7479,7 +7461,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_two_factor_attempts_admin`
     `attempt_date` datetime     DEFAULT NULL,
     PRIMARY KEY (`attempt_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - ';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda - ';
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_exceptions_report`;
 CREATE TABLE `TABLE_PREFIX`.`panda_exceptions_report`
@@ -7492,7 +7474,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_exceptions_report`
     `trace`        text,
     PRIMARY KEY (`exception_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
+  DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_customer_prices`;
 CREATE TABLE `TABLE_PREFIX`.`panda_customer_prices`
@@ -7511,7 +7493,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_customer_prices`
     CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_CUSTOMER_PRICES_WEBSITEID` FOREIGN KEY (`website_id`) REFERENCES `store_website` (`website_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
+  DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_segments_products`;
 CREATE TABLE `TABLE_PREFIX`.`panda_segments_products`
@@ -7526,7 +7508,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_segments_products`
     CONSTRAINT `FK_PANDA_GROUPS_PRODS_PRODID` FOREIGN KEY (`product_id`) REFERENCES `catalog_product_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT `FK_PANDA_GROUPS_PRODS_SEGID` FOREIGN KEY (`segment_id`) REFERENCES `panda_segments` (`segment_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4;
+  DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_import`;
 CREATE TABLE `TABLE_PREFIX`.`panda_import`
@@ -7573,7 +7555,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_import`
     `mappings`                               text,
     PRIMARY KEY (`record_id`)
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda - Import Schedule';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda - Import Schedule';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_unsubscribes`;
@@ -7588,7 +7570,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_unsubscribes`
     KEY `campaign_id` (`campaign_id`),
     CONSTRAINT `FK_PANDA_UNS_CAMP` FOREIGN KEY (`campaign_id`) REFERENCES `panda_campaigns` (`campaign_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - Unsubscribes';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - Unsubscribes';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_urls`;
@@ -7609,7 +7591,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_urls`
     KEY `link_id` (`link_id`),
     CONSTRAINT `FK_PANDA_URL_LINK` FOREIGN KEY (`link_id`) REFERENCES `panda_campaigns_links` (`link_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4 COMMENT ='Panda Sales Automation - URLs';
+  DEFAULT CHARSET = utf8 COMMENT ='Panda Sales Automation - URLs';
 
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_prices_variation`;
