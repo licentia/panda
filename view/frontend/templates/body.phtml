@@ -32,8 +32,8 @@ $paramsEncode = json_encode($paramsEncode);
 
 ?>
 <script type="text/javascript">
-    <?php if ($helper->delayAjaxLoads()) : ?>
     require(['jquery', 'domReady!'], function ($) {
+        <?php if ($helper->delayAjaxLoads()) : ?>
         var autorespondersTimer = setInterval(function () {
             if (localStorage["mage-cache-storage"] !== '{}') {
                 clearInterval(autorespondersTimer);
