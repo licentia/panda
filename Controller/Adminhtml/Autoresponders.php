@@ -83,7 +83,6 @@ class Autoresponders extends \Magento\Backend\App\Action
 
         parent::__construct($context);
 
-        /*
         $i = 0;
 
         if ($i) {
@@ -94,13 +93,76 @@ class Autoresponders extends \Magento\Backend\App\Action
             #$manager->create('\Licentia\Reports\Cron\RebuildSalesStatsForYesterday')->execute();
             #$manager->get('Licentia\Panda\Model\Splits')->cron();
 
+            /** @var \Magento\Directory\Model\Country $country */
+            $country = $manager->create('\Magento\Directory\Model\Country');
+
+            /** @var \Magento\Sales\Model\Order $order */
+            $ordersCollection = $manager->create('Magento\Sales\Model\Order')
+                                        ->getCollection()
+                                        ->addFieldToFilter('customer_email', ['like' => '%niepoort%'])
+                                        ->setPageSize(5);
+            $csv = [];
+
+            $finalFile = BP . '/var/export/orders.csv';
+
+            $fp = fopen($finalFile, 'w');
+            $fieldSeparator = ';';
+
+            $lines = [];
+            $orders = [];
+            foreach ($ordersCollection as $order) {
+
+                /** @var \Magento\Sales\Model\Order\Item $item */
+                foreach ($order->getAllVisibleItems() as $item) {
+                    $lines[] = [
+                        'Artigo'     => $item->getSku(),
+                        'Quantidade' => $item->getQtyOrdered(),
+                        'Preco'      => $item->getPrice(),
+                        'TotalLinha' => $item->getBaseRowTotal(),
+                        'TotalIEC'   => 1,
+                    ];
+                }
+
+                $street = implode(' ', explode("\n", $order->getShippingAddress()->getData('street')));
+                $orders[] = [
+                    'NumEncMagento'   => $order->getIncrementId(),
+                    'Data'            => $order->getCreatedAt(),
+                    'TotalMercadoria' => $order->getBaseSubtotal() + $order->getBaseShippingAmount(),
+                    'TotalDocumento'  => $order->getBaseGrandTotal(),
+                    'TotalIva'        => $order->getBaseTaxAmount(),
+                    'NIF'             => $order->getBillingAddress()->getVatId(),
+                    'Cliente'         => $order->getCustomerName(),
+                    'Morada'          => $street,
+                    'CodPostal'       => $order->getShippingAddress()->getPostcode(),
+                    'Localidade'      => $order->getShippingAddress()->getCity(),
+                    'Pais'            => $country->loadByCode($order->getShippingAddress()->getCountryId())->getName(),
+                    'Telefone'        => $order->getShippingAddress()->getTelephone(),
+                    'Email'           => $order->getCustomerEmail(),
+                    'linhas'          => json_encode($lines),
+                ];
+
+            }
+
+            fputcsv($fp, array_keys($orders[0]), $fieldSeparator);
+
+            foreach ($orders as $line) {
+                fputcsv($fp, $line, $fieldSeparator);
+            }
+
+            fclose($fp);
+            echo "<pre>";
+            print_r($orders);
+            echo "</pre>";
+
+            die();
+
             #$manager->get('Licentia\Panda\Model\Products\Relations')->rebuildAvgDays();
             #$order = $manager->create('Magento\Sales\Model\Order')->load(55);
             #$manager->get('Licentia\Panda\Model\Autoresponders')->newOrder($order);
             #$manager->get('Licentia\Panda\Model\Autoresponders')->cron();
             #$manager->get('Licentia\Panda\Model\Followup')->cron();
-            $manager->get('Licentia\Panda\Model\Campaigns')->queueCampaigns();
-            $manager->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
+            #$manager->get('Licentia\Panda\Model\Campaigns')->queueCampaigns();
+            #$manager->get('Licentia\Panda\Model\Service\Smtp')->sendEmail();
             #$manager->get('Licentia\Panda\Model\Service\Sms')->sendSms();
             #$manager->get('Licentia\Panda\Model\Metadata')->activityRelated();
             #$manager->get('Licentia\Panda\Model\Bounces')->processBounces();
@@ -110,8 +172,6 @@ class Autoresponders extends \Magento\Backend\App\Action
 
             die(__METHOD__);
         }
-
-        */
 
         $this->resultForwardFactory = $resultForwardFactory;
         $this->resultPageFactory = $resultPageFactory;
