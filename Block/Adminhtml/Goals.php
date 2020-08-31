@@ -89,7 +89,7 @@ class Goals extends \Magento\Backend\Block\Widget\Container
                             'goal_type' => $key,
                         ]
                     ) . "'",
-                'default' => false,
+                'default' => true,
             ];
         }
 

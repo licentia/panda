@@ -78,7 +78,7 @@ class Popups extends \Magento\Backend\Block\Widget\Container
                             'type' => $key,
                         ]
                     ) . "'",
-                'default' => $key == 'floating' ? true : false,
+                'default' => $key == 'floating',
             ];
         }
 

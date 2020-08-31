@@ -80,7 +80,7 @@ class Splits extends \Magento\Backend\Block\Widget\Container
                             'option' => $key,
                         ]
                     ) . "'",
-                'default' => false,
+                'default' => true,
             ];
         }
 
