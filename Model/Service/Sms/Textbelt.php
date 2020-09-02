@@ -21,7 +21,7 @@
 namespace Licentia\Panda\Model\Service\Sms;
 
 /**
- * Class Sinch
+ * Class Textbelt
  *
  * @package Licentia\Panda\Model\Service\Sms
  */

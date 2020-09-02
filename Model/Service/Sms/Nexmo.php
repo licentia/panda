@@ -21,7 +21,7 @@
 namespace Licentia\Panda\Model\Service\Sms;
 
 /**
- * Class Clickatell
+ * Class Nexmo
  *
  * @package Licentia\Panda\Model\Service\Sms
  */

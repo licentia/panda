@@ -20,7 +20,7 @@
 namespace Licentia\Panda\Model\Service\Sms;
 
 /**
- * Class Sinch
+ * Class Africastalking
  *
  * @package Licentia\Panda\Model\Service\Sms
  */

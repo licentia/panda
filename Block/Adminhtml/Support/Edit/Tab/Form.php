@@ -85,7 +85,10 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
 
         $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
 
-        /** @var \Magento\Framework\Data\Form $form */
+        if(!$sender){
+            $sender = new \Magento\Framework\DataObject;
+        }
+
         $form = $this->_formFactory->create(
             [
                 'data' => [

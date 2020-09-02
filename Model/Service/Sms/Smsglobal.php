@@ -54,7 +54,6 @@ class Smsglobal extends Core
                '&password=' . $this->getPassword() .
                '&from=' . $from .
                '&to=' . $this->getPhone($phone) .
-               '&clientcharset=ISO-8859-1' .
                '&text=' . substr(rawurlencode($message), 0, 153);
 
         $returnedData = file_get_contents($url);

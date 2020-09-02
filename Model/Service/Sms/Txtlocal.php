@@ -21,7 +21,7 @@
 namespace Licentia\Panda\Model\Service\Sms;
 
 /**
- * Class Clickatell
+ * Class Txtlocal
  *
  * @package Licentia\Panda\Model\Service\Sms
  */
