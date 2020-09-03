@@ -33,7 +33,7 @@
         <add id="Licentia_Panda::configuration" title="Configuration" module="Licentia_Panda" sortOrder="20" parent="Licentia_Panda::account_details" action="adminhtml/system_config/edit/section/panda_nuntius" resource="Licentia_Panda::config"/>
         <add id="Licentia_Panda::senders" title="Senders" module="Licentia_Panda" sortOrder="30" parent="Licentia_Panda::account_details" action="panda/senders" resource="Licentia_Panda::senders"/>
         <add id="Licentia_Panda::support" title="Support" module="Licentia_Panda" sortOrder="40" parent="Licentia_Panda::account_details" action="panda/support" resource="Licentia_Panda::support"/>
-        <add id="Licentia_Panda::debug" title="Debug Info" module="Licentia_Panda" sortOrder="50" parent="Licentia_Panda::account_details" action="panda/support/index/tab_id/report_section" resource="Licentia_Panda::support"/>
+        <!--<add id="Licentia_Panda::debug" title="Debug Info" module="Licentia_Panda" sortOrder="50" parent="Licentia_Panda::account_details" action="panda/support/index/tab_id/report_section" resource="Licentia_Panda::support"/>-->
         <add id="Licentia_Panda::exceptions" title="Issues" module="Licentia_Panda" sortOrder="60" parent="Licentia_Panda::account_details" action="panda/exceptions" resource="Licentia_Panda::exceptions"/>
 
 

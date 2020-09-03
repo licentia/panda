@@ -59,6 +59,8 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
         parent::execute();
         $resultRedirect = $this->resultRedirectFactory->create();
 
+        $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
+
         if ($this->getRequest()->isPost()) {
             $params = $this->getRequest()->getPostValue();
             $email = \Licentia\Panda\Helper\Debug::SUPPORT_EMAIL;
@@ -69,8 +71,6 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
             $msg .= "Message : " . $params['message'] . "<br>";
 
             try {
-
-                $sender = $this->pandaHelper->getEmailSenderForInternalNotifications();
 
                 $html = new MimePart($msg);
                 $html->type = Mime::TYPE_HTML;
@@ -114,6 +114,11 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
             }
 
             return $resultRedirect->setPath('*/support');
+        }
+
+        if (!$sender) {
+            $this->messageManager->addNoticeMessage("You cannot send a support request without adding a sender. If you can't add a email Sender, send an email to support@greenflyingpanda.com");
+            return $resultRedirect->setPath('*/');
         }
 
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
