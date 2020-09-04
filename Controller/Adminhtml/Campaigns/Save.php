@@ -351,7 +351,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Campaigns
                         '*/*/edit',
                         [
                             'id'     => $model->getId(),
-                            'tab_id' => $this->getRequest()->getParam('active_tab'),
+                            'active_tab' => $this->getRequest()->getParam('active_tab'),
                         ]
                     );
                 } else {
@@ -366,7 +366,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Campaigns
                         '*/*/edit',
                         [
                             'id'     => $model->getId(),
-                            'tab_id' => $this->getRequest()->getParam('active_tab'),
+                            'active_tab' => $this->getRequest()->getParam('active_tab'),
                         ]
                     );
                 }
@@ -387,7 +387,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Campaigns
                 '*/*/edit',
                 [
                     'id'     => $model->getId(),
-                    'tab_id' => $this->getRequest()->getParam('active_tab'),
+                    'active_tab' => $this->getRequest()->getParam('active_tab'),
                 ]
             );
         }

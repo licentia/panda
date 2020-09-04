@@ -73,7 +73,7 @@ class Detail extends \Licentia\Panda\Controller\Adminhtml\Reports
             return $this->resultRedirectFactory->create()
                                                ->setPath(
                                                    '*/campaigns/edit',
-                                                   ['id' => $camp->getId(), 'tab_id' => 'reports_edit_tabs_children']
+                                                   ['id' => $camp->getId(), 'active_tab' => 'reports_edit_tabs_children']
                                                );
         }
 

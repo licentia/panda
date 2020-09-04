@@ -117,8 +117,9 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Support
         }
 
         if (!$sender) {
-            $this->messageManager->addNoticeMessage("You cannot send a support request without adding a sender. If you can't add a email Sender, send an email to support@greenflyingpanda.com");
-            return $resultRedirect->setPath('*/');
+            $this->messageManager->addErrorMessage("You cannot send a support request without an email sender. " .
+                                                    "If you can't add a email Sender, send an email to support@greenflyingpanda.com");
+            return $resultRedirect->setPath('panda/senders');
         }
 
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */

@@ -130,7 +130,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
                     [
                         'id'     => $this->getRequest()->getParam('id'),
                         'cid'    => $this->getRequest()->getParam('cid'),
-                        'tab_id' => $this->getRequest()->getParam('active_tab'),
+                        'active_tab' => $this->getRequest()->getParam('active_tab'),
                     ]
                 );
             }
@@ -188,7 +188,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
                         '*/*/edit',
                         [
                             'id'     => $model->getId(),
-                            'tab_id' => $this->getRequest()->getParam('active_tab'),
+                            'active_tab' => $this->getRequest()->getParam('active_tab'),
                         ]
                     );
                 }
@@ -209,7 +209,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
                 '*/*/edit',
                 [
                     'id'     => $model->getId(),
-                    'tab_id' => $this->getRequest()->getParam('active_tab'),
+                    'active_tab' => $this->getRequest()->getParam('active_tab'),
                 ]
             );
         }

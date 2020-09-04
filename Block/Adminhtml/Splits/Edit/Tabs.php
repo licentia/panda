@@ -108,10 +108,6 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
             );
         }
 
-        if ($this->getRequest()->getParam('tab_id')) {
-            $this->setActiveTab(str_replace($this->getId() . '_', '', $this->getRequest()->getParam('tab_id')));
-        }
-
         return parent::_beforeToHtml();
     }
 }

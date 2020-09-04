@@ -104,7 +104,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\TemplatesGlobal
                         '*/*/edit',
                         [
                             'id'     => $model->getId(),
-                            'tab_id' => $this->getRequest()->getParam('active_tab'),
+                            'active_tab' => $this->getRequest()->getParam('active_tab'),
                         ]
                     );
                 }
@@ -112,7 +112,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\TemplatesGlobal
                 if ($parent || $model->getParentId()) {
                     return $resultRedirect->setPath(
                         '*/*/edit',
-                        ['id' => $model->getParentId(), 'tab_id' => 'variations_section']
+                        ['id' => $model->getParentId(), 'active_tab' => 'variations_section']
                     );
                 }
 
