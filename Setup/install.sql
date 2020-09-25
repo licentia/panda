@@ -16,6 +16,24 @@
  *
  */
 
+/*
+ * Copyright (C) Licentia, Unipessoal LDA
+ *
+ * NOTICE OF LICENSE
+ *
+ *  This source file is subject to the EULA
+ *  that is bundled with this package in the file LICENSE.txt.
+ *  It is also available through the world-wide-web at this URL:
+ *  https://www.greenflyingpanda.com/panda-license.txt
+ *
+ *  @title      Licentia Panda - Magento® Sales Automation Extension
+ *  @package    Licentia
+ *  @author     Bento Vilas Boas <bento@licentia.pt>
+ *  @copyright  Copyright (c) Licentia - https://licentia.pt
+ *  @license    https://www.greenflyingpanda.com/panda-license.txt
+ *
+ */
+
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_autoresponders`;
 CREATE TABLE `TABLE_PREFIX`.`panda_autoresponders`
 (
@@ -7557,6 +7575,22 @@ CREATE TABLE `TABLE_PREFIX`.`panda_import`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='Panda - Import Schedule';
 
+DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_import_log`;
+CREATE TABLE `TABLE_PREFIX`.`panda_import_log`
+(
+    `log_id`      int unsigned NOT NULL AUTO_INCREMENT,
+    `import_id`   int unsigned NOT NULL,
+    `created`     smallint unsigned     DEFAULT NULL,
+    `updated`     smallint unsigned     DEFAULT NULL,
+    `deleted`     smallint unsigned     DEFAULT NULL,
+    `imported_at` datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `result`      varchar(255)          DEFAULT NULL,
+    `message`     text,
+    PRIMARY KEY (`log_id`),
+    KEY `import_id` (`import_id`),
+    CONSTRAINT `FK_PANDA_IMPORT_LOG_IMPORTID` FOREIGN KEY (`import_id`) REFERENCES `TABLE_PREFIX`.`panda_import` (`record_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 DROP TABLE IF EXISTS `TABLE_PREFIX`.`panda_unsubscribes`;
 CREATE TABLE `TABLE_PREFIX`.`panda_unsubscribes`
