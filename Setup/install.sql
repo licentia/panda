@@ -7571,6 +7571,7 @@ CREATE TABLE `TABLE_PREFIX`.`panda_import`
     `success_email_copy_method`              varchar(255)     DEFAULT NULL,
     `fail_message`                           text,
     `mappings`                               text,
+    `ignore_fields`                          varchar(255),
     PRIMARY KEY (`record_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 COMMENT ='Panda - Import Schedule';
