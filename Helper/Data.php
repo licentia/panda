@@ -1805,6 +1805,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
+     * @param $senderId
+     *
+     * @return \Licentia\Panda\Model\Senders
+     */
+    public function getSender($senderId)
+    {
+
+        return $this->sendersFactory->create()->load($senderId);
+
+    }
+
+    /**
      * @param $sender
      *
      * @return bool|\Laminas\Mail\Transport\Smtp
@@ -1815,6 +1827,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         if (is_string($sender)) {
             $sender = $this->sendersFactory->create()->load($sender, 'sender_email');
+        }
+
+        if (is_numeric($sender)) {
+            $sender = $this->sendersFactory->create()->load($sender);
         }
 
         if (!$sender->getId()) {
