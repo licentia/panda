@@ -245,6 +245,8 @@ Types,Types
 "Something went wrong while sending updating your cellphone.","Something went wrong while sending updating your cellphone."
 "Invalid SMS Code. Please try again","Invalid SMS Code. Please try again"
 "Something went wrong while validating the code.","Something went wrong while validating the code."
+"'Error sending the code' .","'Error sending the code' ."
+"Invalid Auth Code. Please try again","Invalid Auth Code. Please try again"
 Category,Category
 Product,Product
 "CMS Page","CMS Page"
@@ -400,6 +402,7 @@ Ignore,Ignore
 65+,65+
 "Too many requests","Too many requests"
 message,message
+"Error Sending Auth Code","Error Sending Auth Code"
 "Error Sending SMS","Error Sending SMS"
 "Customer variables cannot be used in the ""Product Prices"" section. Use the ""Customer Prices"" section","Customer variables cannot be used in the ""Product Prices"" section. Use the ""Customer Prices"" section"
 "A variable is required in your pricing formula. Eg: {p.price}","A variable is required in your pricing formula. Eg: {p.price}"
@@ -503,11 +506,13 @@ Info,Info
 "Statistical sales","Statistical sales"
 "Conditional Pricing","Conditional Pricing"
 "Two-Factor Authentication Required","Two-Factor Authentication Required"
-"Please insert the SMS code you received","Please insert the SMS code you received"
+"Please insert the code you received in your email","Please insert the code you received in your email"
 "Do not ask again for this browser for the next %1 days","Do not ask again for this browser for the next %1 days"
 Continue,Continue
-"Resend SMS","Resend SMS"
+"Resend Email","Resend Email"
 Logout,Logout
+"Please insert the SMS code you received","Please insert the SMS code you received"
+"Resend SMS","Resend SMS"
 "Please insert your cellphone number. This number will only be used to send Auth Codes","Please insert your cellphone number. This number will only be used to send Auth Codes"
 "Please use the following format: CountryCode-CellPhoneNumber. <br>Ex: 351-989647542","Please use the following format: CountryCode-CellPhoneNumber. <br>Ex: 351-989647542"
 "Update Cellphone","Update Cellphone"
@@ -761,6 +766,7 @@ Files,Files
 Local,Local
 "Remote FTP","Remote FTP"
 "Remote SFTP","Remote SFTP"
+URL,URL
 "File Directory","File Directory"
 "For Type ""Local"" use relative path to Magento installation, e.g. var/export, var/import, var/export/some/dir<br><br>For ""Remote"" use the full path, e.g. /home/user/uploads/","For Type ""Local"" use relative path to Magento installation, e.g. var/export, var/import, var/export/some/dir<br><br>For ""Remote"" use the full path, e.g. /home/user/uploads/"
 "File Name","File Name"
@@ -768,6 +774,9 @@ Local,Local
 ". ', e.g. <i>product_images</i>, <i>import_images/batch1</i>.<br><br>For example, in case <i>product_images</i>, files should be placed into <i>&lt;Magento root directory&gt;/' . . '/product_images</i> folder.' 'i' 'br'",". ', e.g. <i>product_images</i>, <i>import_images/batch1</i>.<br><br>For example, in case <i>product_images</i>, files should be placed into <i>&lt;Magento root directory&gt;/' . . '/product_images</i> folder.' 'i' 'br'"
 Host,Host
 "FTP Username","FTP Username"
+"Basic Auth Username","Basic Auth Username"
+"Basic Auth Password","Basic Auth Password"
+"Auth Bearer","Auth Bearer"
 "FTP Password","FTP Password"
 "Remote Port","Remote Port"
 "Remote Password","Remote Password"
@@ -775,7 +784,7 @@ Host,Host
 Binary,Binary
 ASCII,ASCII
 "Passive Mode","Passive Mode"
-"Email Notifications","Email Notifications"
+"Failure Email Notifications","Failure Email Notifications"
 "Failed Email Sender","Failed Email Sender"
 "Failed Email Recipient","Failed Email Recipient"
 "Separate multiple using commas","Separate multiple using commas"
@@ -783,6 +792,19 @@ ASCII,ASCII
 Copy,Copy
 BCC,BCC
 "If multiple Recipients defined","If multiple Recipients defined"
+"Success Email Notifications","Success Email Notifications"
+"Success Email Sender","Success Email Sender"
+"Success Email Recipient","Success Email Recipient"
+"Import Date","Import Date"
+"Records created","Records created"
+"Records updated","Records updated"
+"Records delete","Records delete"
+Message,Message
+Success,Success
+"Success (No File)","Success (No File)"
+Fail,Fail
+"Data Mapping","Data Mapping"
+"Import Log","Import Log"
 "You deleted the Scheduled Import","You deleted the Scheduled Import"
 "Something went wrong while deleting the Scheduled Import","Something went wrong while deleting the Scheduled Import"
 "We can't find an Scheduled Import to delete.","We can't find an Scheduled Import to delete."
@@ -791,6 +813,8 @@ BCC,BCC
 "Edit Scheduled Import","Edit Scheduled Import"
 "Scheduled Import","Scheduled Import"
 "Job Successfully Run","Job Successfully Run"
+"Something went wrong while running the Scheduled Import","Something went wrong while running the Scheduled Import"
+"We can't find an Scheduled Import to run.","We can't find an Scheduled Import to run."
 "You saved the Scheduled Import.","You saved the Scheduled Import."
 "Something went wrong while saving the Scheduled Import. ","Something went wrong while saving the Scheduled Import. "
 "at the hour","at the hour"
@@ -907,8 +931,16 @@ December,December
 58th,58th
 59th,59th
 "Invalid Cron expression","Invalid Cron expression"
+"Invalid File Extension","Invalid File Extension"
+"No File","No File"
 "-- Please Select --","-- Please Select --"
 label,label
+"Add Row","Add Row"
+"Magento Attribute Name","Magento Attribute Name"
+"Import File Attribute Name","Import File Attribute Name"
+"Leaving the ""Import File Attribute Name"" field empty and filling the ""Magento Attribute Name"" will create a new column in the CSV file with the value in the ""Default Value"" column","Leaving the ""Import File Attribute Name"" field empty and filling the ""Magento Attribute Name"" will create a new column in the CSV file with the value in the ""Default Value"" column"
+"Ignore Source Columns","Ignore Source Columns"
+"Separate multiples with a comma","Separate multiples with a comma"
 "Save Autoresponder","Save Autoresponder"
 "Delete Autoresponder","Delete Autoresponder"
 "Edit Autoresponder '%1'","Edit Autoresponder '%1'"
@@ -1074,7 +1106,6 @@ Clicks,Clicks
 "Yes - Leave it alone","Yes - Leave it alone"
 "No - Go ahead, proceed as usual","No - Go ahead, proceed as usual"
 "The option to mark a campaign as draft will be removed when the campaign is queued","The option to mark a campaign as draft will be removed when the campaign is queued"
-Message,Message
 "The maximum number of SMS to send for this campaign","The maximum number of SMS to send for this campaign"
 "Max Messages/Hour","Max Messages/Hour"
 "Child Campaigns","Child Campaigns"
@@ -1684,6 +1715,8 @@ Plain,Plain
 CRAM-MD5,CRAM-MD5
 "No SSL","No SSL"
 "SSL TLS","SSL TLS"
+SMS,SMS
+E-Mail,E-Mail
 "Sender + Subject + Message","Sender + Subject + Message"
 "Sender + Subject","Sender + Subject"
 "Sender + Message","Sender + Message"
@@ -1884,16 +1917,20 @@ Global,Global
 "Product Relations","Product Relations"
 "Attributes Relations","Attributes Relations"
 "No Reports Build. Please check the manual on how to build reports. If you just installed the extension you must run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. If you just installed the extension you must run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"Please note reports are based on Orders/Invoices data. If you don't have any orders, this message will always be displayed","Please note reports are based on Orders/Invoices data. If you don't have any orders, this message will always be displayed"
 "Sales Stats","Sales Stats"
 "Data will start building next time your cron runs. This might take a few hours","Data will start building next time your cron runs. This might take a few hours"
 "No Reports Build. Please check the manual on how to build reports. If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"Please note reports are based on Orders/Invoices data. You need multiple orders with multiple products for recommendations to be built, otherwise, this message will always be displayed","Please note reports are based on Orders/Invoices data. You need multiple orders with multiple products for recommendations to be built, otherwise, this message will always be displayed"
 "Product Recommendation","Product Recommendation"
 "Product Recommendations","Product Recommendations"
-"No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced order If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced order If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
+"No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced orders If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>","No Reports Build. Please check the manual on how to build reports. Please note these reports are based on invoiced orders If you want to reindex everything again, or if you just installed the extension, <a href=""%1"">click here </a>. We recommend in alternative to run this command from the command line: <pre>php bin/magento panda:rebuild</pre>"
 "Venn Relations","Venn Relations"
 "Search Marketing","Search Marketing"
 "Search terms","Search terms"
 "Product Searches","Product Searches"
+"Please note search reports are based on logged-in customers searches. If no searches have been made, this message will always be displayed","Please note search reports are based on logged-in customers searches. If no searches have been made, this message will always be displayed"
+"Reports will only be built for terms searched for a minimum of %1 times ","Reports will only be built for terms searched for a minimum of %1 times "
 "Search Stats","Search Stats"
 "Searches Performance","Searches Performance"
 "Venn Searches","Venn Searches"
@@ -1934,19 +1971,34 @@ Apply,Apply
 Chart,Chart
 "Add to Wish List","Add to Wish List"
 "Add to Compare","Add to Compare"
+"Validate your entry on %store","Validate your entry on %store"
+"A new login attempt has been made using your credentials has been made","A new login attempt has been made using your credentials has been made"
+"Please use the following auth code %code","Please use the following auth code %code"
+Regards,Regards
 "New entry in form %formName","New entry in form %formName"
 "A new entry was added to the form %formName","A new entry was added to the form %formName"
 "Validate your entry on %formName","Validate your entry on %formName"
 "Thank you for your submission on %formName","Thank you for your submission on %formName"
 "You must validate it by clicking <a href=""%link_url"">here</a>","You must validate it by clicking <a href=""%link_url"">here</a>"
 "Issues with your Schedule Import %name","Issues with your Schedule Import %name"
-"He there,","He there,"
+"Hi there,","Hi there,"
 "There was a problem while processing your schedule import","There was a problem while processing your schedule import"
 "Here is the message","Here is the message"
+"Success (no file found) - Schedule Import: %name","Success (no file found) - Schedule Import: %name"
+"Your schedule import completed successfully, but not file was found","Your schedule import completed successfully, but not file was found"
+"Best Regards","Best Regards"
+"Success - Schedule Import: %name","Success - Schedule Import: %name"
+"Here are the results of your schedule import","Here are the results of your schedule import"
+"Records Created","Records Created"
+"Records Updated","Records Updated"
+"Records Deleted","Records Deleted"
 "Green Flying Panda","Green Flying Panda"
 "Enable two-factor authentication for customers","Enable two-factor authentication for customers"
+"Authentication Type","Authentication Type"
+"Should the authentication be made using an SMS or Email?","Should the authentication be made using an SMS or Email?"
 "SMS Sender","SMS Sender"
 "Select the SMS sender for the SMS","Select the SMS sender for the SMS"
+"Select the Email sender for the Code","Select the Email sender for the Code"
 "Customer Groups - Required","Customer Groups - Required"
 "Two-Factor Authentication is required for customers in the selected customer groups","Two-Factor Authentication is required for customers in the selected customer groups"
 "Customer Groups - Optional","Customer Groups - Optional"
@@ -1957,16 +2009,18 @@ Chart,Chart
 "Two-Factor Authentication is optional for customers in the selected customer segments","Two-Factor Authentication is optional for customers in the selected customer segments"
 "Code Length","Code Length"
 "Between 4 and 20","Between 4 and 20"
-"New SMS code (30 mins)","New SMS code (30 mins)"
+"New code (30 mins)","New code (30 mins)"
 "Max Times the Customer can ask for a new Message for 30mins","Max Times the Customer can ask for a new Message for 30mins"
-"New SMS code (day)","New SMS code (day)"
+"New code (day)","New code (day)"
 "Max Times the Customer can ask for a new Message in a day","Max Times the Customer can ask for a new Message in a day"
-"SMS Message","SMS Message"
-"Variable {code} will be replaced with the actual code","Variable {code} will be replaced with the actual code"
+"Variable &#123;code&#125; will be replaced with the actual code","Variable &#123;code&#125; will be replaced with the actual code"
+"Email Notification Template","Email Notification Template"
 "Allow Remember Device","Allow Remember Device"
 "Give customers the option to skip authentication for the active browser","Give customers the option to skip authentication for the active browser"
 "Remember Days","Remember Days"
-"How many days should the customer be allowed to login in the same device without asking for another SMS","How many days should the customer be allowed to login in the same device without asking for another SMS"
+"How many days should the customer be allowed to login in the same device without asking for another authentication","How many days should the customer be allowed to login in the same device without asking for another authentication"
+"Select the Email sender for the Auth Code","Select the Email sender for the Auth Code"
+"How many days should the customer be allowed to login in the same device without asking for another auth code","How many days should the customer be allowed to login in the same device without asking for another auth code"
 "Access Control","Access Control"
 "Enable ACL on Products, Categories, CMS Pages and CMS Blocks","Enable ACL on Products, Categories, CMS Pages and CMS Blocks"
 "Attributes Frequency percentage","Attributes Frequency percentage"
@@ -2134,7 +2188,6 @@ Used?,Used?
 "Email template chosen based on theme fallback when ""Default"" option is selected.","Email template chosen based on theme fallback when ""Default"" option is selected."
 "New Entries Notification","New Entries Notification"
 "Notify the following addresses of new form entries","Notify the following addresses of new form entries"
-"Email Notification Template","Email Notification Template"
 "Uploaded files custom Path","Uploaded files custom Path"
 "This path will be used to store files and images uploaded to your store and that you wish to protect from direct URL access. You should specify a full path, that is not in your DOCUMENT_ROOT. If you change this value, remember to also move the files from the current directory to the new one","This path will be used to store files and images uploaded to your store and that you wish to protect from direct URL access. You should specify a full path, that is not in your DOCUMENT_ROOT. If you change this value, remember to also move the files from the current directory to the new one"
 "New Frontend Form","New Frontend Form"
@@ -2143,13 +2196,13 @@ Used?,Used?
 "Frontend Entries","Frontend Entries"
 "Entries Type","Entries Type"
 "Import - Schedule","Import - Schedule"
-Success,Success
-Fail,Fail
-"Success (No File)","Success (No File)"
 "Last Outcome","Last Outcome"
+FTP,FTP
+SFTP,SFTP
 Runs,Runs
 "Last Executed","Last Executed"
 "Next Execution","Next Execution"
+"Fail Message","Fail Message"
 System,System
 "Account Details","Account Details"
 Geo,Geo
@@ -2197,7 +2250,6 @@ Geo,Geo
 "Conversions Average","Conversions Average"
 "New SMS Campaign","New SMS Campaign"
 "New Email Campaign","New Email Campaign"
-SMS,SMS
 Draft,Draft
 Paused,Paused
 "T. Msgs","T. Msgs"
