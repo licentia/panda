@@ -6,7 +6,7 @@
     "licentia/equity": ">=1.3.21",
     "licentia/forms": ">=1.3.21",
     "licentia/reports": ">=1.3.21",
-    "licentia/import": ">=1.3.21s"
+    "licentia/import": ">=1.3.21"
   },
   "authors": [
     {
