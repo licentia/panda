@@ -31,12 +31,12 @@ class Options implements OptionSourceInterface
     /**
      * @var array
      */
-    protected array $options;
+    protected $options;
 
     /**
      * @var AutorespondersFactory
      */
-    protected AutorespondersFactory $autorespondersFactory;
+    protected $autorespondersFactory;
 
     /**
      * Options constructor.

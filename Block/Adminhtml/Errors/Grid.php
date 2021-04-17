@@ -75,12 +75,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended implements
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                      $context

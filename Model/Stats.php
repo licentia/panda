@@ -33,62 +33,62 @@ class Stats extends \Magento\Framework\Model\AbstractModel
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var AutorespondersFactory
      */
-    protected AutorespondersFactory $autorespondersFactory;
+    protected $autorespondersFactory;
 
     /**
      * @var StatsFactory
      */
-    protected StatsFactory $statsFactory;
+    protected $statsFactory;
 
     /**
      * @var SplitsFactory
      */
-    protected SplitsFactory $splitsFactory;
+    protected $splitsFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var ResourceModel\Stats\CollectionFactory
      */
-    protected ResourceModel\Stats\CollectionFactory $statsCollection;
+    protected $statsCollection;
 
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscribersCollection;
+    protected $subscribersCollection;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected \Magento\Customer\Model\Session $customerSession;
+    protected $customerSession;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\Filesystem
      */
-    protected \Magento\Framework\Filesystem $filesystem;
+    protected $filesystem;
 
     /**
      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
      */
-    protected \Magento\Framework\Filesystem\Directory\WriteInterface $tmpDir;
+    protected $tmpDir;
 
     /**
      * Initialize resource model

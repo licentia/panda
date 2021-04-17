@@ -30,7 +30,7 @@ class Egoi extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'FROM ID', 'type' => 'text', 'required' => true, 'note' => 'Sender Hash'],
         'api_key'    => ['label' => 'API KEY', 'type' => 'password', 'required' => true],
     ];

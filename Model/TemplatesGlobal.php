@@ -33,7 +33,7 @@ class TemplatesGlobal extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_templates_global';
+    protected $_eventPrefix = 'panda_templates_global';
 
     /**
      * Parameter name in event
@@ -42,17 +42,17 @@ class TemplatesGlobal extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'templates_global';
+    protected $_eventObject = 'templates_global';
 
     /**
      * @var ResourceModel\TemplatesGlobal\CollectionFactory
      */
-    protected ResourceModel\TemplatesGlobal\CollectionFactory $templatesCollection;
+    protected $templatesCollection;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * TemplatesGlobal constructor.

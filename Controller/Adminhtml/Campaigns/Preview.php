@@ -33,17 +33,17 @@ class Preview extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ServiceFactory
      */
-    protected \Licentia\Panda\Model\ServiceFactory $service;
+    protected $service;
 
     /**
      * Init actions

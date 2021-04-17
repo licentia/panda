@@ -37,37 +37,37 @@ class Reports extends Action
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\View\Result\ForwardFactory
      */
-    protected \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory;
+    protected $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected \Magento\Framework\View\Result\LayoutFactory $layoutFactory;
+    protected $layoutFactory;
 
     /**
      * @var \Magento\Framework\App\Response\Http\FileFactory
      */
-    protected \Magento\Framework\App\Response\Http\FileFactory $fileFactory;
+    protected $fileFactory;
 
     /**
      * @var \Licentia\Panda\Model\StatsFactory
      */
-    protected \Licentia\Panda\Model\StatsFactory $statsFactory;
+    protected $statsFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @param Action\Context                                    $context

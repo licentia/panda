@@ -34,22 +34,22 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Autoresponders
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected \Magento\Catalog\Api\ProductRepositoryInterface $productRepository;
+    protected $productRepository;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @param \Licentia\Panda\Model\TagsFactory                    $tagsFactory

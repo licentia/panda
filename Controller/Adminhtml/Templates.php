@@ -37,62 +37,62 @@ class Templates extends Action
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\View\Result\ForwardFactory
      */
-    protected \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory;
+    protected $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected \Magento\Framework\View\Result\LayoutFactory $layoutFactory;
+    protected $layoutFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templateFactory;
+    protected $templateFactory;
 
     /**
      * @var \Magento\Newsletter\Model\Template\Filter
      */
-    protected \Magento\Newsletter\Model\Template\Filter $filter;
+    protected $filter;
 
     /**
      * @var \Licentia\Panda\Model\Service
      */
-    protected \Licentia\Panda\Model\Service $service;
+    protected $service;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
+    protected $storeManager;
 
     /**
      * @var \Magento\Newsletter\Model\TemplateFactory
      */
-    protected \Magento\Newsletter\Model\TemplateFactory $newsletterTemplateFactory;
+    protected $newsletterTemplateFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesGlobalFactory
      */
-    protected \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory;
+    protected $templatesGlobalFactory;
 
     /**
      * Templates constructor.

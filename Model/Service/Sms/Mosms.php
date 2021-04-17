@@ -30,7 +30,7 @@ class Mosms extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'Originator', 'type' => 'text', 'required' => true],
         'username'   => ['label' => 'Username', 'type' => 'text', 'required' => true],
         'password'   => ['label' => 'Password', 'type' => 'password', 'required' => true],

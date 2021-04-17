@@ -35,7 +35,7 @@ class Tags extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_tags';
+    protected $_eventPrefix = 'panda_tags';
 
     /**
      * Parameter name in event
@@ -44,12 +44,12 @@ class Tags extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'tags';
+    protected $_eventObject = 'tags';
 
     /**
      * @var TagsRelationsFactory
      */
-    protected TagsRelationsFactory $tagsRelationsFactory;
+    protected $tagsRelationsFactory;
 
     /**
      * Tags constructor.

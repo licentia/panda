@@ -38,12 +38,12 @@ class Followup extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                        $context
@@ -149,13 +149,13 @@ class Followup extends \Magento\Backend\Block\Widget\Grid\Extended
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $item
+     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $row
      *
      * @return string
      */
-    public function getRowUrl($item)
+    public function getRowUrl($row)
     {
 
-        return $this->getUrl('*/followups/edit', ['id' => $item->getId()]);
+        return $this->getUrl('*/followups/edit', ['id' => $row->getId()]);
     }
 }

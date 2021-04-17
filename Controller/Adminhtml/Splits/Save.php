@@ -33,12 +33,12 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Splits
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
@@ -48,12 +48,12 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Splits
     /**
      * @var
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @param Action\Context                                       $context

@@ -32,17 +32,17 @@ class ConvertOrder implements ObserverInterface
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ConversionsFactory
      */
-    protected \Licentia\Panda\Model\ConversionsFactory $conversionsFactory;
+    protected $conversionsFactory;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
      */
-    protected \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory;
+    protected $autorespondersFactory;
 
     /**
      * ConvertOrder constructor.

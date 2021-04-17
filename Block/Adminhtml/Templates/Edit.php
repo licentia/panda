@@ -32,12 +32,12 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @param \Licentia\Panda\Model\TemplatesFactory $templatesFactory

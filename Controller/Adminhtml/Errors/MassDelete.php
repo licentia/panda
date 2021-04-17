@@ -32,7 +32,7 @@ class MassDelete extends \Licentia\Panda\Controller\Adminhtml\Errors
     /**
      * @var \Licentia\Panda\Model\ErrorsFactory
      */
-    protected \Licentia\Panda\Model\ErrorsFactory $errorsFactory;
+    protected $errorsFactory;
 
     /**
      * MassDelete constructor.

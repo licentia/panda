@@ -32,7 +32,7 @@ class NewsletterSave
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected \Magento\Framework\UrlInterface $url;
+    protected $url;
 
     /**
      * NewsletterSave constructor.

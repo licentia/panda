@@ -33,7 +33,7 @@ class Urls extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_urls';
+    protected $_eventPrefix = 'panda_urls';
 
     /**
      * Parameter name in event
@@ -42,22 +42,22 @@ class Urls extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'urls';
+    protected $_eventObject = 'urls';
 
     /**
      * @var ResourceModel\Links\CollectionFactory
      */
-    protected ResourceModel\Links\CollectionFactory $linksCollection;
+    protected $linksCollection;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var LinksFactory
      */
-    protected LinksFactory $linksFactory;
+    protected $linksFactory;
 
     /**
      * @param \Licentia\Panda\Helper\Data                                  $pandaHelper

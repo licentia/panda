@@ -32,17 +32,17 @@ class Archive extends CampaignsCollection implements SearchResultInterface
     /**
      * @var AggregationInterface
      */
-    protected AggregationInterface $aggregations;
+    protected $aggregations;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @var string
      */
-    protected string $_idFieldName = 'archive_id';
+    protected $_idFieldName = 'archive_id';
 
     /**
      * Archive constructor.

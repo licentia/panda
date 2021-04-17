@@ -39,17 +39,17 @@ class Notifysms extends AbstractModel
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection;
+    protected $sendersCollection;
 
     /**
      * @var \Licentia\Panda\Model\PopupsFactory
@@ -59,17 +59,17 @@ class Notifysms extends AbstractModel
     /**
      * @var \Magento\Email\Model\TemplateFactory
      */
-    protected ?\Magento\Email\Model\TemplateFactory $templateFactory = null;
+    protected $templateFactory = null;
 
     /**
      * @var \Magento\Newsletter\Model\Template\FilterFactory
      */
-    protected \Magento\Newsletter\Model\Template\FilterFactory $filterFactory;
+    protected $filterFactory;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
+    protected $customerFactory;
 
     /**
      * Notifysms constructor.

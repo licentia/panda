@@ -33,7 +33,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
@@ -43,7 +43,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
     /**
      * @var
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @param Action\Context                                     $context

@@ -40,7 +40,7 @@ class Goals extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_goals';
+    protected $_eventPrefix = 'panda_goals';
 
     /**
      * Parameter name in event
@@ -49,67 +49,67 @@ class Goals extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'goals';
+    protected $_eventObject = 'goals';
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var GoalsFactory
      */
-    protected GoalsFactory $goalsFactory;
+    protected $goalsFactory;
 
     /**
      * @var
      */
-    protected ResourceModel\Goals\CollectionFactory $goalsCollection;
+    protected $goalsCollection;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
+    protected $segmentsFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Licentia\Equity\Model\Segments\ListSegmentsFactory
      */
-    protected \Licentia\Equity\Model\Segments\ListSegmentsFactory $segmentListFactory;
+    protected $segmentListFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
+    protected $formsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormEntriesFactory
      */
-    protected \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory;
+    protected $formEntriesFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
-    protected \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter;
+    protected $dateFilter;
 
     /**
      * Goals constructor.

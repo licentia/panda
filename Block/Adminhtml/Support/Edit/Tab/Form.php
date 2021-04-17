@@ -31,12 +31,12 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Backend\Model\Session
      */
-    protected \Magento\Backend\Model\Session $session;
+    protected $session;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * Form constructor.

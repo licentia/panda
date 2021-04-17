@@ -34,12 +34,12 @@ class AddPandaPriceExpressionProductAttribute implements DataPatchInterface, Pat
     /**
      * @var ModuleDataSetupInterface
      */
-    private ModuleDataSetupInterface $moduleDataSetup;
+    private $moduleDataSetup;
 
     /**
      * @var EavSetupFactory
      */
-    private EavSetupFactory $eavSetupFactory;
+    private $eavSetupFactory;
 
     /**
      * Constructor

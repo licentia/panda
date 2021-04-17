@@ -31,7 +31,7 @@ class Spryng extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'Sender', 'type' => 'text', 'required' => true, 'note' => 'Originator address'],
         'username'   => ['label' => 'Username', 'type' => 'text', 'required' => true],
         'password'   => ['label' => 'Password', 'type' => 'password', 'required' => true],

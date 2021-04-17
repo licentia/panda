@@ -31,7 +31,7 @@ class Popups implements \Magento\Framework\Option\ArrayInterface
     /**
      * @var \Licentia\Panda\Model\PopupsFactory
      */
-    protected \Licentia\Panda\Model\PopupsFactory $popupFactory;
+    protected $popupFactory;
 
     /**
      * Popups constructor.

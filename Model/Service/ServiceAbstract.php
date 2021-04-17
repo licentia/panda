@@ -31,22 +31,22 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var array
      */
-    protected array $templateVariations = [];
+    protected $templateVariations = [];
 
     /**
      * @var \Licentia\Panda\Model\FollowupFactory
      */
-    protected \Licentia\Panda\Model\FollowupFactory $followupFactory;
+    protected $followupFactory;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\SplitsFactory
      */
-    protected \Licentia\Panda\Model\SplitsFactory $splitsFactory;
+    protected $splitsFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Queue\Collection
@@ -56,92 +56,92 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Archive\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Archive\CollectionFactory $archiveCollection;
+    protected $archiveCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\History\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\History\CollectionFactory $historyCollection;
+    protected $historyCollection;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * @var \Licentia\Panda\Model\QueueFactory
      */
-    protected \Licentia\Panda\Model\QueueFactory $queueFactory;
+    protected $queueFactory;
 
     /**
      * @var \Licentia\Panda\Model\HistoryFactory
      */
-    protected \Licentia\Panda\Model\HistoryFactory $historyFactory;
+    protected $historyFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @var
      */
-    protected int $defaultStoreId;
+    protected $defaultStoreId;
 
     /**
      * @var \Licentia\Panda\Model\EventsFactory
      */
-    protected \Licentia\Panda\Model\EventsFactory $eventsFactory;
+    protected $eventsFactory;
 
     /**
      * @var
      */
-    protected \Magento\Newsletter\Model\Template\Filter $filter;
+    protected $filter;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
-    protected \Magento\Framework\Message\ManagerInterface $messageManager;
+    protected $messageManager;
 
     /**
      * @var \Magento\Review\Model\ReviewFactory
      */
-    protected \Magento\Review\Model\ReviewFactory $reviewFactory;
+    protected $reviewFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var \Licentia\Panda\Model\ErrorsFactory
      */
-    protected \Licentia\Panda\Model\ErrorsFactory $errorsFactory;
+    protected $errorsFactory;
 
     /**
      * @var \Licentia\Panda\Model\ArchiveFactory
      */
-    protected \Licentia\Panda\Model\ArchiveFactory $archiveFactory;
+    protected $archiveFactory;
 
     /**
      * @var \Magento\Backend\Model\Session
      */
-    protected \Magento\Backend\Model\Session $session;
+    protected $session;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Subscribers\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
@@ -151,12 +151,12 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var \Magento\Framework\Url\EncoderInterface
      */
-    protected \Magento\Framework\Url\EncoderInterface $encoderInterface;
+    protected $encoderInterface;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
      */
-    protected \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory;
+    protected $autorespondersFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Queue
@@ -166,58 +166,58 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var \Magento\Payment\Helper\Data
      */
-    protected \Magento\Payment\Helper\Data $paymentHelper;
+    protected $paymentHelper;
 
     /**
      * @var \Magento\Sales\Model\OrderFactory
      */
-    protected \Magento\Sales\Model\OrderFactory $orderFactory;
+    protected $orderFactory;
 
     /**
      * @var \Magento\Store\Model\Store
      */
-    protected \Magento\Store\Model\Store $storeModel;
+    protected $storeModel;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory $errorsCollection;
+    protected $errorsCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory $templatesCollection;
+    protected $templatesCollection;
 
     /**
      * @var \Magento\Sales\Model\Order\ShipmentFactory
      */
-    protected \Magento\Sales\Model\Order\ShipmentFactory $shipmentFactory;
+    protected $shipmentFactory;
 
     /**
      * @var \Licentia\Equity\Model\Segments\ListSegmentsFactory
      */
-    protected \Licentia\Equity\Model\Segments\ListSegmentsFactory $listSegmentsFactory;
+    protected $listSegmentsFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesGlobalFactory
      */
-    protected \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory;
+    protected $templatesGlobalFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormEntriesFactory
      */
-    protected \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory;
+    protected $formEntriesFactory;
 
     /**
      * @var \Licentia\Panda\Block\EmptyBlock
      */
-    protected \Licentia\Panda\Block\EmptyBlock $emptyBlock;
+    protected $emptyBlock;
 
     /**
      * @var \Magento\Framework\UrlInterface
      */
 
-    private \Magento\Framework\UrlInterface $urlInterface;
+    private $urlInterface;
 
     /**
      * @var \Magento\Sales\Model\Order\Shipment
@@ -227,17 +227,17 @@ abstract class ServiceAbstract extends \Magento\Newsletter\Model\Template
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected \Magento\Catalog\Api\ProductRepositoryInterface $productRepository;
+    protected $productRepository;
 
     /**
      * @var \Magento\Framework\Url
      */
-    protected \Magento\Framework\Url $urlHelper;
+    protected $urlHelper;
 
     /**
      * @var \Magento\Framework\View\FileSystem
      */
-    protected \Magento\Framework\View\FileSystem $viewFileSystem;
+    protected $viewFileSystem;
 
     /**
      * ServiceAbstract constructor.

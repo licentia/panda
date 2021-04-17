@@ -30,17 +30,17 @@ class ImportCustomers
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * ImportCustomers constructor.

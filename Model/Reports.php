@@ -33,7 +33,7 @@ class Reports extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_reports';
+    protected $_eventPrefix = 'panda_reports';
 
     /**
      * Parameter name in event
@@ -42,12 +42,12 @@ class Reports extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'reports';
+    protected $_eventObject = 'reports';
 
     /**
      * @var ResourceModel\Reports\CollectionFactory
      */
-    protected ResourceModel\Reports\CollectionFactory $reportsCollection;
+    protected $reportsCollection;
 
     /**
      * @var Campaigns
@@ -57,17 +57,17 @@ class Reports extends \Magento\Framework\Model\AbstractModel
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * Reports constructor.

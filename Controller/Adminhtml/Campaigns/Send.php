@@ -31,7 +31,7 @@ class Send extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
      */
-    protected \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory;
+    protected $dateFactory;
 
     /**
      * Send constructor.

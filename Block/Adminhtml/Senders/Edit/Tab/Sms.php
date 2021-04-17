@@ -31,7 +31,7 @@ class Sms extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected \Magento\Framework\ObjectManagerInterface $objectManager;
+    protected $objectManager;
 
     /**
      * @param \Magento\Framework\ObjectManagerInterface $objectManagerInterface

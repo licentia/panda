@@ -30,19 +30,19 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected \Magento\Store\Model\System\Store $systemStore;
+    protected $systemStore;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesGlobalFactory
      */
-    protected \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory;
+    protected $templatesGlobalFactory;
 
     /**
      * @param \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory

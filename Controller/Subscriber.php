@@ -30,77 +30,77 @@ class Subscriber extends \Magento\Framework\App\Action\Action
     /**
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
-    protected \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator;
+    protected $formKeyValidator;
 
     /**
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
-    protected \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository;
+    protected $customerRepository;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected \Magento\Customer\Model\Session $customerSession;
+    protected $customerSession;
 
     /**
      * @var \Magento\Framework\Controller\Result\ForwardFactory
      */
-    protected \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory;
+    protected $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
+    protected $storeManager;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory;
+    protected $coreSubscribersFactory;
 
     /**
      * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
      */
-    protected \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $coreSubscriberCollection;
+    protected $coreSubscriberCollection;
 
     /**
      * @var \Licentia\Panda\Model\UnsubscribesFactory
      */
-    protected \Licentia\Panda\Model\UnsubscribesFactory $unsubscribesFactory;
+    protected $unsubscribesFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
+    protected $formsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormEntriesFactory
      */
-    protected \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory;
+    protected $formEntriesFactory;
 
     /**
      *

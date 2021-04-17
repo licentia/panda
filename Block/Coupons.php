@@ -29,21 +29,21 @@ class Coupons extends \Magento\Framework\View\Element\Template implements \Magen
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\Data\Form\FormKey
      */
-    protected \Magento\Framework\Data\Form\FormKey $formKey;
+    protected $formKey;
 
     /**
      * @var \Licentia\Panda\Model\CouponsFactory
      */
-    protected \Licentia\Panda\Model\CouponsFactory $couponsFactory;
+    protected $couponsFactory;
 
     /**
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * Coupons constructor.

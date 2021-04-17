@@ -39,7 +39,7 @@ class Unsubscribe extends AbstractModel
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected \Magento\Newsletter\Model\SubscriberFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * Unsubscribe constructor.

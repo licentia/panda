@@ -36,7 +36,7 @@ class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, Pa
     /**
      * @var ModuleDataSetupInterface
      */
-    private ModuleDataSetupInterface $moduleDataSetup;
+    private $moduleDataSetup;
 
     /**
      * @var CustomerSetup
@@ -46,7 +46,7 @@ class AddPandaTwofactorNumberCustomerAttribute implements DataPatchInterface, Pa
     /**
      * @var SetFactory
      */
-    private SetFactory $attributeSetFactory;
+    private $attributeSetFactory;
 
     /**
      * Constructor

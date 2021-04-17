@@ -31,7 +31,7 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      *

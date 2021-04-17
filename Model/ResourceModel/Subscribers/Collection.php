@@ -30,12 +30,12 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var string
      */
-    protected string $_idFieldName = 'subscriber_id';
+    protected $_idFieldName = 'subscriber_id';
 
     /**
      * Collection constructor.

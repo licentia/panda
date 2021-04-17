@@ -33,12 +33,12 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var string
      */
-    public string $html = '';
+    public $html = '';
 
     /**
      * @var Chainsedit\CollectionFactory
      */
-    protected Chainsedit\CollectionFactory $chainseditCollection;
+    protected $chainseditCollection;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory

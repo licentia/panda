@@ -31,17 +31,17 @@ class Emailb extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
+    protected $wysiwygConfig;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context

@@ -41,7 +41,7 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_campaigns';
+    protected $_eventPrefix = 'panda_campaigns';
 
     /**
      * Parameter name in event
@@ -50,42 +50,42 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'campaigns';
+    protected $_eventObject = 'campaigns';
 
     /**
      * @var
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var LinksFactory
      */
-    protected LinksFactory $linksFactory;
+    protected $linksFactory;
 
     /**
      * @var FollowupFactory
      */
-    protected FollowupFactory $followupFactory;
+    protected $followupFactory;
 
     /**
      * @var ServiceFactory
      */
-    protected ServiceFactory $serviceFactory;
+    protected $serviceFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var ResourceModel\Archive\CollectionFactory
      */
-    protected ResourceModel\Archive\CollectionFactory $archiveCollection;
+    protected $archiveCollection;
 
     /**
      * @var SubscribersFactory
@@ -95,22 +95,22 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
     /**
      * @var ResourceModel\Links\CollectionFactory
      */
-    protected ResourceModel\Links\CollectionFactory $linksCollection;
+    protected $linksCollection;
 
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var TagsFactory
      */
-    protected TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @var array
      */
-    protected array $statsFields = [
+    protected $statsFields = [
         'clicks',
         'unique_clicks',
         'views',
@@ -125,12 +125,12 @@ class Campaigns extends \Magento\Rule\Model\AbstractModel
     /**
      * @var \Licentia\Equity\Model\Segments\Condition\CombineFactory
      */
-    protected \Licentia\Equity\Model\Segments\Condition\CombineFactory $conditionsCombine;
+    protected $conditionsCombine;
 
     /**
      * @var \Licentia\Equity\Model\Segments\Action\CollectionFactory
      */
-    protected \Licentia\Equity\Model\Segments\Action\CollectionFactory $collectionCombine;
+    protected $collectionCombine;
 
     /**
      * Campaigns constructor.

@@ -38,7 +38,7 @@ class Tree extends \Licentia\Panda\Controller\Adminhtml\Autoresponders
     /**
      * @var \Licentia\Panda\Model\ChainseditFactory
      */
-    protected \Licentia\Panda\Model\ChainseditFactory $chainseditFactory;
+    protected $chainseditFactory;
 
     /**
      * Tree constructor.

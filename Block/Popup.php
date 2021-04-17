@@ -32,22 +32,22 @@ class Popup extends Template
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected \Magento\Customer\Model\Session $session;
+    protected $session;
 
     /**
      * @var \Licentia\Panda\Model\PopupsFactory
      */
-    protected \Licentia\Panda\Model\PopupsFactory $popupsFactory;
+    protected $popupsFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected \Magento\Checkout\Model\Session $checkoutSession;
+    protected $checkoutSession;
 
     /**
      * Popup constructor.

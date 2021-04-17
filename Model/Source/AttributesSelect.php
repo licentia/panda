@@ -31,12 +31,12 @@ class AttributesSelect
     /**
      * @var \Magento\Eav\Model\Entity\TypeFactory
      */
-    protected \Magento\Eav\Model\Entity\TypeFactory $typeFactory;
+    protected $typeFactory;
 
     /**
      * @var \Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory
      */
-    protected \Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory $attributeCollection;
+    protected $attributeCollection;
 
     /**
      * @param \Magento\Eav\Model\Entity\TypeFactory                               $typeFactory

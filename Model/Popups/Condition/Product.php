@@ -31,7 +31,7 @@ class Product extends \Magento\Rule\Model\Condition\Product\AbstractProduct
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @param \Magento\Rule\Model\Condition\Context                            $context

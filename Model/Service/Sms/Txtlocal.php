@@ -31,7 +31,7 @@ class Txtlocal extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => [
             'label'    => 'Sender',
             'type'     => 'text',

@@ -31,7 +31,7 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Subscriber
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * Edit constructor.

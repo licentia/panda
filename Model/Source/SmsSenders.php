@@ -31,7 +31,7 @@ class SmsSenders implements \Magento\Framework\Option\ArrayInterface
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * EmailSenders constructor.

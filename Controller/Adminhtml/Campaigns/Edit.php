@@ -33,12 +33,12 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Followup\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Followup\CollectionFactory $followupCollection;
+    protected $followupCollection;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      *

@@ -43,39 +43,39 @@ class InstallData implements InstallDataInterface
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var SalesSetupFactory
      */
-    protected SalesSetupFactory $salesSetupFactory;
+    protected $salesSetupFactory;
 
     /**
      * @var CustomerSetupFactory
      */
-    private CustomerSetupFactory $customerSetupFactory;
+    private $customerSetupFactory;
 
     /**
      * @var \Magento\Catalog\Setup\CategorySetupFactory
      */
-    private \Magento\Catalog\Setup\CategorySetupFactory $categorySetupFactory;
+    private $categorySetupFactory;
 
     /**
      * EAV setup factory
      *
      * @var EavSetupFactory
      */
-    private EavSetupFactory $eavSetupFactory;
+    private $eavSetupFactory;
 
     /**
      * @var AttributeSetFactory
      */
-    private AttributeSetFactory $attributeSetFactory;
+    private $attributeSetFactory;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Attribute
      */
-    private \Magento\Customer\Model\ResourceModel\Attribute $attributeResource;
+    private $attributeResource;
 
     /**
      * InstallData constructor.

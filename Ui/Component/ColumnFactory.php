@@ -31,12 +31,12 @@ class ColumnFactory
     /**
      * @var \Magento\Framework\View\Element\UiComponentFactory
      */
-    protected \Magento\Framework\View\Element\UiComponentFactory $componentFactory;
+    protected $componentFactory;
 
     /**
      * @var array
      */
-    protected array $jsComponentMap = [
+    protected $jsComponentMap = [
         'text'        => 'Magento_Ui/js/grid/columns/column',
         'select'      => 'Magento_Ui/js/grid/columns/select',
         'multiselect' => 'Magento_Ui/js/grid/columns/select',
@@ -46,7 +46,7 @@ class ColumnFactory
     /**
      * @var array
      */
-    protected array $dataTypeMap = [
+    protected $dataTypeMap = [
         'default'     => 'text',
         'text'        => 'text',
         'boolean'     => 'select',

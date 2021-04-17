@@ -36,7 +36,7 @@ class Columns extends \Magento\Ui\Component\Listing\Columns
     /**
      * @var array
      */
-    protected array $filterMap = [
+    protected $filterMap = [
         'default' => 'text',
         'date'    => 'dateRange',
     ];
@@ -44,12 +44,12 @@ class Columns extends \Magento\Ui\Component\Listing\Columns
     /**
      * @var \Licentia\Panda\Ui\Component\ColumnFactory
      */
-    protected \Licentia\Panda\Ui\Component\ColumnFactory $columnFactory;
+    protected $columnFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\ExtraFields\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\ExtraFields\CollectionFactory $extraFieldsCollection;
+    protected $extraFieldsCollection;
 
     /**
      * Columns constructor.

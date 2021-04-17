@@ -39,52 +39,52 @@ class Condition extends AbstractModel
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory $templatesCollection;
+    protected $templatesCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection;
+    protected $sendersCollection;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Model\ServiceFactory
      */
-    protected \Licentia\Panda\Model\ServiceFactory $serviceFactory;
+    protected $serviceFactory;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scope;
+    protected $scope;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Subscribers\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
+    protected $segmentsFactory;
 
     /**
      * Condition constructor.

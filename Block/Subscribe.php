@@ -31,22 +31,22 @@ class Subscribe extends Template
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
+    protected $customerFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
+    protected $formsFactory;
 
     /**
      * @var Form\FormFactory
@@ -56,7 +56,7 @@ class Subscribe extends Template
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected \Magento\Customer\Model\Session $session;
+    protected $session;
 
     /**
      * Subscribe constructor.

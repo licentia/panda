@@ -31,7 +31,7 @@ class Customer
     /**
      * @var \Magento\Customer\Model\Customer
      */
-    protected \Magento\Customer\Model\Customer $customer;
+    protected $customer;
 
     /**
      * @param \Magento\Customer\Model\Customer $customer

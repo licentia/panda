@@ -34,7 +34,7 @@ class Tags extends Column
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * Tags constructor.

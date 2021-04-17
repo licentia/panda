@@ -32,7 +32,7 @@ class Collection extends TagsCollection implements SearchResultInterface
     /**
      * @var AggregationInterface
      */
-    protected AggregationInterface $aggregations;
+    protected $aggregations;
 
     /**
      * @param \Magento\Framework\Data\Collection\EntityFactoryInterface    $entityFactory

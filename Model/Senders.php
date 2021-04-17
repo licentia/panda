@@ -35,7 +35,7 @@ class Senders extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_senders';
+    protected $_eventPrefix = 'panda_senders';
 
     /**
      * Parameter name in event
@@ -44,22 +44,22 @@ class Senders extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'sender';
+    protected $_eventObject = 'sender';
 
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var \Magento\Framework\Encryption\EncryptorInterface
      */
-    protected \Magento\Framework\Encryption\EncryptorInterface $encryptorInterface;
+    protected $encryptorInterface;
 
     /**
      * @var ResourceModel\Senders\CollectionFactory
      */
-    protected ResourceModel\Senders\CollectionFactory $sendersCollection;
+    protected $sendersCollection;
 
     /**
      * Senders constructor.

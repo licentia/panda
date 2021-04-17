@@ -30,12 +30,12 @@ class Autoresponders extends \Magento\Backend\Block\Template
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory $templatesCollection;
+    protected $templatesCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection;
+    protected $sendersCollection;
 
     /**
      * Autoresponders constructor.

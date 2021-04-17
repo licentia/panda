@@ -33,48 +33,48 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Model\FollowupFactory
      */
-    protected \Licentia\Panda\Model\FollowupFactory $followupFactory;
+    protected $followupFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\DateTime
      */
-    protected \Magento\Framework\Stdlib\DateTime\Filter\DateTime $dateTimeFilter;
+    protected $dateTimeFilter;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
 
-    protected \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter;
+    protected $dateFilter;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
      */
-    protected \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory;
+    protected $dateFactory;
 
     /**
      * @param \Magento\Framework\Stdlib\DateTime\DateTimeFactory   $dateFactory

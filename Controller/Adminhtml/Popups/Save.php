@@ -33,27 +33,27 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Popups
     /**
      * @var \Magento\MediaStorage\Model\File\UploaderFactory
      */
-    protected \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory;
+    protected $uploaderFactory;
 
     /**
      * @var \Magento\Framework\Image\AdapterFactory
      */
-    protected \Magento\Framework\Image\AdapterFactory $imageAdapter;
+    protected $imageAdapter;
 
     /**
      * @var \Magento\Framework\Filesystem
      */
-    protected \Magento\Framework\Filesystem $filesystem;
+    protected $filesystem;
 
     /**
      * @var \Magento\Framework\App\Cache\TypeListInterface
      */
-    protected \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList;
+    protected $cacheTypeList;
 
     /**
      * @var \Magento\Framework\App\Cache\StateInterface $cacheState
      */
-    protected \Magento\Framework\App\Cache\StateInterface $cacheState;
+    protected $cacheState;
 
     /**
      * Save constructor.

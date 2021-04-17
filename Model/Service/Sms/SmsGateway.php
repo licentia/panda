@@ -31,7 +31,7 @@ class SmsGateway extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'Device', 'type' => 'text', 'required' => true],
         'username'   => ['label' => 'Email', 'type' => 'text', 'required' => true,],
         'password'   => ['label' => 'Password', 'type' => 'password', 'required' => true,],

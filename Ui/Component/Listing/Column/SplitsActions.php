@@ -40,7 +40,7 @@ class SplitsActions extends Column
     /**
      * @var UrlInterface
      */
-    protected UrlInterface $urlBuilder;
+    protected $urlBuilder;
 
     /**
      * Constructor

@@ -33,7 +33,7 @@ class Links extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_links';
+    protected $_eventPrefix = 'panda_links';
 
     /**
      * Parameter name in event
@@ -42,12 +42,12 @@ class Links extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'links';
+    protected $_eventObject = 'links';
 
     /**
      * @var ResourceModel\Links\CollectionFactory
      */
-    protected ResourceModel\Links\CollectionFactory $linksCollection;
+    protected $linksCollection;
 
     /**
      * @var \Magento\Cms\Helper\Data

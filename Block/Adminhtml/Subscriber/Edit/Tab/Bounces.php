@@ -36,20 +36,20 @@ class Bounces extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
-    protected \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface $pageLayoutBuilder;
+    protected $pageLayoutBuilder;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      *
      * @var \Licentia\Panda\Model\Campaigns
      */
-    protected \Licentia\Panda\Model\Campaigns $campaignsList;
+    protected $campaignsList;
 
     /**
      * Bounces constructor.
@@ -157,11 +157,11 @@ class Bounces extends \Magento\Backend\Block\Widget\Grid\Extended
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $item
+     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $row
      *
      * @return bool
      */
-    public function getRowUrl($item)
+    public function getRowUrl($row)
     {
 
         return false;

@@ -33,7 +33,7 @@ class Splits extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_splits';
+    protected $_eventPrefix = 'panda_splits';
 
     /**
      * Parameter name in event
@@ -42,47 +42,47 @@ class Splits extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'splits';
+    protected $_eventObject = 'splits';
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var SplitsFactory
      */
-    protected SplitsFactory $splitsFactory;
+    protected $splitsFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var
      */
-    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
+    protected $campaignsCollection;
 
     /**
      * @var
      */
-    protected ResourceModel\Splits\CollectionFactory $splitsCollection;
+    protected $splitsCollection;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $helperPanda;
+    protected $helperPanda;
 
     /**
      * @var TagsFactory
      */
-    protected TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * Splits constructor.

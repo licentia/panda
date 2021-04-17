@@ -35,17 +35,17 @@ class TransportPlugin
     /**
      * @var ScopeConfigInterface
      */
-    protected ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var EncryptorInterface
      */
-    protected EncryptorInterface $encryptor;
+    protected $encryptor;
 
     /**
      * @var Data
      */
-    protected Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * TransportPlugin constructor.

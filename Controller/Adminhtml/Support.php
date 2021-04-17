@@ -36,49 +36,49 @@ class Support extends Action
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Model\ServiceFactory
      */
-    protected \Licentia\Panda\Model\ServiceFactory $serviceFactory;
+    protected $serviceFactory;
 
     /**
      * @var \Magento\Framework\Encryption\EncryptorInterface
      */
-    protected \Magento\Framework\Encryption\EncryptorInterface $encryptor;
+    protected $encryptor;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
+    protected $resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\View\Result\ForwardFactory
      */
-    protected \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory;
+    protected $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected \Magento\Framework\View\Result\LayoutFactory $layoutFactory;
+    protected $layoutFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var Debug
      */
-    protected Debug $debugHelper;
+    protected $debugHelper;
 
     /**
      * @param Action\Context                                     $context

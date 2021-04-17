@@ -36,77 +36,77 @@ class PopupsRepository implements PopupsRepositoryInterface
     /**
      * @var DataObjectHelper
      */
-    protected DataObjectHelper $dataObjectHelper;
+    protected $dataObjectHelper;
 
     /**
      * @var PopupsFactory
      */
-    protected PopupsFactory $popupsFactory;
+    protected $popupsFactory;
 
     /**
      * @var PopupsCollectionFactory
      */
-    protected PopupsCollectionFactory $popupsCollectionFactory;
+    protected $popupsCollectionFactory;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
+    protected $customerFactory;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected \Magento\Customer\Model\Session $customerSession;
+    protected $customerSession;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected \Magento\Checkout\Model\Session $checkoutSession;
+    protected $checkoutSession;
 
     /**
      * @var \Magento\Catalog\Model\ProductFactory
      */
-    protected \Magento\Catalog\Model\ProductFactory $productFactory;
+    protected $productFactory;
 
     /**
      * @var \Magento\Catalog\Model\CategoryFactory
      */
-    protected \Magento\Catalog\Model\CategoryFactory $categoryFactory;
+    protected $categoryFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    private $storeManager;
 
     /**
      * @var DataObjectProcessor
      */
-    protected DataObjectProcessor $dataObjectProcessor;
+    protected $dataObjectProcessor;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected \Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @var \Magento\Framework\App\RequestInterface
      */
-    protected \Magento\Framework\App\RequestInterface $request;
+    protected $request;
 
     /**
      * @var \Magento\Framework\Pricing\PriceCurrencyInterface
      */
-    protected \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency;
+    protected $priceCurrency;
 
     /**
      * @var \Magento\Cms\Model\Template\FilterProvider
      */
-    protected \Magento\Cms\Model\Template\FilterProvider $filterProvider;
+    protected $filterProvider;
 
     /**
      * PopupsRepository constructor.

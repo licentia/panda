@@ -35,12 +35,12 @@ class Process extends \Magento\Framework\App\Action\Action
     /**
      * @var \Licentia\Equity\Model\MetadataFactory
      */
-    protected \Licentia\Equity\Model\MetadataFactory $metadataFactory;
+    protected $metadataFactory;
 
     /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
-    protected \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory;
+    protected $resultJsonFactory;
 
     /**
      * Process constructor.

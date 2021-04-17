@@ -39,22 +39,22 @@ class AbstractModel extends Model\AbstractModel
     /**
      * @var \Licentia\Panda\Model\ChainsFactory
      */
-    protected \Licentia\Panda\Model\ChainsFactory $chainsFactory;
+    protected $chainsFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Chainsedit\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Chainsedit\CollectionFactory $chainseditCollection;
+    protected $chainseditCollection;
 
     /**
      * @var \Licentia\Panda\Model\ChainseditFactory
      */
-    protected \Licentia\Panda\Model\ChainseditFactory $chainseditFactory;
+    protected $chainseditFactory;
 
     /**
      * @var \Magento\Backend\Block\Template
      */
-    protected \Magento\Backend\Block\Template $template;
+    protected $template;
 
     /**
      * AbstractModel constructor.

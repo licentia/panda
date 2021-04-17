@@ -68,17 +68,17 @@ class Content extends \Magento\Backend\Block\Widget\Form\Generic implements
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
+    protected $wysiwygConfig;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
+    protected $templatesFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * Content constructor.

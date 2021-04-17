@@ -36,7 +36,7 @@ class AddPandaAcquisitionCampaignCustomerAttribute implements DataPatchInterface
     /**
      * @var ModuleDataSetupInterface
      */
-    private ModuleDataSetupInterface $moduleDataSetup;
+    private $moduleDataSetup;
 
     /**
      * @var CustomerSetup
@@ -46,7 +46,7 @@ class AddPandaAcquisitionCampaignCustomerAttribute implements DataPatchInterface
     /**
      * @var SetFactory
      */
-    private SetFactory $attributeSetFactory;
+    private $attributeSetFactory;
 
     /**
      * Constructor

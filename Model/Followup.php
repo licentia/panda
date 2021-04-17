@@ -33,7 +33,7 @@ class Followup extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_followup';
+    protected $_eventPrefix = 'panda_followup';
 
     /**
      * Parameter name in event
@@ -42,42 +42,42 @@ class Followup extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'followup';
+    protected $_eventObject = 'followup';
 
     /**
      * @var FollowupFactory
      */
-    protected FollowupFactory $followupFactory;
+    protected $followupFactory;
 
     /**
      * @var SubscribersFactory
      */
-    protected SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var ResourceModel\Followup\CollectionFactory
      */
-    protected ResourceModel\Followup\CollectionFactory $followupCollection;
+    protected $followupCollection;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
+    protected $timezone;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $helperPanda;
+    protected $helperPanda;
 
     /**
      * @param \Licentia\Panda\Helper\Data                                  $helperPanda

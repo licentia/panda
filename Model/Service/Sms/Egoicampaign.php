@@ -30,7 +30,7 @@ class Egoicampaign extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'FROM ID', 'type' => 'text', 'required' => true],
         'username'   => ['label' => 'List ID', 'type' => 'text', 'required' => true],
         'api_key'    => ['label' => 'API KEY', 'type' => 'password', 'required' => true],

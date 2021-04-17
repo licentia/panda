@@ -34,12 +34,12 @@ class Conditions extends \Magento\Backend\Block\Widget\Form\Generic
      *
      * @var \Magento\Backend\Block\Widget\Form\Renderer\Fieldset
      */
-    protected \Magento\Backend\Block\Widget\Form\Renderer\Fieldset $rendererFieldset;
+    protected $rendererFieldset;
 
     /**
      * @var \Magento\Rule\Block\Conditions
      */
-    protected \Magento\Rule\Block\Conditions $conditions;
+    protected $conditions;
 
     /**
      * Initialize dependencies.

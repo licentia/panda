@@ -33,7 +33,7 @@ class Conversionstmp extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_conversionstmp';
+    protected $_eventPrefix = 'panda_conversionstmp';
 
     /**
      * Parameter name in event
@@ -42,22 +42,22 @@ class Conversionstmp extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'conversionstmp';
+    protected $_eventObject = 'conversionstmp';
 
     /**
      * @var CampaignsFactory
      */
-    protected CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var SubscribersFactory
      */
-    protected SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var ResourceModel\Links\CollectionFactory
      */
-    protected ResourceModel\Links\CollectionFactory $linksCollection;
+    protected $linksCollection;
 
     /**
      * @var \Magento\Customer\Model\Session
@@ -67,7 +67,7 @@ class Conversionstmp extends \Magento\Framework\Model\AbstractModel
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
      */
-    protected \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory;
+    protected $dateFactory;
 
     /**
      * Conversionstmp constructor.

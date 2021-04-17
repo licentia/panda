@@ -31,12 +31,12 @@ class Service
     /**
      * @var Service\SmtpFactory
      */
-    protected Service\SmtpFactory $smtpFactory;
+    protected $smtpFactory;
 
     /**
      * @var Service\SmsFactory
      */
-    protected Service\SmsFactory $smsFactory;
+    protected $smsFactory;
 
     /**
      * Service constructor.

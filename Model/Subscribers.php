@@ -105,7 +105,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_subscriber';
+    protected $_eventPrefix = 'panda_subscriber';
 
     /**
      * Parameter name in event
@@ -114,7 +114,7 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'panda_subscriber';
+    protected $_eventObject = 'panda_subscriber';
 
     /**
      * @var
@@ -124,114 +124,114 @@ class Subscribers extends \Magento\Framework\Model\AbstractModel
     /**
      * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
      */
-    protected \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $newsletterFactory;
+    protected $newsletterFactory;
 
     /**
      * @var ResourceModel\Stats\CollectionFactory
      */
-    protected ResourceModel\Stats\CollectionFactory $statsCollection;
+    protected $statsCollection;
 
     /**
      * @var ResourceModel\Conversions\CollectionFactory
      */
-    protected ResourceModel\Conversions\CollectionFactory $conversionsFactory;
+    protected $conversionsFactory;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected \Magento\Newsletter\Model\SubscriberFactory $subscriberCoreFactory;
+    protected $subscriberCoreFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @var \Magento\Framework\App\RequestInterface
      */
-    protected \Magento\Framework\App\RequestInterface $request;
+    protected $request;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
+    protected $storeManager;
 
     /**
      * @var SubscribersFactory
      */
-    protected SubscribersFactory $subscribersFactory;
+    protected $subscribersFactory;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected ResourceModel\Subscribers\CollectionFactory $subscriberCollection;
+    protected $subscriberCollection;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory
      */
-    protected \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerCollection;
+    protected $customerCollection;
 
     /**
      * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
      */
-    protected \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $salesCollection;
+    protected $salesCollection;
 
     /**
      * @var ExtraFieldsFactory
      */
-    protected ExtraFieldsFactory $extraFieldsFactory;
+    protected $extraFieldsFactory;
 
     /**
      * @var CustomerRepositoryInterface
      */
-    protected CustomerRepositoryInterface $customerRepository;
+    protected $customerRepository;
 
     /**
      * @var Kpis
      */
-    protected Kpis $kpis;
+    protected $kpis;
 
     /**
      * @var TagsFactory
      */
-    protected TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @var TagsRelationsFactory
      */
-    protected TagsRelationsFactory $tagsRelationsFactory;
+    protected $tagsRelationsFactory;
 
     /**
      * @var \Licentia\Equity\Model\MetadataFactory
      */
-    protected \Licentia\Equity\Model\MetadataFactory $metadataFactory;
+    protected $metadataFactory;
 
     /**
      * Url Builder
      *
      * @var \Magento\Framework\UrlInterface
      */
-    protected \Magento\Framework\UrlInterface $urlBuilder;
+    protected $urlBuilder;
 
     /**
      * @var
      */
-    protected \Licentia\Equity\Model\KpisFactory $kpisFactory;
+    protected $kpisFactory;
 
     /**
      * @var array
      */
-    protected array $extraFieldsSubscriber;
+    protected $extraFieldsSubscriber;
 
     /**
      * @var \Licentia\Equity\Model\Segments\ListSegmentsFactory
      */
-    protected \Licentia\Equity\Model\Segments\ListSegmentsFactory $listSegmentsFactory;
+    protected $listSegmentsFactory;
 
     /**
      * Subscribers constructor.

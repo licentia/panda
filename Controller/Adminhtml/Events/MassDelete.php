@@ -32,7 +32,7 @@ class MassDelete extends \Licentia\Panda\Controller\Adminhtml\Events
     /**
      * @var \Licentia\Panda\Model\EventsFactory
      */
-    protected \Licentia\Panda\Model\EventsFactory $eventsFactory;
+    protected $eventsFactory;
 
     /**
      * @param Action\Context                                    $context

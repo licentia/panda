@@ -38,18 +38,18 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry = null;
+    protected $registry = null;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
+    protected $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Model\CouponsFactory
      */
 
-    protected \Licentia\Panda\Model\CouponsFactory $couponsFactory;
+    protected $couponsFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                       $context

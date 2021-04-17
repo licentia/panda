@@ -31,52 +31,52 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ExtraFieldsFactory
      */
-    protected \Licentia\Panda\Model\ExtraFieldsFactory $extraFieldsFactory;
+    protected $extraFieldsFactory;
 
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected \Magento\Store\Model\System\Store $systemStore;
+    protected $systemStore;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Group\CollectionFactory
      */
-    protected \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $groupCollection;
+    protected $groupCollection;
 
     /**
      * @var \Licentia\Panda\Model\SplitsFactory
      */
-    protected \Licentia\Panda\Model\SplitsFactory $splitsFactory;
+    protected $splitsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
+    protected $formsFactory;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
+    protected $segmentsFactory;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesGlobalFactory
      */
-    protected \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory;
+    protected $templatesGlobalFactory;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
+    protected $tagsFactory;
 
     /**
      * @param \Licentia\Panda\Model\TagsFactory                             $tagsFactory

@@ -34,14 +34,14 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @var \Magento\Framework\App\DeploymentConfig
      */
-    protected \Magento\Framework\App\DeploymentConfig $deploymentConfig;
+    protected $deploymentConfig;
 
     /**
      * EAV setup factory
      *
      * @var EavSetupFactory
      */
-    private EavSetupFactory $eavSetupFactory;
+    private $eavSetupFactory;
 
     /**
      * InstallSchema constructor.

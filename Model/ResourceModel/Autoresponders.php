@@ -31,7 +31,7 @@ class Autoresponders extends \Magento\Framework\Model\ResourceModel\Db\AbstractD
     /**
      * @var string
      */
-    protected string $_idFieldName = 'autoresponder_id';
+    protected $_idFieldName = 'autoresponder_id';
 
     /**
      * Initialize resource model

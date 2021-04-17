@@ -31,7 +31,7 @@ class Semysms extends Core
     /**
      * @var array
      */
-    protected array $fields = [
+    protected $fields = [
         'originator' => ['label' => 'Device Code', 'type' => 'text', 'required' => true],
         'api_key'    => ['label' => 'Your Token', 'type' => 'password', 'required' => true,],
         'password'   => ['label' => 'Your App Secret', 'type' => 'password', 'required' => true,],

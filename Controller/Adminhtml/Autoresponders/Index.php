@@ -30,12 +30,12 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Autoresponders
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection;
+    protected $sendersCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Templates\CollectionFactory $templatesCollection;
+    protected $templatesCollection;
 
     /**
      * Index constructor.

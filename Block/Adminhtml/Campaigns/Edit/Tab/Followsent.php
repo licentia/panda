@@ -31,7 +31,7 @@ class Followsent extends Children
     /**
      * @var \Magento\Framework\Registry
      */
-    protected ?\Magento\Framework\Registry $registry;
+    protected $registry;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                         $context

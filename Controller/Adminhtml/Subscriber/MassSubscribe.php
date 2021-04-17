@@ -35,12 +35,12 @@ class MassSubscribe extends \Licentia\Panda\Controller\Adminhtml\Subscriber
     /**
      * @var Filter
      */
-    protected Filter $filter;
+    protected $filter;
 
     /**
      * @var CollectionFactory
      */
-    protected CollectionFactory $collectionFactory;
+    protected $collectionFactory;
 
     /**
      * MassSubscribe constructor.

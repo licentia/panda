@@ -31,12 +31,12 @@ class Types implements OptionSourceInterface
     /**
      * @var array
      */
-    protected array $options;
+    protected $options;
 
     /**
      * @var GoalsFactory
      */
-    protected GoalsFactory $goalsFactory;
+    protected $goalsFactory;
 
     /**
      * Types constructor.

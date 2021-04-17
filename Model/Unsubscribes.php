@@ -33,7 +33,7 @@ class Unsubscribes extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventPrefix = 'panda_unsubscribes';
+    protected $_eventPrefix = 'panda_unsubscribes';
 
     /**
      * Parameter name in event
@@ -42,17 +42,17 @@ class Unsubscribes extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected string $_eventObject = 'unsubscribes';
+    protected $_eventObject = 'unsubscribes';
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var ResourceModel\Unsubscribes\CollectionFactory
      */
-    protected ResourceModel\Unsubscribes\CollectionFactory $unsubscribesCollection;
+    protected $unsubscribesCollection;
 
     /**
      * @param \Licentia\Panda\Helper\Data                                  $pandaHelper

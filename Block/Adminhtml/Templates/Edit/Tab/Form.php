@@ -31,17 +31,17 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
+    protected $sendersFactory;
 
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
+    protected $wysiwygConfig;
 
     /**
      * @var \Licentia\Panda\Model\TemplatesGlobalFactory
      */
-    protected \Licentia\Panda\Model\TemplatesGlobalFactory $templatesGlobalFactory;
+    protected $templatesGlobalFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context      $context

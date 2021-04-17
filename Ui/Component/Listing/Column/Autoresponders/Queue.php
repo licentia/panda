@@ -34,17 +34,17 @@ class Queue extends Column
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected \Magento\Framework\UrlInterface $urlInterface;
+    protected $urlInterface;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Autoresponders\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Autoresponders\CollectionFactory $autorespondersFactory;
+    protected $autorespondersFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Events\CollectionFactory
      */
-    protected \Licentia\Panda\Model\ResourceModel\Events\CollectionFactory $eventsFactory;
+    protected $eventsFactory;
 
     /**
      * Queue constructor.

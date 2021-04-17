@@ -43,22 +43,22 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
     /**
      * @var array
      */
-    protected array $customersIds;
+    protected $customersIds;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected \Licentia\Panda\Helper\Data $pandaHelper;
+    protected $pandaHelper;
 
     /**
      * @var ResourceConnection
      */
-    private ResourceConnection $resourceConnection;
+    private $resourceConnection;
 
     /**
      * @var AdapterInterface
      */
-    private AdapterInterface $connection;
+    private $connection;
 
     /**
      * Customer constructor.
