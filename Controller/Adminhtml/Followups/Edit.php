@@ -33,7 +33,7 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Followups
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * Init actions

@@ -30,7 +30,7 @@ class RebuildEverything
     /**
      * @var \Licentia\Reports\Model\IndexerFactory
      */
-    protected $indexerFactory;
+    protected \Licentia\Reports\Model\IndexerFactory $indexerFactory;
 
     /**
      * RebuildEverything constructor.

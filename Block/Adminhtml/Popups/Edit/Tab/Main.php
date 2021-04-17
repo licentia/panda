@@ -31,17 +31,17 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected $segmentsFactory;
+    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
 
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected $wysiwygConfig;
+    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context

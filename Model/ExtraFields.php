@@ -32,7 +32,7 @@ class ExtraFields extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_extra';
+    protected string $_eventPrefix = 'panda_extra';
 
     /**
      * Parameter name in event
@@ -41,7 +41,7 @@ class ExtraFields extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'extra';
+    protected string $_eventObject = 'extra';
 
     /**
      * Initialize resource model

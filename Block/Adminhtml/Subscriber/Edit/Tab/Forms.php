@@ -36,19 +36,19 @@ class Forms extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
-    protected $pageLayoutBuilder;
+    protected \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface $pageLayoutBuilder;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected $coreRegistry = null;
+    protected ?\Magento\Framework\Registry $coreRegistry = null;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected $formsFactory;
+    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
 
     /**
      *

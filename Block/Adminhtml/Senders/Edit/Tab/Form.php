@@ -31,7 +31,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Licentia\Panda\Model\Service\Source\Auth

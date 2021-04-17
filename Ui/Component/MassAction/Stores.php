@@ -35,12 +35,12 @@ class Stores implements JsonSerializable
     /**
      * @var array
      */
-    protected $options;
+    protected array $options;
 
     /**
      * @var array
      */
-    protected $currentOptions = [];
+    protected array $currentOptions = [];
 
     /**
      * @var
@@ -50,17 +50,17 @@ class Stores implements JsonSerializable
     /**
      * @var array
      */
-    protected $additionalData = [];
+    protected array $additionalData = [];
 
     /**
      * @var array
      */
-    protected $data;
+    protected array $data;
 
     /**
      * @var UrlInterface
      */
-    protected $urlBuilder;
+    protected UrlInterface $urlBuilder;
 
     /**
      * @var
@@ -70,12 +70,12 @@ class Stores implements JsonSerializable
     /**
      * @var SystemStore
      */
-    protected $systemStore;
+    protected SystemStore $systemStore;
 
     /**
      * @var Escaper
      */
-    protected $escaper;
+    protected Escaper $escaper;
 
     /**
      * Options constructor.

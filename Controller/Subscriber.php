@@ -30,77 +30,77 @@ class Subscriber extends \Magento\Framework\App\Action\Action
     /**
      * @var \Magento\Framework\Data\Form\FormKey\Validator
      */
-    protected $formKeyValidator;
+    protected \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator;
 
     /**
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
-    protected $customerRepository;
+    protected \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * @var \Magento\Framework\Controller\Result\ForwardFactory
      */
-    protected $resultForwardFactory;
+    protected \Magento\Framework\Controller\Result\ForwardFactory $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected $coreSubscribersFactory;
+    protected \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory;
 
     /**
      * @var \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory
      */
-    protected $coreSubscriberCollection;
+    protected \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $coreSubscriberCollection;
 
     /**
      * @var \Licentia\Panda\Model\UnsubscribesFactory
      */
-    protected $unsubscribesFactory;
+    protected \Licentia\Panda\Model\UnsubscribesFactory $unsubscribesFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected $formsFactory;
+    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
 
     /**
      * @var \Licentia\Forms\Model\FormEntriesFactory
      */
-    protected $formEntriesFactory;
+    protected \Licentia\Forms\Model\FormEntriesFactory $formEntriesFactory;
 
     /**
      *

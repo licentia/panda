@@ -34,12 +34,12 @@ class CampaignsIds extends Column
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $urlInterface;
+    protected \Magento\Framework\UrlInterface $urlInterface;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory $campaignsFactory;
 
     /**
      * Campaigns constructor.

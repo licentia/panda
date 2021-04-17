@@ -38,17 +38,17 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                           $context
@@ -222,11 +222,11 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $row
+     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $item
      *
      * @return bool
      */
-    public function getRowUrl($row)
+    public function getRowUrl($item)
     {
 
         return false;

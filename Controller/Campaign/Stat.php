@@ -32,17 +32,17 @@ class Stat extends \Magento\Framework\App\Action\Action
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Model\StatsFactory
      */
-    protected $statsFactory;
+    protected \Licentia\Panda\Model\StatsFactory $statsFactory;
 
     /**
      * @param Context                                  $context

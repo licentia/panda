@@ -33,7 +33,7 @@ class Queue extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_queue';
+    protected string $_eventPrefix = 'panda_queue';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Queue extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'queue';
+    protected string $_eventObject = 'queue';
 
     /**
      * Initialize resource model

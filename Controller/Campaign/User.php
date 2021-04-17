@@ -30,27 +30,27 @@ class User extends \Magento\Framework\App\Action\Action
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\Service\ServiceAbstractFactory
      */
-    protected $serviceAbstract;
+    protected \Licentia\Panda\Model\Service\ServiceAbstractFactory $serviceAbstract;
 
     /**
      * @param \Magento\Framework\App\Action\Context                $context

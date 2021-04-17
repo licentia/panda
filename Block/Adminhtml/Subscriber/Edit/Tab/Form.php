@@ -31,22 +31,22 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Licentia\Panda\Model\ExtraFieldsFactory
      */
-    protected $extraFieldsFactory;
+    protected \Licentia\Panda\Model\ExtraFieldsFactory $extraFieldsFactory;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected $tagsFactory;
+    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected $segmentsFactory;
+    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
 
     /**
      * Form constructor.

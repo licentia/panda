@@ -33,12 +33,12 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Goals
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
-    protected $dateFilter;
+    protected \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $localeDate;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate;
 
     /**
      * Save constructor.

@@ -40,27 +40,27 @@ class Debug extends \Magento\Framework\App\Helper\AbstractHelper
      *
      * @var Filesystem
      */
-    protected $filesystem;
+    protected Filesystem $filesystem;
 
     /**
      * @var \Licentia\Panda\Model\ExceptionsFactory
      */
-    protected $exceptionsFactory;
+    protected \Licentia\Panda\Model\ExceptionsFactory $exceptionsFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\Framework\Module\ModuleListInterface
      */
-    protected $moduleList;
+    protected \Magento\Framework\Module\ModuleListInterface $moduleList;
 
     /**
      * @var \Magento\Framework\App\DeploymentConfig
      */
-    protected $deployment;
+    protected \Magento\Framework\App\DeploymentConfig $deployment;
 
     /**
      * Debug constructor.

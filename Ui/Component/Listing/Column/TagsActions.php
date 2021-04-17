@@ -40,12 +40,12 @@ class TagsActions extends Column
     /**
      * @var UrlInterface
      */
-    protected $urlBuilder;
+    protected UrlInterface $urlBuilder;
 
     /**
      * @var \Magento\Framework\AuthorizationInterface
      */
-    protected $authorization;
+    protected \Magento\Framework\AuthorizationInterface $authorization;
 
     /**
      * Constructor

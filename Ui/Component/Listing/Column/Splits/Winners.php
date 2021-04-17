@@ -31,12 +31,12 @@ class Winners implements OptionSourceInterface
     /**
      * @var array
      */
-    protected $options;
+    protected array $options;
 
     /**
      * @var SplitsFactory
      */
-    protected $splitsFactory;
+    protected SplitsFactory $splitsFactory;
 
     /**
      * Options constructor.

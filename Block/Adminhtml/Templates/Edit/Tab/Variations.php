@@ -30,32 +30,32 @@ class Variations extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $helperData;
+    protected \Licentia\Panda\Helper\Data $helperData;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Licentia\Panda\Model\ExtraFieldsFactory
      */
-    protected $extraFieldsFactory;
+    protected \Licentia\Panda\Model\ExtraFieldsFactory $extraFieldsFactory;
 
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Group\CollectionFactory
      */
-    protected $groupCollection;
+    protected \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $groupCollection;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected $segmentsFactory;
+    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
 
     /**
      * Variations constructor.

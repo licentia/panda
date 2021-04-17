@@ -31,12 +31,12 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Links\CollectionFactory
      */
-    protected $linksCollection;
+    protected \Licentia\Panda\Model\ResourceModel\Links\CollectionFactory $linksCollection;
 
     /**
      * @var CollectionFactory
      */
-    protected $statsCollection;
+    protected CollectionFactory $statsCollection;
 
     /**
      * Collection constructor.

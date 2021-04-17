@@ -30,7 +30,7 @@ class ClockworkSms extends Core
     /**
      * @var array
      */
-    protected $fields = [
+    protected array $fields = [
         'api_key'    => ['label' => 'Your API Key', 'type' => 'password', 'required' => true,],
         'originator' => ['label' => 'From', 'type' => 'text', 'required' => true,],
     ];

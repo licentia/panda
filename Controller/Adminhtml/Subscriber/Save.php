@@ -33,12 +33,12 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Subscriber
     /**
      * @var \Licentia\Equity\Model\Segments\ListSegmentsFactory
      */
-    protected $listSegmentsFactory;
+    protected \Licentia\Equity\Model\Segments\ListSegmentsFactory $listSegmentsFactory;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected $tagsFactory;
+    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
 
     /**
      * Save constructor.

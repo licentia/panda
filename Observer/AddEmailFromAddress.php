@@ -32,17 +32,17 @@ class AddEmailFromAddress implements ObserverInterface
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected $subscribersFactory;
+    protected \Magento\Newsletter\Model\SubscriberFactory $subscribersFactory;
 
     /**
      * AddEmailFromAddress constructor.

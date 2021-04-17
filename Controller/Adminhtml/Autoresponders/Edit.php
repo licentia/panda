@@ -33,22 +33,22 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Autoresponders
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Chainsedit\CollectionFactory
      */
-    protected $chainseditCollection;
+    protected \Licentia\Panda\Model\ResourceModel\Chainsedit\CollectionFactory $chainseditCollection;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Chains\CollectionFactory
      */
-    protected $chainsCollection;
+    protected \Licentia\Panda\Model\ResourceModel\Chains\CollectionFactory $chainsCollection;
 
     /**
      * @var \Licentia\Panda\Model\ChainsFactory
      */
-    protected $chainsFactory;
+    protected \Licentia\Panda\Model\ChainsFactory $chainsFactory;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Chains
      */
-    protected $chainsResource;
+    protected \Licentia\Panda\Model\ResourceModel\Chains $chainsResource;
 
     /**
      * Edit constructor.

@@ -31,12 +31,12 @@ class ShippingMethods
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Magento\Shipping\Model\Config
      */
-    protected $shipping;
+    protected \Magento\Shipping\Model\Config $shipping;
 
     /**
      * ShippingMethods constructor.

@@ -33,7 +33,7 @@ class Exceptions extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_exceptions_report';
+    protected string $_eventPrefix = 'panda_exceptions_report';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Exceptions extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'exceptions_report';
+    protected string $_eventObject = 'exceptions_report';
 
     /**
      * Initialize resource model

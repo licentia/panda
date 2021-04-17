@@ -31,7 +31,7 @@ class Settings extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected $wysiwygConfig;
+    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
 
     /**
      * Settings constructor.

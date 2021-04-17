@@ -33,7 +33,7 @@ class TagsRelations extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_tags_relations';
+    protected string $_eventPrefix = 'panda_tags_relations';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class TagsRelations extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'tags_relations';
+    protected string $_eventObject = 'tags_relations';
 
     /**
      * Initialize resource model

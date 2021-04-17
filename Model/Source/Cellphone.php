@@ -31,17 +31,17 @@ class Cellphone
     /**
      * @var \Magento\Eav\Model\Entity\TypeFactory
      */
-    protected $typeFactory;
+    protected \Magento\Eav\Model\Entity\TypeFactory $typeFactory;
 
     /**
      * @var \Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory
      */
-    protected $attributeCollection;
+    protected \Magento\Eav\Model\ResourceModel\Entity\Attribute\CollectionFactory $attributeCollection;
 
     /**
      * @var \Magento\Customer\Model\Customer
      */
-    protected $customer;
+    protected \Magento\Customer\Model\Customer $customer;
 
     /**
      * @param \Magento\Customer\Model\Customer                                    $customer

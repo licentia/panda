@@ -31,7 +31,7 @@ class Splits extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * @var string
      */
-    protected $_idFieldName = 'split_id';
+    protected string $_idFieldName = 'split_id';
 
     /**
      * Initialize resource model

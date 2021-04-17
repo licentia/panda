@@ -29,17 +29,17 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory
      */
-    protected $collectionFactory;
+    protected \Licentia\Panda\Model\ResourceModel\Campaigns\CollectionFactory $collectionFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @param \Magento\Backend\Block\Template\Context                         $context
@@ -230,14 +230,14 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $row
+     * @param \Magento\Catalog\Model\Product|\Magento\Framework\DataObject $item
      *
      * @return string
      */
-    public function getRowUrl($row)
+    public function getRowUrl($item)
     {
 
-        return $this->getUrl('*/*/edit', ['id' => $row->getCampaignId()]);
+        return $this->getUrl('*/*/edit', ['id' => $item->getCampaignId()]);
     }
 
     /**

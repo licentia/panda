@@ -35,12 +35,12 @@ class MassDelete extends \Magento\Backend\App\Action
     /**
      * @var Filter
      */
-    protected $filter;
+    protected Filter $filter;
 
     /**
      * @var CollectionFactory
      */
-    protected $collectionFactory;
+    protected CollectionFactory $collectionFactory;
 
     /**
      * MassDelete constructor.

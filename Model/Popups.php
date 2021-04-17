@@ -46,14 +46,14 @@ class Popups extends \Magento\Rule\Model\AbstractModel
     /**
      * @var Popups\Condition\CombineFactory
      */
-    protected $combineFactory;
+    protected Popups\Condition\CombineFactory $combineFactory;
 
     /**
      * Prefix of model events names
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_popups';
+    protected string $_eventPrefix = 'panda_popups';
 
     /**
      * Parameter name in event
@@ -62,7 +62,7 @@ class Popups extends \Magento\Rule\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'popups';
+    protected string $_eventObject = 'popups';
 
     /**
      * @var ResourceModel\Templates\CollectionFactory
@@ -72,32 +72,32 @@ class Popups extends \Magento\Rule\Model\AbstractModel
     /**
      * @var \Magento\Widget\Model\Template\FilterFactory
      */
-    protected $filterFactory;
+    protected \Magento\Widget\Model\Template\FilterFactory $filterFactory;
 
     /**
      * @var Popups\Action\CollectionFactory
      */
-    protected $collectionCombine;
+    protected Popups\Action\CollectionFactory $collectionCombine;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
-    protected $dateFilter;
+    protected \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $checkoutSession;
+    protected \Magento\Checkout\Model\Session $checkoutSession;
 
     /**
      * Popups constructor.

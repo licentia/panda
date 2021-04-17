@@ -34,7 +34,7 @@ class Sent extends Column
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $urlInterface;
+    protected \Magento\Framework\UrlInterface $urlInterface;
 
     /**
      * Sent constructor.

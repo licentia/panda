@@ -30,47 +30,47 @@ class NotifyMessagesDeliveryFailures
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory
      */
-    protected $errorsCollection;
+    protected \Licentia\Panda\Model\ResourceModel\Errors\CollectionFactory $errorsCollection;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected $sendersFactory;
+    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
 
     /**
      * @var \Magento\Framework\Mail\TransportInterfaceFactory
      */
-    protected $transportFactory;
+    protected \Magento\Framework\Mail\TransportInterfaceFactory $transportFactory;
 
     /**
      * @var \Magento\Framework\Mail\MessageInterface
      */
-    protected $message;
+    protected \Magento\Framework\Mail\MessageInterface $message;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
      */
-    protected $dateFactory;
+    protected \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory;
 
     /**
      * NotifyMessagesDeliveryFailures constructor.

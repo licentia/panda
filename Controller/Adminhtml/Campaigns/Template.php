@@ -33,12 +33,12 @@ class Template extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected $templatesFactory;
+    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
 
     /**
      * @var \Magento\Framework\Json\Helper\Data
      */
-    protected $jsonHelper;
+    protected \Magento\Framework\Json\Helper\Data $jsonHelper;
 
     /**
      *

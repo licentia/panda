@@ -32,22 +32,22 @@ class NewCustomer implements ObserverInterface
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected $coreSubscribersFactory;
+    protected \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
      */
-    protected $autorespondersFactory;
+    protected \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory;
 
     /**
      * NewCustomer constructor.

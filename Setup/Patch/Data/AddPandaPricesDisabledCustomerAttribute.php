@@ -36,7 +36,7 @@ class AddPandaPricesDisabledCustomerAttribute implements DataPatchInterface, Pat
     /**
      * @var ModuleDataSetupInterface
      */
-    private $moduleDataSetup;
+    private ModuleDataSetupInterface $moduleDataSetup;
 
     /**
      * @var CustomerSetup
@@ -46,7 +46,7 @@ class AddPandaPricesDisabledCustomerAttribute implements DataPatchInterface, Pat
     /**
      * @var SetFactory
      */
-    private $attributeSetFactory;
+    private SetFactory $attributeSetFactory;
 
     /**
      * Constructor

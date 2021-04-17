@@ -36,20 +36,20 @@ class ArchiveSms extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface
      */
-    protected $pageLayoutBuilder;
+    protected \Magento\Framework\View\Model\PageLayout\Config\BuilderInterface $pageLayoutBuilder;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      *
      * @var \Licentia\Panda\Model\Campaigns
      */
-    protected $campaignsList;
+    protected \Licentia\Panda\Model\Campaigns $campaignsList;
 
     /**
      *

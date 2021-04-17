@@ -35,12 +35,12 @@ class MassUnsubscribe extends \Licentia\Panda\Controller\Adminhtml\Subscriber
     /**
      * @var Filter
      */
-    protected $filter;
+    protected Filter $filter;
 
     /**
      * @var CollectionFactory
      */
-    protected $collectionFactory;
+    protected CollectionFactory $collectionFactory;
 
     /**
      * MassSubscribe constructor.

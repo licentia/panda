@@ -33,7 +33,7 @@ class Errors extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_errors';
+    protected string $_eventPrefix = 'panda_errors';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Errors extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'errors';
+    protected string $_eventObject = 'errors';
 
     /**
      * Initialize resource model

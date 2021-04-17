@@ -32,7 +32,7 @@ class Collection extends GoalsCollection implements SearchResultInterface
     /**
      * @var AggregationInterface
      */
-    protected $aggregations;
+    protected AggregationInterface $aggregations;
 
     /**
      * @param \Magento\Framework\Data\Collection\EntityFactoryInterface    $entityFactory

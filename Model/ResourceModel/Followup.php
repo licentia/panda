@@ -31,7 +31,7 @@ class Followup extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     /**
      * @var string
      */
-    protected $_idFieldName = 'followup_id';
+    protected string $_idFieldName = 'followup_id';
 
     /**
      * Initialize resource model

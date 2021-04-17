@@ -32,7 +32,7 @@ class QueueDelete extends \Licentia\Panda\Controller\Adminhtml\Campaigns
     /**
      * @var \Licentia\Panda\Model\QueueFactory
      */
-    protected $queueFactory;
+    protected \Licentia\Panda\Model\QueueFactory $queueFactory;
 
     /**
      * @param Action\Context                                    $context

@@ -32,12 +32,12 @@ class Recurring extends \Magento\Backend\Block\Widget\Form\Generic implements
     /**
      * @var \Licentia\Panda\Model\TemplatesFactory
      */
-    protected $templatesFactory;
+    protected \Licentia\Panda\Model\TemplatesFactory $templatesFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * {@inheritdoc}

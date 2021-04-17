@@ -30,7 +30,7 @@ abstract class Core extends \Magento\Framework\DataObject implements SmsInterfac
     /**
      * @var \Magento\Framework\HTTP\Client\Curl
      */
-    protected $curl;
+    protected \Magento\Framework\HTTP\Client\Curl $curl;
 
     /**
      * Core constructor.
@@ -69,7 +69,7 @@ abstract class Core extends \Magento\Framework\DataObject implements SmsInterfac
     /**
      * @var array
      */
-    protected $fields = [
+    protected array $fields = [
         'originator' => ['label' => 'Originator', 'type' => 'text', 'required' => true],
         'username'   => ['label' => 'Username', 'type' => 'text', 'required' => true],
         'api_key'    => ['label' => 'API KEY', 'type' => 'password', 'required' => true],

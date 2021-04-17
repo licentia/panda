@@ -33,7 +33,7 @@ class Chains extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_chains';
+    protected string $_eventPrefix = 'panda_chains';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Chains extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'chains';
+    protected string $_eventObject = 'chains';
 
     /**
      * Initialize resource model

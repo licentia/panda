@@ -30,17 +30,17 @@ class ClearOldStats
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\StatsFactory
      */
-    protected $statsFactory;
+    protected \Licentia\Panda\Model\StatsFactory $statsFactory;
 
     /**
      * ImportCustomers constructor.

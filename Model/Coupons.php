@@ -33,7 +33,7 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_coupons';
+    protected string $_eventPrefix = 'panda_coupons';
 
     /**
      * Parameter name in event
@@ -42,72 +42,72 @@ class Coupons extends \Magento\Framework\Model\AbstractModel implements \Magento
      *
      * @var string
      */
-    protected $_eventObject = 'coupons';
+    protected string $_eventObject = 'coupons';
 
     /**
      * @var \Magento\SalesRule\Model\ResourceModel\Coupon\CollectionFactory
      */
-    protected $coreCouponsCollection;
+    protected \Magento\SalesRule\Model\ResourceModel\Coupon\CollectionFactory $coreCouponsCollection;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected $customerFactory;
+    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
 
     /**
      * @var ResourceModel\Coupons\CollectionFactory
      */
-    protected $couponsCollection;
+    protected ResourceModel\Coupons\CollectionFactory $couponsCollection;
 
     /**
      * @var Session
      */
-    protected $session;
+    protected Session $session;
 
     /**
      * @var SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Checkout\Model\Cart
      */
-    protected $cartSingleton;
+    protected \Magento\Checkout\Model\Cart $cartSingleton;
 
     /**
      * @var \Magento\SalesRule\Model\Coupon\MassgeneratorFactory
      */
-    protected $massgeneratorFactory;
+    protected \Magento\SalesRule\Model\Coupon\MassgeneratorFactory $massgeneratorFactory;
 
     /**
      * @var \Magento\SalesRule\Model\RuleFactory
      */
-    protected $ruleFactory;
+    protected \Magento\SalesRule\Model\RuleFactory $ruleFactory;
 
     /**
      * @var \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory
      */
-    protected $ruleCollection;
+    protected \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $ruleCollection;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\SalesRule\Model\CouponFactory
      */
-    protected $couponFactory;
+    protected \Magento\SalesRule\Model\CouponFactory $couponFactory;
 
     /**
      * @var \Magento\SalesRule\Model\CouponFactory

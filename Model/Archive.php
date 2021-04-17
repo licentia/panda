@@ -33,7 +33,7 @@ class Archive extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_archive';
+    protected string $_eventPrefix = 'panda_archive';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Archive extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'archive';
+    protected string $_eventObject = 'archive';
 
     /**
      * Initialize resource model

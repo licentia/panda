@@ -36,7 +36,7 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
     /**
      * @var ModuleDataSetupInterface
      */
-    private $moduleDataSetup;
+    private ModuleDataSetupInterface $moduleDataSetup;
 
     /**
      * @var CustomerSetup
@@ -46,7 +46,7 @@ class AddPandaTwofactorEnableCustomerAttribute implements DataPatchInterface, Pa
     /**
      * @var SetFactory
      */
-    private $attributeSetFactory;
+    private SetFactory $attributeSetFactory;
 
     /**
      * Constructor

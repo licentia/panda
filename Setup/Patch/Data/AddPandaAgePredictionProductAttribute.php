@@ -34,12 +34,12 @@ class AddPandaAgePredictionProductAttribute implements DataPatchInterface, Patch
     /**
      * @var ModuleDataSetupInterface
      */
-    private $moduleDataSetup;
+    private ModuleDataSetupInterface $moduleDataSetup;
 
     /**
      * @var EavSetupFactory
      */
-    private $eavSetupFactory;
+    private EavSetupFactory $eavSetupFactory;
 
     /**
      * Constructor

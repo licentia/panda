@@ -35,47 +35,47 @@ class Account extends \Magento\Backend\App\Action
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\View\Result\ForwardFactory
      */
-    protected $resultForwardFactory;
+    protected \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected $sendersFactory;
+    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Framework\App\ReinitableConfig
      */
-    protected $reinitableConfig;
+    protected \Magento\Framework\App\ReinitableConfig $reinitableConfig;
 
     /**
      * @var \Magento\Config\Model\ResourceModel\Config
      */
-    protected $config;
+    protected \Magento\Config\Model\ResourceModel\Config $config;
 
     /**
      * Account constructor.

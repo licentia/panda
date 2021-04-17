@@ -30,62 +30,62 @@ class Go extends \Magento\Framework\App\Action\Action
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\Session
      */
-    protected $pandaSession;
+    protected \Licentia\Panda\Model\Session $pandaSession;
 
     /**
      * @var \Licentia\Panda\Model\UrlsFactory
      */
-    protected $urlsFactory;
+    protected \Licentia\Panda\Model\UrlsFactory $urlsFactory;
 
     /**
      * @var \Licentia\Panda\Model\StatsFactory
      */
-    protected $statsFactory;
+    protected \Licentia\Panda\Model\StatsFactory $statsFactory;
 
     /**
      * @var \Magento\Checkout\Model\Cart
      */
-    protected $checkoutCart;
+    protected \Magento\Checkout\Model\Cart $checkoutCart;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected $customerFactory;
+    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeInterface;
+    protected \Magento\Store\Model\StoreManagerInterface $storeInterface;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * @var \Magento\Framework\Url\DecoderInterface
      */
-    protected $decoderInterface;
+    protected \Magento\Framework\Url\DecoderInterface $decoderInterface;
 
     /**
      * @param \Magento\Framework\App\Action\Context      $context

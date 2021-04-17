@@ -33,7 +33,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_conversions';
+    protected string $_eventPrefix = 'panda_conversions';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'conversions';
+    protected string $_eventObject = 'conversions';
 
     /**
      * @var ConversionstmpFactory
@@ -52,37 +52,37 @@ class Conversions extends \Magento\Framework\Model\AbstractModel
     /**
      * @var CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected CampaignsFactory $campaignsFactory;
 
     /**
      * @var SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected SubscribersFactory $subscribersFactory;
 
     /**
      * @var LinksFactory
      */
-    protected $linksFactory;
+    protected LinksFactory $linksFactory;
 
     /**
      * @var AutorespondersFactory
      */
-    protected $autorespondersFactory;
+    protected AutorespondersFactory $autorespondersFactory;
 
     /**
      * @var SplitsFactory
      */
-    protected $splitsFactory;
+    protected SplitsFactory $splitsFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTimeFactory
      */
-    protected $dateFactory;
+    protected \Magento\Framework\Stdlib\DateTime\DateTimeFactory $dateFactory;
 
     /**
      * @var TagsFactory
      */
-    protected $tagsFactory;
+    protected TagsFactory $tagsFactory;
 
     /**
      * Conversions constructor.

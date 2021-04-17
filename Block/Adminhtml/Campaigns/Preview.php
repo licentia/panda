@@ -32,7 +32,7 @@ class Preview extends \Magento\Backend\Block\Template
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      * @param \Magento\Backend\Block\Widget\Context $context

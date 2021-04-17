@@ -34,12 +34,12 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      * @var Url
      */
-    protected $urlHelper;
+    protected Url $urlHelper;
 
     /**
      * @param Url                                   $urlHelper

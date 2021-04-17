@@ -32,7 +32,7 @@ class Sms extends \Magento\Backend\Block\Widget\Form\Generic implements
     /**
      * @var \Magento\Customer\Model\ResourceModel\Group\CollectionFactory
      */
-    protected $groupCollection;
+    protected \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $groupCollection;
 
     /**
      * {@inheritdoc}
@@ -73,42 +73,42 @@ class Sms extends \Magento\Backend\Block\Widget\Form\Generic implements
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected $sendersFactory;
+    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ExtraFieldsFactory
      */
-    protected $extraFieldsFactory;
+    protected \Licentia\Panda\Model\ExtraFieldsFactory $extraFieldsFactory;
 
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected $formsFactory;
+    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
      */
-    protected $segmentsFactory;
+    protected \Licentia\Equity\Model\SegmentsFactory $segmentsFactory;
 
     /**
      * @var \Magento\Cms\Model\Wysiwyg\Config
      */
-    protected $wysiwygConfig;
+    protected \Magento\Cms\Model\Wysiwyg\Config $wysiwygConfig;
 
     /**
      * @var \Licentia\Panda\Model\TagsFactory
      */
-    protected $tagsFactory;
+    protected \Licentia\Panda\Model\TagsFactory $tagsFactory;
 
     /**
      * @param \Licentia\Panda\Model\TagsFactory                             $tagsFactory

@@ -33,7 +33,7 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_bounces';
+    protected string $_eventPrefix = 'panda_bounces';
 
     /**
      * Parameter name in event
@@ -42,37 +42,37 @@ class Bounces extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'bounces';
+    protected string $_eventObject = 'bounces';
 
     /**
      * @var
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected SubscribersFactory $subscribersFactory;
 
     /**
      * @var CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected CampaignsFactory $campaignsFactory;
 
     /**
      * @var BouncesFactory
      */
-    protected $bouncesFactory;
+    protected BouncesFactory $bouncesFactory;
 
     /**
      * @var ResourceModel\Senders\CollectionFactory
      */
-    protected $sendersCollection;
+    protected ResourceModel\Senders\CollectionFactory $sendersCollection;
 
     /**
      * Bounces constructor.

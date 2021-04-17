@@ -31,57 +31,57 @@ class Triggers extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected $productRepository;
+    protected \Magento\Catalog\Api\ProductRepositoryInterface $productRepository;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
      */
-    protected $autorespondersFactory;
+    protected \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory;
 
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Magento\Sales\Model\Order\ConfigFactory
      */
-    protected $configFactory;
+    protected \Magento\Sales\Model\Order\ConfigFactory $configFactory;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Group\CollectionFactory
      */
-    protected $groupCollection;
+    protected \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $groupCollection;
 
     /**
      * @var \Licentia\Panda\Model\LinksFactory
      */
-    protected $linksFactory;
+    protected \Licentia\Panda\Model\LinksFactory $linksFactory;
 
     /**
      * @var \Magento\Payment\Helper\Data
      */
-    protected $paymentData;
+    protected \Magento\Payment\Helper\Data $paymentData;
 
     /**
      * @var \Magento\Shipping\Model\Config
      */
-    protected $shippingConfig;
+    protected \Magento\Shipping\Model\Config $shippingConfig;
 
     /**
      * @var \Licentia\Forms\Model\FormsFactory
      */
-    protected $formsFactory;
+    protected \Licentia\Forms\Model\FormsFactory $formsFactory;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory

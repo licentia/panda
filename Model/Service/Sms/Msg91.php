@@ -30,7 +30,7 @@ class Msg91 extends Core
     /**
      * @var array
      */
-    protected $fields = [
+    protected array $fields = [
         'originator' => ['label' => 'Originator', 'type' => 'text', 'required' => true],
         'api_key'    => ['label' => 'API KEY', 'type' => 'password', 'required' => true],
     ];

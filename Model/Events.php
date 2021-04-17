@@ -33,7 +33,7 @@ class Events extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_events';
+    protected string $_eventPrefix = 'panda_events';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Events extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'events';
+    protected string $_eventObject = 'events';
 
     /**
      * Initialize resource model

@@ -43,42 +43,42 @@ class SubscribersRepository implements SubscribersRepositoryInterface
     /**
      * @var
      */
-    protected $subscribersFactory;
+    protected SubscribersFactory $subscribersFactory;
 
     /**
      * @var DataObjectHelper
      */
-    protected $dataObjectHelper;
+    protected DataObjectHelper $dataObjectHelper;
 
     /**
      * @var
      */
-    protected $subscribersCollectionFactory;
+    protected SubscribersCollectionFactory $subscribersCollectionFactory;
 
     /**
      * @var SubscribersSearchResultsInterfaceFactory
      */
-    protected $searchResultsFactory;
+    protected SubscribersSearchResultsInterfaceFactory $searchResultsFactory;
 
     /**
      * @var StoreManagerInterface
      */
-    private $storeManager;
+    private StoreManagerInterface $storeManager;
 
     /**
      * @var ResourceSubscribers
      */
-    protected $resource;
+    protected ResourceSubscribers $resource;
 
     /**
      * @var DataObjectProcessor
      */
-    protected $dataObjectProcessor;
+    protected DataObjectProcessor $dataObjectProcessor;
 
     /**
      * @var SubscribersInterfaceFactory
      */
-    protected $dataSubscribersFactory;
+    protected SubscribersInterfaceFactory $dataSubscribersFactory;
 
     /**
      * @param ResourceSubscribers                      $resource

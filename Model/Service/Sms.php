@@ -31,12 +31,12 @@ class Sms extends ServiceAbstract
     /**
      * @var array
      */
-    protected $campaigns = [];
+    protected array $campaigns = [];
 
     /**
      * @var array
      */
-    protected $senders = [];
+    protected array $senders = [];
 
     /**
      * @param bool  $tryAgain

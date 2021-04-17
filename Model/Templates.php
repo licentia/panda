@@ -33,7 +33,7 @@ class Templates extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_templates';
+    protected string $_eventPrefix = 'panda_templates';
 
     /**
      * Parameter name in event
@@ -42,17 +42,17 @@ class Templates extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'templates';
+    protected string $_eventObject = 'templates';
 
     /**
      * @var ResourceModel\Templates\CollectionFactory
      */
-    protected $templatesCollection;
+    protected ResourceModel\Templates\CollectionFactory $templatesCollection;
 
     /**
      * @var ResourceModel\Chains\CollectionFactory
      */
-    protected $chainsCollection;
+    protected ResourceModel\Chains\CollectionFactory $chainsCollection;
 
     /**
      * @param \Magento\Framework\Model\Context                             $context

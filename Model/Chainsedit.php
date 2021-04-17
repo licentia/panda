@@ -33,7 +33,7 @@ class Chainsedit extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_chainsedit';
+    protected string $_eventPrefix = 'panda_chainsedit';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Chainsedit extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'chainsedit';
+    protected string $_eventObject = 'chainsedit';
 
     /**
      * Initialize resource model

@@ -31,7 +31,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     /**
      * @var string
      */
-    protected $_idFieldName = 'campaign_id';
+    protected string $_idFieldName = 'campaign_id';
 
     /**
      * Constructor

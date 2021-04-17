@@ -31,7 +31,7 @@ class PaymentMethods
     /**
      * @var \Magento\Payment\Helper\Data
      */
-    protected $paymentHelper;
+    protected \Magento\Payment\Helper\Data $paymentHelper;
 
     /**
      * @param \Magento\Payment\Helper\Data $paymentHelper

@@ -35,62 +35,62 @@ class General extends \Magento\Rule\Model\Condition\AbstractCondition
     /**
      * @var \Magento\Framework\App\RequestInterface
      */
-    protected $request;
+    protected \Magento\Framework\App\RequestInterface $request;
 
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $systemStore;
+    protected \Magento\Store\Model\System\Store $systemStore;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $urlInterface;
+    protected \Magento\Framework\UrlInterface $urlInterface;
 
     /**
      * @var Session
      */
-    protected $customerSession;
+    protected Session $customerSession;
 
     /**
      * @var RedirectInterface
      */
-    protected $redirectInterface;
+    protected RedirectInterface $redirectInterface;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $checkoutSession;
+    protected \Magento\Checkout\Model\Session $checkoutSession;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Directory\Model\ResourceModel\Country\Collection
      */
-    protected $countryCollection;
+    protected \Magento\Directory\Model\ResourceModel\Country\Collection $countryCollection;
 
     /**
      * @var \Licentia\Panda\Model\PopupsFactory
      */
-    protected $popupsFactory;
+    protected \Licentia\Panda\Model\PopupsFactory $popupsFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Framework\Event\ManagerInterface
      */
-    protected $eventManager;
+    protected \Magento\Framework\Event\ManagerInterface $eventManager;
 
     /**
      * General constructor.

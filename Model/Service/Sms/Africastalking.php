@@ -30,7 +30,7 @@ class Africastalking extends Core
     /**
      * @var array
      */
-    protected $fields = [
+    protected array $fields = [
         'api_key'  => ['label' => 'API key', 'type' => 'password', 'required' => true,],
         'username' => ['label' => 'Your Username', 'type' => 'text', 'required' => true,],
     ];

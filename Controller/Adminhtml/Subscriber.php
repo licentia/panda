@@ -37,37 +37,37 @@ class Subscriber extends Action
      *
      * @var \Magento\Framework\Registry
      */
-    protected $registry = null;
+    protected ?\Magento\Framework\Registry $registry = null;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
 
     /**
      * @var \Magento\Backend\Model\View\Result\ForwardFactory
      */
-    protected $resultForwardFactory;
+    protected \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory;
 
     /**
      * @var \Magento\Framework\App\Response\Http\FileFactory
      */
-    protected $fileFactory;
+    protected \Magento\Framework\App\Response\Http\FileFactory $fileFactory;
 
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected $layoutFactory;
+    protected \Magento\Framework\View\Result\LayoutFactory $layoutFactory;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\ExtraFieldsFactory
      */
-    protected $extraFieldsFactory;
+    protected \Licentia\Panda\Model\ExtraFieldsFactory $extraFieldsFactory;
 
     /**
      * @param Action\Context                                    $context

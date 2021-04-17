@@ -31,7 +31,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic
     /**
      * @var
      */
-    protected $followupsFactory;
+    protected \Licentia\Panda\Model\FollowupFactory $followupsFactory;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context

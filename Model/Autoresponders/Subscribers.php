@@ -31,7 +31,7 @@ class Subscribers extends AbstractModel
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * Subscribers constructor.
@@ -78,7 +78,7 @@ class Subscribers extends AbstractModel
     /**
      * @var array
      */
-    public $attributes = [
+    public array $attributes = [
         'email'              => 'Email',
         'firstname'          => 'First Name',
         'lastname'           => 'Last name',

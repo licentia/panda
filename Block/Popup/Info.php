@@ -31,42 +31,42 @@ class Info extends \Magento\Framework\View\Element\Template implements \Magento\
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
 
     /**
      * @var \Magento\Cms\Model\Template\FilterProvider
      */
-    protected $filterProvider;
+    protected \Magento\Cms\Model\Template\FilterProvider $filterProvider;
 
     /**
      * @var \Licentia\Panda\Model\PopupsFactory
      */
-    protected $popupsFactory;
+    protected \Licentia\Panda\Model\PopupsFactory $popupsFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $checkoutSession;
+    protected \Magento\Checkout\Model\Session $checkoutSession;
 
     /**
      * @var \Magento\Framework\Pricing\PriceCurrencyInterface
      */
-    protected $priceCurrency;
+    protected \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * Info constructor.

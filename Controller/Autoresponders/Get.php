@@ -35,7 +35,7 @@ class Get extends \Magento\Framework\App\Action\Action
     /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
-    protected $resultJsonFactory;
+    protected \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory;
 
     /**
      * Get constructor.

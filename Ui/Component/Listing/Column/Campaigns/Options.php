@@ -31,7 +31,7 @@ class Options implements OptionSourceInterface
     /**
      * @var CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected CampaignsFactory $campaignsFactory;
 
     /**
      * Options constructor.

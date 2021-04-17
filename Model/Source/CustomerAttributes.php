@@ -31,7 +31,7 @@ class CustomerAttributes
     /**
      * @var \Magento\Customer\Model\Customer
      */
-    protected $customer;
+    protected \Magento\Customer\Model\Customer $customer;
 
     /**
      * CustomerAttributes constructor.

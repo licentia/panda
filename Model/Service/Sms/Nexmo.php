@@ -31,7 +31,7 @@ class Nexmo extends Core
     /**
      * @var array
      */
-    protected $fields = [
+    protected array $fields = [
         'originator' => ['label' => 'Sender', 'type' => 'text', 'required' => true],
         'api_key'    => ['label' => 'API KEY', 'type' => 'password', 'required' => true],
         'password'   => ['label' => 'API SECRET', 'type' => 'password', 'required' => true],

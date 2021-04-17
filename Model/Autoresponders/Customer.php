@@ -39,12 +39,12 @@ class Customer extends AbstractModel
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected $customerFactory;
+    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
 
     /**
      * @var \Magento\Eav\Model\ConfigFactory
      */
-    protected $configFactory;
+    protected \Magento\Eav\Model\ConfigFactory $configFactory;
 
     /**
      * Customer constructor.

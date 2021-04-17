@@ -40,7 +40,7 @@ class AutorespondersActions extends Column
     /**
      * @var UrlInterface
      */
-    protected $urlBuilder;
+    protected UrlInterface $urlBuilder;
 
     /**
      * Constructor

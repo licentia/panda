@@ -32,7 +32,7 @@ class MassSend extends \Licentia\Panda\Controller\Adminhtml\Errors
     /**
      * @var \Licentia\Panda\Model\CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected \Licentia\Panda\Model\CampaignsFactory $campaignsFactory;
 
     /**
      * MassSend constructor.

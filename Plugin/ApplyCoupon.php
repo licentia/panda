@@ -30,7 +30,7 @@ class ApplyCoupon
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * ApplyCoupon constructor.

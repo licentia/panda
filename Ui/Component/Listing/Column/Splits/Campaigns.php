@@ -34,12 +34,12 @@ class Campaigns extends Column
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $urlInterface;
+    protected \Magento\Framework\UrlInterface $urlInterface;
 
     /**
      * @var \Licentia\Panda\Model\SplitsFactory
      */
-    protected $splitsFactory;
+    protected \Licentia\Panda\Model\SplitsFactory $splitsFactory;
 
     /**
      * Campaigns constructor.

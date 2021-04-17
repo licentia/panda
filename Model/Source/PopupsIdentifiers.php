@@ -31,7 +31,7 @@ class PopupsIdentifiers implements \Magento\Framework\Option\ArrayInterface
     /**
      * @var \Licentia\Panda\Model\ResourceModel\PopupsFactory
      */
-    protected $popupsResource;
+    protected \Licentia\Panda\Model\ResourceModel\PopupsFactory $popupsResource;
 
     /**
      * Popups constructor.

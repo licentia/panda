@@ -41,7 +41,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_autoresponders';
+    protected string $_eventPrefix = 'panda_autoresponders';
 
     /**
      * Parameter name in event
@@ -50,158 +50,158 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'autoresponders';
+    protected string $_eventObject = 'autoresponders';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    protected \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig;
 
     /**
      * @var AutorespondersFactory
      */
-    protected $autorespondersFactory;
+    protected AutorespondersFactory $autorespondersFactory;
 
     /**
      * @var EventsFactory
      */
-    protected $eventsFactory;
+    protected EventsFactory $eventsFactory;
 
     /**
      * @var ResourceModel\Events\CollectionFactory
      */
-    protected $eventsCollection;
+    protected ResourceModel\Events\CollectionFactory $eventsCollection;
 
     /**
      * @var ResourceModel\Chains\CollectionFactory
      */
-    protected $chainsCollection;
+    protected ResourceModel\Chains\CollectionFactory $chainsCollection;
 
     /**
      * @var ResourceModel\Chainsedit\CollectionFactory
      */
-    protected $chainseditCollection;
+    protected ResourceModel\Chainsedit\CollectionFactory $chainseditCollection;
 
     /**
      * @var SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $helperData;
+    protected \Licentia\Panda\Helper\Data $helperData;
 
     /**
      * @var TemplatesFactory
      */
-    protected $templatesFactory;
+    protected TemplatesFactory $templatesFactory;
 
     /**
      * @var ChainsFactory
      */
-    protected $chainsFactory;
+    protected ChainsFactory $chainsFactory;
 
     /**
      * @var ResourceModel\Subscribers\CollectionFactory
      */
-    protected $subscribersCollection;
+    protected ResourceModel\Subscribers\CollectionFactory $subscribersCollection;
 
     /**
      * @var ResourceModel\Cancellation\CollectionFactory
      */
-    protected $cancellationCollection;
+    protected ResourceModel\Cancellation\CollectionFactory $cancellationCollection;
 
     /**
      * @var CancellationFactory
      */
-    protected $cancellationFactory;
+    protected CancellationFactory $cancellationFactory;
 
     /**
      * @var ServiceFactory
      */
-    protected $serviceFactory;
+    protected ServiceFactory $serviceFactory;
 
     /**
      * @var ResourceModel\Campaigns\CollectionFactory
      */
-    protected $campaignsCollection;
+    protected ResourceModel\Campaigns\CollectionFactory $campaignsCollection;
 
     /**
      * @var ResourceModel\Links\CollectionFactory
      */
-    protected $linksCollection;
+    protected ResourceModel\Links\CollectionFactory $linksCollection;
 
     /**
      * @var CampaignsFactory
      */
-    protected $campaignsFactory;
+    protected CampaignsFactory $campaignsFactory;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * @var \Magento\Quote\Model\ResourceModel\Quote\CollectionFactory
      */
 
-    protected $quoteCollection;
+    protected \Magento\Quote\Model\ResourceModel\Quote\CollectionFactory $quoteCollection;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory
      */
-    protected $customerCollection;
+    protected \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerCollection;
 
     /**
      * @var \Magento\Checkout\Model\Cart
      */
-    protected $cart;
+    protected \Magento\Checkout\Model\Cart $cart;
 
     /**
      * @var \Magento\Sales\Model\Order\ConfigFactory
      */
-    protected $configFactory;
+    protected \Magento\Sales\Model\Order\ConfigFactory $configFactory;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
-    protected $productRepository;
+    protected \Magento\Catalog\Api\ProductRepositoryInterface $productRepository;
 
     /**
      * @var Session
      */
-    protected $pandaSession;
+    protected Session $pandaSession;
 
     /**
      * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
      */
-    protected $orderCollection;
+    protected \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollection;
 
     /**
      * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected $customerFactory;
+    protected \Magento\Customer\Model\CustomerFactory $customerFactory;
 
     /**
      * @var \Magento\Sales\Model\ResourceModel\Order\Invoice\CollectionFactory
      */
-    protected $invoiceCollection;
+    protected \Magento\Sales\Model\ResourceModel\Order\Invoice\CollectionFactory $invoiceCollection;
 
     /**
      * @var \Magento\Search\Helper\Data
      */
-    protected $searchHelper;
+    protected \Magento\Search\Helper\Data $searchHelper;
 
     /**
      * @var ResourceModel\Autoresponders\CollectionFactory
      */
-    protected $autorespondersCollection;
+    protected ResourceModel\Autoresponders\CollectionFactory $autorespondersCollection;
 
     /**
      * @var \Licentia\Equity\Model\SegmentsFactory
@@ -216,47 +216,47 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     /**
      * @var Popups\Condition\CombineFactory
      */
-    protected $conditionsCombine;
+    protected Popups\Condition\CombineFactory $conditionsCombine;
 
     /**
      * @var Popups\Action\CollectionFactory
      */
-    protected $collectionCombine;
+    protected Popups\Action\CollectionFactory $collectionCombine;
 
     /**
      * @var \Magento\Checkout\Model\Session
      */
-    protected $checkoutSession;
+    protected \Magento\Checkout\Model\Session $checkoutSession;
 
     /**
      * @var \Magento\Framework\App\Cache\TypeListInterface
      */
-    protected $cacheTypeList;
+    protected \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
-    protected $dateFilter;
+    protected \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter;
 
     /**
      * @var \Licentia\Panda\Helper\DomHelper
      */
-    protected $domHelper;
+    protected \Licentia\Panda\Helper\DomHelper $domHelper;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var TagsFactory
      */
-    protected $tagsFactory;
+    protected TagsFactory $tagsFactory;
 
     /**
      * @var \Magento\Newsletter\Model\SubscriberFactory
      */
-    protected $coreSubscribersFactory;
+    protected \Magento\Newsletter\Model\SubscriberFactory $coreSubscribersFactory;
 
     /**
      * Initialize resource model
@@ -272,7 +272,7 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     /**
      * @var array
      */
-    protected $config = [
+    protected array $config = [
         'last_activity'     => ['days' => true],
         'product_cycle'     => ['days' => true],
         'customer_birthday' => ['days' => true],
@@ -281,17 +281,17 @@ class Autoresponders extends \Magento\Rule\Model\AbstractModel
     /**
      * @var \Magento\Framework\Filesystem
      */
-    protected $filesystem;
+    protected \Magento\Framework\Filesystem $filesystem;
 
     /**
      * @var \Magento\Framework\App\Cache\StateInterface $_cacheState
      */
-    protected $_cacheState;
+    protected \Magento\Framework\App\Cache\StateInterface $_cacheState;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected $sendersCollection;
+    protected ResourceModel\Senders\CollectionFactory $sendersCollection;
 
     /**
      * Autoresponders constructor.

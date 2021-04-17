@@ -33,7 +33,7 @@ class History extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_messages_history';
+    protected string $_eventPrefix = 'panda_messages_history';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class History extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'history';
+    protected string $_eventObject = 'history';
 
     /**
      * Initialize resource model

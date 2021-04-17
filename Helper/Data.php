@@ -53,12 +53,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    protected \Magento\Framework\Registry $registry;
 
     /**
      * @var \Magento\Customer\Api\CustomerRepositoryInterface
      */
-    protected $customerRepository;
+    protected \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository;
 
     /**
      * @var \Magento\Catalog\Model\Category
@@ -88,22 +88,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\View\DesignInterface
      */
-    protected $design;
+    protected \Magento\Framework\View\DesignInterface $design;
 
     /**
      * @var \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory
      */
-    protected $listSegmentsCollection;
+    protected \Licentia\Equity\Model\ResourceModel\Segments\ListSegments\CollectionFactory $listSegmentsCollection;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $storeManager;
+    protected \Magento\Store\Model\StoreManagerInterface $storeManager;
 
     /**
      * @var \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory
      */
-    protected $quoteCollection;
+    protected \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory $quoteCollection;
 
     /**
      * @var \Magento\Persistent\Helper\Session
@@ -113,7 +113,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory
      */
-    protected $attributeCollection;
+    protected \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attributeCollection;
 
     /**
      * @var \Magento\Eav\Model\ResourceModel\Entity\Attribute\OptionFactory
@@ -123,7 +123,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $objectManager;
+    protected \Magento\Framework\ObjectManagerInterface $objectManager;
 
     /**
      * @var \Licentia\Equity\Model\ResourceModel\Index\CollectionFactory
@@ -133,12 +133,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory
      */
-    protected $indexerCollection;
+    protected \Licentia\Reports\Model\ResourceModel\Indexer\CollectionFactory $indexerCollection;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * @var \Licentia\Panda\Model\Session
@@ -148,52 +148,52 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\Encryption\EncryptorInterface
      */
-    protected $encryptor;
+    protected \Magento\Framework\Encryption\EncryptorInterface $encryptor;
 
     /**
      * @var \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory
      */
-    protected $sendersCollection;
+    protected \Licentia\Panda\Model\ResourceModel\Senders\CollectionFactory $sendersCollection;
 
     /**
      * @var \Licentia\Panda\Model\SendersFactory
      */
-    protected $sendersFactory;
+    protected \Licentia\Panda\Model\SendersFactory $sendersFactory;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\TimezoneInterface
      */
-    protected $timezone;
+    protected \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone;
 
     /**
      * @var \Magento\Catalog\Model\ProductFactory
      */
-    protected $productFactory;
+    protected \Magento\Catalog\Model\ProductFactory $productFactory;
 
     /**
      * @var \Magento\Cms\Model\PageFactory
      */
-    protected $pageFactory;
+    protected \Magento\Cms\Model\PageFactory $pageFactory;
 
     /**
      * @var \Magento\Cms\Model\BlockFactory
      */
-    protected $blockFactory;
+    protected \Magento\Cms\Model\BlockFactory $blockFactory;
 
     /**
      * @var \Magento\Framework\App\Cache\Manager
      */
-    protected $cacheManager;
+    protected \Magento\Framework\App\Cache\Manager $cacheManager;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTime
      */
-    protected $dateTime;
+    protected \Magento\Framework\Stdlib\DateTime\DateTime $dateTime;
 
     /**
      * @var null
      */
-    protected $customerEmail = null;
+    protected ?string $customerEmail = null;
 
     /**
      * @var null
@@ -208,22 +208,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\HTTP\Client\Curl
      */
-    protected $curl;
+    protected \Magento\Framework\HTTP\Client\Curl $curl;
 
     /**
      * @var \Magento\Framework\App\Cache\StateInterface $_cacheState
      */
-    protected $_cacheState;
+    protected \Magento\Framework\App\Cache\StateInterface $_cacheState;
 
     /**
      * @var \Magento\Framework\App\Cache\TypeListInterface
      */
-    protected $cacheTypeList;
+    protected \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList;
 
     /**
      * @var \Licentia\Panda\Model\ExceptionsFactory
      */
-    protected $exceptionsFactory;
+    protected \Licentia\Panda\Model\ExceptionsFactory $exceptionsFactory;
 
     /**
      * @var \Magento\Framework\DB\Adapter\AdapterInterface

@@ -30,7 +30,7 @@ class Get extends \Magento\Framework\App\Action\Action
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    protected \Magento\Framework\View\Result\PageFactory $resultPageFactory;
 
     /**
      * Get constructor.

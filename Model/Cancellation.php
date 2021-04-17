@@ -33,7 +33,7 @@ class Cancellation extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventPrefix = 'panda_cancellation';
+    protected string $_eventPrefix = 'panda_cancellation';
 
     /**
      * Parameter name in event
@@ -42,7 +42,7 @@ class Cancellation extends \Magento\Framework\Model\AbstractModel
      *
      * @var string
      */
-    protected $_eventObject = 'cancellation';
+    protected string $_eventObject = 'cancellation';
 
     /**
      * Initialize resource model

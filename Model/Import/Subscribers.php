@@ -48,7 +48,7 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
      *
      * @var array
      */
-    protected $_messageTemplates = [
+    protected array $_messageTemplates = [
         ValidatorInterface::ERROR_SKU_IS_EMPTY => 'Email is empty',
         Customer::ERROR_INVALID_CUSTOMER_ID    => 'Invalid Customer ID',
         Customer::ERROR_INVALID_EMAIL          => 'Invalid Email',
@@ -61,14 +61,14 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
      *
      * @var bool
      */
-    protected $needColumnCheck = true;
+    protected bool $needColumnCheck = true;
 
     /**
      * Need to log in import history
      *
      * @var bool
      */
-    protected $logInHistory = true;
+    protected bool $logInHistory = true;
 
     /**
      * @var \Magento\CatalogImportExport\Model\Import\Proxy\Product\ResourceModelFactory
@@ -78,44 +78,44 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
     /**
      * @var \Magento\Catalog\Helper\Data
      */
-    protected $_catalogData;
+    protected \Magento\Catalog\Helper\Data $_catalogData;
 
     /**
      * @var \Magento\Catalog\Model\Product
      */
-    protected $_productModel;
+    protected \Magento\Catalog\Model\Product $_productModel;
 
     /**
      * @var \Magento\CatalogImportExport\Model\Import\Product\StoreResolver
      */
-    protected $_storeResolver;
+    protected ImportProduct\StoreResolver $_storeResolver;
 
     /**
      * @var ImportProduct
      */
-    protected $_importProduct;
+    protected ImportProduct $_importProduct;
 
     /**
      * @var array
      */
-    protected $_validators = [];
+    protected array $_validators = [];
 
     /**
      * @var array
      */
-    protected $cachedEmailsToDelete;
+    protected array $cachedEmailsToDelete;
 
     /**
      * @var array
      */
-    protected $oldEmails = null;
+    protected ?array $oldEmails = null;
 
     /**
      * Permanent entity columns.
      *
      * @var string[]
      */
-    protected $_permanentAttributes = [self::COL_EMAIL];
+    protected array $_permanentAttributes = [self::COL_EMAIL];
 
     /**
      * Catalog product entity
@@ -127,19 +127,19 @@ class Subscribers extends \Magento\ImportExport\Model\Import\Entity\AbstractEnti
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTime
      */
-    protected $dateTime;
+    protected \Magento\Framework\Stdlib\DateTime\DateTime $dateTime;
 
     /**
      * @var Validator\Customer
      */
-    protected $customerValidator;
+    protected Customer $customerValidator;
 
     /**
      * Product entity link field
      *
      * @var string
      */
-    private $subscribersTablePrimaryKey;
+    private string $subscribersTablePrimaryKey;
 
     /**
      * Subscribers constructor.

@@ -37,7 +37,7 @@ class Webhook extends AbstractModel
     /**
      * @var \Magento\Framework\HTTP\Client\Curl
      */
-    protected $curl;
+    protected \Magento\Framework\HTTP\Client\Curl $curl;
 
     /**
      * Webhook constructor.

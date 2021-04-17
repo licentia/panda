@@ -32,27 +32,27 @@ class NewOrder implements ObserverInterface
     /**
      * @var \Licentia\Panda\Helper\Data
      */
-    protected $pandaHelper;
+    protected \Licentia\Panda\Helper\Data $pandaHelper;
 
     /**
      * @var \Licentia\Panda\Model\ConversionstmpFactory
      */
-    protected $conversionstmpFactory;
+    protected \Licentia\Panda\Model\ConversionstmpFactory $conversionstmpFactory;
 
     /**
      * @var \Licentia\Panda\Model\CouponsFactory
      */
-    protected $couponsFactory;
+    protected \Licentia\Panda\Model\CouponsFactory $couponsFactory;
 
     /**
      * @var \Licentia\Panda\Model\AutorespondersFactory
      */
-    protected $autorespondersFactory;
+    protected \Licentia\Panda\Model\AutorespondersFactory $autorespondersFactory;
 
     /**
      * @var \Licentia\Panda\Model\SubscribersFactory
      */
-    protected $subscribersFactory;
+    protected \Licentia\Panda\Model\SubscribersFactory $subscribersFactory;
 
     /**
      * NewOrder constructor.
