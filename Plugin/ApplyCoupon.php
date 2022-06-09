@@ -30,7 +30,7 @@ class ApplyCoupon
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $customerSession;
+    protected \Magento\Customer\Model\Session $customerSession;
 
     /**
      * ApplyCoupon constructor.
@@ -59,7 +59,8 @@ class ApplyCoupon
         $address
     ) {
 
-        if ($rule->getCustomerId() && $rule->getCustomerId() != $this->customerSession->getCustomerId()) {
+        if ($rule->getCustomerId() &&
+            $rule->getCustomerId() != $this->customerSession->getCustomerId()) {
             return false;
         }
 

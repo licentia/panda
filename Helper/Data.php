@@ -33,6 +33,26 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      *
      */
+    const DB_SELECT_ORDER = 'order';
+
+    /**
+     *
+     */
+    const DB_SELECT_LIMIT_COUNT = 'limitcount';
+
+    /**
+     *
+     */
+    const DB_SELECT_LIMIT_OFFSET = 'limitoffset';
+
+    /**
+     *
+     */
+    const DB_SELECT_COLUMNS = 'columns';
+
+    /**
+     *
+     */
     const GEO_LOCATION_URL_LOCATION = 'https://pro.ip-api.com/json/';
 
     /**

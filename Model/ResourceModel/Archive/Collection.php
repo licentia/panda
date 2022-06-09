@@ -62,10 +62,10 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         }
 
         $idsSelect = clone $this->getSelect();
-        $idsSelect->reset(\Zend_Db_Select::ORDER);
-        $idsSelect->reset(\Zend_Db_Select::LIMIT_COUNT);
-        $idsSelect->reset(\Zend_Db_Select::LIMIT_OFFSET);
-        $idsSelect->reset(\Zend_Db_Select::COLUMNS);
+        $idsSelect->reset(\Licentia\Panda\Helper\Data::DB_SELECT_ORDER);
+        $idsSelect->reset(\Licentia\Panda\Helper\Data::DB_SELECT_LIMIT_COUNT);
+        $idsSelect->reset(\Licentia\Panda\Helper\Data::DB_SELECT_LIMIT_OFFSET);
+        $idsSelect->reset(\Licentia\Panda\Helper\Data::DB_SELECT_COLUMNS);
         $idsSelect->columns($field, 'main_table');
 
         return $this->getConnection()->fetchCol($idsSelect);
