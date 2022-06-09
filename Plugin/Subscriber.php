@@ -43,6 +43,11 @@ class Subscriber
     protected $subscribersFactory;
 
     /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
+    protected $customerRepository;
+
+    /**
      * Subscriber constructor.
      *
      * @param \Magento\Customer\Api\CustomerRepositoryInterface  $customerRepository
@@ -60,7 +65,7 @@ class Subscriber
         $this->scopeConfig = $scopeInterface;
         $this->storeManager = $storeManagerInterface;
         $this->subscribersFactory = $subscribersFactory;
-        $this->customerReposiroty = $customerRepository;
+        $this->customerRepository = $customerRepository;
     }
 
     /**
@@ -76,13 +81,15 @@ class Subscriber
             return $result;
         }
 
-        if ($subject->getId() && !$subject->getData('in_panda') && $subject->dataHasChangedFor('subscriber_status')) {
+        if ($subject->getId() &&
+            !$subject->getData('in_panda') &&
+            $subject->dataHasChangedFor('subscriber_status')) {
             $subscriber = $this->subscribersFactory->create()
                                                    ->loadByEmail($subject->getSubscriberEmail())
                                                    ->setStatus($subject->getSubscriberStatus());
 
             try {
-                $customerId = $this->customerReposiroty->get($subject->getEmail());
+                $customerId = $this->customerRepository->get($subject->getEmail());
                 if ($customerId->getId()) {
                     $subscriber->setCustomerId($customerId->getId());
                 }

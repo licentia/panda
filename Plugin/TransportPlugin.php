@@ -90,9 +90,9 @@ class TransportPlugin
 
             /** @var \Magento\Framework\Mail\Message $message */
             $message = $subject->getMessage();
-            $message = \Zend\Mail\Message::fromString($message->getRawMessage())->setEncoding('utf-8');
+            $message = \Laminas\Mail\Message::fromString($message->getRawMessage())->setEncoding('utf-8');
 
-            $transport = new \Zend\Mail\Transport\Smtp();
+            $transport = new \Laminas\Mail\Transport\Smtp();
 
             $optionsData = [
                 'name'             => 'localhost',
@@ -112,7 +112,7 @@ class TransportPlugin
                 $optionsData['connection_config']['ssl'] = $smtp['ssl'];
             }
 
-            $options = new \Zend\Mail\Transport\SmtpOptions($optionsData);
+            $options = new \Laminas\Mail\Transport\SmtpOptions($optionsData);
             $transport->setOptions($options);
 
             try {
