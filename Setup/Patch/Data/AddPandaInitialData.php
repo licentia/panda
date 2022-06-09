@@ -152,15 +152,6 @@ class AddPandaInitialData implements DataPatchInterface, PatchRevertableInterfac
                 ]
             );
         }
-        $indexCampaign = $connection->fetchOne(
-            "SHOW INDEX FROM `{$setup->getTable('sales_order')}` WHERE Key_name = 'SALES_ORDER_ACQUISITION_CAMPAIGN'  "
-        );
-
-        if (!$indexCampaign) {
-            $setup->run(
-                "ALTER TABLE `{$setup->getTable('sales_order')}` ADD INDEX `SALES_ORDER_ACQUISITION_CAMPAIGN` USING BTREE (`panda_acquisition_campaign`) "
-            );
-        }
 
         $this->moduleDataSetup->getConnection()->endSetup();
     }
