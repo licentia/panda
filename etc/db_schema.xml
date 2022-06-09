@@ -377,7 +377,7 @@
     <column xsi:type="varchar" name="subscriber_firstname" nullable="true" length="255" comment="Subscriber Firstname"/>
     <column xsi:type="varchar" name="subscriber_lastname" nullable="true" length="255" comment="Subscriber Lastname"/>
     <column xsi:type="varchar" name="campaign_name" nullable="true" length="255" comment="Campaign Name"/>
-    <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="'CURRENT_TIMESTAMP'" comment="Created At"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="conversion_id"/>
     </constraint>
@@ -584,7 +584,7 @@
   </table>
   <table name="panda_exceptions_report" resource="default" engine="innodb" comment="Panda Exceptions Report">
     <column xsi:type="int" name="exception_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Exception Id"/>
-    <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="'CURRENT_TIMESTAMP'" comment="Created At"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
     <column xsi:type="varchar" name="message" nullable="true" length="255" comment="Message"/>
     <column xsi:type="varchar" name="file" nullable="true" length="255" comment="File"/>
     <column xsi:type="varchar" name="line" nullable="true" length="255" comment="Line"/>
@@ -688,7 +688,7 @@
     <column xsi:type="varchar" name="store_ids" nullable="true" length="255" comment="Store Ids"/>
     <column xsi:type="int" name="subscriber_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Subscriber Id"/>
     <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Customer Id"/>
-    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="'CURRENT_TIMESTAMP'" comment="Created At"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
     <column xsi:type="smallint" name="validated" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Validated"/>
     <column xsi:type="varchar" name="validation_code" nullable="true" length="255" comment="Validation Code"/>
     <column xsi:type="datetime" name="validation_expires_at" on_update="false" nullable="true" comment="Validation Expires At"/>
@@ -810,7 +810,7 @@
     <column xsi:type="text" name="geo" nullable="true" comment="Geo"/>
     <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Customer Id"/>
     <column xsi:type="text" name="customer_emails" nullable="true" comment="Customer Emails"/>
-    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="'CURRENT_TIMESTAMP'" comment="Created At"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
     <column xsi:type="datetime" name="updated_at" on_update="false" nullable="true" comment="Updated At"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="code"/>
@@ -871,7 +871,7 @@
     <column xsi:type="smallint" name="created" padding="5" unsigned="true" nullable="true" identity="false" comment="Created"/>
     <column xsi:type="smallint" name="updated" padding="5" unsigned="true" nullable="true" identity="false" comment="Updated"/>
     <column xsi:type="smallint" name="deleted" padding="5" unsigned="true" nullable="true" identity="false" comment="Deleted"/>
-    <column xsi:type="datetime" name="imported_at" on_update="false" nullable="false" default="'CURRENT_TIMESTAMP'" comment="Imported At"/>
+    <column xsi:type="datetime" name="imported_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Imported At"/>
     <column xsi:type="varchar" name="result" nullable="true" length="255" comment="Result"/>
     <column xsi:type="text" name="message" nullable="true" comment="Message"/>
     <constraint xsi:type="primary" referenceId="PRIMARY">
@@ -3044,7 +3044,7 @@
     <index referenceId="PANDA_PRODUCTS_RELATIONS_ATTRS_FEMALE_RELATED_3" indexType="btree">
       <column name="related_3"/>
     </index>
-      <column name="sku"/>
+    <index referenceId="PANDA_PRODUCTS_RELATIONS_ATTRS_FEMALE_SKU" indexType="btree">
       <column name="sku"/>
     </index>
   </table>
@@ -9634,8 +9634,8 @@
     <column xsi:type="varchar" name="lastname" nullable="true" length="255" comment="Lastname"/>
     <column xsi:type="varchar" name="email" nullable="true" length="255" comment="Email"/>
     <column xsi:type="varchar" name="cellphone" nullable="true" length="255" comment="Cellphone"/>
-    <column xsi:type="datetime" name="updated_at" on_update="false" nullable="true" default="'CURRENT_TIMESTAMP'" comment="Updated At"/>
-    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="'CURRENT_TIMESTAMP'" comment="Created At"/>
+    <column xsi:type="datetime" name="updated_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
     <column xsi:type="date" name="dob" comment="Dob"/>
     <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Status"/>
     <column xsi:type="int" name="bounces" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Bounces"/>
@@ -9865,5 +9865,11 @@
     <constraint xsi:type="primary" referenceId="PRIMARY">
       <column name="url_id"/>
     </constraint>
+  </table>
+  <table name="admin_user" resource="default" engine="innodb" comment="Admin User">
+    <column xsi:type="varchar" name="panda_twofactor_number" nullable="true" length="50" comment="Panda Twofactor Number"/>
+  </table>
+  <table name="salesrule" resource="default" engine="innodb" comment="Salesrule">
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Customer Id"/>
   </table>
 </schema>
