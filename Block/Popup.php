@@ -119,7 +119,10 @@ class Popup extends Template
     public function getPopup()
     {
 
-        $params = json_decode($this->getRequest()->getParam('params'), true);
+        $params = [];
+        if ($this->getRequest()->getParam('params')) {
+            $params = json_decode($this->getRequest()->getParam('params'), true);
+        }
 
         if (($this->getRequest()->getParam('panda_emulated_popup') ||
              isset($params['e']) && (int) $params['e'] > 0) &&

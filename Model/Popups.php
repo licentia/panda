@@ -206,11 +206,11 @@ class Popups extends \Magento\Rule\Model\AbstractModel
     }
 
     /**
-     * @param        $data
-     * @param        $storeId
-     * @param bool   $popupId
+     * @param $data
+     * @param $storeId
+     * @param $popupId
      *
-     * @return array|bool
+     * @return array
      */
     public function getPopupForDisplay($data, $storeId, $popupId = false)
     {
@@ -221,7 +221,11 @@ class Popups extends \Magento\Rule\Model\AbstractModel
         $subscriber = $this->pandaHelper->getSubscriber();
         $useragent = $data['useragent'];
 
-        $data['params'] = json_decode($data['params'], true);
+        if (!empty($data['params'])) {
+            $data['params'] = json_decode($data['params'], true);
+        } else {
+            $data['params'] = [];
+        }
         $this->_registry->register('panda_popup_data', $data, true);
 
         $ignore = $this->getIgnoredCookiesForUser();

@@ -99,7 +99,7 @@ class Recurring extends \Magento\Backend\Block\Widget\Form\Generic implements
         $this->campaignsFactory = $campaignsFactory;
         $this->templatesFactory = $templatesFactory;
 
-        $this->setTemplate('campaigns/recurring.phtml');
+        $this->setTemplate('campaigns/crecurring.phtml');
     }
 
     /**
@@ -119,7 +119,6 @@ class Recurring extends \Magento\Backend\Block\Widget\Form\Generic implements
 
         $campaignModel = $this->campaignsFactory->create();
 
-        /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
             [
                 'data' => [

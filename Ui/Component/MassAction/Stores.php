@@ -22,14 +22,13 @@ namespace Licentia\Panda\Ui\Component\MassAction;
 use Magento\Framework\Escaper;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\System\Store as SystemStore;
-use Zend\Stdlib\JsonSerializable;
 
 /**
  * Class Stores
  *
  * @package Licentia\Panda\Ui\Component\MassAction\Group
  */
-class Stores implements JsonSerializable
+class Stores implements \JsonSerializable
 {
 
     /**
@@ -118,9 +117,9 @@ class Stores implements JsonSerializable
     }
 
     /**
-     * @return array
+     * @return array|mixed
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
 
         static $i = 0;
