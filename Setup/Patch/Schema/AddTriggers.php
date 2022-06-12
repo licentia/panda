@@ -47,16 +47,15 @@ class AddTriggers implements SchemaPatchInterface
         if (!$trigger) {
             $connection->multiQuery(
                 "
-            delimiter //
             CREATE TRIGGER `tg_panda_messages_archive_update_insert` 
-              AFTER INSERT ON `{$setup->getTable('panda_messages_archive')}` 
-                 FOR EACH ROW 
-                     BEGIN
-                         DECLARE parent_campaign_id integer;
-                         SET @parent_campaign_id :=(select parent_id FROM `{$setup->getTable('panda_campaigns')}` where campaign_id=NEW.campaign_id LIMIT 1);
-                         UPDATE `{$setup->getTable('panda_campaigns')}` set unsent = unsent - 1, sent = sent + 1 where `{$setup->getTable('panda_campaigns')}`.campaign_id = NEW.campaign_id OR `{$setup->getTable('panda_campaigns')}`.campaign_id = @parent_campaign_id;
-                         UPDATE `{$setup->getTable('panda_subscribers')}` set sent = sent + 1, last_message_sent_at=NOW() where `{$setup->getTable('panda_subscribers')}`.subscriber_id = NEW.subscriber_id;
-                     END//
+          AFTER INSERT ON `{$setup->getTable('panda_messages_archive')}` 
+             FOR EACH ROW 
+                 BEGIN
+	                 DECLARE parent_campaign_id integer;
+	                 SET @parent_campaign_id :=(select parent_id FROM {$setup->getTable('panda_campaigns')} where campaign_id=NEW.campaign_id LIMIT 1);
+ 	                 UPDATE {$setup->getTable('panda_campaigns')} set unsent = unsent - 1, sent = sent + 1 where {$setup->getTable('panda_campaigns')}.campaign_id = NEW.campaign_id OR {$setup->getTable('panda_campaigns')}.campaign_id = @parent_campaign_id;
+	                 UPDATE {$setup->getTable('panda_subscribers')} set sent = sent + 1, last_message_sent_at=NOW() where {$setup->getTable('panda_subscribers')}.subscriber_id = NEW.subscriber_id;
+                 END
             "
             );
         }
@@ -67,15 +66,14 @@ class AddTriggers implements SchemaPatchInterface
         if (!$trigger) {
             $connection->multiQuery(
                 "
-            delimiter //
             CREATE TRIGGER `tg_panda_messages_error_update_insert` 
-              AFTER INSERT ON `{$setup->getTable('panda_messages_error')}` 
-                 FOR EACH ROW 
-                     BEGIN
-                         DECLARE parent_campaign_id integer;
-                         SET @parent_campaign_id :=(select parent_id FROM {$setup->getTable('panda_campaigns')} where campaign_id=NEW.campaign_id LIMIT 1);
-                         UPDATE {$setup->getTable('panda_campaigns')} set unsent = unsent + 1, `errors` = `errors` + 1 where {$setup->getTable('panda_campaigns')}.campaign_id = NEW.campaign_id OR {$setup->getTable('panda_campaigns')}.parent_id = @parent_campaign_id;
-                     END//
+          AFTER INSERT ON `{$setup->getTable('panda_messages_error')}` 
+             FOR EACH ROW 
+                 BEGIN
+	                 DECLARE parent_campaign_id integer;
+	                 SET @parent_campaign_id :=(select parent_id FROM {$setup->getTable('panda_campaigns')} where campaign_id=NEW.campaign_id LIMIT 1);
+	                 UPDATE {$setup->getTable('panda_campaigns')} set unsent = unsent + 1, `errors` = `errors` + 1 where {$setup->getTable('panda_campaigns')}.campaign_id = NEW.campaign_id OR {$setup->getTable('panda_campaigns')}.parent_id = @parent_campaign_id;
+                 END
             "
             );
         }
@@ -87,15 +85,14 @@ class AddTriggers implements SchemaPatchInterface
         if (!$trigger) {
             $connection->multiQuery(
                 "
-            delimiter //
             CREATE TRIGGER `tg_panda_messages_queue_update_insert` 
-              AFTER INSERT ON `{$setup->getTable('panda_messages_queue')}` 
-                 FOR EACH ROW 
-                     BEGIN
-                         DECLARE parent_campaign_id integer;
-                         SET @parent_campaign_id :=(select parent_id FROM {$setup->getTable('panda_campaigns')} where campaign_id=NEW.campaign_id LIMIT 1);
-                         UPDATE {$setup->getTable('panda_campaigns')} set total_messages = total_messages + 1, unsent = unsent + 1 where {$setup->getTable('panda_campaigns')}.campaign_id = NEW.campaign_id OR {$setup->getTable('panda_campaigns')}.campaign_id = @parent_campaign_id;
-                     END//
+          AFTER INSERT ON `{$setup->getTable('panda_messages_queue')}` 
+             FOR EACH ROW 
+                 BEGIN
+	                 DECLARE parent_campaign_id integer;
+	                 SET @parent_campaign_id :=(select parent_id FROM {$setup->getTable('panda_campaigns')} where campaign_id=NEW.campaign_id LIMIT 1);
+	                 UPDATE {$setup->getTable('panda_campaigns')} set total_messages = total_messages + 1, unsent = unsent + 1 where {$setup->getTable('panda_campaigns')}.campaign_id = NEW.campaign_id OR {$setup->getTable('panda_campaigns')}.campaign_id = @parent_campaign_id;
+                 END  
             "
             );
         }
