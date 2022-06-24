@@ -3,10 +3,10 @@
   "description": "Sales Automation",
   "require": {
     "magento/framework": "103.0.*",
-    "licentia/equity": ">=1.3.21",
-    "licentia/forms": ">=1.3.21",
-    "licentia/reports": ">=1.3.21",
-    "licentia/import": ">=1.3.21"
+    "licentia/equity": ">=1.3.3",
+    "licentia/forms": ">=1.3.3",
+    "licentia/reports": ">=1.3.3",
+    "licentia/import": ">=1.3.3"
   },
   "authors": [
     {
