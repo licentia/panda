@@ -253,7 +253,7 @@ class Sms extends \Magento\Backend\Block\Widget\Form\Generic implements
                     'label'  => __('Tags'),
                     'title'  => __('Tags'),
                     'name'   => 'tags',
-                    'note'   => __('Tag this campaign with theses tags'),
+                    'note'   => __('Tag this campaign with these tags'),
                     'values' => $tags,
                 ]
             );
@@ -330,7 +330,7 @@ class Sms extends \Magento\Backend\Block\Widget\Form\Generic implements
                 "label" => __("Max Messages/Hour"),
                 "name"  => "max_queue_hour",
                 "note"  => __(
-                    'If you don not want to send campaign messages ASAP, you can define how many messages can be sent per hour. Please note that customer send time will override this option. 0 for unlimited'
+                    'If you do not want to send campaign messages ASAP, you can define how many messages can be sent per hour. Please note that customer send time will override this option. 0 for unlimited'
                 ),
             ]
         );

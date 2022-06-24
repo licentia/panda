@@ -21,7 +21,7 @@
         <add id="Licentia_Panda::autoresponders" title="Autoresponders" module="Licentia_Panda" sortOrder="10" parent="Licentia_Panda::email" action="panda/autoresponders" resource="Licentia_Panda::autoresponders"/>
         <add id="Licentia_Panda::splits" title="A/B Campaigns" module="Licentia_Panda" sortOrder="20" parent="Licentia_Panda::email" action="panda/splits" resource="Licentia_Panda::splits"/>
         <add id="Licentia_Panda::campaigns" title="Campaigns" module="Licentia_Panda" sortOrder="30" parent="Licentia_Panda::email" action="panda/campaigns" resource="Licentia_Panda::campaigns"/>
-        <add id="Licentia_Panda::followups" title="Follow Ups" module="Licentia_Panda" sortOrder="40" parent="Licentia_Panda::email" action="panda/followups" resource="Licentia_Panda::followups"/>
+        <add id="Licentia_Panda::followups" title="Follow-Ups" module="Licentia_Panda" sortOrder="40" parent="Licentia_Panda::email" action="panda/followups" resource="Licentia_Panda::followups"/>
         <add id="Licentia_Panda::goals" title="Goals" module="Licentia_Panda" sortOrder="50" parent="Licentia_Panda::email" action="panda/goals" resource="Licentia_Panda::goals"/>
         <add id="Licentia_Panda::subscribers" title="Subscribers" module="Licentia_Panda" sortOrder="80" parent="Licentia_Panda::email" action="panda/subscriber" resource="Licentia_Panda::subscribers"/>
         <add id="Licentia_Panda::tags" title="Tags" module="Licentia_Panda" sortOrder="90" parent="Licentia_Panda::email" action="panda/tags" resource="Licentia_Panda::tags"/>

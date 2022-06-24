@@ -107,7 +107,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
             $model = $this->registry->registry('panda_followup');
 
             if (!$model->getId() && $id) {
-                $this->messageManager->addErrorMessage(__('This Follow Up no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This Follow-Up no longer exists.'));
 
                 return $resultRedirect->setPath('*/*/');
             }
@@ -123,7 +123,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
             }
 
             if (!$campaign->getId()) {
-                $this->messageManager->addErrorMessage(__('Follow Up not found'));
+                $this->messageManager->addErrorMessage(__('Follow-Up not found'));
 
                 return $resultRedirect->setPath(
                     '*/*/',
@@ -138,7 +138,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
             if ($campaign->getRecurring() != '0' && $data['active'] != '0') {
                 $data['is_active'] = '0';
                 $this->messageManager->addNotice(
-                    __("You can't create Follow Ups for recurring campaigns. Follow Up is inactive.")
+                    __("You can't create Follow-Ups for recurring campaigns. Follow-Up is inactive.")
                 );
             }
 
@@ -173,14 +173,14 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Followups
 
                         if ($totalRecipients == 0) {
                             $this->messageManager->addErrorMessage(
-                                __('Please be advise: There are no recipients expected to receive this campaign.')
+                                __('Please be advised: There are no recipients expected to receive this campaign.')
                             );
                             $extraMsg = '';
                         }
                     }
                 }
 
-                $this->messageManager->addSuccessMessage(__('You saved the Follow Up.' . $extraMsg));
+                $this->messageManager->addSuccessMessage(__('You saved the Follow-Up.' . $extraMsg));
                 $this->_getSession()->setFormData(false);
 
                 if ($this->getRequest()->getParam('back')) {

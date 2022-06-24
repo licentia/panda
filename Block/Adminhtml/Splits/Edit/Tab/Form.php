@@ -233,7 +233,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                     'label'  => __('Tags'),
                     'title'  => __('Tags'),
                     'name'   => 'tags',
-                    'note'   => __('Tag this A/B campaign with theses tags'),
+                    'note'   => __('Tag this A/B campaign with these tags'),
                     'values' => $tags,
                 ]
             );

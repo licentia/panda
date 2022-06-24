@@ -195,7 +195,7 @@ class Save extends \Licentia\Panda\Controller\Adminhtml\Splits
 
                         if ($totalRecipients == 0) {
                             $this->messageManager->addErrorMessage(
-                                __('Please be advise: There are no recipients expected to receive this campaign.')
+                                __('Please be advised: There are no recipients expected to receive this campaign.')
                             );
                             $extraMsg = '';
                         }

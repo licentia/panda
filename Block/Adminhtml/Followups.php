@@ -32,7 +32,7 @@ class Followups extends \Magento\Backend\Block\Widget\Grid\Container
 
         $this->_blockGroup = 'Licentia_Panda';
         $this->_controller = 'adminhtml_followups';
-        $this->_headerText = __('Follow Ups');
+        $this->_headerText = __('Follow-Ups');
         parent::_construct();
 
         $this->removeButton('add');

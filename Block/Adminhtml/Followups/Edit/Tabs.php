@@ -59,7 +59,7 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
         parent::_construct();
         $this->setId('followup_tabs');
         $this->setDestElementId('edit_form');
-        $this->setTitle(__('Follow Up Information'));
+        $this->setTitle(__('Follow-Up Information'));
     }
 
     /**

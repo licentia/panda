@@ -98,7 +98,7 @@
                         <item name="url" xsi:type="url" path="panda/subscriber/massUnsubscribe"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Unsubscribe</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you want to unsubscribe selected items?</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you want to unsubscribe to selected items?</item>
                         </item>
                     </item>
                 </argument>
@@ -111,7 +111,7 @@
                         <item name="url" xsi:type="url" path="panda/subscriber/massSubscribe"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Subscribe</item>
-                            <item name="message" xsi:type="string" translate="true">Are you sure you want to subscribe selected items?</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you want to subscribe to selected items?</item>
                         </item>
                     </item>
                 </argument>

@@ -203,7 +203,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                     'label'  => __('Tags'),
                     'title'  => __('Tags'),
                     'name'   => 'tags',
-                    'note'   => __('Tag this subscriber with theses tags'),
+                    'note'   => __('Tag this subscriber with these tags'),
                     'values' => $tags,
                 ]
             );

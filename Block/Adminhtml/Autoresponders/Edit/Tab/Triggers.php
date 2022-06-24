@@ -330,7 +330,7 @@ class Triggers extends \Magento\Backend\Block\Widget\Form\Generic
                     'label' => __('Products'),
                     'title' => __('Products'),
                     'note'  => __(
-                        'Send the Autoresponder only for this products. One SKU per line. [2] One/both of these fields is required'
+                        'Send the Autoresponder only for these products. One SKU per line. [2] One/both of these fields is required'
                     ),
                 ]
             );

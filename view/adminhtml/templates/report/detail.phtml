@@ -93,17 +93,17 @@ if ($campaign->getData('views') > 0):
             <tbody>
             <tr>
                 <td><?= /* @noEscape */
-                    __('Unique clickthroughs') ?></td>
+                    __('Unique click-throughs') ?></td>
                 <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('unique_clicks')) ?></td>
             </tr>
             <tr>
                 <td><?= /* @noEscape */
-                    __('Clickthroughs') ?></td>
+                    __('Click-throughs') ?></td>
                 <td style="width:20%; text-align: center;"><?= $block->escapeHtml($campaign->getData('clicks')) ?></td>
             </tr>
             <tr>
                 <td><?= /* @noEscape */
-                    __('Clickthroughs Rate') ?></td>
+                    __('Click-throughs Rate') ?></td>
                 <td style="width:20%; text-align: center;"><?= round(
                         $campaign->getData('unique_clicks') * 100 / $campaign->getData('sent'),
                         1

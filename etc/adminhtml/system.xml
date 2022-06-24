@@ -119,7 +119,7 @@
                 <field id="subscriber_hours" sortOrder="165" showInDefault="1" type="text" showInStore="0" showInWebsite="0" translate="label comment">
                     <label>Hours Between Emails to the same Subscriber</label>
                     <validate>required-entry validate-digits</validate>
-                    <comment>The number of hours were the system can't send more than one email to the same subscriber. 0 to ignore.</comment>
+                    <comment>The number of hours where the system can't send more than one email to the same subscriber. 0 to ignore.</comment>
                 </field>
                 <field id="warning" sortOrder="170" showInDefault="1" type="select" showInStore="0" showInWebsite="0" translate="label comment">
                     <label>Predict number of recipients</label>

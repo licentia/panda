@@ -82,9 +82,9 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
             $this->buttonList->add(
                 'followup_email',
                 [
-                    'label'   => __('Follow Up'),
+                    'label'   => __('Follow-Up'),
                     'class'   => "add",
-                    'title'   => "Follow Up",
+                    'title'   => "Follow-Up",
                     'onclick' => "window.location='$emailUrl';",
                 ]
             );

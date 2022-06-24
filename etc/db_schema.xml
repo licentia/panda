@@ -2415,7 +2415,7 @@
     <column xsi:type="smallint" name="category" padding="6" unsigned="false" nullable="true" identity="false" comment="Category"/>
     <column xsi:type="varchar" name="based_on" nullable="true" length="255" comment="Based On"/>
     <column xsi:type="varchar" name="level" nullable="true" length="255" comment="Level"/>
-    <column xsi:type="text" name="skus" nullable="true" comment="Skus"/>
+    <column xsi:type="text" name="skus" nullable="true" comment="SKUs"/>
     <column xsi:type="smallint" name="use_segments" padding="6" unsigned="false" nullable="true" identity="false" comment="Use Segments"/>
     <column xsi:type="varchar" name="segment_drill" nullable="true" length="255" comment="Segment Drill"/>
     <column xsi:type="smallint" name="number_products" padding="6" unsigned="false" nullable="true" identity="false" comment="Number Products"/>
@@ -6878,7 +6878,7 @@
   <table name="panda_two_factor_auth_admin" resource="default" engine="innodb" comment="Panda Two Factor Auth Admin">
     <column xsi:type="int" name="auth_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Auth Id"/>
     <column xsi:type="int" name="user_id" padding="10" unsigned="true" nullable="true" identity="false" comment="User Id"/>
-    <column xsi:type="varchar" name="user_name" nullable="true" length="255" comment="User Name"/>
+    <column xsi:type="varchar" name="user_name" nullable="true" length="255" comment="Username"/>
     <column xsi:type="varchar" name="user_email" nullable="true" length="255" comment="User Email"/>
     <column xsi:type="varchar" name="phone" nullable="true" length="255" comment="Phone"/>
     <column xsi:type="varchar" name="message" nullable="true" length="255" comment="Message"/>

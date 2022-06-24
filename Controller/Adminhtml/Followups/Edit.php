@@ -48,7 +48,7 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Followups
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Licentia_Panda::followups')
                    ->addBreadcrumb(__('Sales Automation'), __('Sales Automation'))
-                   ->addBreadcrumb(__('Manage Follow Ups'), __('Manage Follow Ups'));
+                   ->addBreadcrumb(__('Manage Follow-Ups'), __('Manage Follow-Ups'));
 
         return $resultPage;
     }
@@ -133,9 +133,9 @@ class Edit extends \Licentia\Panda\Controller\Adminhtml\Followups
             $id ? __('Edit Followup') : __('New Followup')
         );
         $resultPage->getConfig()
-                   ->getTitle()->prepend(__('Follow Ups'));
+                   ->getTitle()->prepend(__('Follow-Ups'));
         $resultPage->getConfig()
-                   ->getTitle()->prepend($model->getId() ? $model->getName() : __('New Follow Up'));
+                   ->getTitle()->prepend($model->getId() ? $model->getName() : __('New Follow-Up'));
 
         $resultPage->addContent(
             $resultPage->getLayout()

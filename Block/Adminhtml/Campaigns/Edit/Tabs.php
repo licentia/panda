@@ -156,8 +156,8 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
                 $this->addTab(
                     'followup_queue',
                     [
-                        'label'   => __('Follow Ups Queue'),
-                        'title'   => __('Follow Ups Queue'),
+                        'label'   => __('Follow-Ups Queue'),
+                        'title'   => __('Follow-Ups Queue'),
                         'content' => $this->getLayout()
                                           ->createBlock('Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab\Followup')
                                           ->toHtml(),
@@ -167,8 +167,8 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
                 $this->addTab(
                     'followup_sent',
                     [
-                        'label'   => __('Follow Ups Sent'),
-                        'title'   => __('Follow Ups Sent'),
+                        'label'   => __('Follow-Ups Sent'),
+                        'title'   => __('Follow-Ups Sent'),
                         'content' => $this->getLayout()
                                           ->createBlock(
                                               'Licentia\Panda\Block\Adminhtml\Campaigns\Edit\Tab\Followsent'

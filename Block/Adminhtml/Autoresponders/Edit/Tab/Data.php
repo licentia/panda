@@ -187,7 +187,7 @@ class Data extends \Magento\Backend\Block\Widget\Form\Generic
                     'label'  => __('Tags'),
                     'title'  => __('Tags'),
                     'name'   => 'tags',
-                    'note'   => __('Tag this autoresponder with theses tags'),
+                    'note'   => __('Tag this autoresponder with these tags'),
                     'values' => $tags,
                 ]
             );

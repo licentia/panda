@@ -39,9 +39,9 @@ class Index extends \Licentia\Panda\Controller\Adminhtml\Followups
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Licentia_Panda::followups');
         $resultPage->getConfig()
-                   ->getTitle()->prepend(__('Follow Ups'));
+                   ->getTitle()->prepend(__('Follow-Ups'));
         $resultPage->addBreadcrumb(__('Sales Automation'), __('Sales Automation'));
-        $resultPage->addBreadcrumb(__('Follow Ups'), __('Follow Ups'));
+        $resultPage->addBreadcrumb(__('Follow-Ups'), __('Follow-Ups'));
 
         return $resultPage;
     }

@@ -49,7 +49,7 @@
                     <resource id="Licentia_Panda::email" title="Marketing Automation" sortOrder="110">
                         <resource id="Licentia_Panda::campaigns" title="Campaigns" sortOrder="10"/>
                         <resource id="Licentia_Panda::autoresponders" title="Autoresponders" sortOrder="20"/>
-                        <resource id="Licentia_Panda::followups" title="Follow Up" sortOrder="30"/>
+                        <resource id="Licentia_Panda::followups" title="Follow-Up" sortOrder="30"/>
                         <resource id="Licentia_Panda::splits" title="A/B Campaigns" sortOrder="40"/>
                         <resource id="Licentia_Panda::subscribers" title="Subscribers" sortOrder="50"/>
                         <resource id="Licentia_Panda::goals" title="Goals" sortOrder="70">

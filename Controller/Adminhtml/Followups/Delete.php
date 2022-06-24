@@ -43,7 +43,7 @@ class Delete extends \Licentia\Panda\Controller\Adminhtml\Followups
         if ($model->getId()) {
             try {
                 $model->delete();
-                $this->messageManager->addSuccessMessage(__('You deleted the Follow Up.'));
+                $this->messageManager->addSuccessMessage(__('You deleted the Follow-Up.'));
 
                 return $resultRedirect->setPath('*/*/');
             } catch (\Magento\Framework\Exception\LocalizedException $e) {
@@ -53,13 +53,13 @@ class Delete extends \Licentia\Panda\Controller\Adminhtml\Followups
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage(
                     $e,
-                    __('Something went wrong while deleting the Follow Up.')
+                    __('Something went wrong while deleting the Follow-Up.')
                 );
             }
 
             return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
         } else {
-            $this->messageManager->addErrorMessage(__('We can\'t find an Follow Up to delete.'));
+            $this->messageManager->addErrorMessage(__('We can\'t find an Follow-Up to delete.'));
         }
 
         return $resultRedirect->setPath('*/*/');
