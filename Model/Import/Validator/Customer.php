@@ -51,29 +51,15 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
     protected $pandaHelper;
 
     /**
-     * @var ResourceConnection
-     */
-    private $resourceConnection;
-
-    /**
-     * @var AdapterInterface
-     */
-    private $connection;
-
-    /**
      * Customer constructor.
      *
      * @param \Licentia\Panda\Helper\Data $pandaHelper
-     * @param ResourceConnection          $resourceConnection
      */
     public function __construct(
-        \Licentia\Panda\Helper\Data $pandaHelper,
-        ResourceConnection $resourceConnection
+        \Licentia\Panda\Helper\Data $pandaHelper
     ) {
 
-        $this->resourceConnection = $resourceConnection;
         $this->pandaHelper = $pandaHelper;
-        $this->connection = $this->resourceConnection->getConnection();
     }
 
     /**
@@ -174,12 +160,16 @@ class Customer extends AbstractImportValidator implements RowValidatorInterface
 
         if (!$this->customersIds) {
 
-            $this->customersIds = $this->connection->fetchCol(
-                $this->connection->select()
-                                 ->from(
-                                     $this->resourceConnection->getTableName('customer_entity'), 'entity_id'
-                                 )
-            );
+            $this->customersIds = $this->pandaHelper->getConnection()
+                                                    ->fetchCol(
+                                                        $this->pandaHelper->getConnection()
+                                                                          ->select()
+                                                                          ->from(
+                                                                              $this->pandaHelper->getConnection()
+                                                                                                ->getTableName('customer_entity'),
+                                                                              'entity_id'
+                                                                          )
+                                                    );
         }
 
         return $this->customersIds;

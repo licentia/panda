@@ -76,9 +76,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $registry;
 
     /**
-     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     * @var \Magento\Customer\Model\CustomerFactory
      */
-    protected $customerRepository;
+    protected $customerFactory;
 
     /**
      * @var \Magento\Catalog\Model\Category
@@ -261,8 +261,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $httpContext;
 
     /**
-     * Data constructor.
-     *
      * @param \Magento\Framework\App\Cache\TypeListInterface                               $typeList
      * @param \Magento\Framework\App\Cache\StateInterface                                  $cacheState
      * @param \Magento\Framework\HTTP\Client\Curl                                          $curl
@@ -276,7 +274,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Catalog\Model\CategoryFactory                                       $category
      * @param \Magento\Catalog\Model\ProductFactory                                        $productFactory
      * @param \Magento\Cron\Model\ScheduleFactory                                          $cron
-     * @param \Magento\Customer\Api\CustomerRepositoryInterface                            $customer
+     * @param \Magento\Customer\Model\CustomerFactory                                      $customer
      * @param \Magento\Framework\View\DesignInterface                                      $designInterface
      * @param \Magento\Store\Model\StoreManagerInterface                                   $storeManagerInterface
      * @param \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory     $attrCollection
@@ -306,7 +304,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Catalog\Model\CategoryFactory $category,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         \Magento\Cron\Model\ScheduleFactory $cron,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customer,
+        \Magento\Customer\Model\CustomerFactory $customer,
         \Magento\Framework\View\DesignInterface $designInterface,
         \Magento\Store\Model\StoreManagerInterface $storeManagerInterface,
         \Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory $attrCollection,
@@ -361,7 +359,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->dateTime = $dateTime;
 
         $this->registry = $coreRegistry;
-        $this->customerRepository = $customer;
+        $this->customerFactory = $customer;
         $this->scheduleFactory = $cron;
         $this->categoryFactory = $category;
         $this->customerSession = $customerSession;
@@ -385,9 +383,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->cacheTypeList = $typeList;
         $this->_cacheState = $cacheState;
 
-        $this->resource = $productFactory->create()->getResource();
-        $this->connection = $this->resource->getConnection();
-
     }
 
     /**
@@ -396,16 +391,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getResource()
     {
 
-        return $this->resource;
+        return $this->productFactory->create()->getResource();
     }
 
     /**
-     * @return false|\Magento\Framework\DB\Adapter\AdapterInterface
+     * @return \Magento\Framework\DB\Adapter\AdapterInterface
      */
     public function getConnection()
     {
 
-        return $this->connection;
+        return $this->productFactory->create()->getResource()->getConnection();
     }
 
     /**
@@ -629,8 +624,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             }
 
             if ($this->getCustomerId()) {
-                $this->customerEmail = $this->customerRepository->getById($this->getCustomerId())
-                                                                ->getEmail();
+                $this->customerEmail = $this->customerFactory->create()
+                                                             ->load($this->getCustomerId())
+                                                             ->getEmail();
 
                 return $this->customerEmail;
             }
@@ -712,7 +708,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     /**
-     * @return \Magento\Customer\Api\Data\CustomerInterface|null
+     * @return \Magento\Customer\Model\Customer|null
      */
     public function getCustomer()
     {
@@ -721,7 +717,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return null;
         }
 
-        return $this->customerRepository->getById($this->getCustomerId());
+        return $this->customerFactory->create()->load($this->getCustomerId());
     }
 
     /**
