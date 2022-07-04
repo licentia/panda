@@ -432,7 +432,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                  ->where('code=?', $code)
         );
 
-        return $area !== null ? $row[$area] : $row;
+        return $area !== null && $row ? $row[$area] : $row;
     }
 
     /**
@@ -647,7 +647,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $this->customerId;
         }
 
-        $customerId = $this->httpContext->getValue(\Licentia\Equity\Model\Customer\Context::CONTEXT_CUSTOMER_ID);
+        $customerId = 0;
+        if ($this->httpContext) {
+            $customerId = $this->httpContext->getValue(\Licentia\Equity\Model\Customer\Context::CONTEXT_CUSTOMER_ID);
+        }
+
         if ($customerId > 0) {
             $this->customerId = $customerId / 12;
         } elseif (is_numeric($this->registry->registry('current_customer'))) {
