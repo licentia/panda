@@ -426,10 +426,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return false;
         }
 
-        $row = $this->connection->fetchRow(
-            $this->connection->select()
-                             ->from($this->resource->getTable('panda_identifiers'))
-                             ->where('code=?', $code)
+        $row = $this->getConnection()->fetchRow(
+            $this->getConnection()->select()
+                 ->from($this->getResource()->getTable('panda_identifiers'))
+                 ->where('code=?', $code)
         );
 
         return $area !== null ? $row[$area] : $row;
@@ -444,14 +444,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function addIdentifierValueFromArea($area, $value)
     {
 
-        $table = $this->resource->getTable('panda_identifiers');
+        $table = $this->getResource()->getTable('panda_identifiers');
 
         $code = $this->cookieManager->getCookie(self::PANDA_COOKIE_NAME);
 
         if (!$code) {
             try {
                 $code = self::getToken();
-                $this->connection->insert($table, ['code' => $code, $area => $value]);
+                $this->getConnection()->insert($table, ['code' => $code, $area => $value]);
 
                 $metadata = $this->cookieMetadataFactory->setDuration(3600 * 24 * 7)
                                                         ->setPath('/');
@@ -460,10 +460,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             } catch (\Exception $e) {
             }
         } else {
-            $result = $this->connection->update($table, [$area => $value], ['code=?' => $code]);
+            $result = $this->getConnection()->update($table, [$area => $value], ['code=?' => $code]);
 
             if ($result == 0) {
-                $this->connection->insert($table, ['code' => $code, $area => $value]);
+                $this->getConnection()->insert($table, ['code' => $code, $area => $value]);
             }
         }
 
@@ -481,9 +481,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
 
         if ($this->scopeConfig->isSetFlag('panda_nuntius/info/enabled')) {
-            $table = $this->resource->getTable('panda_identifiers');
+            $table = $this->getResource()->getTable('panda_identifiers');
 
-            return $this->connection->update($table, [$area => $value], ['code=?' => $code]);
+            return $this->getConnection()->update($table, [$area => $value], ['code=?' => $code]);
         }
 
         return false;
@@ -544,7 +544,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         $collection->getSelect()
                    ->joinLeft(
-                       ['a' => $this->resource->getTable('quote_address')],
+                       ['a' => $this->getResource()->getTable('quote_address')],
                        'main_table.entity_id=a.quote_id AND a.address_type="billing"',
                        []
                    )
@@ -991,12 +991,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 return (array) $this->customerSession->getSegmentsIds();
             }
 
-            $segmentsIds = $this->connection->fetchCol(
-                $this->connection->select()
-                                 ->from($this->resource->getTable('panda_segments_records'), ['segment_id'])
-                                 ->where('email=? OR customer_id=' . (int) $customerId,
-                                     $this->customerSession->getCustomer()->getEmail())
-                                 ->order('segment_id ASC')
+            $segmentsIds = $this->getConnection()->fetchCol(
+                $this->getConnection()->select()
+                     ->from($this->getResource()->getTable('panda_segments_records'), ['segment_id'])
+                     ->where('email=? OR customer_id=' . (int) $customerId,
+                         $this->customerSession->getCustomer()->getEmail())
+                     ->order('segment_id ASC')
             );
 
             $this->customerSession->setSegmentsIds($segmentsIds);
@@ -1057,11 +1057,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getCustomerPrice($customerId, $product, $previousPrice)
     {
 
-        $productPrice = $this->connection->fetchOne(
-            $this->connection->select()
-                             ->from($this->resource->getTable('panda_customer_prices'), ['price'])
-                             ->where('customer_id=?', $customerId)
-                             ->where('product_id=?', $product->getId())
+        $productPrice = $this->getConnection()->fetchOne(
+            $this->getConnection()->select()
+                 ->from($this->getResource()->getTable('panda_customer_prices'), ['price'])
+                 ->where('customer_id=?', $customerId)
+                 ->where('product_id=?', $product->getId())
         );
 
         if (!$productPrice || $productPrice <= 0 || $productPrice > $previousPrice) {
@@ -1591,26 +1591,26 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $type = false;
 
         if (stripos($uri, '.html') === false && stripos($uri, '/') === false && stripos($uri, ' ') === false) {
-            $select = $this->connection->select()
-                                       ->from($this->resource->getTable('catalog_product_entity'))
-                                       ->where('sku=?', $uri)
-                                       ->limit(1);
+            $select = $this->getConnection()->select()
+                           ->from($this->getResource()->getTable('catalog_product_entity'))
+                           ->where('sku=?', $uri)
+                           ->limit(1);
 
-            $row = $this->connection->fetchRow($select);
+            $row = $this->getConnection()->fetchRow($select);
 
             if ($row) {
                 $type = 'product';
                 $id = $row['entity_id'];
             }
         } else {
-            $select = $this->connection
-                ->select()
-                ->from($this->resource->getTable('url_rewrite'))
-                ->where('request_path=?', $uri)
-                ->where('store_id=?', $this->storeManager->getStore()->getId())
-                ->limit(1);
+            $select = $this->getConnection()
+                           ->select()
+                           ->from($this->getResource()->getTable('url_rewrite'))
+                           ->where('request_path=?', $uri)
+                           ->where('store_id=?', $this->storeManager->getStore()->getId())
+                           ->limit(1);
 
-            $row = $this->connection->fetchRow($select);
+            $row = $this->getConnection()->fetchRow($select);
 
             if ($row) {
                 $type = $row['entity_type'];
@@ -2026,7 +2026,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function tableHasRecords($table)
     {
 
-        return $this->connection->fetchOne("SELECT * FROM " . $this->resource->getTable($table) . " LIMIT 1");
+        return $this->getConnection()->fetchOne("SELECT * FROM " . $this->getResource()->getTable($table) . " LIMIT 1");
     }
 
     /**
