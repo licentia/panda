@@ -358,9 +358,12 @@ class General extends \Magento\Rule\Model\Condition\AbstractCondition
                 $location = 'checkout_cart';
             } elseif ($infoData['params']['m'] == 'catalogsearch') {
                 $location = 'search';
-            } elseif ($infoData['params']['m'] == 'cms' &&
-                      $infoData['params']['c'] == 'index' &&
-                      $infoData['params']['a'] == 'index') {
+            } elseif (($infoData['params']['m'] == 'cms' &&
+                       $infoData['params']['c'] == 'index' &&
+                       $infoData['params']['a'] == 'index') ||
+                      ($infoData['params']['m'] == '' &&
+                       $infoData['params']['c'] == '' &&
+                       $infoData['params']['a'] == '')) {
                 $location = 'homepage';
             } else {
                 if ($infoData['params']['m'] == 'catalog' &&

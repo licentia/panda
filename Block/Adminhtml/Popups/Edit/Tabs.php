@@ -82,6 +82,34 @@ class Tabs extends \Magento\Backend\Block\Widget\Tabs
             ]
         );
 
+        if ($model->getType() != 'block') {
+            $this->addTab(
+                'details_section',
+                [
+                    'label'   => __('Styling'),
+                    'title'   => __('Styling'),
+                    'content' => $this->getLayout()
+                                      ->createBlock('Licentia\Panda\Block\Adminhtml\Popups\Edit\Tab\Settings')
+                                      ->toHtml(),
+                ]
+            );
+        }
+
+        $this->addTab(
+            'conditions_section',
+            [
+                'label'   => __('Segmentation'),
+                'title'   => __('Segmentation'),
+                'content' => $this->getLayout()
+                                  ->createBlock('Licentia\Panda\Block\Adminhtml\Popups\Edit\Tab\Conditions')
+                                  ->toHtml(),
+            ]
+        );
+
+        if ($this->getRequest()->getParam('tab_id')) {
+            $this->setActiveTab($this->getRequest()->getParam('tab_id'));
+        }
+
         return parent::_beforeToHtml();
     }
 }
