@@ -539,7 +539,7 @@ class Popups extends \Magento\Rule\Model\AbstractModel
 
         $date = $this->pandaHelper->gmtDate('Y-m-d');
 
-        if ($this->getFromDate() && $this->getToDate()) {
+        if ($this->getFromDate() && $this->getToDate() && $this->getData('controller_panda')) {
             try {
                 $inputFilter = new \Zend_Filter_Input(
                     ['to_date' => $this->dateFilter, 'from_date' => $this->dateFilter],
